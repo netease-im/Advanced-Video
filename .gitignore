@@ -1,0 +1,16 @@
+# android
+.idea/
+*.apk
+*.aar
+*.ap_
+*.aab
+out/
+release/
+
+
+# iOS
+xcuserdata/
+xcshareddata/
+*.xccheckout
+*.xcworkspace
+Pods/
