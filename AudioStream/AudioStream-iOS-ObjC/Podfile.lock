@@ -1,0 +1,16 @@
+PODS:
+  - NERtcSDK (3.6.2)
+
+DEPENDENCIES:
+  - NERtcSDK (~> 3.6.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - NERtcSDK
+
+SPEC CHECKSUMS:
+  NERtcSDK: 01855b97554cf0c856d009db7b296de4f71300c2
+
+PODFILE CHECKSUM: 4224666174afa1247776c00da1e3bf05a135dd4e
+
+COCOAPODS: 1.7.1

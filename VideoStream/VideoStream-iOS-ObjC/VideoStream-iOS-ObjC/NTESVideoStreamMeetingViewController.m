@@ -1,26 +1,26 @@
 //
-//  NTESAudioStreamMeetingViewController.m
-//  AudioStream-iOS-ObjC
+//  NTESVideoStreamMeetingViewController.m
+//  NERtcVideoStreamSample
 //
-//  Created by 丁文超 on 2020/6/23.
+//  Created by 丁文超 on 2020/3/23.
 //  Copyright © 2020 丁文超. All rights reserved.
 //
 
-#import "NTESAudioStreamMeetingViewController.h"
-#import "NTESAudioStreamUserCell.h"
+#import "NTESVideoStreamMeetingViewController.h"
 #import <NERtcSDK/NERtcSDK.h>
-#import "AppConfig.h"
+#import "NTESConfig.h"
 
-@interface NTESAudioStreamMeetingViewController () <NERtcEngineDelegateEx,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface NTESVideoStreamMeetingViewController () <NERtcEngineDelegateEx>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIView *localUserView;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *remoteUserViews;
 
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *userList;
 @property (strong, nonatomic) NERtcLiveStreamTaskInfo *liveStreamTask;
+@property (strong, nonatomic) NSMutableArray<NSNumber *> *userList;
 
 @end
 
-@implementation NTESAudioStreamMeetingViewController
+@implementation NTESVideoStreamMeetingViewController
 
 - (void)viewDidLoad
 {
@@ -52,12 +52,16 @@
     context.appKey = kAppKey;
     [coreEngine setupEngineWithContext:context];
     [coreEngine enableLocalAudio:YES];
+    [coreEngine enableLocalVideo:YES];
     [coreEngine setParameters:@{kNERtcKeyPublishSelfStreamEnabled: @YES}]; // 打开推流
 }
 
 - (void)joinCurrentRoom
 {
     [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:self.roomID myUid:self.userID completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+        NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
+        canvas.container = self.localUserView;
+        [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
         [self addLiveStream];
     }];
 }
@@ -67,12 +71,16 @@
     self.liveStreamTask = [[NERtcLiveStreamTaskInfo alloc] init];
     self.liveStreamTask.taskID = self.roomID;
     self.liveStreamTask.streamURL = kStreamURL;
-    self.liveStreamTask.lsMode = kNERtcLsModeAudio;
+    self.liveStreamTask.lsMode = kNERtcLsModeVideo;
     
+    NSInteger layoutWidth = 720;
+    NSInteger layoutHeight = 1280;
     //设置整体布局
     NERtcLiveStreamLayout *layout = [[NERtcLiveStreamLayout alloc] init];
-    layout.width = 720; //整体布局宽度
-    layout.height = 1280; //整体布局高度
+    layout.width = layoutWidth; //整体布局宽度
+    layout.height = layoutHeight; //整体布局高度
+    // layout.bgImage = <#在这里设置背景图片(可选)#>
+    // layout.backgroundColor = <#在这里设置背景色(可选)#>
     self.liveStreamTask.layout = layout;
     
     [self reloadUsers];
@@ -87,7 +95,7 @@
     }
 }
 
-- (void)updateLiveStream
+- (void)updateLiveStreamTask
 {
     int ret = [NERtcEngine.sharedEngine updateLiveStreamTask:self.liveStreamTask
                                                compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
@@ -99,52 +107,73 @@
     }
 }
 
-// 根据self.userList生成直播成员信息
-
+// 根据self.usersForStreaming生成直播成员信息
 - (void)reloadUsers
 {
+    NSInteger layoutWidth = self.liveStreamTask.layout.width;
+    NSInteger userWidth = 320;
+    NSInteger userHeight = 480;
+    NSInteger horizPadding = (layoutWidth-userWidth*2)/3;
+    NSInteger vertPadding = 15;
     NSMutableArray *res = NSMutableArray.array;
     for (NSInteger i = 0; i < self.userList.count; i++) {
+        NSInteger column = i % 2;
+        NSInteger row = i / 2;
         NSNumber *userID = self.userList[i];
         NERtcLiveStreamUserTranscoding *userTranscoding = [[NERtcLiveStreamUserTranscoding alloc] init];
         userTranscoding.uid = userID.unsignedLongValue;
         userTranscoding.audioPush = YES;
-        userTranscoding.width = 16;
-        userTranscoding.height = 16;
+        userTranscoding.videoPush = YES;
+        userTranscoding.x = column == 0 ? horizPadding : horizPadding * 2 + userWidth;
+        userTranscoding.y = vertPadding * (row + 1) + userHeight * row;
+        userTranscoding.width = userWidth;
+        userTranscoding.height = userHeight;
+        userTranscoding.adaption = kNERtcLsModeVideoScaleCropFill;
         [res addObject:userTranscoding];
     }
     self.liveStreamTask.layout.users = [NSArray arrayWithArray:res];
-    [self.collectionView reloadData];
 }
-
-#pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.liveStreamTask.layout.users.count;
-}
-
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NTESAudioStreamUserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.userIDLabel.text = self.userList[indexPath.item].stringValue;
-    return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
-    NSInteger itemSize = (CGRectGetWidth(collectionView.frame) - flowLayout.minimumInteritemSpacing*4)/3;
-    return CGSizeMake(itemSize, itemSize);
-}
-
 
 #pragma mark - NERtcEngineDelegate
+
+- (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
+{
+    NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
+    for (UIView *view in self.remoteUserViews) {
+        if (view.tag == 0) {
+            canvas.container = view;
+            [NERtcEngine.sharedEngine setupRemoteVideoCanvas:canvas forUserID:userID];
+            view.tag = (NSInteger)userID;
+            break;
+        }
+    }
+}
+
+- (void)onNERtcEngineUserDidLeaveWithUserID:(uint64_t)userID reason:(NERtcSessionLeaveReason)reason
+{
+    [self.view viewWithTag:(NSInteger)userID].tag = 0;
+}
+
+- (void)onNERtcEngineUserVideoDidStartWithUserID:(uint64_t)userID videoProfile:(NERtcVideoProfileType)profile
+{
+    [NERtcEngine.sharedEngine subscribeRemoteVideo:YES forUserID:userID streamType:kNERtcRemoteVideoStreamTypeHigh];
+    if (profile != kNERtcVideoProfileNone && ![self.userList containsObject:@(userID)]) {
+        // 新加入用户，添加至直播成员
+        [self.userList addObject:@(userID)];
+        [self reloadUsers];
+        [self updateLiveStreamTask];
+    }
+}
+
+- (void)onNERtcEngineUserVideoDidStop:(uint64_t)userID
+{
+    if ([self.userList containsObject:@(userID)]) {
+        // 用户离开，从直播成员中移除
+        [self.userList removeObject:@(userID)];
+        [self reloadUsers];
+        [self updateLiveStreamTask];
+    }
+}
 
 - (void)onNERTCEngineLiveStreamState:(NERtcLiveStreamStateCode)state taskID:(NSString *)taskID url:(NSString *)url
 {
@@ -161,31 +190,6 @@
         default:
             NSLog(@"Unknown state for task [%@]", taskID);
             break;
-    }
-}
-
-- (void)onNERtcEngineUserAudioDidStart:(uint64_t)userID
-{
-    [NERtcEngine.sharedEngine subscribeRemoteAudio:YES forUserID:userID];
-}
-
-- (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
-{
-    if (![self.userList containsObject:@(userID)]) {
-        // 添加至直播成员
-        [self.userList addObject:@(userID)];
-        [self reloadUsers];
-        [self updateLiveStream];
-    }
-}
-
-- (void)onNERtcEngineUserDidLeaveWithUserID:(uint64_t)userID reason:(NERtcSessionLeaveReason)reason
-{
-    if ([self.userList containsObject:@(userID)]) {
-        // 从直播成员中移除
-        [self.userList removeObject:@(userID)];
-        [self reloadUsers];
-        [self updateLiveStream];
     }
 }
 

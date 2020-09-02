@@ -63,7 +63,7 @@
 		49A5E30FB2471D58F06514CB /* Pods-AudioStream-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		6700FEDEFDB2A826E3A3D403 /* Pods-VideoStream-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjC/Pods-VideoStream-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		73DF9A7A895AA80EFE14F7A9 /* Pods-AudioStream-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
-		86280D0E24FF9ED70027F2DE /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		86280D0E24FF9ED70027F2DE /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		8649A6B924FFB2060092DA95 /* NERtcAudioStreamSampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NERtcAudioStreamSampleTests.m; sourceTree = "<group>"; };
 		8649A6BA24FFB2060092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8649A6BE24FFB7810092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			children = (
 				86ED624525009A9200176A8D /* AudioStream-iOS-ObjC.entitlements */,
 				86ED6244250090FD00176A8D /* AudioStream-iOS-ObjCRelease.entitlements */,
-				86280D0E24FF9ED70027F2DE /* AppKey.h */,
+				86280D0E24FF9ED70027F2DE /* AppConfig.h */,
 				48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */,
 				48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */,
 				48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */,
