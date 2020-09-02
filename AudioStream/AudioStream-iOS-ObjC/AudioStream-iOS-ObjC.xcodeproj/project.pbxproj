@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		29200F308F396698F7E45D5E /* Pods_AudioStream_iOS_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F15AED38DBFA34421578849 /* Pods_AudioStream_iOS_ObjC.framework */; };
+		48DB92D024A1982400AA8233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92CE24A1982400AA8233 /* Main.storyboard */; };
+		48DB92D224A1982500AA8233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92D124A1982500AA8233 /* Assets.xcassets */; };
+		48DB92D524A1982500AA8233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */; };
+		48DB92D824A1982500AA8233 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92D724A1982500AA8233 /* main.m */; };
+		48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */; };
+		48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */; };
+		48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */; };
+		48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */; };
+		8649A6BC24FFB2060092DA95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8649A6BA24FFB2060092DA95 /* Info.plist */; };
+		8649A6BF24FFB7810092DA95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8649A6BE24FFB7810092DA95 /* Info.plist */; };
+		BC63198F157A387E08F12C52 /* Pods_AudioStream_iOS_ObjCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE54E98C6A89B00375580A0 /* Pods_AudioStream_iOS_ObjCTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48DB92DE24A1982500AA8233 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48DB92BA24A1982400AA8233 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48DB92C124A1982400AA8233;
+			remoteInfo = "VideoStream-iOS-ObjC";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		48E7885A24A19A5700308E9A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1CE54E98C6A89B00375580A0 /* Pods_AudioStream_iOS_ObjCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioStream_iOS_ObjCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2010848D97842499DC807D96 /* Pods-AudioStream-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjCTests/Pods-AudioStream-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A74D66DFD63748E9696A4BD /* Pods-VideoStream-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjCTests/Pods-VideoStream-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+		48DB92C224A1982400AA8233 /* AudioStream-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AudioStream-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DB92CF24A1982400AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48DB92D124A1982500AA8233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48DB92D424A1982500AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48DB92D724A1982500AA8233 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48DB92DD24A1982500AA8233 /* AudioStream-iOS-ObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AudioStream-iOS-ObjCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
+		48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
+		48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
+		48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
+		48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamMeetingViewController.h; sourceTree = "<group>"; };
+		48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamMeetingViewController.m; sourceTree = "<group>"; };
+		48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamUserCell.h; sourceTree = "<group>"; };
+		48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamUserCell.m; sourceTree = "<group>"; };
+		49A5E30FB2471D58F06514CB /* Pods-AudioStream-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		6700FEDEFDB2A826E3A3D403 /* Pods-VideoStream-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjC/Pods-VideoStream-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		73DF9A7A895AA80EFE14F7A9 /* Pods-AudioStream-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		86280D0E24FF9ED70027F2DE /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		8649A6B924FFB2060092DA95 /* NERtcAudioStreamSampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NERtcAudioStreamSampleTests.m; sourceTree = "<group>"; };
+		8649A6BA24FFB2060092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8649A6BE24FFB7810092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F15AED38DBFA34421578849 /* Pods_AudioStream_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioStream_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985616D34D9B47EDF6CB781 /* Pods-VideoStream-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjCTests/Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D8A5F513FBD213E9765E34D7 /* Pods-VideoStream-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjC/Pods-VideoStream-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		F95F8BC7B615C34370E5BD4E /* Pods-AudioStream-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioStream-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-AudioStream-iOS-ObjCTests/Pods-AudioStream-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48DB92BF24A1982400AA8233 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29200F308F396698F7E45D5E /* Pods_AudioStream_iOS_ObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92DA24A1982500AA8233 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC63198F157A387E08F12C52 /* Pods_AudioStream_iOS_ObjCTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B6A714C5379CD36DEF4AB21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8A5F513FBD213E9765E34D7 /* Pods-VideoStream-iOS-ObjC.debug.xcconfig */,
+				6700FEDEFDB2A826E3A3D403 /* Pods-VideoStream-iOS-ObjC.release.xcconfig */,
+				B985616D34D9B47EDF6CB781 /* Pods-VideoStream-iOS-ObjCTests.debug.xcconfig */,
+				2A74D66DFD63748E9696A4BD /* Pods-VideoStream-iOS-ObjCTests.release.xcconfig */,
+				49A5E30FB2471D58F06514CB /* Pods-AudioStream-iOS-ObjC.debug.xcconfig */,
+				73DF9A7A895AA80EFE14F7A9 /* Pods-AudioStream-iOS-ObjC.release.xcconfig */,
+				2010848D97842499DC807D96 /* Pods-AudioStream-iOS-ObjCTests.debug.xcconfig */,
+				F95F8BC7B615C34370E5BD4E /* Pods-AudioStream-iOS-ObjCTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		48DB92B924A1982400AA8233 = {
+			isa = PBXGroup;
+			children = (
+				48DB92C424A1982400AA8233 /* AudioStream-iOS-ObjC */,
+				8649A6B824FFB2060092DA95 /* AudioStream-iOS-ObjCTests */,
+				48DB92C324A1982400AA8233 /* Products */,
+				48E7885324A19A4C00308E9A /* Frameworks */,
+				2B6A714C5379CD36DEF4AB21 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		48DB92C324A1982400AA8233 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48DB92C224A1982400AA8233 /* AudioStream-iOS-ObjC.app */,
+				48DB92DD24A1982500AA8233 /* AudioStream-iOS-ObjCTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48DB92C424A1982400AA8233 /* AudioStream-iOS-ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				86280D0E24FF9ED70027F2DE /* AppKey.h */,
+				48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */,
+				48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */,
+				48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */,
+				48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */,
+				48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */,
+				48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */,
+				48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */,
+				48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */,
+				48DB92CE24A1982400AA8233 /* Main.storyboard */,
+				48DB92D124A1982500AA8233 /* Assets.xcassets */,
+				48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */,
+				8649A6BE24FFB7810092DA95 /* Info.plist */,
+				48DB92D724A1982500AA8233 /* main.m */,
+			);
+			path = "AudioStream-iOS-ObjC";
+			sourceTree = "<group>";
+		};
+		48E7885324A19A4C00308E9A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F15AED38DBFA34421578849 /* Pods_AudioStream_iOS_ObjC.framework */,
+				1CE54E98C6A89B00375580A0 /* Pods_AudioStream_iOS_ObjCTests.framework */,
+			);
+			name = Frameworks;
+			path = ../Frameworks;
+			sourceTree = "<group>";
+		};
+		8649A6B824FFB2060092DA95 /* AudioStream-iOS-ObjCTests */ = {
+			isa = PBXGroup;
+			children = (
+				8649A6B924FFB2060092DA95 /* NERtcAudioStreamSampleTests.m */,
+				8649A6BA24FFB2060092DA95 /* Info.plist */,
+			);
+			path = "AudioStream-iOS-ObjCTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48DB92C124A1982400AA8233 /* AudioStream-iOS-ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48DB92E624A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioStream-iOS-ObjC" */;
+			buildPhases = (
+				626B7713B416F3A950568D37 /* [CP] Check Pods Manifest.lock */,
+				48DB92BE24A1982400AA8233 /* Sources */,
+				48DB92BF24A1982400AA8233 /* Frameworks */,
+				48DB92C024A1982400AA8233 /* Resources */,
+				48E7885A24A19A5700308E9A /* Embed Frameworks */,
+				0CAC5DC374359581C24FB06C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AudioStream-iOS-ObjC";
+			productName = "VideoStream-iOS-ObjC";
+			productReference = 48DB92C224A1982400AA8233 /* AudioStream-iOS-ObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48DB92DC24A1982500AA8233 /* AudioStream-iOS-ObjCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48DB92E924A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioStream-iOS-ObjCTests" */;
+			buildPhases = (
+				0780BCC62A814B0796E6109B /* [CP] Check Pods Manifest.lock */,
+				48DB92D924A1982500AA8233 /* Sources */,
+				48DB92DA24A1982500AA8233 /* Frameworks */,
+				48DB92DB24A1982500AA8233 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48DB92DF24A1982500AA8233 /* PBXTargetDependency */,
+			);
+			name = "AudioStream-iOS-ObjCTests";
+			productName = "VideoStream-iOS-ObjCTests";
+			productReference = 48DB92DD24A1982500AA8233 /* AudioStream-iOS-ObjCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48DB92BA24A1982400AA8233 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "丁文超";
+				TargetAttributes = {
+					48DB92C124A1982400AA8233 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					48DB92DC24A1982500AA8233 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 48DB92C124A1982400AA8233;
+					};
+				};
+			};
+			buildConfigurationList = 48DB92BD24A1982400AA8233 /* Build configuration list for PBXProject "AudioStream-iOS-ObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48DB92B924A1982400AA8233;
+			productRefGroup = 48DB92C324A1982400AA8233 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48DB92C124A1982400AA8233 /* AudioStream-iOS-ObjC */,
+				48DB92DC24A1982500AA8233 /* AudioStream-iOS-ObjCTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48DB92C024A1982400AA8233 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8649A6BC24FFB2060092DA95 /* Info.plist in Resources */,
+				48DB92D524A1982500AA8233 /* LaunchScreen.storyboard in Resources */,
+				48DB92D224A1982500AA8233 /* Assets.xcassets in Resources */,
+				8649A6BF24FFB7810092DA95 /* Info.plist in Resources */,
+				48DB92D024A1982400AA8233 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92DB24A1982500AA8233 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0780BCC62A814B0796E6109B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudioStream-iOS-ObjCTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0CAC5DC374359581C24FB06C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AudioStream-iOS-ObjC/Pods-AudioStream-iOS-ObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		626B7713B416F3A950568D37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudioStream-iOS-ObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48DB92BE24A1982400AA8233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48DB92D824A1982500AA8233 /* main.m in Sources */,
+				48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */,
+				48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */,
+				48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */,
+				48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92D924A1982500AA8233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48DB92DF24A1982500AA8233 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48DB92C124A1982400AA8233 /* AudioStream-iOS-ObjC */;
+			targetProxy = 48DB92DE24A1982500AA8233 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		48DB92CE24A1982400AA8233 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48DB92CF24A1982400AA8233 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48DB92D424A1982500AA8233 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48DB92E424A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		48DB92E524A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48DB92E724A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A5E30FB2471D58F06514CB /* Pods-AudioStream-iOS-ObjC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "AudioStream-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48DB92E824A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73DF9A7A895AA80EFE14F7A9 /* Pods-AudioStream-iOS-ObjC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "AudioStream-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48DB92EA24A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2010848D97842499DC807D96 /* Pods-AudioStream-iOS-ObjCTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "AudioStream-iOS-ObjCTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioStream-iOS-ObjC.app/AudioStream-iOS-ObjC";
+			};
+			name = Debug;
+		};
+		48DB92EB24A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F95F8BC7B615C34370E5BD4E /* Pods-AudioStream-iOS-ObjCTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "AudioStream-iOS-ObjCTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioStream-iOS-ObjC.app/AudioStream-iOS-ObjC";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48DB92BD24A1982400AA8233 /* Build configuration list for PBXProject "AudioStream-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92E424A1982500AA8233 /* Debug */,
+				48DB92E524A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48DB92E624A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioStream-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92E724A1982500AA8233 /* Debug */,
+				48DB92E824A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48DB92E924A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioStream-iOS-ObjCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92EA24A1982500AA8233 /* Debug */,
+				48DB92EB24A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48DB92BA24A1982400AA8233 /* Project object */;
+}
