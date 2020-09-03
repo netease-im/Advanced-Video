@@ -1,0 +1,745 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48AB391224FE32E200919699 /* libyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391124FE32E200919699 /* libyuv.a */; };
+		48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391624FE352400919699 /* CoreVideo.framework */; };
+		48AB391924FE354500919699 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391824FE354500919699 /* CoreMedia.framework */; };
+		48AB391C24FE391100919699 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391B24FE391100919699 /* QuartzCore.framework */; };
+		48C3557724BEABF800C55964 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3557624BEABF800C55964 /* NTESAppDelegate.m */; };
+		48C3558024BEABF800C55964 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C3557E24BEABF800C55964 /* Main.storyboard */; };
+		48C3558224BEABF900C55964 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C3558124BEABF900C55964 /* Assets.xcassets */; };
+		48C3558524BEABF900C55964 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C3558324BEABF900C55964 /* LaunchScreen.storyboard */; };
+		48C3558824BEABF900C55964 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3558724BEABF900C55964 /* main.m */; };
+		48C3559524BEAC1D00C55964 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C3559424BEAC1D00C55964 /* ReplayKit.framework */; };
+		48C3559924BEAC1D00C55964 /* NTESSampleHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */; };
+		48C355AD24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		48C355B724BEAC8800C55964 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C355B624BEAC8800C55964 /* NTESDemoViewController.m */; };
+		86A902A224F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */; };
+		DA31F0D0465E9781CF7D684D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6574A041F1363DB9299A95 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48C355AB24BEAC1D00C55964 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48C3556A24BEABF800C55964 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48C3559124BEAC1D00C55964;
+			remoteInfo = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		48C355B424BEAC1D00C55964 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				48C355AD24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04DCE968E76EB896828F0559 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		240F8C2419812FB46C418907 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
+		300A88AEE18A3EAD6B634634 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig"; sourceTree = "<group>"; };
+		48AB38FA24FE32E200919699 /* libyuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libyuv.h; sourceTree = "<group>"; };
+		48AB38FC24FE32E200919699 /* scale_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_row.h; sourceTree = "<group>"; };
+		48AB38FD24FE32E200919699 /* scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale.h; sourceTree = "<group>"; };
+		48AB38FE24FE32E200919699 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		48AB38FF24FE32E200919699 /* cpu_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_id.h; sourceTree = "<group>"; };
+		48AB390024FE32E200919699 /* video_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_common.h; sourceTree = "<group>"; };
+		48AB390124FE32E200919699 /* compare_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare_row.h; sourceTree = "<group>"; };
+		48AB390224FE32E200919699 /* mjpeg_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mjpeg_decoder.h; sourceTree = "<group>"; };
+		48AB390324FE32E200919699 /* rotate_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_row.h; sourceTree = "<group>"; };
+		48AB390424FE32E200919699 /* planar_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planar_functions.h; sourceTree = "<group>"; };
+		48AB390524FE32E200919699 /* scale_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_argb.h; sourceTree = "<group>"; };
+		48AB390624FE32E200919699 /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
+		48AB390724FE32E200919699 /* convert_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_argb.h; sourceTree = "<group>"; };
+		48AB390824FE32E200919699 /* rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate.h; sourceTree = "<group>"; };
+		48AB390924FE32E200919699 /* convert_from_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from_argb.h; sourceTree = "<group>"; };
+		48AB390A24FE32E200919699 /* basic_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basic_types.h; sourceTree = "<group>"; };
+		48AB390B24FE32E200919699 /* convert_from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from.h; sourceTree = "<group>"; };
+		48AB390C24FE32E200919699 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
+		48AB390D24FE32E200919699 /* rotate_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_argb.h; sourceTree = "<group>"; };
+		48AB390E24FE32E200919699 /* macros_msa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros_msa.h; sourceTree = "<group>"; };
+		48AB390F24FE32E200919699 /* row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = row.h; sourceTree = "<group>"; };
+		48AB391124FE32E200919699 /* libyuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libyuv.a; sourceTree = "<group>"; };
+		48AB391624FE352400919699 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		48AB391824FE354500919699 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		48AB391B24FE391100919699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		48AB392024FE42C300919699 /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NERtcSample-ScreenShare-iOS-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C3557524BEABF800C55964 /* NTESAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
+		48C3557624BEABF800C55964 /* NTESAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
+		48C3557F24BEABF800C55964 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48C3558124BEABF900C55964 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48C3558424BEABF900C55964 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48C3558624BEABF900C55964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48C3558724BEABF900C55964 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C3559424BEAC1D00C55964 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		48C3559724BEAC1D00C55964 /* NTESSampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESSampleHandler.h; sourceTree = "<group>"; };
+		48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NTESSampleHandler.mm; sourceTree = "<group>"; };
+		48C3559A24BEAC1D00C55964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48C355A124BEAC1D00C55964 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		48C355B524BEAC8800C55964 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
+		48C355B624BEAC8800C55964 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
+		83D6622EDF13078534134126 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; sourceTree = "<group>"; };
+		86205F1824F509C600BE40DA /* NERtcSample-ScreenShare-iOS-Objective-C.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NERtcSample-ScreenShare-iOS-Objective-C.entitlements"; sourceTree = "<group>"; };
+		86A9029224F5001600AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A9029624F5002900AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A9029A24F5005100AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A9029D24F5006E00AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A9029F24F5007D00AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86C9512624F5142D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements"; sourceTree = "<group>"; };
+		9C8EAFFAA68B0553306FAEA2 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig"; sourceTree = "<group>"; };
+		D9AB70A7C69CC94B458552FB /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig"; sourceTree = "<group>"; };
+		E9E6D6A21A0619E76C34DBDD /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig"; sourceTree = "<group>"; };
+		ECBFD8DEAF180F0D41F4BC8A /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF6574A041F1363DB9299A95 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48C3556F24BEABF800C55964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86A902A224F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48C3558F24BEAC1D00C55964 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AB391224FE32E200919699 /* libyuv.a in Frameworks */,
+				48AB391C24FE391100919699 /* QuartzCore.framework in Frameworks */,
+				48AB391924FE354500919699 /* CoreMedia.framework in Frameworks */,
+				48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */,
+				48C3559524BEAC1D00C55964 /* ReplayKit.framework in Frameworks */,
+				DA31F0D0465E9781CF7D684D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48AB38F724FE32E200919699 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				48AB38F824FE32E200919699 /* libyuv */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		48AB38F824FE32E200919699 /* libyuv */ = {
+			isa = PBXGroup;
+			children = (
+				48AB38F924FE32E200919699 /* include */,
+				48AB391024FE32E200919699 /* lib */,
+			);
+			path = libyuv;
+			sourceTree = "<group>";
+		};
+		48AB38F924FE32E200919699 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				48AB38FA24FE32E200919699 /* libyuv.h */,
+				48AB38FB24FE32E200919699 /* libyuv */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		48AB38FB24FE32E200919699 /* libyuv */ = {
+			isa = PBXGroup;
+			children = (
+				48AB38FC24FE32E200919699 /* scale_row.h */,
+				48AB38FD24FE32E200919699 /* scale.h */,
+				48AB38FE24FE32E200919699 /* version.h */,
+				48AB38FF24FE32E200919699 /* cpu_id.h */,
+				48AB390024FE32E200919699 /* video_common.h */,
+				48AB390124FE32E200919699 /* compare_row.h */,
+				48AB390224FE32E200919699 /* mjpeg_decoder.h */,
+				48AB390324FE32E200919699 /* rotate_row.h */,
+				48AB390424FE32E200919699 /* planar_functions.h */,
+				48AB390524FE32E200919699 /* scale_argb.h */,
+				48AB390624FE32E200919699 /* compare.h */,
+				48AB390724FE32E200919699 /* convert_argb.h */,
+				48AB390824FE32E200919699 /* rotate.h */,
+				48AB390924FE32E200919699 /* convert_from_argb.h */,
+				48AB390A24FE32E200919699 /* basic_types.h */,
+				48AB390B24FE32E200919699 /* convert_from.h */,
+				48AB390C24FE32E200919699 /* convert.h */,
+				48AB390D24FE32E200919699 /* rotate_argb.h */,
+				48AB390E24FE32E200919699 /* macros_msa.h */,
+				48AB390F24FE32E200919699 /* row.h */,
+			);
+			path = libyuv;
+			sourceTree = "<group>";
+		};
+		48AB391024FE32E200919699 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				48AB391124FE32E200919699 /* libyuv.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		48C3556924BEABF800C55964 = {
+			isa = PBXGroup;
+			children = (
+				48C3557424BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */,
+				48C3559624BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */,
+				48C3559324BEAC1D00C55964 /* Frameworks */,
+				48C3557324BEABF800C55964 /* Products */,
+				DC135B43BB44EB86F9B3C86F /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		48C3557324BEABF800C55964 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */,
+				48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48C3557424BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				86205F1824F509C600BE40DA /* NERtcSample-ScreenShare-iOS-Objective-C.entitlements */,
+				48C3557524BEABF800C55964 /* NTESAppDelegate.h */,
+				48C3557624BEABF800C55964 /* NTESAppDelegate.m */,
+				48C355B524BEAC8800C55964 /* NTESDemoViewController.h */,
+				48C355B624BEAC8800C55964 /* NTESDemoViewController.m */,
+				48AB392024FE42C300919699 /* AppKey.h */,
+				48C3557E24BEABF800C55964 /* Main.storyboard */,
+				48C3558124BEABF900C55964 /* Assets.xcassets */,
+				48C3558324BEABF900C55964 /* LaunchScreen.storyboard */,
+				48C3558624BEABF900C55964 /* Info.plist */,
+				48C3558724BEABF900C55964 /* main.m */,
+			);
+			path = "NERtcSample-ScreenShare-iOS-Objective-C";
+			sourceTree = "<group>";
+		};
+		48C3559324BEAC1D00C55964 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48AB391B24FE391100919699 /* QuartzCore.framework */,
+				48AB391824FE354500919699 /* CoreMedia.framework */,
+				48AB391624FE352400919699 /* CoreVideo.framework */,
+				86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				86A9029F24F5007D00AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				86A9029D24F5006E00AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				86A9029A24F5005100AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				86A9029624F5002900AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				86A9029224F5001600AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				48C3559424BEAC1D00C55964 /* ReplayKit.framework */,
+				48C355A124BEAC1D00C55964 /* UIKit.framework */,
+				04DCE968E76EB896828F0559 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */,
+				EF6574A041F1363DB9299A95 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework */,
+				ECBFD8DEAF180F0D41F4BC8A /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48C3559624BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */ = {
+			isa = PBXGroup;
+			children = (
+				48AB38F724FE32E200919699 /* Vendors */,
+				86C9512624F5142D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements */,
+				48C3559724BEAC1D00C55964 /* NTESSampleHandler.h */,
+				48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */,
+				48C3559A24BEAC1D00C55964 /* Info.plist */,
+			);
+			path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
+			sourceTree = "<group>";
+		};
+		DC135B43BB44EB86F9B3C86F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				240F8C2419812FB46C418907 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig */,
+				E9E6D6A21A0619E76C34DBDD /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig */,
+				9C8EAFFAA68B0553306FAEA2 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig */,
+				300A88AEE18A3EAD6B634634 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig */,
+				D9AB70A7C69CC94B458552FB /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig */,
+				83D6622EDF13078534134126 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48C3557124BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48C3558B24BEABF900C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C" */;
+			buildPhases = (
+				496FE0AE0F17E900C6F585A5 /* [CP] Check Pods Manifest.lock */,
+				48C3556E24BEABF800C55964 /* Sources */,
+				48C3556F24BEABF800C55964 /* Frameworks */,
+				48C3557024BEABF800C55964 /* Resources */,
+				48C355B424BEAC1D00C55964 /* Embed App Extensions */,
+				AC7125AF446566F9292A296A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48C355AC24BEAC1D00C55964 /* PBXTargetDependency */,
+			);
+			name = "NERtcSample-ScreenShare-iOS-Objective-C";
+			productName = "NERtcSample-ScreenShare-iOS-Objective-C";
+			productReference = 48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48C355B124BEAC1D00C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast" */;
+			buildPhases = (
+				E582D368385808C539739D96 /* [CP] Check Pods Manifest.lock */,
+				48C3558E24BEAC1D00C55964 /* Sources */,
+				48C3558F24BEAC1D00C55964 /* Frameworks */,
+				48C3559024BEAC1D00C55964 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
+			productName = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
+			productReference = 48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48C3556A24BEABF800C55964 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "丁文超";
+				TargetAttributes = {
+					48C3557124BEABF800C55964 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					48C3559124BEAC1D00C55964 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 48C3556D24BEABF800C55964 /* Build configuration list for PBXProject "NERtcSample-ScreenShare-iOS-Objective-C" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48C3556924BEABF800C55964;
+			productRefGroup = 48C3557324BEABF800C55964 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48C3557124BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */,
+				48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48C3557024BEABF800C55964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48C3558524BEABF900C55964 /* LaunchScreen.storyboard in Resources */,
+				48C3558224BEABF900C55964 /* Assets.xcassets in Resources */,
+				48C3558024BEABF800C55964 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48C3559024BEAC1D00C55964 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		496FE0AE0F17E900C6F585A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NERtcSample-ScreenShare-iOS-Objective-C-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC7125AF446566F9292A296A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E582D368385808C539739D96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48C3556E24BEABF800C55964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48C355B724BEAC8800C55964 /* NTESDemoViewController.m in Sources */,
+				48C3557724BEABF800C55964 /* NTESAppDelegate.m in Sources */,
+				48C3558824BEABF900C55964 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48C3558E24BEAC1D00C55964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48C3559924BEAC1D00C55964 /* NTESSampleHandler.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48C355AC24BEAC1D00C55964 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */;
+			targetProxy = 48C355AB24BEAC1D00C55964 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		48C3557E24BEABF800C55964 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48C3557F24BEABF800C55964 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		48C3558324BEABF900C55964 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48C3558424BEABF900C55964 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48C3558924BEABF900C55964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		48C3558A24BEABF900C55964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48C3558C24BEABF900C55964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 240F8C2419812FB46C418907 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C/NERtcSample-ScreenShare-iOS-Objective-C.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48C3558D24BEABF900C55964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9E6D6A21A0619E76C34DBDD /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C/NERtcSample-ScreenShare-iOS-Objective-C.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48C355B224BEAC1D00C55964 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C8EAFFAA68B0553306FAEA2 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/include\"";
+				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/**",
+					"\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors\"/**",
+					"$(PROJECT_DIR)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.Broadcast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48C355B324BEAC1D00C55964 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 300A88AEE18A3EAD6B634634 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/include\"";
+				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/**",
+					"\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors\"/**",
+					"$(PROJECT_DIR)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.Broadcast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48C3556D24BEABF800C55964 /* Build configuration list for PBXProject "NERtcSample-ScreenShare-iOS-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48C3558924BEABF900C55964 /* Debug */,
+				48C3558A24BEABF900C55964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48C3558B24BEABF900C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48C3558C24BEABF900C55964 /* Debug */,
+				48C3558D24BEABF900C55964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48C355B124BEAC1D00C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48C355B224BEAC1D00C55964 /* Debug */,
+				48C355B324BEAC1D00C55964 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48C3556A24BEABF800C55964 /* Project object */;
+}
