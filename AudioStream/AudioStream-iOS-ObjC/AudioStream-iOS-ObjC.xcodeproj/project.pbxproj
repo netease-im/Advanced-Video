@@ -16,8 +16,6 @@
 		48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */; };
 		48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */; };
 		48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */; };
-		8649A6BC24FFB2060092DA95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8649A6BA24FFB2060092DA95 /* Info.plist */; };
-		8649A6BF24FFB7810092DA95 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8649A6BE24FFB7810092DA95 /* Info.plist */; };
 		BC63198F157A387E08F12C52 /* Pods_AudioStream_iOS_ObjCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE54E98C6A89B00375580A0 /* Pods_AudioStream_iOS_ObjCTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +67,8 @@
 		8649A6B924FFB2060092DA95 /* NERtcAudioStreamSampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NERtcAudioStreamSampleTests.m; sourceTree = "<group>"; };
 		8649A6BA24FFB2060092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8649A6BE24FFB7810092DA95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86ED6244250090FD00176A8D /* AudioStream-iOS-ObjCRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AudioStream-iOS-ObjCRelease.entitlements"; sourceTree = "<group>"; };
+		86ED624525009A9200176A8D /* AudioStream-iOS-ObjC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AudioStream-iOS-ObjC.entitlements"; sourceTree = "<group>"; };
 		8F15AED38DBFA34421578849 /* Pods_AudioStream_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioStream_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B985616D34D9B47EDF6CB781 /* Pods-VideoStream-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjCTests/Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8A5F513FBD213E9765E34D7 /* Pods-VideoStream-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjC/Pods-VideoStream-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +133,8 @@
 		48DB92C424A1982400AA8233 /* AudioStream-iOS-ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				86ED624525009A9200176A8D /* AudioStream-iOS-ObjC.entitlements */,
+				86ED6244250090FD00176A8D /* AudioStream-iOS-ObjCRelease.entitlements */,
 				86280D0E24FF9ED70027F2DE /* AppKey.h */,
 				48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */,
 				48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */,
@@ -254,10 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8649A6BC24FFB2060092DA95 /* Info.plist in Resources */,
 				48DB92D524A1982500AA8233 /* LaunchScreen.storyboard in Resources */,
 				48DB92D224A1982500AA8233 /* Assets.xcassets in Resources */,
-				8649A6BF24FFB7810092DA95 /* Info.plist in Resources */,
 				48DB92D024A1982400AA8233 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,7 +500,8 @@
 			baseConfigurationReference = 49A5E30FB2471D58F06514CB /* Pods-AudioStream-iOS-ObjC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "AudioStream-iOS-ObjC/AudioStream-iOS-ObjC.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -510,9 +511,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioStream-iOS-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				PROVISIONING_PROFILE_SPECIFIER = enterpriseForWildCard;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -522,7 +523,8 @@
 			baseConfigurationReference = 73DF9A7A895AA80EFE14F7A9 /* Pods-AudioStream-iOS-ObjC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "AudioStream-iOS-ObjC/AudioStream-iOS-ObjCRelease.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -532,9 +534,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioStream-iOS-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioStream-iOS-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				PROVISIONING_PROFILE_SPECIFIER = enterpriseForWildCard;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
