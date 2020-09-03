@@ -16,7 +16,7 @@ if re.match("kAppKey\s@\"[a-f0-9]{32}\"", appKeyStr) is not None:
 	print "A valid app key is submitted!"
 	sys.exit(1)
 
-kAppKey = os.environ['kAppKey']
+kAppKey = os.environ['APP_KEY']
 if kAppKey is None: 
 	print "kAppKey not found in secrets"
 	sys.exit(1)
@@ -29,11 +29,11 @@ io.truncate()
 
 # Stream URL
 streamUrlStr = re.search('kStreamURL\s@\"\S*\"',text).group()
-if re.match("kStreamURL\s@\"rtmp://pf4dfc931.live.126.net/live/[a-f0-9]{32}?wsSecret=[a-f0-9]{32}&wsTime=1{0-9}9\"", appKeyStr) is not None:
+if streamUrlStr.startswith('rtmp://'):
 	print "A valid stream url is submitted!"
 	sys.exit(1)
 
-kStreamURL = os.environ['kStreamURL']
+kStreamURL = os.environ['STREAM_URL']
 if kStreamURL is None: 
 	print "kStreamURL not found in secrets"
 	sys.exit(1)

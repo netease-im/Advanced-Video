@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build_video_stream_objc:
@@ -26,8 +26,8 @@ jobs:
       DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
-      kAppKey: ${{ secrets.kAppKey }}
-      kStreamURL: ${{ secret.kStreamURL }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      STREAM_URL: ${{ secrets.STREAM_URL }}
       KEYCHAIN: ${{ 'temp.keychain' }}
       APP_KEY_HEADER_PATH: ${{ './VideoStream-iOS-ObjC/NTESConfig.h' }}
     defaults:
