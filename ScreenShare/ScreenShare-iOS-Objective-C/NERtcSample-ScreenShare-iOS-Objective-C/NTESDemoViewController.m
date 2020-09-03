@@ -17,7 +17,7 @@ static void *KVOContext = &KVOContext;
 @interface NTESDemoViewController () <NERtcEngineDelegateEx>
 
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
-@property (nonatomic, assign) BOOL isInChannel; //!< 是否已经成功加入了频道
+@property (nonatomic, strong) NSNumber *currentUserID; //!< 当前用户ID
 
 @property (strong, nonatomic) IBOutlet UITextField *userIDTextField;
 @property (strong, nonatomic) IBOutlet UITextField *roomIDTextField;
@@ -39,9 +39,9 @@ static void *KVOContext = &KVOContext;
     [super viewDidLoad];
     
     self.userIDTextField.text = [self randomUserID];
-    self.roomIDTextField.text = @"100";
     [self setupUserDefaults];
     [self setupRTCEngine];
+    [self addSystemBroadcastPickerIfPossible];
 }
 
 - (void)dealloc
@@ -55,7 +55,7 @@ static void *KVOContext = &KVOContext;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frame"]) {
-        if (self.isInChannel) {
+        if (self.currentUserID) {
             NSDictionary *i420Frame = change[NSKeyValueChangeNewKey];
             NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
             frame.format = kNERtcVideoFormatI420;
@@ -90,6 +90,13 @@ static void *KVOContext = &KVOContext;
     [NERtcEngine.sharedEngine subscribeRemoteVideo:YES forUserID:userID streamType:kNERtcRemoteVideoStreamTypeHigh];
 }
 
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
+{
+    if (result == kNERtcNoError) {
+        self.currentUserID = nil; // clear user id
+    }
+}
+
 - (IBAction)onJoinClick:(id)sender
 {
     if (self.userIDTextField.text.length == 0 || self.roomIDTextField.text.length == 0) {
@@ -102,32 +109,17 @@ static void *KVOContext = &KVOContext;
     [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:roomID myUid:userID  completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
         __strong typeof(wself) sself = wself;
         if (!sself) return;
-        sself.isInChannel = YES;
+        if (error) {
+            [sself showAlertMessage:error.localizedDescription];
+            return;
+        }
+        sself.currentUserID = @(userID);
         NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
         canvas.container = sself.localUserView;
         [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
-        if (@available(iOS 12.0, *)) {
-            // Not recommend
-            RPSystemBroadcastPickerView *picker = [[RPSystemBroadcastPickerView alloc] initWithFrame:CGRectMake(0, 0, 120, 64)];
-            picker.showsMicrophoneButton = NO;
-            picker.preferredExtension = @"com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.Broadcast";
-            [self.view addSubview:picker];
-            picker.center = self.view.center;
-            
-            UIButton *button = [picker.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                return [evaluatedObject isKindOfClass:UIButton.class];
-            }]].firstObject;
-            [button setImage:nil forState:UIControlStateNormal];
-            [button setTitle:@"Start Share" forState:UIControlStateNormal];
-            [button setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
-            UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:picker];
-            self.navigationItem.leftBarButtonItem = leftItem;
-            
-        } else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tip" message:@"Join success!" preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-            [sself presentViewController:alertController animated:YES completion:nil];
-        }
+        
+        [sself showAlertMessage:@"Success!"];
+        
     }];
 }
 
@@ -159,6 +151,35 @@ static void *KVOContext = &KVOContext;
     [coreEngine setExternalVideoSource:YES];
     [coreEngine enableLocalAudio:YES];
     [coreEngine enableLocalVideo:YES];
+}
+
+- (void)addSystemBroadcastPickerIfPossible
+{
+    if (@available(iOS 12.0, *)) {
+        // Not recommend
+        RPSystemBroadcastPickerView *picker = [[RPSystemBroadcastPickerView alloc] initWithFrame:CGRectMake(0, 0, 120, 64)];
+        picker.showsMicrophoneButton = NO;
+        picker.preferredExtension = @"com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.Broadcast";
+        [self.view addSubview:picker];
+        picker.center = self.view.center;
+        
+        UIButton *button = [picker.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            return [evaluatedObject isKindOfClass:UIButton.class];
+        }]].firstObject;
+        [button setImage:nil forState:UIControlStateNormal];
+        [button setTitle:@"Start Share" forState:UIControlStateNormal];
+        [button setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
+        
+        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:picker];
+        self.navigationItem.leftBarButtonItem = leftItem;
+    }
+}
+
+- (void)showAlertMessage:(NSString *)message
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

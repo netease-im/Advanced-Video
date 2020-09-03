@@ -9,6 +9,6 @@
 #ifndef AppKey_h
 #define AppKey_h
 
-#define kAppKey @"<#请填写您的AppKey#>"
+#define kAppKey @"<#请输入您的AppKey#>"
 
 #endif /* AppKey_h */

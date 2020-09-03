@@ -18,11 +18,3 @@ target 'NERtcSample-ScreenShare-iOS-Objective-C-Broadcast' do
   # Pods for NERtcSample-ScreenShare-iOS-Objective-C-Broadcast
 
 end
-
-target 'NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI
-
-end

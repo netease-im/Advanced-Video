@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F833B608D2743FA8F03E04F /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECBFD8DEAF180F0D41F4BC8A /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework */; };
 		48AB391224FE32E200919699 /* libyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391124FE32E200919699 /* libyuv.a */; };
 		48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391624FE352400919699 /* CoreVideo.framework */; };
 		48AB391924FE354500919699 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391824FE354500919699 /* CoreMedia.framework */; };
@@ -19,26 +18,13 @@
 		48C3558824BEABF900C55964 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3558724BEABF900C55964 /* main.m */; };
 		48C3559524BEAC1D00C55964 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C3559424BEAC1D00C55964 /* ReplayKit.framework */; };
 		48C3559924BEAC1D00C55964 /* NTESSampleHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */; };
-		48C355A024BEAC1D00C55964 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C3559424BEAC1D00C55964 /* ReplayKit.framework */; };
-		48C355A224BEAC1D00C55964 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C355A124BEAC1D00C55964 /* UIKit.framework */; };
-		48C355A624BEAC1D00C55964 /* BroadcastSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C355A524BEAC1D00C55964 /* BroadcastSetupViewController.m */; };
-		48C355AA24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 48C3559F24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		48C355AD24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		48C355B724BEAC8800C55964 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C355B624BEAC8800C55964 /* NTESDemoViewController.m */; };
-		86A9029824F5002900AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86A9029624F5002900AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		86A9029C24F5005200AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86A9029A24F5005100AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		86A902A224F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */; };
 		DA31F0D0465E9781CF7D684D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6574A041F1363DB9299A95 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		48C355A824BEAC1D00C55964 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48C3556A24BEABF800C55964 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48C3559E24BEAC1D00C55964;
-			remoteInfo = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI";
-		};
 		48C355AB24BEAC1D00C55964 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 48C3556A24BEABF800C55964 /* Project object */;
@@ -55,22 +41,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				48C355AA24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex in Embed App Extensions */,
 				48C355AD24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		86A9029924F5002900AC0B8D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				86A9029824F5002900AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Embed Frameworks */,
-				86A9029C24F5005200AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -118,11 +91,7 @@
 		48C3559724BEAC1D00C55964 /* NTESSampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESSampleHandler.h; sourceTree = "<group>"; };
 		48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NTESSampleHandler.mm; sourceTree = "<group>"; };
 		48C3559A24BEAC1D00C55964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48C3559F24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C355A124BEAC1D00C55964 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		48C355A424BEAC1D00C55964 /* BroadcastSetupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BroadcastSetupViewController.h; sourceTree = "<group>"; };
-		48C355A524BEAC1D00C55964 /* BroadcastSetupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BroadcastSetupViewController.m; sourceTree = "<group>"; };
-		48C355A724BEAC1D00C55964 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C355B524BEAC8800C55964 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
 		48C355B624BEAC8800C55964 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
 		83D6622EDF13078534134126 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,7 +103,6 @@
 		86A9029F24F5007D00AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C9512624F5142D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements"; sourceTree = "<group>"; };
-		86C9512724F5143D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.entitlements"; sourceTree = "<group>"; };
 		9C8EAFFAA68B0553306FAEA2 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig"; sourceTree = "<group>"; };
 		D9AB70A7C69CC94B458552FB /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig"; sourceTree = "<group>"; };
 		E9E6D6A21A0619E76C34DBDD /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,16 +129,6 @@
 				48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */,
 				48C3559524BEAC1D00C55964 /* ReplayKit.framework in Frameworks */,
 				DA31F0D0465E9781CF7D684D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48C3559C24BEAC1D00C55964 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48C355A024BEAC1D00C55964 /* ReplayKit.framework in Frameworks */,
-				48C355A224BEAC1D00C55964 /* UIKit.framework in Frameworks */,
-				2F833B608D2743FA8F03E04F /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_BroadcastSetupUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +201,6 @@
 			children = (
 				48C3557424BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */,
 				48C3559624BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */,
-				48C355A324BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI */,
 				48C3559324BEAC1D00C55964 /* Frameworks */,
 				48C3557324BEABF800C55964 /* Products */,
 				DC135B43BB44EB86F9B3C86F /* Pods */,
@@ -255,7 +212,6 @@
 			children = (
 				48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */,
 				48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */,
-				48C3559F24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,17 +267,6 @@
 			path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
 			sourceTree = "<group>";
 		};
-		48C355A324BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI */ = {
-			isa = PBXGroup;
-			children = (
-				86C9512724F5143D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.entitlements */,
-				48C355A424BEAC1D00C55964 /* BroadcastSetupViewController.h */,
-				48C355A524BEAC1D00C55964 /* BroadcastSetupViewController.m */,
-				48C355A724BEAC1D00C55964 /* Info.plist */,
-			);
-			path = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI";
-			sourceTree = "<group>";
-		};
 		DC135B43BB44EB86F9B3C86F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,12 +293,10 @@
 				48C3557024BEABF800C55964 /* Resources */,
 				48C355B424BEAC1D00C55964 /* Embed App Extensions */,
 				AC7125AF446566F9292A296A /* [CP] Embed Pods Frameworks */,
-				86A9029924F5002900AC0B8D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				48C355A924BEAC1D00C55964 /* PBXTargetDependency */,
 				48C355AC24BEAC1D00C55964 /* PBXTargetDependency */,
 			);
 			name = "NERtcSample-ScreenShare-iOS-Objective-C";
@@ -379,24 +322,6 @@
 			productReference = 48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		48C3559E24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 48C355AE24BEAC1D00C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI" */;
-			buildPhases = (
-				531C495DC2E187B3B2F2D6F6 /* [CP] Check Pods Manifest.lock */,
-				48C3559B24BEAC1D00C55964 /* Sources */,
-				48C3559C24BEAC1D00C55964 /* Frameworks */,
-				48C3559D24BEAC1D00C55964 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI";
-			productName = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI";
-			productReference = 48C3559F24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -410,9 +335,6 @@
 						CreatedOnToolsVersion = 11.5;
 					};
 					48C3559124BEAC1D00C55964 = {
-						CreatedOnToolsVersion = 11.5;
-					};
-					48C3559E24BEAC1D00C55964 = {
 						CreatedOnToolsVersion = 11.5;
 					};
 				};
@@ -432,7 +354,6 @@
 			targets = (
 				48C3557124BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C */,
 				48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */,
-				48C3559E24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI */,
 			);
 		};
 /* End PBXProject section */
@@ -449,13 +370,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		48C3559024BEAC1D00C55964 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48C3559D24BEAC1D00C55964 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -481,28 +395,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-NERtcSample-ScreenShare-iOS-Objective-C-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		531C495DC2E187B3B2F2D6F6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -569,22 +461,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48C3559B24BEAC1D00C55964 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48C355A624BEAC1D00C55964 /* BroadcastSetupViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		48C355A924BEAC1D00C55964 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 48C3559E24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI */;
-			targetProxy = 48C355A824BEAC1D00C55964 /* PBXContainerItemProxy */;
-		};
 		48C355AC24BEAC1D00C55964 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */;
@@ -768,52 +647,6 @@
 			};
 			name = Release;
 		};
-		48C355AF24BEAC1D00C55964 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9AB70A7C69CC94B458552FB /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 569GNZ5392;
-				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.BroadcastSetupUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		48C355B024BEAC1D00C55964 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83D6622EDF13078534134126 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 569GNZ5392;
-				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C.BroadcastSetupUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		48C355B224BEAC1D00C55964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C8EAFFAA68B0553306FAEA2 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.debug.xcconfig */;
@@ -893,15 +726,6 @@
 			buildConfigurations = (
 				48C3558C24BEABF900C55964 /* Debug */,
 				48C3558D24BEABF900C55964 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		48C355AE24BEAC1D00C55964 /* Build configuration list for PBXNativeTarget "NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				48C355AF24BEAC1D00C55964 /* Debug */,
-				48C355B024BEAC1D00C55964 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
