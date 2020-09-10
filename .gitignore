@@ -6,7 +6,7 @@
 *.aab
 out/
 release/
-
+build/
 
 # iOS
 xcuserdata/
