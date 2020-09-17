@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r3Y-6H-YJ6">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="syh-Yp-RYd">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="r3Y-6H-YJ6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B8I-u7-0yc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Nx4-GX-xis" kind="relationship" relationship="rootViewController" id="yJx-5X-xHc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Znc-b9-Pb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1946" y="24"/>
+        </scene>
+        <!--RTC Demo-->
+        <scene sceneID="4lY-p6-RTg">
+            <objects>
+                <viewController title="RTC Demo" id="Nx4-GX-xis" customClass="NETSDemoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s6A-BA-a35">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入房间号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jmR-us-PaZ">
+                                <rect key="frame" x="36" y="282.5" width="248" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="315" id="fJ6-Sw-ZpZ"/>
+                                    <constraint firstAttribute="height" constant="34" id="rys-f3-ipr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Nx4-GX-xis" id="VrL-F4-tpN"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-nb-A07">
+                                <rect key="frame" x="36" y="318.5" width="248" height="1"/>
+                                <color key="backgroundColor" red="0.86274509803921573" green="0.87450980392156863" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="rS1-v3-fAb"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="282-ny-30b">
+                                <rect key="frame" x="80" y="64" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="8TO-pp-XAx"/>
+                                    <constraint firstAttribute="width" secondItem="282-ny-30b" secondAttribute="height" multiplier="1:1" id="97g-CP-Zhd"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAZ-BT-uww">
+                                <rect key="frame" x="15" y="359.5" width="290" height="50"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.87450980389999999" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="315" id="Hho-7P-qJC"/>
+                                    <constraint firstAttribute="height" constant="50" id="mGm-2Y-1m4"/>
+                                </constraints>
+                                <state key="normal" title="加入房间" backgroundImage="btn_bk_enable">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onJoinAction:" destination="Nx4-GX-xis" eventType="touchUpInside" id="BWl-qN-sW1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HFs-nb-A07" firstAttribute="trailing" secondItem="jmR-us-PaZ" secondAttribute="trailing" id="3S4-oj-Ln8"/>
+                            <constraint firstItem="jmR-us-PaZ" firstAttribute="top" secondItem="282-ny-30b" secondAttribute="bottom" constant="58.5" id="JGF-No-gB8"/>
+                            <constraint firstItem="HFs-nb-A07" firstAttribute="leading" secondItem="jmR-us-PaZ" secondAttribute="leading" id="Jre-Go-vUe"/>
+                            <constraint firstItem="282-ny-30b" firstAttribute="centerX" secondItem="QY3-bm-d0U" secondAttribute="centerX" id="Kax-H5-fwq"/>
+                            <constraint firstItem="QY3-bm-d0U" firstAttribute="trailing" secondItem="jmR-us-PaZ" secondAttribute="trailing" priority="500" constant="36" id="PzX-Ps-A6j"/>
+                            <constraint firstItem="zAZ-BT-uww" firstAttribute="leading" secondItem="QY3-bm-d0U" secondAttribute="leading" priority="599" constant="30" id="gIh-bE-c4b"/>
+                            <constraint firstItem="zAZ-BT-uww" firstAttribute="top" secondItem="HFs-nb-A07" secondAttribute="bottom" constant="40" id="jIC-vL-aJx"/>
+                            <constraint firstItem="jmR-us-PaZ" firstAttribute="leading" secondItem="QY3-bm-d0U" secondAttribute="leading" priority="500" constant="36" id="q4S-DS-725"/>
+                            <constraint firstItem="jmR-us-PaZ" firstAttribute="centerX" secondItem="QY3-bm-d0U" secondAttribute="centerX" id="rOO-QX-n7G"/>
+                            <constraint firstItem="HFs-nb-A07" firstAttribute="top" secondItem="jmR-us-PaZ" secondAttribute="bottom" constant="2" id="ufk-ZW-NeH"/>
+                            <constraint firstItem="zAZ-BT-uww" firstAttribute="centerX" secondItem="QY3-bm-d0U" secondAttribute="centerX" id="v00-qW-ppE"/>
+                            <constraint firstItem="QY3-bm-d0U" firstAttribute="trailing" secondItem="zAZ-BT-uww" secondAttribute="trailing" priority="500" constant="30" id="xWA-gr-IY4"/>
+                            <constraint firstItem="282-ny-30b" firstAttribute="top" secondItem="QY3-bm-d0U" secondAttribute="top" constant="64" id="yQH-jQ-kae"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QY3-bm-d0U"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RTC Demo" id="3Qo-rp-IUs"/>
+                    <connections>
+                        <outlet property="joinButton" destination="zAZ-BT-uww" id="RoG-Yx-PIB"/>
+                        <outlet property="roomIDTextField" destination="jmR-us-PaZ" id="TW6-BW-jgg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yso-8u-15l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1100.625" y="24.295774647887324"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="167" height="149"/>
+        <image name="btn_bk_enable" width="290" height="40"/>
+    </resources>
+</document>
