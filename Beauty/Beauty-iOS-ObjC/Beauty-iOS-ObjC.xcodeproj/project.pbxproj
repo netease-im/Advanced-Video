@@ -16,7 +16,6 @@
 		419DA0BD24D7EDF90001A561 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B124D7EDF90001A561 /* main.m */; };
 		86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332925120F230036B19E /* NTESGlobalMacro.m */; };
 		86C6333125120F230036B19E /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332C25120F230036B19E /* UIView+NTES.m */; };
-		86C6333225120F230036B19E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332F25120F230036B19E /* UIView+Toast.m */; };
 		86C633342512FB830036B19E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633332512FB830036B19E /* OpenGLES.framework */; };
 		86C633362512FB900036B19E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633352512FB900036B19E /* Accelerate.framework */; };
 		86C633382512FB9B0036B19E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633372512FB9B0036B19E /* CoreMedia.framework */; };
@@ -49,9 +48,7 @@
 		86C6332925120F230036B19E /* NTESGlobalMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESGlobalMacro.m; sourceTree = "<group>"; };
 		86C6332A25120F230036B19E /* NTESGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESGlobalMacro.h; sourceTree = "<group>"; };
 		86C6332C25120F230036B19E /* UIView+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NTES.m"; sourceTree = "<group>"; };
-		86C6332D25120F230036B19E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		86C6332E25120F230036B19E /* UIView+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NTES.h"; sourceTree = "<group>"; };
-		86C6332F25120F230036B19E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		86C633332512FB830036B19E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		86C633352512FB900036B19E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		86C633372512FB9B0036B19E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -160,10 +157,8 @@
 		86C6332B25120F230036B19E /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				86C6332C25120F230036B19E /* UIView+NTES.m */,
-				86C6332D25120F230036B19E /* UIView+Toast.h */,
 				86C6332E25120F230036B19E /* UIView+NTES.h */,
-				86C6332F25120F230036B19E /* UIView+Toast.m */,
+				86C6332C25120F230036B19E /* UIView+NTES.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -328,7 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				86C63345251311600036B19E /* NETSDemoP2PVC.m in Sources */,
-				86C6333225120F230036B19E /* UIView+Toast.m in Sources */,
 				419DA0BD24D7EDF90001A561 /* main.m in Sources */,
 				86C633422512FC910036B19E /* FUManager.m in Sources */,
 				86C6334B2513411C0036B19E /* FULiveModel.m in Sources */,
@@ -488,7 +482,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.NERtcP2pSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.Beauty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,7 +504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.NERtcP2pSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.Beauty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
