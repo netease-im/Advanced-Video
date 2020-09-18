@@ -29,6 +29,7 @@ jobs:
       EXT_ENCRYPTED_PROVISION_PATH: ${{ './Workflow/screen_share_broadcast_objc.mobileprovision.gpg' }}
       EXT_DECRYPTED_PROVISION_PATH: ${{ './Workflow/screen_share_broadcast_objc.mobileprovision' }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
       APP_KEY: ${{ secrets.APP_KEY }}
       KEYCHAIN: ${{ 'temp.keychain' }}
@@ -67,7 +68,7 @@ jobs:
         gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
         gpg -d -o "$APP_DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$APP_ENCRYPTED_PROVISION_PATH";
         gpg -d -o "$EXT_DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$EXT_ENCRYPTED_PROVISION_PATH";
-        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "" -A;
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
         security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
         UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $APP_DECRYPTED_PROVISION_PATH));
