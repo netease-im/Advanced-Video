@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_screen_share_objc:
-    name: Build Screen-Share Objective-C
+    name: Build ScreenShare Objc
     runs-on: macos-latest
     env:
       XC_PROJECT_NAME: ${{ 'NERtcSample-ScreenShare-iOS-Objective-C' }}
@@ -20,7 +20,6 @@ jobs:
       XC_EXPORT_OPTIONS_PATH: ${{ './Workflow/ExportOptions.plist' }}
       XC_KEY_STUB_SCRIPT_PATH: ${{ './Workflow/key_stub.py' }}
       XC_PROJECT_STUB_SCRIPT_PATH: ${{ './Workflow/project_stub.py' }}
-      XC_IPA_NAME: ${{ 'ScreenShare-iOS-Objective-C.ipa' }}
 
       ENCRYPTED_CERT_PATH: ${{ '../../Shared Files/iOS/cert.p12.gpg' }}
       DECRYPTED_CERT_PATH: ${{ './Workflow/cert.p12' }}
@@ -29,6 +28,7 @@ jobs:
       EXT_ENCRYPTED_PROVISION_PATH: ${{ './Workflow/screen_share_broadcast_objc.mobileprovision.gpg' }}
       EXT_DECRYPTED_PROVISION_PATH: ${{ './Workflow/screen_share_broadcast_objc.mobileprovision' }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
       APP_KEY: ${{ secrets.APP_KEY }}
       KEYCHAIN: ${{ 'temp.keychain' }}
@@ -67,7 +67,7 @@ jobs:
         gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
         gpg -d -o "$APP_DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$APP_ENCRYPTED_PROVISION_PATH";
         gpg -d -o "$EXT_DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$EXT_ENCRYPTED_PROVISION_PATH";
-        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "" -A;
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
         security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
         UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $APP_DECRYPTED_PROVISION_PATH));
@@ -94,7 +94,7 @@ jobs:
       run: 
         mkdir -p $XC_IPA_DIR;
         xcodebuild -exportArchive -archivePath $XC_ARCHIVE_DIR/$XC_PROJECT_NAME.xcarchive -exportPath $XC_IPA_DIR -exportOptionsPlist $XC_EXPORT_OPTIONS_PATH;
-        mv $XC_IPA_DIR/$XC_SCHEME.ipa $XC_IPA_DIR/$XC_IPA_NAME;
+        mv $XC_IPA_DIR/$XC_PROJECT_NAME.ipa $XC_IPA_DIR/ScreenShare-iOS-Objective-C.ipa
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
@@ -121,6 +121,7 @@ jobs:
       ENCRYPTED_PROVISION_PATH: ${{ '../../Shared Files/iOS/enterpriseForWildCard.mobileprovision.gpg' }}
       DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
       APP_KEY: ${{ secrets.APP_KEY }}
       STREAM_URL: ${{ secrets.iOS_STREAM_URL }}
@@ -163,7 +164,7 @@ jobs:
       run:
         gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
         gpg -d -o "$DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$ENCRYPTED_PROVISION_PATH";
-        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "" -A;
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
         security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
         UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
@@ -206,6 +207,7 @@ jobs:
       ENCRYPTED_PROVISION_PATH: ${{ '../../Shared Files/iOS/enterpriseForWildCard.mobileprovision.gpg' }}
       DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
       APP_KEY: ${{ secrets.APP_KEY }}
       STREAM_URL: ${{ secrets.iOS_STREAM_URL }}
@@ -248,7 +250,7 @@ jobs:
       run:
         gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
         gpg -d -o "$DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$ENCRYPTED_PROVISION_PATH";
-        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "" -A;
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
         security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
         UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
@@ -272,3 +274,171 @@ jobs:
         path: ./AudioStream/AudioStream-iOS-ObjC/product/ipa/AudioStream-iOS-ObjC.ipa
 
 
+  build_media_stats_objc:
+    name: Build MediaStats ObjC
+    runs-on: macos-latest
+    env:
+      XC_PROJECT_NAME: ${{ 'MediaStats-iOS-ObjC' }}
+      XC_VERSION: ${{ '11.4' }}
+      XC_SCHEME: ${{ 'MediaStats-iOS-ObjC' }}
+      XC_WORKSPACE: ${{ 'MediaStats-iOS-ObjC.xcworkspace' }}
+      XC_CONFIGURATION: ${{ 'release' }}
+      XC_ARCHIVE_DIR: ${{ './product/archive' }}
+      XC_IPA_DIR: ${{ './product/ipa' }}
+      XC_EXPORT_OPTIONS_PATH: ${{ './Workflow/ExportOptions.plist' }}
+      XC_CONFIG_STUB_SCRIPT_PATH: ${{ './Workflow/config_stub.py' }}
+
+      ENCRYPTED_CERT_PATH: ${{ '../../Shared Files/iOS/cert.p12.gpg' }}
+      DECRYPTED_CERT_PATH: ${{ './Workflow/cert.p12' }}
+      ENCRYPTED_PROVISION_PATH: ${{ '../../Shared Files/iOS/enterpriseForWildCard.mobileprovision.gpg' }}
+      DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
+      CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
+      PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      KEYCHAIN: ${{ 'temp.keychain' }}
+      APP_CONFIG_HEADER_PATH: ${{ './MediaStats-iOS-ObjC/AppKey.h' }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./MediaStats/MediaStats-iOS-ObjC/
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python 2.7
+      uses: actions/setup-python@v2
+      with:
+          python-version: '2.7'
+          
+    - name: App Config Stub
+      run: 
+        python $XC_CONFIG_STUB_SCRIPT_PATH $APP_CONFIG_HEADER_PATH $APP_KEY
+    
+    - name: Select Xcode
+      run: 
+        sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app
+
+    - name: Install Dependencies
+      run: pod install
+
+    - name: Configure Keychain
+      run: 
+        security create-keychain -p "" "$KEYCHAIN";
+        security list-keychains -s "$KEYCHAIN";
+        security default-keychain -s "$KEYCHAIN";
+        security unlock-keychain -p "" "$KEYCHAIN";
+        security set-keychain-settings;
+        security list-keychains;
+    
+    - name: Configure Code Signing
+      run:
+        gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
+        gpg -d -o "$DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$ENCRYPTED_PROVISION_PATH";
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
+        security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
+        mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
+        UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
+        cp "$DECRYPTED_PROVISION_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$UUID.mobileprovision";
+
+    - name: Archive
+      run:
+        mkdir -p $XC_ARCHIVE_DIR;
+        UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
+        xcodebuild archive -workspace $XC_WORKSPACE -scheme $XC_SCHEME -configuration release -archivePath $XC_ARCHIVE_DIR/$XC_PROJECT_NAME.xcarchive CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER=$UUID;
+
+    - name: Export IPA
+      run: 
+        mkdir -p $XC_IPA_DIR;
+        xcodebuild -exportArchive -archivePath $XC_ARCHIVE_DIR/$XC_PROJECT_NAME.xcarchive -exportPath $XC_IPA_DIR -exportOptionsPlist $XC_EXPORT_OPTIONS_PATH;
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: MediaStats-iOS-ObjC
+        path: ./MediaStats/MediaStats-iOS-ObjC/product/ipa/MediaStats-iOS-ObjC.ipa
+
+
+  build_external_video_objc:
+    name: Build ExternalVideo ObjC
+    runs-on: macos-latest
+    env:
+      XC_PROJECT_NAME: ${{ 'ExternalVideo-iOS-ObjC' }}
+      XC_VERSION: ${{ '11.4' }}
+      XC_SCHEME: ${{ 'ExternalVideo-iOS-ObjC' }}
+      XC_WORKSPACE: ${{ 'ExternalVideo-iOS-ObjC.xcworkspace' }}
+      XC_CONFIGURATION: ${{ 'release' }}
+      XC_ARCHIVE_DIR: ${{ './product/archive' }}
+      XC_IPA_DIR: ${{ './product/ipa' }}
+      XC_EXPORT_OPTIONS_PATH: ${{ './Workflow/ExportOptions.plist' }}
+      XC_CONFIG_STUB_SCRIPT_PATH: ${{ './Workflow/config_stub.py' }}
+
+      ENCRYPTED_CERT_PATH: ${{ '../../Shared Files/iOS/cert.p12.gpg' }}
+      DECRYPTED_CERT_PATH: ${{ './Workflow/cert.p12' }}
+      ENCRYPTED_PROVISION_PATH: ${{ '../../Shared Files/iOS/enterpriseForWildCard.mobileprovision.gpg' }}
+      DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
+      CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
+      CERT_PWD: ${{ secrets.CERT_PWD }}
+      PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      KEYCHAIN: ${{ 'temp.keychain' }}
+      APP_CONFIG_HEADER_PATH: ${{ './ExternalVideo-iOS-ObjC/NTESAppConfig.h' }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./ExternalVideo/ExternalVideo-iOS-ObjC/
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python 2.7
+      uses: actions/setup-python@v2
+      with:
+          python-version: '2.7'
+          
+    - name: App Config Stub
+      run: 
+        python $XC_CONFIG_STUB_SCRIPT_PATH $APP_CONFIG_HEADER_PATH $APP_KEY
+    
+    - name: Select Xcode
+      run: 
+        sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app
+
+    - name: Install Dependencies
+      run: pod install
+
+    - name: Configure Keychain
+      run: 
+        security create-keychain -p "" "$KEYCHAIN";
+        security list-keychains -s "$KEYCHAIN";
+        security default-keychain -s "$KEYCHAIN";
+        security unlock-keychain -p "" "$KEYCHAIN";
+        security set-keychain-settings;
+        security list-keychains;
+    
+    - name: Configure Code Signing
+      run:
+        gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
+        gpg -d -o "$DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$ENCRYPTED_PROVISION_PATH";
+        security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
+        security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
+        mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
+        UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
+        cp "$DECRYPTED_PROVISION_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$UUID.mobileprovision";
+
+    - name: Archive
+      run:
+        mkdir -p $XC_ARCHIVE_DIR;
+        UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin <<< $(security cms -D -i $DECRYPTED_PROVISION_PATH));
+        xcodebuild archive -workspace $XC_WORKSPACE -scheme $XC_SCHEME -configuration release -archivePath $XC_ARCHIVE_DIR/$XC_PROJECT_NAME.xcarchive CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER=$UUID;
+
+    - name: Export IPA
+      run: 
+        mkdir -p $XC_IPA_DIR;
+        xcodebuild -exportArchive -archivePath $XC_ARCHIVE_DIR/$XC_PROJECT_NAME.xcarchive -exportPath $XC_IPA_DIR -exportOptionsPlist $XC_EXPORT_OPTIONS_PATH;
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ExternalVideo-iOS-ObjC
+        path: ./ExternalVideo/ExternalVideo-iOS-Objc/product/ipa/ExternalVideo-iOS-ObjC.ipa
