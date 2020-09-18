@@ -297,7 +297,7 @@ jobs:
       APP_KEY: ${{ secrets.APP_KEY }}
       STREAM_URL: ${{ secrets.iOS_STREAM_URL }}
       KEYCHAIN: ${{ 'temp.keychain' }}
-      APP_CONFIG_HEADER_PATH: ${{ './Beauty-iOS-ObjC/AppConfig.h' }}
+      APP_CONFIG_HEADER_PATH: ${{ './Beauty-iOS-ObjC/AppKey.h' }}
     defaults:
       run:
         shell: bash
