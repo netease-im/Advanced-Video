@@ -3,9 +3,9 @@ import os
 import sys
 
 # Read heaer file
-APP_KEY_FILE = os.environ['APP_CONFIG_FILE_PATH']
+APP_KEY_FILE = os.environ['APP_CONFIG_HEADER_PATH']
 if APP_KEY_FILE is None:
-	print "APP_KEY_FILE Not found"
+	print "APP_CONFIG_HEADER_PATH Not found"
 	sys.exit(1)
 io = open(APP_KEY_FILE, "r+")
 text = io.read()
