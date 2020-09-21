@@ -9,7 +9,7 @@
 #ifndef NTESConfig_h
 #define NTESConfig_h
 
-#define kAppKey @"<#请替换你的AppKey#>"
-#define kStreamURL @"<#请替换您的推流地址#>"
+#define kAppKey @"<#AppKey#>"
+#define kStreamURL @"<#推流地址#>"
 
 #endif /* NTESConfig_h */

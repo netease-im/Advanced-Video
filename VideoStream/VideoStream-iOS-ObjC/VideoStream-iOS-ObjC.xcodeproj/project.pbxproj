@@ -17,6 +17,7 @@
 		48DB92AC24A1935E00AA8233 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92A624A1935D00AA8233 /* NTESDemoViewController.m */; };
 		48DB92AD24A1935E00AA8233 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92A724A1935D00AA8233 /* NTESAppDelegate.m */; };
 		48DB92AE24A1935E00AA8233 /* NTESVideoStreamMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92A924A1935D00AA8233 /* NTESVideoStreamMeetingViewController.m */; };
+		C738995225188323002227F3 /* NTESVideoConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C738995125188323002227F3 /* NTESVideoConfigViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		869AB01A24FF76C700324EA2 /* NTESConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESConfig.h; sourceTree = "<group>"; };
 		8E4A2A85A0C92DFBBC9FFFA7 /* Pods_VideoStream_iOS_ObjCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoStream_iOS_ObjCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EB34497DBB9AEAD07FF5BF /* Pods-VideoStream-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjCTests/Pods-VideoStream-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+		C738995025188323002227F3 /* NTESVideoConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESVideoConfigViewController.h; sourceTree = "<group>"; };
+		C738995125188323002227F3 /* NTESVideoConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESVideoConfigViewController.m; sourceTree = "<group>"; };
 		CCA900B88F34C27D6DEC37BD /* Pods-VideoStream-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjC/Pods-VideoStream-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		FEE1F5B6892912332CB5A9E4 /* Pods-VideoStream-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-VideoStream-iOS-ObjCTests/Pods-VideoStream-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +120,8 @@
 				48DB92A624A1935D00AA8233 /* NTESDemoViewController.m */,
 				48DB92A824A1935D00AA8233 /* NTESVideoStreamMeetingViewController.h */,
 				48DB92A924A1935D00AA8233 /* NTESVideoStreamMeetingViewController.m */,
+				C738995025188323002227F3 /* NTESVideoConfigViewController.h */,
+				C738995125188323002227F3 /* NTESVideoConfigViewController.m */,
 				48DB928824A192F800AA8233 /* Main.storyboard */,
 				48DB928B24A192FA00AA8233 /* Assets.xcassets */,
 				48DB928D24A192FA00AA8233 /* LaunchScreen.storyboard */,
@@ -324,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C738995225188323002227F3 /* NTESVideoConfigViewController.m in Sources */,
 				48DB92AE24A1935E00AA8233 /* NTESVideoStreamMeetingViewController.m in Sources */,
 				48DB929224A192FA00AA8233 /* main.m in Sources */,
 				48DB92AC24A1935E00AA8233 /* NTESDemoViewController.m in Sources */,
@@ -484,6 +490,7 @@
 			baseConfigurationReference = 0203983F1355266035D5A765 /* Pods-VideoStream-iOS-ObjC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -495,7 +502,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.VideoStream-iOS-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = enterpriseForWildCard;
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

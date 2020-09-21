@@ -9,6 +9,7 @@
 #import "NTESVideoStreamMeetingViewController.h"
 #import <NERtcSDK/NERtcSDK.h>
 #import "NTESConfig.h"
+#import "NTESVideoConfigViewController.h"
 
 @interface NTESVideoStreamMeetingViewController () <NERtcEngineDelegateEx>
 
@@ -17,7 +18,8 @@
 
 @property (strong, nonatomic) NERtcLiveStreamTaskInfo *liveStreamTask;
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *userList;
-
+@property (weak, nonatomic) IBOutlet UIButton *configButton;
+@property (weak, nonatomic) IBOutlet UIButton *hungupButton;
 @end
 
 @implementation NTESVideoStreamMeetingViewController
@@ -25,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.configButton.layer.cornerRadius = 8;
+    self.hungupButton.layer.cornerRadius = 8;
     self.title = [NSString stringWithFormat:@"Room %@", self.roomID];
     self.userList = [NSMutableArray arrayWithObject:@(self.userID)];
     [self setupRTCEngine];
@@ -33,19 +37,21 @@
 
 - (void)dealloc
 {
-    [NERtcEngine.sharedEngine leaveChannel];
-    if (self.liveStreamTask) {
+    if (self.liveStreamTask.streamURL) {
         int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
             NSLog(@"移除任务[%@] error = %@",taskId, NERtcErrorDescription(errorCode));
+            [NERtcEngine.sharedEngine leaveChannel];
         }];
         if (ret != 0) {
             NSLog(@"移除任务失败");
         }
     }
+    
 }
 
 - (void)setupRTCEngine
 {
+    NSAssert(![kAppKey isEqualToString:@"<#AppKey#>"], @"请设置AppKey");
     NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
@@ -68,6 +74,7 @@
 
 - (void)addLiveStream
 {
+    NSAssert(![kStreamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
     self.liveStreamTask = [[NERtcLiveStreamTaskInfo alloc] init];
     self.liveStreamTask.taskID = self.roomID;
     self.liveStreamTask.streamURL = kStreamURL;
@@ -133,7 +140,36 @@
     }
     self.liveStreamTask.layout.users = [NSArray arrayWithArray:res];
 }
+#pragma mark - event
+- (IBAction)hungupEvent:(id)sender {
+    if (self.liveStreamTask) {
+        __weak typeof(self)weakSelf = self;
+        int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+            NSLog(@"移除任务[%@] error = %@",taskId, NERtcErrorDescription(errorCode));
+            if (errorCode == 0) {
+                weakSelf.liveStreamTask = nil;
+            }
+            [NERtcEngine.sharedEngine leaveChannel];
+        }];
+        if (ret != 0) {
+            NSLog(@"移除任务失败");
+        }
+        
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NTESVideoConfigViewController *configVC = segue.destinationViewController;
+    configVC.delegate = self;
+}
+
+#pragma mark - NTESVideoConfigVCDelegate
+- (void)didGetStreamURL:(NSString *)URLString
+{
+    self.liveStreamTask.streamURL = URLString;
+    [self updateLiveStreamTask];
+}
 #pragma mark - NERtcEngineDelegate
 
 - (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
