@@ -291,8 +291,8 @@ jobs:
       DECRYPTED_CERT_PATH: ${{ './Workflow/cert.p12' }}
       ENCRYPTED_PROVISION_PATH: ${{ '../../Shared Files/iOS/enterpriseForWildCard.mobileprovision.gpg' }}
       DECRYPTED_PROVISION_PATH: ${{ './Workflow/enterpriseForWildCard.mobileprovision' }}
-      ENCRY_FACEU_AUTH_PATH: ${{ ./Workflow/authpack.h.gpg }}
-      DECRY_FACEU_AUTH_PATH: ${{ ./Beauty-iOS-ObjC/Beauty/authpack.h }}
+      ENCRY_FACEU_AUTH_PATH: ${{ './Workflow/authpack.h.gpg' }}
+      DECRY_FACEU_AUTH_PATH: ${{ './Beauty-iOS-ObjC/Beauty/authpack.h' }}
       FACEU_APP_KEY: ${{ secrets.FACEU_APP_KEY }}
       CERT_ENC_PWD: ${{ secrets.CERT_ENC_PWD }}
       PROVISION_ENC_PWD: ${{ secrets.PROVISION_ENC_PWD }}
