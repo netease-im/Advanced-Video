@@ -338,7 +338,7 @@ jobs:
       run:
         gpg -d -o "$DECRYPTED_CERT_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENC_PWD" "$ENCRYPTED_CERT_PATH";
         gpg -d -o "$DECRYPTED_PROVISION_PATH" --pinentry-mode=loopback --passphrase "$PROVISION_ENC_PWD" "$ENCRYPTED_PROVISION_PATH";
-        gpg -d -o "$ENCRY_FACEU_AUTH_PATH" --pinentry-mode=loopback --passphrase "$FACEU_APP_KEY" "$ENCRY_FACEU_AUTH_PATH";
+        gpg -d -o "$DECRY_FACEU_AUTH_PATH" --pinentry-mode=loopback --passphrase "$FACEU_APP_KEY" "$ENCRY_FACEU_AUTH_PATH";
         security import "$DECRYPTED_CERT_PATH" -k "$KEYCHAIN" -P "$CERT_PWD" -A;
         security set-key-partition-list -S apple-tool:,apple:, -s -k "" "$KEYCHAIN";
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles";
