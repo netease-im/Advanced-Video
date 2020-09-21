@@ -582,7 +582,8 @@
 			baseConfigurationReference = 9350AB1AB8475886C17DCBBB /* Pods-AudioMixing-iOS-ObjC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AudioMixing-iOS-ObjC/Info.plist";
@@ -591,8 +592,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioMixing-iOS-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -602,7 +604,8 @@
 			baseConfigurationReference = B78D41ABFF24F10ADDB8E2BA /* Pods-AudioMixing-iOS-ObjC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AudioMixing-iOS-ObjC/Info.plist";
@@ -611,8 +614,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioMixing-iOS-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

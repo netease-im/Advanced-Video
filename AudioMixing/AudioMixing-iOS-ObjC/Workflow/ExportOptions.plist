@@ -10,7 +10,7 @@
 	<string>enterprise</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.netease.AudioMixing-iOS-ObjC</key>
+		<key>com.netease.nmc.AudioMixing-iOS-ObjC</key>
 		<string>enterpriseForWildCard</string>
 	</dict>
 	<key>signingCertificate</key>
