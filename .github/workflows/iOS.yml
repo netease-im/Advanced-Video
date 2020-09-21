@@ -528,7 +528,7 @@ jobs:
         name: DeviceManager-iOS-ObjC
         path: ./DeviceManager/DeviceManager-iOS-ObjC/product/ipa/DeviceManager-iOS-ObjC.ipa
   
- build_audio_mixing_objc:
+  build_audio_mixing_objc:
      name: Build AudioMixing ObjC
      runs-on: macos-latest
      env:
