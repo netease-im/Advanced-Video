@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">屏幕共享</string>
+    <string name="start_screen_share">开启屏幕共享</string>
+    <string name="stop_screen_share">关闭屏幕共享</string>
+</resources>

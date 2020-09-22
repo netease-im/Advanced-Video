@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ScreenShare</string>
+    <string name="start_screen_share">Start Screen Share</string>
+    <string name="stop_screen_share">Stop Screen Share</string>
+</resources>
