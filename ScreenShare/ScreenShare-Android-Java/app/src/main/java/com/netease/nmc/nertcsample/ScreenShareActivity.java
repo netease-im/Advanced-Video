@@ -66,6 +66,8 @@ public class ScreenShareActivity extends BasicActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE_SCREEN_CAPTURE) {
             if (resultCode == RESULT_OK) {
                 startScreenCapture(data);
