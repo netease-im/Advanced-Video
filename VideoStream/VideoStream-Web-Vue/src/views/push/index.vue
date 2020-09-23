@@ -392,7 +392,6 @@
                     this.client.deleteTasks({
                         taskIds: [this.rtmpTasks[0].taskId] //可以同时删除多个推流任务
                     }).then(() => {
-                        message('删除推流任务接口调用成功')
                         console.warn('删除推流任务接口调用成功')
                         this.isPushing = false;
                     }).catch(error => {
@@ -409,7 +408,6 @@
                     }
                     this.client.addTasks(this.rtmpTasks).then(() => {
                         this.isPushing = true;
-                        message('添加推流任务接口成功')
                         console.warn('添加推流任务接口成功')
                     }).catch(err => {
                         message('添加推流任务接口失败')
