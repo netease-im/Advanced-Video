@@ -45,7 +45,7 @@
 </template>
 <script>
     import { message } from '../../components/message';
-    import WebRTC2 from '../../sdk/NIM_Web_WebRTC2_v3.6.0.js';
+    import WebRTC2 from '../../sdk/NIM_Web_WebRTC2_v3.7.0.js';
     import config from '../../../config';
     import { getToken } from '../../common';
 
@@ -182,31 +182,14 @@
                 }
             })
 
-            this.getUserCount()
-                .then(userCount => {
-                    if (userCount >= this.max) {
-                        this.returnJoin(1000);
-                        throw Error('该房间人数已满！');
-                    }
-                    return this.getToken()
-                })
-                .then(token => {
-                    this.joinChannel(token)
-                })
-                .catch(e => {
-                    message(e)
-                    console.error(e)
-                })
+            this.getToken().then(token => {
+                this.joinChannel(token)
+            }).catch(e => {
+                message(e)
+                console.error(e)
+            })
         },
         methods: {
-            getUserCount() {
-                if (!this.client) {
-                    throw Error('内部错误，请重新加入房间');
-                }
-                return this.client.getSessionStats().then(stats => {
-                    return stats.UserCount
-                })
-            },
             getToken() {
                 return getToken({
                     uid: this.localUid,
@@ -409,9 +392,11 @@
                     this.client.deleteTasks({
                         taskIds: [this.rtmpTasks[0].taskId] //可以同时删除多个推流任务
                     }).then(() => {
+                        message('删除推流任务接口调用成功')
                         console.warn('删除推流任务接口调用成功')
                         this.isPushing = false;
                     }).catch(error => {
+                        message('删除推流任务接口调用失败')
                         console.warn('删除推流任务接口调用失败: ', error)
                         if (error === 'INVALID_PARAMETER') {
                             console.warn('参数错误')
@@ -424,8 +409,10 @@
                     }
                     this.client.addTasks(this.rtmpTasks).then(() => {
                         this.isPushing = true;
+                        message('添加推流任务接口成功')
                         console.warn('添加推流任务接口成功')
                     }).catch(err => {
+                        message('添加推流任务接口失败')
                         console.warn('添加推流任务接口失败: ' + err)
                         if (err === 'INVALID_PARAMETER') {
                             console.warn('参数错误')
