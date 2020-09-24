@@ -312,8 +312,10 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
 
     private void changeStatsShow(){
         if(llyStats.getVisibility() == View.VISIBLE){
+            tvShow.setText(R.string.show_stats);
             llyStats.setVisibility(View.GONE);
         }else {
+            tvShow.setText(R.string.hide_stats);
             llyStats.setVisibility(View.VISIBLE);
         }
     }

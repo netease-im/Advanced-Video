@@ -26,7 +26,7 @@
         android:paddingStart="@dimen/text_padding_side_size"
         android:paddingEnd="@dimen/text_padding_side_size"
         android:background="@drawable/shape_main_btn_join"
-        android:text="@string/show_stats"
+        android:text="@string/hide_stats"
         android:textSize="@dimen/text_size"
         android:textColor="@color/white"/>
 

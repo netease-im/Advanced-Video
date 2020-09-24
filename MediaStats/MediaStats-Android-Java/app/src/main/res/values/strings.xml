@@ -12,4 +12,5 @@
     <string name="meeting_wait_hint">等待加入…</string>
     <string name="switch_camera">切换摄像头</string>
     <string name="show_stats">显示统计</string>
+    <string name="hide_stats">隐藏统计</string>
 </resources>
