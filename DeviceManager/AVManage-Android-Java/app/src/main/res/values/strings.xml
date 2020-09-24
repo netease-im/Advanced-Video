@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AVManage</string>
+    <string name="settings">Settings</string>
+    <string name="audio_settings_change_hint">audio settings will take effect when join room again</string>
+</resources>
