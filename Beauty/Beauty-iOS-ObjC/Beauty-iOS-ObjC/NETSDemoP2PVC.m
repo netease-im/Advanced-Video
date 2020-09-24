@@ -18,12 +18,12 @@
 
 @property (strong, nonatomic) UIView            *localRender;  // 本地渲染视图
 @property (strong, nonatomic) UIView            *remoteRender; // 远端渲染视图
-@property (strong, nonatomic) UILabel           *remoteStatLab;
 @property (strong, nonatomic) UIButton          *beautyBtn;
 @property (strong, nonatomic) UIButton          *hangupBtn;
 
 @property (nonatomic, copy) NSString            *roomId;        // 房间ID
 @property (nonatomic, assign) uint64_t          userId;         // 本人uid
+@property (nonatomic, assign) uint64_t          remoteUserId;   // 远端用户uid
 @property (nonatomic, assign)   BOOL            enableBeauty;   // 是否开启美颜
 
 @property (nonatomic, strong) NTESDemoUserModel *localCanvas;  // 本地 canvas 模型
@@ -85,34 +85,32 @@
     
     [self.view addSubview:self.localRender];
     [self.view addSubview:self.remoteRender];
-    [self.remoteRender addSubview:self.remoteStatLab];
     [self.view addSubview:self.beautyBtn];
     [self.view addSubview:self.hangupBtn];
     
-    CGFloat scale = 360 / 640.0;
-    CGFloat renderWidth = (UIScreenWidth - 45) / 2.0;
-    self.localRender.frame = CGRectMake(15, 15, renderWidth, renderWidth / scale);
-    self.remoteRender.frame = CGRectMake(self.localRender.right + 15, self.localRender.top, self.localRender.width, self.localRender.height);
-    self.remoteStatLab.frame = CGRectMake(0, self.remoteRender.centerY - 10, self.remoteRender.width, 20);
-    self.beautyBtn.frame = CGRectMake(self.localRender.centerX - 35, self.localRender.bottom + 30, 80, 44);
-    self.hangupBtn.frame = CGRectMake(self.remoteRender.centerX - 35, self.localRender.bottom + 30, 80, 44);
+    CGFloat scale = 2 / 3.0;
+    CGFloat remoteRenderWidth = MIN(UIScreenWidth, UIScreenHeight) / 3.0;
+    self.localRender.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight);
+    self.remoteRender.frame = CGRectMake(UIScreenWidth - remoteRenderWidth - 15, 15 + (IPHONE_X ? 44 : 0), remoteRenderWidth, remoteRenderWidth / scale);
+    self.beautyBtn.frame = CGRectMake(UIScreenWidth * 0.25 - 40, UIScreenHeight - 44 - (IPHONE_X ? 74 : 30), 80, 44);
+    self.hangupBtn.frame = CGRectMake(UIScreenWidth * 0.75 - 40, self.beautyBtn.top, self.beautyBtn.width, self.beautyBtn.height);
 }
 
 // 建立本地canvas模型
-- (NERtcVideoCanvas *)setupLocalCanvas
+- (NERtcVideoCanvas *)setupLocalCanvasWithUid:(uint64_t)uid render:(UIView *)render
 {
     _localCanvas = [[NTESDemoUserModel alloc] init];
-    _localCanvas.uid = _userId;
-    _localCanvas.renderContainer = self.localRender;
+    _localCanvas.uid = uid;
+    _localCanvas.renderContainer = render;
     return [_localCanvas setupCanvas];
 }
 
 // 建立远端canvas模型
-- (NERtcVideoCanvas *)setupRemoteCanvasWithUid:(uint64_t)uid
+- (NERtcVideoCanvas *)setupRemoteCanvasWithUid:(uint64_t)uid render:(UIView *)render
 {
     _remoteCanvas = [[NTESDemoUserModel alloc] init];
     _remoteCanvas.uid = uid;
-    _remoteCanvas.renderContainer = self.remoteRender;
+    _remoteCanvas.renderContainer = render;
     return [_remoteCanvas setupCanvas];
 }
 
@@ -130,7 +128,7 @@
             [weakSelf showDismissAlert:msg];
         } else {
             //加入成功，建立本地canvas渲染本地视图
-            NERtcVideoCanvas *canvas = [weakSelf setupLocalCanvas];
+            NERtcVideoCanvas *canvas = [weakSelf setupLocalCanvasWithUid:weakSelf.userId render:weakSelf.localRender];
             [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
         }
     }];
@@ -152,9 +150,10 @@
     }
     
     // 建立远端canvas，用来渲染远端画面
-    NERtcVideoCanvas *canvas = [self setupRemoteCanvasWithUid:userID];
+    _remoteUserId = userID;
+    NERtcVideoCanvas *canvas = [self setupRemoteCanvasWithUid:_remoteUserId render:_remoteRender];
     [NERtcEngine.sharedEngine setupRemoteVideoCanvas:canvas
-                                           forUserID:userID];
+                                           forUserID:_remoteUserId];
 }
 
 - (void)onNERtcEngineUserVideoDidStartWithUserID:(uint64_t)userID videoProfile:(NERtcVideoProfileType)profile
@@ -171,18 +170,10 @@
                                 streamType:kNERtcRemoteVideoStreamTypeHigh];
 }
 
-- (void)onNERtcEngineUserVideoDidStop:(uint64_t)userID
-{
-    if (userID == _remoteCanvas.uid) {
-        _remoteStatLab.hidden = YES;
-    }
-}
-
 - (void)onNERtcEngineUserDidLeaveWithUserID:(uint64_t)userID reason:(NERtcSessionLeaveReason)reason
 {
     // 如果远端的人离开了，重置远端模型和UI
     if (userID == _remoteCanvas.uid) {
-        _remoteStatLab.hidden = NO;
         [_remoteCanvas resetCanvas];
         _remoteCanvas = nil;
     }
@@ -248,6 +239,22 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)switchCanvas
+{
+    UIView *localRender = _localRender;
+    UIView *remoteRender = _remoteRender;
+    if (_localCanvas.renderContainer == _localRender) {
+        localRender = _remoteRender;
+        remoteRender = _localRender;
+    }
+    
+    NERtcVideoCanvas *localCanvas = [self setupLocalCanvasWithUid:_userId render:localRender];
+    [NERtcEngine.sharedEngine setupLocalVideoCanvas:localCanvas];
+    
+    NERtcVideoCanvas *remoteCanvas = [self setupRemoteCanvasWithUid:_remoteUserId render:remoteRender];
+    [NERtcEngine.sharedEngine setupRemoteVideoCanvas:remoteCanvas forUserID:_remoteUserId];
+}
+
 #pragma mark - mazy load
 
 - (UIView *)localRender
@@ -264,20 +271,12 @@
     if (!_remoteRender) {
         _remoteRender = [[UIView alloc] init];
         _remoteRender.backgroundColor = [UIColor grayColor];
+        
+        _remoteRender.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchCanvas)];
+        [_remoteRender addGestureRecognizer:tap];
     }
     return _remoteRender;
-}
-
-- (UILabel *)remoteStatLab
-{
-    if (!_remoteStatLab) {
-        _remoteStatLab = [[UILabel alloc] init];
-        _remoteStatLab.font = [UIFont systemFontOfSize:14.0];
-        _remoteStatLab.text = @"等待加入";
-        _remoteStatLab.textColor = [UIColor whiteColor];
-        _remoteStatLab.textAlignment = NSTextAlignmentCenter;
-    }
-    return _remoteStatLab;
 }
 
 - (UIButton *)beautyBtn
