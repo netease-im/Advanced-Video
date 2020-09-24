@@ -64,41 +64,36 @@
                 max: 4,
                 //互动直播的推流任务，可以设置多个推流任务
                 rtmpTasks: [{
-                    taskId: 'taskId_1', //推流任务ID,string格式。taskId为推流任务的唯一标识，用于过程中增删任务操作
-                    streamUrl: '', //直播的rtmp推流url，保证一个url 只能设置一个task
-                    record: true, //互动直播是否启用录制
-                    canvas: { //整体布局大小
-                        width: 1280, //整体布局宽度
-                        height: 720, //整体布局高度
-                        color: 16777215 //整体布局背景色（转为10进制的数，如：#FFFFFF 16进制转为10进制为 16777215）
-                    },
-                    users: [{
-                        uid: 100, //用户id
-                        x: 0, // user1 的视频布局x偏移，相对整体布局的左上角（前提是推流发布user1的视频）
-                        y: 0, // user1 的视频布局y偏移，相对整体布局的左上角（前提是推流发布user1的视频）
-                        width: 640, // user1 的视频布局宽度（前提是推流发布user1的视频）
-                        height: 360, //user1 的视频布局高度（前提是推流发布user1的视频）
-                        adaption: 1, //自适应，值默认为1
-                        pushAudio: true, // 推流是否发布user1 的音频
-                        pushVideo: true // 推流是否发布user1的视频
-                    }, {
-                        uid: 200, //用户id
-                        x: 0, // user2 的视频布局x偏移，相对整体布局的左上角（前提是推流发布user2的视频）
-                        y: 0, // user2 的视频布局y偏移，相对整体布局的左上角（前提是推流发布user2的视频）
-                        width: 640, // user2 的视频布局宽度（前提是推流发布user2的视频）
-                        height: 360, //user2 的视频布局高度（前提是推流发布user2的视频）
-                        adaption: 1, //自适应，值默认为1
-                        pushAudio: true, // 推流是否发布user2 的音频
-                        pushVideo: true // 推流是否发布user2 的视频
-                    }],
-                    images: [{
-                        url: 'xxxxxx', //设置背景图片
-                        x: 0, // 背景图片x偏移，相对整体布局的左上角
-                        y: 0, // 背景图片y偏移，相对整体布局的左上角
-                        width: 480, // 背景图片宽度
-                        height: 360, //背景图片高度
-                        adaption: 1 //自适应，值默认为1
-                    }]
+                    version: 1,
+                    taskId: Math.random().toString(36).slice(-8), //推流任务ID,string格式。taskId为推流任务的唯一标识，用于过程中增删任务操作
+                    streamUrl: '',
+                    record: false, //录制开关
+                    layout: {
+                        canvas: { //整体布局大小
+                            width: 1280, //整体布局宽度
+                            height: 720, //整体布局高度
+                            color: 16777215 //整体布局背景色（转为10进制的数，如：#FFFFFF 16进制转为10进制为 16777215）
+                        },
+                        users: [{
+                            uid: null, //用户id
+                            x: 0, // user1 的视频布局x偏移，相对整体布局的左上角（前提是推流发布user1的视频）
+                            y: 0, // user1 的视频布局y偏移，相对整体布局的左上角（前提是推流发布user1的视频）
+                            width: 640, // user1 的视频布局宽度（前提是推流发布user1的视频）
+                            height: 360, //user1 的视频布局高度（前提是推流发布user1的视频）
+                            adaption: 1, //自适应，值默认为1
+                            pushAudio: true, // 推流是否发布user1 的音频
+                            pushVideo: true // 推流是否发布user1的视频
+                        }
+                        ],
+                        images: [{
+                            url: 'https://www.w3school.com.cn/i/shanghai_lupu_bridge.jpg', //设置背景图片
+                            x: 0, // 背景图片x偏移，相对整体布局的左上角
+                            y: 0, // 背景图片y偏移，相对整体布局的左上角
+                            width: 480, // 背景图片宽度
+                            height: 360, //背景图片高度
+                            adaption: 1 //自适应，值默认为1
+                        }]
+                    }
                 }]
             };
         },
@@ -170,7 +165,7 @@
             });
 
             // 监听推流任务的状态
-            this.client.on('remp-state', data => {
+            this.client.on('rtmp-state', data => {
                 console.warn('=====互动直播状况：', data)
                 console.warn(`互动直播推流任务：${data.task_id}，的状态：${data.state}`)
                 if (data.state === 505) {
@@ -222,7 +217,9 @@
                     .join({
                         channelName: this.$route.query.channelName,
                         uid: this.localUid,
-                        liveEnable: true, // 开启直播，只有开启直播才能开启推流功能
+                        joinChannelLiveConfig: {
+                            liveEnable: true, // 开启直播，只有开启直播才能开启推流功能
+                        },
                         token,
                     })
                     .then((data) => {
@@ -406,7 +403,10 @@
                         message('请填写推流地址，再开始推流！');
                         return
                     }
-                    this.client.addTasks(this.rtmpTasks).then(() => {
+                    this.rtmpTasks[0].layout.users[0].uid = this.localUid;
+                    this.client.addTasks({
+                        rtmpTasks: this.rtmpTasks
+                    }).then(() => {
                         this.isPushing = true;
                         console.warn('添加推流任务接口成功')
                     }).catch(err => {
