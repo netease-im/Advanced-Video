@@ -1,0 +1,38 @@
+name: Advanced Video - iOS 
+on:
+  push:
+    branches: [ develop_cicd_test ]
+  pull_request:
+    branches: [ develop_cicd_test ]
+
+jobs:
+  test_upload:
+    name: Test Upload
+    runs-on: macos-latest
+    env:
+      ARTIFACT_DIR: ${{ ./artifacts }}
+      UPLOAD_SCRIPT_PATH: ${{ ./upload.py }}
+      IPA_FILE: ${{ 'VideoStream-iOS-ObjC.ipa' }}
+      QRCODE_OUTPUT_FILE: ${{ QRCode_VideoStream-iOS-ObjC.png }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./Shared Files/iOS
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python 2.7
+      uses: actions/setup-python@v2
+      with:
+          python-version: '2.7'
+
+    - name: Start Upload
+      run: 
+        python $UPLOAD_SCRIPT_PATH $ARTIFACT_DIR/$IPA_FILE $ARTIFACT_DIR/$QRCODE_OUTPUT_FILE
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: VideoStream-iOS-ObjC
+        path: ./Shared Files/iOS/artifacts/*

@@ -118,7 +118,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)videoReader:(NTESExternalVideoReader *)videoReader didReadSampleBuffer:(CMSampleBufferRef)sampleBuffer totalFramesWritten:(NSInteger)totalFramesWritten totalFrames:(NSInteger)totalFrames
+- (void)videoReader:(NTESExternalVideoReader *)videoReader didReadSampleBuffer:(CMSampleBufferRef)sampleBuffer totalFramesWritten:(NSUInteger)totalFramesWritten totalFrames:(NSUInteger)totalFrames
 {
     CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
