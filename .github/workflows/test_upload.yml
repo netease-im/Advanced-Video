@@ -10,10 +10,10 @@ jobs:
     name: Test Upload
     runs-on: macos-latest
     env:
-      ARTIFACT_DIR: ${{ ./artifacts }}
-      UPLOAD_SCRIPT_PATH: ${{ ./upload.py }}
+      ARTIFACT_DIR: ${{ './artifacts' }}
+      UPLOAD_SCRIPT_PATH: ${{ './upload.py' }}
       IPA_FILE: ${{ 'VideoStream-iOS-ObjC.ipa' }}
-      QRCODE_OUTPUT_FILE: ${{ QRCode_VideoStream-iOS-ObjC.png }}
+      QRCODE_OUTPUT_FILE: ${{ 'QRCode_VideoStream-iOS-ObjC.png' }}
     defaults:
       run:
         shell: bash
