@@ -27,6 +27,10 @@ jobs:
       with:
           python-version: '2.7'
 
+    - name: Install Python Libraries
+      run: 
+        pip install requests
+
     - name: Start Upload
       run: 
         python $UPLOAD_SCRIPT_PATH $ARTIFACT_DIR/$IPA_FILE $ARTIFACT_DIR/$QRCODE_OUTPUT_FILE
