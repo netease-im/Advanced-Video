@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">视频推流</string>
+    <string name="settings">设置</string>
     <string name="start_push_stream">开启推流</string>
     <string name="stop_push_stream">关闭推流</string>
     <string name="push_stream_error">推流 %s: 错误 %d</string>

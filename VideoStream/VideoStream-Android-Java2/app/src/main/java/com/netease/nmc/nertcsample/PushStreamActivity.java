@@ -1,5 +1,8 @@
 package com.netease.nmc.nertcsample;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -9,13 +12,12 @@ import com.netease.lava.nertc.sdk.NERtcCallbackEx;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.stats.NERtcAudioVolumeInfo;
 import com.netease.nmc.nertcsample.pushstream.PushStream;
+import com.netease.nmc.nertcsample.settings.SettingsActivity;
 
 public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx {
     private static final String TAG = "PushVideoStream";
 
     private Button button;
-
-    private String pushUrl;
 
     private PushStream pushStream;
 
@@ -42,6 +44,13 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
         button = panel.findViewById(R.id.btn_push_stream);
 
         button.setOnClickListener(view -> togglePushStream());
+        panel.findViewById(R.id.btn_settings).setOnClickListener(view -> settings());
+    }
+
+    private String getPushUrl() {
+        SharedPreferences sp = getSharedPreferences(getString(R.string.shared_prefs_push_stream),
+                Context.MODE_PRIVATE);
+        return sp.getString(getString(R.string.setting_push_stream_url_key), null);
     }
 
     private void togglePushStream() {
@@ -49,13 +58,19 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
             return;
         }
         if (!pushStream.isStarted()) {
+            String pushUrl = getPushUrl();
             if (TextUtils.isEmpty(pushUrl)) {
+                settings();
                 return;
             }
             pushStream.start(pushUrl);
         } else {
             pushStream.stop();
         }
+    }
+
+    private void settings() {
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     @Override
