@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PushVideoStream</string>
+    <string name="start_push_stream">Start Push Stream</string>
+    <string name="stop_push_stream">Stop Push Stream</string>
+    <string name="push_stream_error">push stream %s: error %d</string>
+    <string name="push_stream_state_pushing">pushing stream</string>
+    <string name="push_stream_state_failed">push stream failed</string>
+    <string name="push_stream_state_stopped">push stream stopped</string>
+</resources>
