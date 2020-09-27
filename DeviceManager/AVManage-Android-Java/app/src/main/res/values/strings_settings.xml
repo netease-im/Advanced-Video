@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="setting_video_profile_title">Video Profile</string>
     <string name="setting_video_profile_name_low">LOW</string>
     <string name="setting_video_profile_name_standard">STANDARD</string>
     <string name="setting_video_profile_name_hd720p">HD720P</string>
     <string name="setting_video_profile_name_hd1080p">HD1080p</string>
 
+    <string name="setting_audio_profile_title">Audio Profile</string>
     <string name="setting_audio_profile_name_default">DEFAULT</string>
     <string name="setting_audio_profile_name_standard">STANDARD</string>
     <string name="setting_audio_profile_name_middle_quality">MIDDLE_QUALITY</string>
@@ -12,6 +14,7 @@
     <string name="setting_audio_profile_name_high_quality">HIGH_QUALITY</string>
     <string name="setting_audio_profile_name_high_quality_stereo">HIGH_QUALITY_STEREO</string>
 
+    <string name="setting_audio_scenario_title">Audio Scenario</string>
     <string name="setting_audio_scenario_name_default">DEFAULT</string>
     <string name="setting_audio_scenario_name_speech">SPEECH</string>
     <string name="setting_audio_scenario_name_music">MUSIC</string>

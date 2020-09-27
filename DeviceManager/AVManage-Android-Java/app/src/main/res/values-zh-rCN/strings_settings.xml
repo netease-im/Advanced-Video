@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="setting_video_profile_title">视频质量</string>
     <string name="setting_video_profile_name_low">标清</string>
     <string name="setting_video_profile_name_standard">高清</string>
     <string name="setting_video_profile_name_hd720p">超清</string>
     <string name="setting_video_profile_name_hd1080p">1080P</string>
 
+    <string name="setting_audio_profile_title">音频质量</string>
     <string name="setting_audio_profile_name_default">默认</string>
     <string name="setting_audio_profile_name_standard">普通质量</string>
     <string name="setting_audio_profile_name_middle_quality">中等质量</string>
@@ -12,6 +14,7 @@
     <string name="setting_audio_profile_name_high_quality">高质量</string>
     <string name="setting_audio_profile_name_high_quality_stereo">高质量立体声</string>
 
+    <string name="setting_audio_scenario_title">音频模式</string>
     <string name="setting_audio_scenario_name_default">默认</string>
     <string name="setting_audio_scenario_name_speech">语音</string>
     <string name="setting_audio_scenario_name_music">音乐</string>
