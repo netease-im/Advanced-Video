@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dcA-f8-edb">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Demo View Controller-->
+        <scene sceneID="4DS-JQ-Abw">
+            <objects>
+                <viewController id="pTH-TA-gMI" customClass="NTESDemoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d1x-LE-3lZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入UserID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-6k-esu">
+                                <rect key="frame" x="25" y="73" width="365" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="f92-di-DiK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入RoomID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Okb-y0-SvL">
+                                <rect key="frame" x="25" y="128" width="364" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="XnK-qw-EBd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyM-Hl-OQo">
+                                <rect key="frame" x="102.66666666666669" y="203" width="209" height="30"/>
+                                <state key="normal" title="Join Meeting and Push Stream"/>
+                                <connections>
+                                    <segue destination="htG-6s-z3P" kind="show" identifier="Join Meeting" id="NbU-XN-F63"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Okb-y0-SvL" firstAttribute="leading" secondItem="F3v-1v-exb" secondAttribute="leading" constant="25" id="BEt-2U-Qer"/>
+                            <constraint firstItem="Okb-y0-SvL" firstAttribute="top" secondItem="jzp-6k-esu" secondAttribute="bottom" constant="21" id="QfC-6r-PKO"/>
+                            <constraint firstItem="F3v-1v-exb" firstAttribute="trailing" secondItem="Okb-y0-SvL" secondAttribute="trailing" constant="25" id="gl1-lJ-8L9"/>
+                            <constraint firstItem="QyM-Hl-OQo" firstAttribute="centerX" secondItem="Okb-y0-SvL" secondAttribute="centerX" id="lBe-Zv-GOc"/>
+                            <constraint firstItem="jzp-6k-esu" firstAttribute="top" secondItem="F3v-1v-exb" secondAttribute="top" constant="29" id="nKd-sd-OQg"/>
+                            <constraint firstItem="QyM-Hl-OQo" firstAttribute="top" secondItem="Okb-y0-SvL" secondAttribute="bottom" constant="41" id="rI1-wY-dAe"/>
+                            <constraint firstItem="jzp-6k-esu" firstAttribute="leading" secondItem="F3v-1v-exb" secondAttribute="leading" constant="25" id="ulW-wC-c34"/>
+                            <constraint firstItem="F3v-1v-exb" firstAttribute="trailing" secondItem="jzp-6k-esu" secondAttribute="trailing" constant="24" id="vGd-wC-ZM1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F3v-1v-exb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nQ7-Gl-xjP"/>
+                    <connections>
+                        <outlet property="roomIDTextField" destination="Okb-y0-SvL" id="85y-wT-KbF"/>
+                        <outlet property="userIDTextField" destination="jzp-6k-esu" id="iut-4D-w2m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l7l-UX-iDf" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.25" y="138.38028169014083"/>
+        </scene>
+        <!--Audio Stream Meeting View Controller-->
+        <scene sceneID="KbL-ux-8fp">
+            <objects>
+                <viewController id="htG-6s-z3P" customClass="NTESAudioStreamMeetingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3lK-XD-1eF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FJ6-6g-ngA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qfm-C5-JKR">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="E8W-PI-yoV" customClass="NTESAudioStreamUserCell">
+                                        <rect key="frame" x="10" y="10" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="g2i-Db-5sK" customClass="NTESAudioStreamUserCell">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dda-3q-aYF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dda-3q-aYF" secondAttribute="bottom" id="1HS-1o-UTG"/>
+                                                <constraint firstAttribute="trailing" secondItem="dda-3q-aYF" secondAttribute="trailing" id="5a0-Ui-N7n"/>
+                                                <constraint firstItem="dda-3q-aYF" firstAttribute="leading" secondItem="g2i-Db-5sK" secondAttribute="leading" id="O2V-cq-By2"/>
+                                                <constraint firstItem="dda-3q-aYF" firstAttribute="top" secondItem="g2i-Db-5sK" secondAttribute="top" id="j0k-6k-H5t"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="userIDLabel" destination="dda-3q-aYF" id="mfo-tc-oa7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="htG-6s-z3P" id="kum-am-3YX"/>
+                                    <outlet property="delegate" destination="htG-6s-z3P" id="Z2r-yw-wgJ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="FJ6-6g-ngA" firstAttribute="centerX" secondItem="3lK-XD-1eF" secondAttribute="centerX" id="HSG-OV-FW3"/>
+                            <constraint firstItem="FJ6-6g-ngA" firstAttribute="leading" secondItem="57d-LQ-M1L" secondAttribute="leading" id="NPG-WF-c1r"/>
+                            <constraint firstItem="FJ6-6g-ngA" firstAttribute="top" secondItem="57d-LQ-M1L" secondAttribute="top" id="PTL-oA-TS0"/>
+                            <constraint firstItem="FJ6-6g-ngA" firstAttribute="bottom" secondItem="57d-LQ-M1L" secondAttribute="bottom" id="gmZ-Ym-cwc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="57d-LQ-M1L"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XF7-Ej-SA4"/>
+                    <connections>
+                        <outlet property="collectionView" destination="FJ6-6g-ngA" id="d9m-rQ-H7z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMh-IN-Oc8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="907.24637681159425" y="136.95652173913044"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ybm-X0-Ify">
+            <objects>
+                <navigationController id="dcA-f8-edb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0I9-X9-aZy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pTH-TA-gMI" kind="relationship" relationship="rootViewController" id="Ck4-cw-w1t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYh-CX-SfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-654" y="138"/>
+        </scene>
+    </scenes>
+</document>

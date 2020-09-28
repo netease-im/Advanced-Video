@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ListPreference
+        android:key="@string/setting_video_profile_key"
+        android:defaultValue="@string/setting_video_profile_value_default"
+        android:entries="@array/setting_video_profile_names"
+        android:entryValues="@array/setting_video_profile_values"
+        android:title="@string/setting_video_profile_title"
+        app:iconSpaceReserved="false" />
+
+    <ListPreference
+        android:key="@string/setting_audio_profile_key"
+        android:defaultValue="@string/setting_audio_profile_value_default"
+        android:entries="@array/setting_audio_profile_names"
+        android:entryValues="@array/setting_audio_profile_values"
+        android:title="@string/setting_audio_profile_title"
+        app:iconSpaceReserved="false" />
+
+    <ListPreference
+        android:key="@string/setting_audio_scenario_key"
+        android:defaultValue="@string/setting_audio_scenario_value_default"
+        android:entries="@array/setting_audio_scenario_names"
+        android:entryValues="@array/setting_audio_scenario_values"
+        android:title="@string/setting_audio_scenario_title"
+        app:iconSpaceReserved="false" />
+
+</PreferenceScreen>

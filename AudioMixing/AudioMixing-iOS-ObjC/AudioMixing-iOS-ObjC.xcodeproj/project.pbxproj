@@ -1,0 +1,699 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48DB92D024A1982400AA8233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92CE24A1982400AA8233 /* Main.storyboard */; };
+		48DB92D224A1982500AA8233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92D124A1982500AA8233 /* Assets.xcassets */; };
+		48DB92D524A1982500AA8233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */; };
+		48DB92D824A1982500AA8233 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92D724A1982500AA8233 /* main.m */; };
+		48DB92E224A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92E124A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m */; };
+		48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */; };
+		48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */; };
+		48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */; };
+		48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */; };
+		86B1665525108EB7007BE9FD /* 2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665225108EB7007BE9FD /* 2.m4a */; };
+		86B1665625108EB7007BE9FD /* audio_effect_0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665325108EB7007BE9FD /* audio_effect_0.wav */; };
+		86B1665725108EB7007BE9FD /* audio_effect_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665425108EB7007BE9FD /* audio_effect_1.wav */; };
+		86B1665F251099BA007BE9FD /* NTESAudioPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B16659251099BA007BE9FD /* NTESAudioPanelView.m */; };
+		86B16660251099BA007BE9FD /* NTESAudioPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B1665A251099BA007BE9FD /* NTESAudioPlayerManager.m */; };
+		86B16661251099BA007BE9FD /* NTESAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B1665B251099BA007BE9FD /* NTESAudioPlayerView.m */; };
+		86CD57DF250622B700D25347 /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CD57D6250622B600D25347 /* NTESGlobalMacro.m */; };
+		86CD57E1250622B700D25347 /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CD57DB250622B700D25347 /* UIView+NTES.m */; };
+		86CD57E2250622B700D25347 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CD57DE250622B700D25347 /* UIView+Toast.m */; };
+		86CD57E62507280B00D25347 /* 1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 86CD57E52507280B00D25347 /* 1.m4a */; };
+		94FC14E2CC04187FACFEE056 /* Pods_AudioMixing_iOS_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0738A092A0384C226C579BA7 /* Pods_AudioMixing_iOS_ObjC.framework */; };
+		C6CA7ECBF4EBC56EC5EA10B5 /* Pods_AudioMixing_iOS_ObjCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F923103DBB88DAC07371582D /* Pods_AudioMixing_iOS_ObjCTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48DB92DE24A1982500AA8233 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48DB92BA24A1982400AA8233 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48DB92C124A1982400AA8233;
+			remoteInfo = "AudioDeviceManage-iOS-ObjC";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		48E7885A24A19A5700308E9A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0738A092A0384C226C579BA7 /* Pods_AudioMixing_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMixing_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A74D66DFD63748E9696A4BD /* Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjCTests/Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+		48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AudioMixing-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DB92CF24A1982400AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48DB92D124A1982500AA8233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48DB92D424A1982500AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48DB92D624A1982500AA8233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48DB92D724A1982500AA8233 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48DB92DD24A1982500AA8233 /* AudioMixing-iOS-ObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AudioMixing-iOS-ObjCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DB92E124A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AudioDeviceManage-iOS-ObjCTests.m"; sourceTree = "<group>"; };
+		48DB92E324A1982500AA8233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
+		48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
+		48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
+		48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
+		48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamMeetingViewController.h; sourceTree = "<group>"; };
+		48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamMeetingViewController.m; sourceTree = "<group>"; };
+		48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamUserCell.h; sourceTree = "<group>"; };
+		48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamUserCell.m; sourceTree = "<group>"; };
+		6700FEDEFDB2A826E3A3D403 /* Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjC/Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		866D1F0725061E3A00D2F410 /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		86B1665225108EB7007BE9FD /* 2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2.m4a; sourceTree = "<group>"; };
+		86B1665325108EB7007BE9FD /* audio_effect_0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = audio_effect_0.wav; sourceTree = "<group>"; };
+		86B1665425108EB7007BE9FD /* audio_effect_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = audio_effect_1.wav; sourceTree = "<group>"; };
+		86B16659251099BA007BE9FD /* NTESAudioPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAudioPanelView.m; sourceTree = "<group>"; };
+		86B1665A251099BA007BE9FD /* NTESAudioPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAudioPlayerManager.m; sourceTree = "<group>"; };
+		86B1665B251099BA007BE9FD /* NTESAudioPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAudioPlayerView.m; sourceTree = "<group>"; };
+		86B1665C251099BA007BE9FD /* NTESAudioPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAudioPanelView.h; sourceTree = "<group>"; };
+		86B1665D251099BA007BE9FD /* NTESAudioPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAudioPlayerManager.h; sourceTree = "<group>"; };
+		86B1665E251099BA007BE9FD /* NTESAudioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAudioPlayerView.h; sourceTree = "<group>"; };
+		86CD57D6250622B600D25347 /* NTESGlobalMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESGlobalMacro.m; sourceTree = "<group>"; };
+		86CD57D7250622B600D25347 /* NTESGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESGlobalMacro.h; sourceTree = "<group>"; };
+		86CD57DB250622B700D25347 /* UIView+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NTES.m"; sourceTree = "<group>"; };
+		86CD57DC250622B700D25347 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		86CD57DD250622B700D25347 /* UIView+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NTES.h"; sourceTree = "<group>"; };
+		86CD57DE250622B700D25347 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		86CD57E52507280B00D25347 /* 1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.m4a; sourceTree = "<group>"; };
+		9350AB1AB8475886C17DCBBB /* Pods-AudioMixing-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixing-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-AudioMixing-iOS-ObjC/Pods-AudioMixing-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		98092F9681FFE93E637DC5A5 /* Pods-AudioMixing-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixing-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-AudioMixing-iOS-ObjCTests/Pods-AudioMixing-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B6FE36725F07F61A387715B4 /* Pods-AudioMixing-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixing-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-AudioMixing-iOS-ObjCTests/Pods-AudioMixing-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
+		B78D41ABFF24F10ADDB8E2BA /* Pods-AudioMixing-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixing-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-AudioMixing-iOS-ObjC/Pods-AudioMixing-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		B985616D34D9B47EDF6CB781 /* Pods-AudioDeviceManage-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjCTests/Pods-AudioDeviceManage-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D8A5F513FBD213E9765E34D7 /* Pods-AudioDeviceManage-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjC/Pods-AudioDeviceManage-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		F923103DBB88DAC07371582D /* Pods_AudioMixing_iOS_ObjCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMixing_iOS_ObjCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48DB92BF24A1982400AA8233 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94FC14E2CC04187FACFEE056 /* Pods_AudioMixing_iOS_ObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92DA24A1982500AA8233 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CA7ECBF4EBC56EC5EA10B5 /* Pods_AudioMixing_iOS_ObjCTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B6A714C5379CD36DEF4AB21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8A5F513FBD213E9765E34D7 /* Pods-AudioDeviceManage-iOS-ObjC.debug.xcconfig */,
+				6700FEDEFDB2A826E3A3D403 /* Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig */,
+				B985616D34D9B47EDF6CB781 /* Pods-AudioDeviceManage-iOS-ObjCTests.debug.xcconfig */,
+				2A74D66DFD63748E9696A4BD /* Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig */,
+				9350AB1AB8475886C17DCBBB /* Pods-AudioMixing-iOS-ObjC.debug.xcconfig */,
+				B78D41ABFF24F10ADDB8E2BA /* Pods-AudioMixing-iOS-ObjC.release.xcconfig */,
+				98092F9681FFE93E637DC5A5 /* Pods-AudioMixing-iOS-ObjCTests.debug.xcconfig */,
+				B6FE36725F07F61A387715B4 /* Pods-AudioMixing-iOS-ObjCTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		48DB92B924A1982400AA8233 = {
+			isa = PBXGroup;
+			children = (
+				86CD57E42507280B00D25347 /* Sources */,
+				48DB92C424A1982400AA8233 /* AudioMixing-iOS-ObjC */,
+				48DB92E024A1982500AA8233 /* AudioMixing-iOS-ObjCTests */,
+				48DB92C324A1982400AA8233 /* Products */,
+				48E7885324A19A4C00308E9A /* Frameworks */,
+				2B6A714C5379CD36DEF4AB21 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		48DB92C324A1982400AA8233 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */,
+				48DB92DD24A1982500AA8233 /* AudioMixing-iOS-ObjCTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48DB92C424A1982400AA8233 /* AudioMixing-iOS-ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				86B16658251099BA007BE9FD /* AudioPlayer */,
+				86CD57DA250622B700D25347 /* Category */,
+				86CD57D5250622B600D25347 /* Marco */,
+				866D1F0725061E3A00D2F410 /* AppKey.h */,
+				48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */,
+				48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */,
+				48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */,
+				48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */,
+				48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */,
+				48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */,
+				48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */,
+				48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */,
+				48DB92CE24A1982400AA8233 /* Main.storyboard */,
+				48DB92D124A1982500AA8233 /* Assets.xcassets */,
+				48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */,
+				48DB92D624A1982500AA8233 /* Info.plist */,
+				48DB92D724A1982500AA8233 /* main.m */,
+			);
+			path = "AudioMixing-iOS-ObjC";
+			sourceTree = "<group>";
+		};
+		48DB92E024A1982500AA8233 /* AudioMixing-iOS-ObjCTests */ = {
+			isa = PBXGroup;
+			children = (
+				48DB92E124A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m */,
+				48DB92E324A1982500AA8233 /* Info.plist */,
+			);
+			path = "AudioMixing-iOS-ObjCTests";
+			sourceTree = "<group>";
+		};
+		48E7885324A19A4C00308E9A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0738A092A0384C226C579BA7 /* Pods_AudioMixing_iOS_ObjC.framework */,
+				F923103DBB88DAC07371582D /* Pods_AudioMixing_iOS_ObjCTests.framework */,
+			);
+			name = Frameworks;
+			path = ../Frameworks;
+			sourceTree = "<group>";
+		};
+		86B16658251099BA007BE9FD /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				86B1665C251099BA007BE9FD /* NTESAudioPanelView.h */,
+				86B16659251099BA007BE9FD /* NTESAudioPanelView.m */,
+				86B1665D251099BA007BE9FD /* NTESAudioPlayerManager.h */,
+				86B1665A251099BA007BE9FD /* NTESAudioPlayerManager.m */,
+				86B1665E251099BA007BE9FD /* NTESAudioPlayerView.h */,
+				86B1665B251099BA007BE9FD /* NTESAudioPlayerView.m */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		86CD57D5250622B600D25347 /* Marco */ = {
+			isa = PBXGroup;
+			children = (
+				86CD57D7250622B600D25347 /* NTESGlobalMacro.h */,
+				86CD57D6250622B600D25347 /* NTESGlobalMacro.m */,
+			);
+			path = Marco;
+			sourceTree = "<group>";
+		};
+		86CD57DA250622B700D25347 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				86CD57DD250622B700D25347 /* UIView+NTES.h */,
+				86CD57DB250622B700D25347 /* UIView+NTES.m */,
+				86CD57DC250622B700D25347 /* UIView+Toast.h */,
+				86CD57DE250622B700D25347 /* UIView+Toast.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		86CD57E42507280B00D25347 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				86CD57E52507280B00D25347 /* 1.m4a */,
+				86B1665225108EB7007BE9FD /* 2.m4a */,
+				86B1665325108EB7007BE9FD /* audio_effect_0.wav */,
+				86B1665425108EB7007BE9FD /* audio_effect_1.wav */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48DB92C124A1982400AA8233 /* AudioMixing-iOS-ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48DB92E624A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioMixing-iOS-ObjC" */;
+			buildPhases = (
+				626B7713B416F3A950568D37 /* [CP] Check Pods Manifest.lock */,
+				48DB92BE24A1982400AA8233 /* Sources */,
+				48DB92BF24A1982400AA8233 /* Frameworks */,
+				48DB92C024A1982400AA8233 /* Resources */,
+				48E7885A24A19A5700308E9A /* Embed Frameworks */,
+				0CAC5DC374359581C24FB06C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AudioMixing-iOS-ObjC";
+			productName = "AudioDeviceManage-iOS-ObjC";
+			productReference = 48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48DB92DC24A1982500AA8233 /* AudioMixing-iOS-ObjCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48DB92E924A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioMixing-iOS-ObjCTests" */;
+			buildPhases = (
+				0780BCC62A814B0796E6109B /* [CP] Check Pods Manifest.lock */,
+				48DB92D924A1982500AA8233 /* Sources */,
+				48DB92DA24A1982500AA8233 /* Frameworks */,
+				48DB92DB24A1982500AA8233 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48DB92DF24A1982500AA8233 /* PBXTargetDependency */,
+			);
+			name = "AudioMixing-iOS-ObjCTests";
+			productName = "AudioDeviceManage-iOS-ObjCTests";
+			productReference = 48DB92DD24A1982500AA8233 /* AudioMixing-iOS-ObjCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48DB92BA24A1982400AA8233 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "丁文超";
+				TargetAttributes = {
+					48DB92C124A1982400AA8233 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					48DB92DC24A1982500AA8233 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 48DB92C124A1982400AA8233;
+					};
+				};
+			};
+			buildConfigurationList = 48DB92BD24A1982400AA8233 /* Build configuration list for PBXProject "AudioMixing-iOS-ObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48DB92B924A1982400AA8233;
+			productRefGroup = 48DB92C324A1982400AA8233 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48DB92C124A1982400AA8233 /* AudioMixing-iOS-ObjC */,
+				48DB92DC24A1982500AA8233 /* AudioMixing-iOS-ObjCTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48DB92C024A1982400AA8233 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86B1665525108EB7007BE9FD /* 2.m4a in Resources */,
+				48DB92D524A1982500AA8233 /* LaunchScreen.storyboard in Resources */,
+				86B1665725108EB7007BE9FD /* audio_effect_1.wav in Resources */,
+				48DB92D224A1982500AA8233 /* Assets.xcassets in Resources */,
+				86B1665625108EB7007BE9FD /* audio_effect_0.wav in Resources */,
+				86CD57E62507280B00D25347 /* 1.m4a in Resources */,
+				48DB92D024A1982400AA8233 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92DB24A1982500AA8233 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0780BCC62A814B0796E6109B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudioMixing-iOS-ObjCTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0CAC5DC374359581C24FB06C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AudioMixing-iOS-ObjC/Pods-AudioMixing-iOS-ObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AudioMixing-iOS-ObjC/Pods-AudioMixing-iOS-ObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AudioMixing-iOS-ObjC/Pods-AudioMixing-iOS-ObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		626B7713B416F3A950568D37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudioMixing-iOS-ObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48DB92BE24A1982400AA8233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86CD57E2250622B700D25347 /* UIView+Toast.m in Sources */,
+				48DB92D824A1982500AA8233 /* main.m in Sources */,
+				48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */,
+				86B1665F251099BA007BE9FD /* NTESAudioPanelView.m in Sources */,
+				48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */,
+				48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */,
+				48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */,
+				86CD57E1250622B700D25347 /* UIView+NTES.m in Sources */,
+				86CD57DF250622B700D25347 /* NTESGlobalMacro.m in Sources */,
+				86B16661251099BA007BE9FD /* NTESAudioPlayerView.m in Sources */,
+				86B16660251099BA007BE9FD /* NTESAudioPlayerManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48DB92D924A1982500AA8233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48DB92E224A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48DB92DF24A1982500AA8233 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48DB92C124A1982400AA8233 /* AudioMixing-iOS-ObjC */;
+			targetProxy = 48DB92DE24A1982500AA8233 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		48DB92CE24A1982400AA8233 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48DB92CF24A1982400AA8233 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48DB92D424A1982500AA8233 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48DB92E424A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		48DB92E524A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48DB92E724A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9350AB1AB8475886C17DCBBB /* Pods-AudioMixing-iOS-ObjC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "AudioMixing-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48DB92E824A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B78D41ABFF24F10ADDB8E2BA /* Pods-AudioMixing-iOS-ObjC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "AudioMixing-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48DB92EA24A1982500AA8233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98092F9681FFE93E637DC5A5 /* Pods-AudioMixing-iOS-ObjCTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "AudioDeviceManage-iOS-ObjCTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioDeviceManage-iOS-ObjCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioMixing-iOS-ObjC.app/AudioMixing-iOS-ObjC";
+			};
+			name = Debug;
+		};
+		48DB92EB24A1982500AA8233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6FE36725F07F61A387715B4 /* Pods-AudioMixing-iOS-ObjCTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "AudioDeviceManage-iOS-ObjCTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.AudioDeviceManage-iOS-ObjCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AudioMixing-iOS-ObjC.app/AudioMixing-iOS-ObjC";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48DB92BD24A1982400AA8233 /* Build configuration list for PBXProject "AudioMixing-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92E424A1982500AA8233 /* Debug */,
+				48DB92E524A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48DB92E624A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioMixing-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92E724A1982500AA8233 /* Debug */,
+				48DB92E824A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48DB92E924A1982500AA8233 /* Build configuration list for PBXNativeTarget "AudioMixing-iOS-ObjCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48DB92EA24A1982500AA8233 /* Debug */,
+				48DB92EB24A1982500AA8233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48DB92BA24A1982400AA8233 /* Project object */;
+}

@@ -1,0 +1,3 @@
+include ':faceunity'
+include ':app'
+rootProject.name = "NERTCBeautySample"
