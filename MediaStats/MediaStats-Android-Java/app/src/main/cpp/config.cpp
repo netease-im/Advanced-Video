@@ -9,6 +9,6 @@ extern "C"
 JNIEXPORT jstring
 JNICALL
 Java_com_netease_mediastats_NativeConfig_getAppKey__(JNIEnv *env, jclass) {
-    std::string appKey = "your APP ley";
+    std::string appKey = "set you APP key here";
     return env->NewStringUTF(appKey.c_str());
 }
