@@ -64,6 +64,6 @@ externalVideoSource.stop()
 - **ExternalTextureVideoSource.create** 方法通过 **MediaMetadataExtractor** 助手类获得视频文件信息
 - **ExternalTextureVideoSource.ensureGLHandler** 方法创建一个Looper线程，并初始化EGL。
 - **ExternalTextureVideoSource.start** 方法创建一个Surface，并启动一个MediaPlayer循环播放视频
-- **ExternalTextureVideoSource.start** 方法停止MediaPlayer播放视频，销毁Surface，停止GL线程
+- **ExternalTextureVideoSource.stop** 方法停止播放视频，销毁Surface，停止GL线程
 
 
