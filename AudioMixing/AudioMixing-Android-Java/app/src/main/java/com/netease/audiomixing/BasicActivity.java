@@ -93,7 +93,7 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
         NERtcParameters parameters = new NERtcParameters();
         neRtcEx.setParameters(parameters); //先设置参数，后初始化
         try {
-            neRtcEx.init(getApplicationContext(), getString(R.string.app_key), this, null);
+            neRtcEx.init(getApplicationContext(), NativeConfig.getAppKey(), this, null);
             neRtcEx.enableLocalAudio(true);
             neRtcEx.enableLocalVideo(true);
         } catch (Exception e) {
