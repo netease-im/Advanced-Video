@@ -78,16 +78,16 @@ public class ScreenShareActivity extends BasicActivity {
 
     private void requestScreenCapture() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivityForResult(createScreenCaptureIntent(), REQUEST_CODE_SCREEN_CAPTURE);
+            startActivityForResult(createScreenCaptureIntent(this), REQUEST_CODE_SCREEN_CAPTURE);
         } else {
             Toast.makeText(this, R.string.screen_capture_min_sdk_version, Toast.LENGTH_SHORT).show();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private Intent createScreenCaptureIntent() {
+    private static Intent createScreenCaptureIntent(Context context) {
         MediaProjectionManager manager =
-                (MediaProjectionManager) getApplication().getSystemService(
+                (MediaProjectionManager) context.getSystemService(
                         Context.MEDIA_PROJECTION_SERVICE);
         return manager.createScreenCaptureIntent();
     }

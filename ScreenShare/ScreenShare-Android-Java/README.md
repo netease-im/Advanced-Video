@@ -16,7 +16,7 @@
 ### 开启屏幕共享
 
 - 选择清晰度，**NERtcConstants.ScreenProfile** 提供清晰度定义
-- 获得屏幕录制请求结果Intent，具体查看**请求屏幕录制**章节
+- 获得屏幕录制请求结果Intent，具体查看[请求屏幕录制](#request_screen_capture)
 - 设置屏幕录制回调，用于接收录制结束事件
 
 ```java
@@ -53,15 +53,16 @@
 
 注意，调用 **stopScreenCapture** API后需要调用 **enableLocalVideo(true)**，重新启动本地视频采集。
 
+<span id="request_screen_capture"></span>
 ### 请求屏幕录制
 
 创建屏幕录制Intent
 
 ```java
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private Intent createScreenCaptureIntent() {
+    private static Intent createScreenCaptureIntent(Context context) {
         MediaProjectionManager manager =
-                (MediaProjectionManager) getApplication().getSystemService(
+                (MediaProjectionManager) context.getSystemService(
                         Context.MEDIA_PROJECTION_SERVICE);
         return manager.createScreenCaptureIntent();
     }
@@ -70,7 +71,7 @@
 请求屏幕录制，并获取结果，如果成功，调用 **startScreenCapture** 传入结果Intent
 
 ```java
-    startActivityForResult(createScreenCaptureIntent(), REQUEST_CODE_SCREEN_CAPTURE);
+    startActivityForResult(createScreenCaptureIntent(context), REQUEST_CODE_SCREEN_CAPTURE);
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
