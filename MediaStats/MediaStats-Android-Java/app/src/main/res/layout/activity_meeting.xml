@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/meeting_background"
-    tools:context=".MeetingActivity">
+    tools:context="com.netease.nmc.nertcsample.mediastats.MeetingActivity">
 
 
     <com.netease.lava.nertc.sdk.video.NERtcVideoView
