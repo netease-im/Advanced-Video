@@ -1,4 +1,4 @@
-package com.netease.mediastats;
+package com.netease.nmc.nertcsample.mediastats;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +25,7 @@ import com.netease.lava.nertc.sdk.stats.NERtcVideoRecvStats;
 import com.netease.lava.nertc.sdk.stats.NERtcVideoSendStats;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
+import com.netease.mediastats.R;
 
 import java.util.Locale;
 import java.util.Random;

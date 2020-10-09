@@ -1,4 +1,4 @@
-package com.netease.mediastats;
+package com.netease.nmc.nertcsample.mediastats;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.netease.lava.nertc.sdk.NERtc;
+import com.netease.mediastats.R;
 
 import java.util.List;
 

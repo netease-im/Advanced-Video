@@ -1,4 +1,4 @@
-package com.netease.mediastats;
+package com.netease.nmc.nertcsample.mediastats;
 
 public class NativeConfig {
     static {
