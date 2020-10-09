@@ -1,10 +1,9 @@
-package com.netease.audiomixing;
+package com.netease.nmc.nertcsample.audiomixing;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -16,24 +15,20 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.netease.lava.nertc.base.CommonUtil;
+import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtcConstants;
-import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.audio.NERtcCreateAudioEffectOption;
 import com.netease.lava.nertc.sdk.audio.NERtcCreateAudioMixingOption;
-import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import static com.netease.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PAUSED;
-import static com.netease.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PLAYING;
-import static com.netease.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_STOPPED;
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PAUSED;
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PLAYING;
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_STOPPED;
 
 
 public class DialogRoomActivity extends BasicActivity{

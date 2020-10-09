@@ -1,4 +1,4 @@
-package com.netease.audiomixing;
+package com.netease.nmc.nertcsample.audiomixing;
 
 public class NativeConfig {
     static {

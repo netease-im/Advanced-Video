@@ -1,4 +1,4 @@
-package com.netease.audiomixing;
+package com.netease.nmc.nertcsample.audiomixing;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.netease.lava.nertc.sdk.NERtc;
-import com.netease.lava.nertc.sdk.NERtcCallback;
+import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtcCallbackEx;
 import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;

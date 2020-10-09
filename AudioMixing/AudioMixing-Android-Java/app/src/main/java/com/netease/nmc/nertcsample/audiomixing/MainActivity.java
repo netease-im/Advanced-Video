@@ -1,4 +1,4 @@
-package com.netease.audiomixing;
+package com.netease.nmc.nertcsample.audiomixing;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtc;
 
 import java.util.List;

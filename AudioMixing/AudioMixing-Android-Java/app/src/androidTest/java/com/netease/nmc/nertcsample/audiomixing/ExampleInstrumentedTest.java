@@ -1,4 +1,4 @@
-package com.netease.audiomixing;
+package com.netease.nmc.nertcsample.audiomixing;
 
 import android.content.Context;
 
