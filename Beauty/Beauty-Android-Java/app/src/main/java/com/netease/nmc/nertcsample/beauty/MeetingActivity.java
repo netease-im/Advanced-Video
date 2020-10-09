@@ -1,4 +1,4 @@
-package com.netease.nertcbeautysample;
+package com.netease.nmc.nertcsample.beauty;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +20,8 @@ import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
-import com.netease.nertcbeautysample.config.NativeConfig;
+import com.netease.nertcbeautysample.R;
+import com.netease.nmc.nertcsample.beauty.config.NativeConfig;
 
 import java.util.Random;
 

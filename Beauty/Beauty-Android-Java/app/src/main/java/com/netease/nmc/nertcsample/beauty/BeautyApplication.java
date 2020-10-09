@@ -1,11 +1,11 @@
-package com.netease.nertcbeautysample;
+package com.netease.nmc.nertcsample.beauty;
 
 import android.app.Application;
 import android.content.Context;
 
 import com.faceunity.FURenderer;
 import com.faceunity.utils.FileUtils;
-import com.netease.nertcbeautysample.util.ThreadHelper;
+import com.netease.nmc.nertcsample.beauty.util.ThreadHelper;
 
 public class BeautyApplication extends Application {
     private static Context sContext;

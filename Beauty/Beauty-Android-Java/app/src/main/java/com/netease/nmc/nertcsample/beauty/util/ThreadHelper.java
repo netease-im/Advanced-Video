@@ -1,4 +1,4 @@
-package com.netease.nertcbeautysample.util;
+package com.netease.nmc.nertcsample.beauty.util;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

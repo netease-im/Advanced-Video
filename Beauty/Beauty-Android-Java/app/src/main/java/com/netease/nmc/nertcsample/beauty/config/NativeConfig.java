@@ -1,4 +1,4 @@
-package com.netease.nertcbeautysample.config;
+package com.netease.nmc.nertcsample.beauty.config;
 
 public class NativeConfig {
     static {
