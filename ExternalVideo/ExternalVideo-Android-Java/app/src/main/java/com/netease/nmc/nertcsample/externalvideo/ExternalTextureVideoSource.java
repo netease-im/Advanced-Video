@@ -3,6 +3,7 @@ package com.netease.nmc.nertcsample.externalvideo;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.PlaybackParams;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
@@ -94,6 +95,7 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
     private boolean playVideo(String path, Surface surface) {
         mediaPlayer = new MediaPlayer();
         try {
+            mediaPlayer.setVolume(0, 0);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setDataSource(path);
             mediaPlayer.setSurface(surface);
