@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		031262C82292F15FDA035205 /* Pods-DeviceManager-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeviceManager-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-DeviceManager-iOS-ObjCTests/Pods-DeviceManager-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
 		1F5564CE05AFD51FBC0BA866 /* Pods-DeviceManager-iOS-ObjCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeviceManager-iOS-ObjCTests.debug.xcconfig"; path = "Target Support Files/Pods-DeviceManager-iOS-ObjCTests/Pods-DeviceManager-iOS-ObjCTests.debug.xcconfig"; sourceTree = "<group>"; };
-		48FB8CA624EE26F600F9C3BC /* DeviceManager-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DeviceManager-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48FB8CA624EE26F600F9C3BC /* 音视频管理.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "音视频管理.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FB8CB324EE26F600F9C3BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48FB8CB524EE26F700F9C3BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48FB8CB824EE26F700F9C3BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		48FB8CA724EE26F600F9C3BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48FB8CA624EE26F600F9C3BC /* DeviceManager-iOS-ObjC.app */,
+				48FB8CA624EE26F600F9C3BC /* 音视频管理.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 			);
 			name = "DeviceManager-iOS-ObjC";
 			productName = "DeviceManager-iOS-ObjC";
-			productReference = 48FB8CA624EE26F600F9C3BC /* DeviceManager-iOS-ObjC.app */;
+			productReference = 48FB8CA624EE26F600F9C3BC /* 音视频管理.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -430,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.DeviceManager-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "音视频管理";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -451,7 +451,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.DeviceManager-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "音视频管理";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
