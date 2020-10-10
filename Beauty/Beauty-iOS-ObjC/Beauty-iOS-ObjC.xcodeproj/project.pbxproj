@@ -14,6 +14,7 @@
 		419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419DA0AC24D7EDF90001A561 /* Main.storyboard */; };
 		419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */; };
 		419DA0BD24D7EDF90001A561 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B124D7EDF90001A561 /* main.m */; };
+		86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C6333C2512FBCE0036B19E /* CoreML.framework */; };
 		86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332925120F230036B19E /* NTESGlobalMacro.m */; };
 		86C6333125120F230036B19E /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332C25120F230036B19E /* UIView+NTES.m */; };
 		86C633342512FB830036B19E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633332512FB830036B19E /* OpenGLES.framework */; };
@@ -43,7 +44,7 @@
 		419DA0B324D7EDF90001A561 /* NETSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAppDelegate.h; sourceTree = "<group>"; };
 		419DA0B424D7EDF90001A561 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48B7FB62128890C428F4C63C /* Pods-NERtcP2pSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSampleTests/Pods-NERtcP2pSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		48CFCBFC24C5766E002DE0CA /* Beauty-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beauty-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48CFCBFC24C5766E002DE0CA /* 美颜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "美颜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6365D8AC3C9BD2B6E0637C /* Pods-NERtcP2pSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSample.release.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSample/Pods-NERtcP2pSample.release.xcconfig"; sourceTree = "<group>"; };
 		86C6332925120F230036B19E /* NTESGlobalMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESGlobalMacro.m; sourceTree = "<group>"; };
 		86C6332A25120F230036B19E /* NTESGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESGlobalMacro.h; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86C633382512FB9B0036B19E /* CoreMedia.framework in Frameworks */,
+				86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */,
 				86C633362512FB900036B19E /* Accelerate.framework in Frameworks */,
 				86C6333D2512FBCE0036B19E /* CoreML.framework in Frameworks */,
 				86C6333A2512FBA80036B19E /* AVFoundation.framework in Frameworks */,
@@ -140,7 +142,7 @@
 		48CFCBFD24C5766E002DE0CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48CFCBFC24C5766E002DE0CA /* Beauty-iOS-ObjC.app */,
+				48CFCBFC24C5766E002DE0CA /* 美颜.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,7 +212,7 @@
 			);
 			name = "Beauty-iOS-ObjC";
 			productName = NERtcP2pSample;
-			productReference = 48CFCBFC24C5766E002DE0CA /* Beauty-iOS-ObjC.app */;
+			productReference = 48CFCBFC24C5766E002DE0CA /* 美颜.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -477,13 +479,13 @@
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Beauty-iOS-ObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.Beauty;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_NAME = "美颜";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -499,13 +501,13 @@
 				DEVELOPMENT_TEAM = 569GNZ5392;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Beauty-iOS-ObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.Beauty;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_NAME = "美颜";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
