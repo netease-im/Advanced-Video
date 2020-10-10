@@ -14,8 +14,7 @@
 		48DB92E224A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92E124A1982500AA8233 /* AudioDeviceManage-iOS-ObjCTests.m */; };
 		48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */; };
 		48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */; };
-		48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */; };
-		48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */; };
+		86AA175E25318A1800C732F6 /* NTESMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AA175D25318A1800C732F6 /* NTESMeetingViewController.m */; };
 		86B1665525108EB7007BE9FD /* 2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665225108EB7007BE9FD /* 2.m4a */; };
 		86B1665625108EB7007BE9FD /* audio_effect_0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665325108EB7007BE9FD /* audio_effect_0.wav */; };
 		86B1665725108EB7007BE9FD /* audio_effect_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86B1665425108EB7007BE9FD /* audio_effect_1.wav */; };
@@ -56,7 +55,7 @@
 /* Begin PBXFileReference section */
 		0738A092A0384C226C579BA7 /* Pods_AudioMixing_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMixing_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A74D66DFD63748E9696A4BD /* Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjCTests/Pods-AudioDeviceManage-iOS-ObjCTests.release.xcconfig"; sourceTree = "<group>"; };
-		48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AudioMixing-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DB92C224A1982400AA8233 /* 混音音效.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "混音音效.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DB92CF24A1982400AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48DB92D124A1982500AA8233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48DB92D424A1982500AA8233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,12 +68,10 @@
 		48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
 		48DB92EE24A1985A00AA8233 /* NTESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
 		48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
-		48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamMeetingViewController.h; sourceTree = "<group>"; };
-		48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamMeetingViewController.m; sourceTree = "<group>"; };
-		48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAudioStreamUserCell.h; sourceTree = "<group>"; };
-		48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAudioStreamUserCell.m; sourceTree = "<group>"; };
 		6700FEDEFDB2A826E3A3D403 /* Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-AudioDeviceManage-iOS-ObjC/Pods-AudioDeviceManage-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		866D1F0725061E3A00D2F410 /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		86AA175C25318A1800C732F6 /* NTESMeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESMeetingViewController.h; sourceTree = "<group>"; };
+		86AA175D25318A1800C732F6 /* NTESMeetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESMeetingViewController.m; sourceTree = "<group>"; };
 		86B1665225108EB7007BE9FD /* 2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2.m4a; sourceTree = "<group>"; };
 		86B1665325108EB7007BE9FD /* audio_effect_0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = audio_effect_0.wav; sourceTree = "<group>"; };
 		86B1665425108EB7007BE9FD /* audio_effect_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = audio_effect_1.wav; sourceTree = "<group>"; };
@@ -150,7 +147,7 @@
 		48DB92C324A1982400AA8233 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */,
+				48DB92C224A1982400AA8233 /* 混音音效.app */,
 				48DB92DD24A1982500AA8233 /* AudioMixing-iOS-ObjCTests.xctest */,
 			);
 			name = Products;
@@ -167,10 +164,8 @@
 				48DB92ED24A1985A00AA8233 /* NTESAppDelegate.m */,
 				48DB92EF24A1985A00AA8233 /* NTESDemoViewController.h */,
 				48DB92EC24A1985900AA8233 /* NTESDemoViewController.m */,
-				48E7885D24A19CF600308E9A /* NTESAudioStreamUserCell.h */,
-				48E7885E24A19CF600308E9A /* NTESAudioStreamUserCell.m */,
-				48E7885024A199AF00308E9A /* NTESAudioStreamMeetingViewController.h */,
-				48E7885124A199B000308E9A /* NTESAudioStreamMeetingViewController.m */,
+				86AA175C25318A1800C732F6 /* NTESMeetingViewController.h */,
+				86AA175D25318A1800C732F6 /* NTESMeetingViewController.m */,
 				48DB92CE24A1982400AA8233 /* Main.storyboard */,
 				48DB92D124A1982500AA8233 /* Assets.xcassets */,
 				48DB92D324A1982500AA8233 /* LaunchScreen.storyboard */,
@@ -263,7 +258,7 @@
 			);
 			name = "AudioMixing-iOS-ObjC";
 			productName = "AudioDeviceManage-iOS-ObjC";
-			productReference = 48DB92C224A1982400AA8233 /* AudioMixing-iOS-ObjC.app */;
+			productReference = 48DB92C224A1982400AA8233 /* 混音音效.app */;
 			productType = "com.apple.product-type.application";
 		};
 		48DB92DC24A1982500AA8233 /* AudioMixing-iOS-ObjCTests */ = {
@@ -415,12 +410,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86AA175E25318A1800C732F6 /* NTESMeetingViewController.m in Sources */,
 				86CD57E2250622B700D25347 /* UIView+Toast.m in Sources */,
 				48DB92D824A1982500AA8233 /* main.m in Sources */,
-				48E7885224A199B000308E9A /* NTESAudioStreamMeetingViewController.m in Sources */,
 				86B1665F251099BA007BE9FD /* NTESAudioPanelView.m in Sources */,
 				48DB92F024A1985A00AA8233 /* NTESDemoViewController.m in Sources */,
-				48E7885F24A19CF600308E9A /* NTESAudioStreamUserCell.m in Sources */,
 				48DB92F124A1985A00AA8233 /* NTESAppDelegate.m in Sources */,
 				86CD57E1250622B700D25347 /* UIView+NTES.m in Sources */,
 				86CD57DF250622B700D25347 /* NTESGlobalMacro.m in Sources */,
@@ -593,7 +587,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "混音音效";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -615,7 +609,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.AudioMixing-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "混音音效";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

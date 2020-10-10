@@ -1,8 +1,8 @@
 //
-//  NTESAudioStreamMeetingViewController.h
-//  AudioMixing-iOS-ObjC
+//  NTESMeetingViewController.h
+//  NERtcGroupMeetingSample
 //
-//  Created by 丁文超 on 2020/6/23.
+//  Created by 丁文超 on 2020/3/23.
 //  Copyright © 2020 丁文超. All rights reserved.
 //
 
@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NTESAudioStreamMeetingViewController : UIViewController
+@interface NTESMeetingViewController : UIViewController
 
 @property (assign, nonatomic) uint64_t userID;
 @property (copy, nonatomic) NSString *roomID;
+
 
 @end
 
