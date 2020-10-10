@@ -78,7 +78,7 @@
 		48AB391824FE354500919699 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		48AB391B24FE391100919699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		48AB392024FE42C300919699 /* AppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
-		48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NERtcSample-ScreenShare-iOS-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C3557224BEABF800C55964 /* 屏幕共享.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "屏幕共享.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C3557524BEABF800C55964 /* NTESAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
 		48C3557624BEABF800C55964 /* NTESAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
 		48C3557F24BEABF800C55964 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		48C3557324BEABF800C55964 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */,
+				48C3557224BEABF800C55964 /* 屏幕共享.app */,
 				48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */,
 			);
 			name = Products;
@@ -301,7 +301,7 @@
 			);
 			name = "NERtcSample-ScreenShare-iOS-Objective-C";
 			productName = "NERtcSample-ScreenShare-iOS-Objective-C";
-			productReference = 48C3557224BEABF800C55964 /* NERtcSample-ScreenShare-iOS-Objective-C.app */;
+			productReference = 48C3557224BEABF800C55964 /* 屏幕共享.app */;
 			productType = "com.apple.product-type.application";
 		};
 		48C3559124BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */ = {
@@ -618,7 +618,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "屏幕共享";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -641,7 +641,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "屏幕共享";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
