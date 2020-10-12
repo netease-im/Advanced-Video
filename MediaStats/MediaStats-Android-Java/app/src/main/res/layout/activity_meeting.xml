@@ -87,50 +87,42 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/channel_id"
+            android:id="@+id/channel_users_number"
             style="@style/text_stats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="频道中的用户数：1" />
 
         <TextView
-            android:id="@+id/video_send_stats"
-            style="@style/text_stats"/>
+            android:id="@+id/channel_duration"
+            style="@style/text_stats"
+            android:text="频道时长：0"/>
 
         <TextView
-            style="@style/text_stats_tips"
-            android:text="audio:"/>
+            android:id="@+id/receive_rate"
+            style="@style/text_stats"
+            android:text="接受码率：0"/>
+
 
         <TextView
-            android:id="@+id/audio_send_stats"
-            style="@style/text_stats"/>
+            android:id="@+id/send_rate"
+            style="@style/text_stats"
+            android:text="发送码率：0"/>
 
         <TextView
-            style="@style/text_stats_tips"
-            android:text="session:"/>
+            android:id="@+id/all_receive_bytes"
+            style="@style/text_stats"
+            android:text="接收总字节数：0"/>
 
         <TextView
-            android:id="@+id/system_stats"
-            style="@style/text_stats"/>
+            android:id="@+id/all_send_bytes"
+            style="@style/text_stats"
+            android:text="发送总字节数：0"/>
+
 
         <TextView
-            android:id="@+id/network_send_stats"
-            style="@style/text_stats" />
+            android:id="@+id/average_delay"
+            style="@style/text_stats"
+            android:text="上行平均往返时延：0"/>
 
-        <TextView
-            android:id="@+id/video_recv_stats"
-            style="@style/text_stats" />
-
-        <TextView
-            style="@style/text_stats_tips"
-            android:text="audio:"/>
-
-        <TextView
-            android:id="@+id/audio_recv_stats"
-            style="@style/text_stats" />
-
-        <TextView
-            android:id="@+id/network_recv_stats"
-            style="@style/text_stats" />
 
     </LinearLayout>
 

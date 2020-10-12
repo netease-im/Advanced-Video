@@ -48,15 +48,16 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
 
     //********* stats *********//
     private LinearLayout llyStats;
-    private TextView channelInfo;
-    private TextView videoSendStats;
-    private TextView audioSendStats;
-    private TextView videoRecvStats;
-    private TextView audioRecvStats;
-    private TextView systemStats;
-    private TextView networkRecvStats;
-    private TextView networkSendStats;
+    private TextView channelUsers;
+    private TextView channelDuration;
+    private TextView receiveRate;
+    private TextView sendRate;
+    private TextView allReceiveBytes;
+    private TextView allSendBytes;
+    private TextView averageDelay;
     //********* stats *********//
+
+    private int userNumbers = 0;//当前频道中的用户数
 
     private long selfUid;//别人UID
 
@@ -113,14 +114,13 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         tvLeave = findViewById(R.id.tv_leave);
 
         llyStats = findViewById(R.id.lly_stats);
-        channelInfo = findViewById(R.id.channel_id);
-        videoSendStats = findViewById(R.id.video_send_stats);
-        audioSendStats = findViewById(R.id.audio_send_stats);
-        videoRecvStats = findViewById(R.id.video_recv_stats);
-        audioRecvStats = findViewById(R.id.audio_recv_stats);
-        systemStats = findViewById(R.id.system_stats);
-        networkRecvStats = findViewById(R.id.network_recv_stats);
-        networkSendStats = findViewById(R.id.network_send_stats);
+        channelUsers = findViewById(R.id.channel_users_number);
+        channelDuration = findViewById(R.id.channel_duration);
+        receiveRate = findViewById(R.id.receive_rate);
+        sendRate = findViewById(R.id.send_rate);
+        allReceiveBytes = findViewById(R.id.all_receive_bytes);
+        allSendBytes = findViewById(R.id.all_send_bytes);
+        averageDelay = findViewById(R.id.average_delay);
 
         localUserVv.setVisibility(View.INVISIBLE);
         tvLeave.setOnClickListener(this);
@@ -194,6 +194,8 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
             // 加入房间，准备展示己方视频
 
             localUserVv.setVisibility(View.VISIBLE);
+            userNumbers++;
+            channelUsers.setText("频道中的用户数："+ userNumbers);
         }
     }
 
@@ -213,6 +215,9 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         remoteUserVv.setTag(uid);
         // 不用等待了
         waitHintTv.setVisibility(View.INVISIBLE);
+        //当前频道用户数加1
+        userNumbers++;
+        channelUsers.setText("频道中的用户数："+ userNumbers);
     }
 
     @Override
@@ -230,6 +235,8 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         waitHintTv.setVisibility(View.VISIBLE);
         // 不展示远端
         remoteUserVv.setVisibility(View.INVISIBLE);
+        userNumbers--;
+        channelUsers.setText("频道中的用户数："+ userNumbers);
     }
 
     @Override
@@ -335,59 +342,37 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
 
     @Override
     public void onRtcStats(NERtcStats neRtcStats) {
-        String text = String.format(Locale.CHINA, "累计发送: %.2f MB\n累计接受: %.2f MB\n本地上行视频丢包率: %d%%\n本地下行视频丢包率: %d%%\n本地上行音频丢包率: %d%%\n本地下行音频丢包率: %d%%",
-                neRtcStats.txBytes / 1024.0f, neRtcStats.rxBytes / 1024.0f, neRtcStats.txVideoPacketLossRate,
-                neRtcStats.rxVideoPacketLossRate,neRtcStats.txAudioPacketLossRate,neRtcStats.rxAudioPacketLossRate);
-        systemStats.setText(text);
+        channelDuration.setText("频道时长：" + neRtcStats.totalDuration);
+        receiveRate.setText("接收码率："+(neRtcStats.rxAudioKBitRate + neRtcStats.rxVideoKBitRate));
+        sendRate.setText("发送码率："+(neRtcStats.txAudioKBitRate + neRtcStats.txVideoKBitRate));
+        allReceiveBytes.setText("接收总字节数："+(neRtcStats.rxAudioBytes + neRtcStats.rxVideoBytes));
+        allSendBytes.setText("发送总字节数："+(neRtcStats.txAudioBytes + neRtcStats.txVideoBytes));
+        averageDelay.setText("上行平均往返时延："+neRtcStats.upRtt);
     }
 
     @Override
-    public void onLocalAudioStats(NERtcAudioSendStats stats) {
-        String text = String.format(Locale.CHINA, "音频发送码率: %d Kbps\n发送音频丢包率: %d\n音量: %d\n环路延时:%d",
-                stats.kbps, stats.lossRate, stats.volume, stats.rtt);
-        audioSendStats.setText(text);
+    public void onLocalAudioStats(NERtcAudioSendStats neRtcAudioSendStats) {
+
     }
 
     @Override
-    public void onRemoteAudioStats(NERtcAudioRecvStats[] statsArray) {
-        if (statsArray != null && statsArray[0] != null) {
-            NERtcAudioRecvStats stats = statsArray[0];
-            String text = String.format(Locale.CHINA, "音频接受码率: %d Kbps\n音频丢包率: %d\n 音量: %d",
-                    stats.kbps, stats.lossRate, stats.volume);
-            audioRecvStats.setText(text);
-        }
+    public void onRemoteAudioStats(NERtcAudioRecvStats[] neRtcAudioRecvStats) {
+
     }
 
     @Override
-    public void onLocalVideoStats(NERtcVideoSendStats stats) {
-        String text = String.format(Locale.CHINA, "uid: %d\n大小: %dx%d\n视频发送帧率: %d\n发送码率: %d Kbps",
-                selfUid, stats.width, stats.height, stats.sentFrameRate, stats.sendBitrate);
-        videoSendStats.setText(text);
+    public void onLocalVideoStats(NERtcVideoSendStats neRtcVideoSendStats) {
+
     }
 
     @Override
-    public void onRemoteVideoStats(NERtcVideoRecvStats[] statsArray) {
-        if (statsArray != null && statsArray[0] != null) {
-            NERtcVideoRecvStats stats = statsArray[0];
-            String text = String.format(Locale.CHINA, "对方uid: %d\n大小: %dx%d\n视频接收帧率: %d\n接收到的码率: %d Kbps",
-                    stats.uid, stats.width, stats.height, stats.fps, stats.receivedBitrate);
-            videoRecvStats.setText(text);
-        }
+    public void onRemoteVideoStats(NERtcVideoRecvStats[] neRtcVideoRecvStats) {
+
     }
 
     @Override
-    public void onNetworkQuality(NERtcNetworkQualityInfo[] statsArray) {
-        if (statsArray != null) {
-            for (NERtcNetworkQualityInfo info : statsArray) {
-                String text = String.format(Locale.CHINA, "network up: %d,down: %d",
-                        info.upStatus, info.downStatus);
-                if (info.userId == selfUid) {
-                    networkSendStats.setText(text);
-                } else {
-                    networkRecvStats.setText(text);
-                }
-            }
-        }
+    public void onNetworkQuality(NERtcNetworkQualityInfo[] neRtcNetworkQualityInfos) {
+
     }
 
 }
