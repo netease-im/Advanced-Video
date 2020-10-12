@@ -1,9 +1,8 @@
-# NERtcSample-ExternalVideo-Android-Java
+# NERtcSample-VideoStream-Android-Java
 
 ## 功能介绍
 
-这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现自定义视频推流。
-- 推流到CDN
+这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现视频推流。
 
 ## 环境准备，运行示例项目，多人视频通话功能实现
 
@@ -55,7 +54,7 @@
     }
 ```
 
-创建推流任务视频布局中成员布局
+创建推流任务成员视频布局
 
 ```java
     private static ArrayList<NERtcLiveStreamUserTranscoding> createUserTranscodingList(List<Long> userIds, Rect[] rectUsers) {
@@ -80,7 +79,7 @@
 Sample code中的 **Config** 类提供了推流配置的参数，展示了一个2 x 2的布局配置。
 
 ```java
-/**
+    /**
      *              2 x 2 layout
      *
      *               720x1280
@@ -98,6 +97,18 @@ Sample code中的 **Config** 类提供了推流配置的参数，展示了一个
      * \                                 \
      * \---------------------------------\
      */
+
+    // 获取推流视频Rect，仅使用宽高
+    static Rect getRectLayout() {}
+
+    // 获取用户视频Rect列表，位置相对于推流视频
+    static Rect[] getRectUsers() {}
+
+    // 获取背景色
+    static int getBackgroundColor() {}
+
+    // 获取背景图
+    static NERtcLiveStreamImageInfo getBackgroundImage() {}
 ```
 
 #### 开启推流
