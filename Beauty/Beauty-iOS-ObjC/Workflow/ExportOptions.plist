@@ -10,7 +10,7 @@
 	<string>enterprise</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.netease.nmc.Beauty</key>
+		<key>com.netease.nmc.beauty</key>
 		<string>enterpriseForWildCard</string>
 	</dict>
 	<key>signingCertificate</key>

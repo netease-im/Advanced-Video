@@ -7,7 +7,7 @@
 //
 
 #import "NTESDemoViewController.h"
-#import "NTESAudioStreamMeetingViewController.h"
+#import "NTESMeetingViewController.h"
 
 #define JoinMeetingSegue @"Join Meeting"
 
@@ -44,7 +44,7 @@
 {
     [self.view endEditing:YES];
     if ([segue.identifier isEqualToString:JoinMeetingSegue]) {
-        NTESAudioStreamMeetingViewController *meetingViewController = segue.destinationViewController;
+        NTESMeetingViewController *meetingViewController = segue.destinationViewController;
         meetingViewController.userID = self.userIDTextField.text.longLongValue;
         meetingViewController.roomID = self.roomIDTextField.text;
     }
