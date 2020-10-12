@@ -72,18 +72,17 @@
         NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
         canvas.container = self.localUserView;
         [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
-        [self addLiveStream];
+        [self addLiveStream:kStreamURL];
     }];
 }
 
-- (void)addLiveStream
+- (void)addLiveStream:(NSString *)streamURL
 {
-    NSAssert(![kStreamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
+    NSAssert(![streamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
     self.liveStreamTask = [[NERtcLiveStreamTaskInfo alloc] init];
-    NSString *taskID = [NSString stringWithFormat:@"%.0f%d",[NSDate timeIntervalSinceReferenceDate],arc4random()/100];
-    NSLog(@"taskID:%@",taskID);
+    NSString *taskID = [NSString stringWithFormat:@"%d",arc4random()/100];
     self.liveStreamTask.taskID = taskID;
-    self.liveStreamTask.streamURL = kStreamURL;
+    self.liveStreamTask.streamURL = streamURL;
     self.liveStreamTask.lsMode = kNERtcLsModeVideo;
     
     NSInteger layoutWidth = 720;
@@ -173,7 +172,7 @@
         if (ret != 0) {
             NSLog(@"移除任务失败");
         }
-        
+
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -189,12 +188,11 @@
 - (void)didGetStreamURL:(NSString *)URLString
 {
     if (!self.liveStreamTask) {
-        [self addLiveStream];
+        [self addLiveStream:URLString];
     }else {
         self.liveStreamTask.streamURL = URLString;
         [self updateLiveStreamTask];
     }
-    
 }
 - (void)stopPushStream {
     int res = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
