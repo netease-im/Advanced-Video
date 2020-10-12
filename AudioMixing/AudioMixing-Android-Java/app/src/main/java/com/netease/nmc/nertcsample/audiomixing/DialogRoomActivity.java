@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtcConstants;
@@ -31,7 +32,7 @@ import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMi
 import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_STOPPED;
 
 
-public class DialogRoomActivity extends BasicActivity{
+public class DialogRoomActivity extends BasicActivity implements AudioControlDialog.DialogActionsCallBack {
 
 
     private static String MUSIC_DIR = "music";
@@ -40,28 +41,17 @@ public class DialogRoomActivity extends BasicActivity{
     private static String EFFECT1 = "effect1.wav";
     private static String EFFECT2 = "effect2.wav";
 
-    TextView tvMusic1;
-
-    TextView tvMusic2;
-
-    TextView tvEffect1;
-
-    TextView tvEffect2;
-
     TextView tvPlayStateHint;
-
-    SeekBar sbrMusicVolume;
-
-    SeekBar sbrEffectVolume;
 
     ImageView ivPlay;//暂停按钮
 
+    ImageView ivNext;//下一首
+
     ImageView ivMore;
 
-    RelativeLayout rlyMusicControl;
-
-
     private int musicIndex = 0;//默认伴音数组下标
+
+    private int[] effectIndex;//音效数组
 
     private String[] musicPathArray;
 
@@ -76,9 +66,57 @@ public class DialogRoomActivity extends BasicActivity{
     private int playMusicState = AudioMixingPlayState.STATE_STOPPED;
 
     /**
+     * 音量控制dialog
+     */
+    AudioControlDialog controlDialog;
+
+    @Override
+    public void setMusicPlay(int index) {
+        musicIndex = index;
+        playMusicState = STATE_STOPPED;
+        neRtcEx.stopAudioMixing();
+        if (controlDialog != null) {
+            if (index == 0) {
+                controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_1, switchMusicState());
+            } else if (index == 1) {
+                controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_2, switchMusicState());
+            }
+        }
+    }
+
+    @Override
+    public void onMusicVolumeChange(int progress) {
+        audioMixingVolume = progress;
+        neRtcEx.setAudioMixingSendVolume(progress);
+        neRtcEx.setAudioMixingPlaybackVolume(progress);
+    }
+
+    @Override
+    public boolean addEffect(int index) {
+        return addAudioEffect(index);
+    }
+
+    @Override
+    public void onEffectVolumeChange(int progress, int[] index) {
+        audioEffectVolume = progress;
+        //sample 中简单实用一个seekbar 控制所有effect的音量
+        for (int i = 0; i < index.length; i++) {
+            if (index[i] == 1) {
+                neRtcEx.setEffectSendVolume(index2Id(i), audioEffectVolume);
+                neRtcEx.setEffectPlaybackVolume(index2Id(i), audioEffectVolume);
+            }
+        }
+    }
+
+    @Override
+    public boolean stopEffect(int index) {
+        return neRtcEx.stopEffect(index2Id(index)) == 0;
+    }
+
+    /**
      * 伴音播放状态
      */
-    interface AudioMixingPlayState {
+    public interface AudioMixingPlayState {
         /**
          * 停止，未播放
          */
@@ -110,18 +148,13 @@ public class DialogRoomActivity extends BasicActivity{
     @Override
     protected void initPanelViews(View panel) {
         super.initPanelViews(panel);
-        tvMusic1 = findViewById(R.id.tv_music_1);
-        tvMusic2 = findViewById(R.id.tv_music_2);
-        tvEffect1 = findViewById(R.id.tv_audio_effect_1);
-        tvEffect2 = findViewById(R.id.tv_audio_effect_2);
-        sbrMusicVolume = findViewById(R.id.music_song_volume_control);
-        sbrEffectVolume = findViewById(R.id.audio_effect_volume_control);
-        rlyMusicControl = findViewById(R.id.rl_music_action_container);
         tvPlayStateHint = findViewById(R.id.tv_play_content);
         ivPlay = findViewById(R.id.iv_music_play);
         ivPlay.setEnabled(false);
         ivMore = findViewById(R.id.iv_more_option);
         ivMore.setEnabled(false);
+        ivNext = findViewById(R.id.iv_next);
+        ivNext.setEnabled(false);
     }
 
     @Override
@@ -129,94 +162,17 @@ public class DialogRoomActivity extends BasicActivity{
         super.initOptions();
         mHandler = new Handler(getMainLooper());
         initMusicAndEffect();
-        //======================伴音控制=======================
         ivPlay.setOnClickListener(v -> {
             if(switchMusicState()) {
                 ivPlay.setSelected(!ivPlay.isSelected());
             }
         });
-        tvMusic1.setOnClickListener(v -> {
-            if(!tvMusic1.isSelected()) {
-                musicIndex = 0;
-                playMusicState = STATE_STOPPED;
-                neRtcEx.stopAudioMixing();
-                tvMusic1.setSelected(switchMusicState());
-            }
-            tvMusic2.setSelected(false);
-        });
-
-        tvMusic2.setOnClickListener(v -> {
-            if(!tvMusic2.isSelected()) {
-                musicIndex = 1;
-                playMusicState = STATE_STOPPED;
-                neRtcEx.stopAudioMixing();
-                tvMusic2.setSelected(switchMusicState());
-            }
-
-            tvMusic1.setSelected(false);
-        });
 
         ivMore.setOnClickListener(v -> {
-            rlyMusicControl.setVisibility(View.VISIBLE);
+            showDialog();
         });
 
-        sbrMusicVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                audioMixingVolume = progress;
-                neRtcEx.setAudioMixingSendVolume(progress);
-                neRtcEx.setAudioMixingPlaybackVolume(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //====================音效控制======================
-        tvEffect1.setOnClickListener(v -> {
-            if(!tvEffect1.isSelected()){
-                tvEffect1.setSelected(addAudioEffect(0));
-            }
-        });
-
-        tvEffect2.setOnClickListener(v -> {
-            if(!tvEffect2.isSelected()){
-                tvEffect2.setSelected(addAudioEffect(1));
-            }
-        });
-
-        sbrEffectVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                audioEffectVolume = progress;
-                //sample 中简单实用一个seekbar 控制所有effect的音量
-                if(tvEffect1.isSelected()){
-                    neRtcEx.setEffectSendVolume(index2Id(0),audioEffectVolume);
-                    neRtcEx.setEffectPlaybackVolume(index2Id(0),audioEffectVolume);
-                }
-                if(tvEffect2.isSelected()){
-                    neRtcEx.setEffectSendVolume(index2Id(1),audioEffectVolume);
-                    neRtcEx.setEffectPlaybackVolume(index2Id(1),audioEffectVolume);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        ivNext.setOnClickListener(v -> playNextMusic());
 
     }
 
@@ -230,20 +186,46 @@ public class DialogRoomActivity extends BasicActivity{
             musicPathArray = new String[]{extractMusicFile(root, MUSIC1),extractMusicFile(root, MUSIC2)};
             mHandler.post(() -> {
                 ivMore.setEnabled(true);
-                if(switchMusicState()) {
+                if (switchMusicState()) {
                     ivPlay.setSelected(true);
                     ivPlay.setEnabled(true);
-                    tvMusic1.setSelected(true);
+                    ivNext.setEnabled(true);
                 }
             });
         }).start();
     }
 
     /**
+     * 播放下一首
+     */
+    private void playNextMusic() {
+        if (musicIndex == 0) {
+            musicIndex = 1;
+        } else {
+            musicIndex = 0;
+        }
+        playMusicState = STATE_STOPPED;
+        neRtcEx.stopAudioMixing();
+        if (switchMusicState()) {
+            Toast.makeText(this, "已经播放下一首", Toast.LENGTH_SHORT).show();
+            if (controlDialog != null) {
+                if (musicIndex == 0) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_1, true);
+                } else if (musicIndex == 1) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_2, true);
+                }
+            }
+        } else {
+            Toast.makeText(this, "播放下一首失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
      * 伴音模式切换
+     *
      * @return
      */
-    private boolean switchMusicState(){
+    private boolean switchMusicState() {
         int stateOld = playMusicState;
         int stateNew;
         int result;
@@ -311,8 +293,8 @@ public class DialogRoomActivity extends BasicActivity{
      * @param index
      * @return
      */
-    private boolean addAudioEffect(int index){
-        if(effectPathArray == null || effectPathArray.length <= index){
+    private boolean addAudioEffect(int index) {
+        if (effectPathArray == null || effectPathArray.length <= index) {
             return false;
         }
         NERtcCreateAudioEffectOption option = new NERtcCreateAudioEffectOption();
@@ -321,18 +303,32 @@ public class DialogRoomActivity extends BasicActivity{
         option.sendVolume = audioEffectVolume;
         option.loopCount = 1;
         neRtcEx.stopEffect(index2Id(index));
-        return neRtcEx.playEffect(index2Id(index),option) == 0;
+        if (effectIndex == null) {
+            effectIndex = new int[2];
+        }
+        effectIndex[index] = 1;
+        return neRtcEx.playEffect(index2Id(index), option) == 0;
     }
 
     @Override
     public void onAudioEffectFinished(int i) {
         super.onAudioEffectFinished(i);
-        switch (i){
+        switch (i) {
             case 1:
-                tvEffect1.setSelected(false);
+                if (controlDialog != null) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_EFFECT_1, false);
+                }
+                if (effectIndex != null) {
+                    effectIndex[0] = 0;
+                }
                 break;
             case 2:
-                tvEffect2.setSelected(false);
+                if (controlDialog != null) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_EFFECT_2, false);
+                }
+                if (effectIndex != null) {
+                    effectIndex[1] = 0;
+                }
                 break;
             default:
                 break;
@@ -344,12 +340,16 @@ public class DialogRoomActivity extends BasicActivity{
         super.onAudioMixingStateChanged(reason);
         if(reason == NERtcConstants.ErrorCode.OK){
             playMusicState = STATE_STOPPED;
-            tvPlayStateHint.setText(R.string.music_play_states_stop);
-            if(musicIndex == 0){
-                tvMusic1.setSelected(false);
-            }else if(musicIndex == 1){
-                tvEffect2.setSelected(false);
+            if(musicIndex == 0) {
+                if (controlDialog != null) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_1, false);
+                }
+            }else if(musicIndex == 1) {
+                if (controlDialog != null) {
+                    controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_2, false);
+                }
             }
+            playNextMusic();
         }
     }
 
@@ -414,30 +414,45 @@ public class DialogRoomActivity extends BasicActivity{
         return "";
     }
 
+    private void showDialog() {
+        if (controlDialog == null) {
+            controlDialog = new AudioControlDialog();
+            controlDialog.setCallBack(this);
+        }
+        if (ivPlay.isEnabled()) {
+            controlDialog.setInitData(musicIndex, effectIndex);
+        }
+        controlDialog.show(getSupportFragmentManager(), "dialog");
+    }
 
 
     @Override
     protected void leaveChannel() {
-        neRtcEx.stopAllEffects();
+        stopAllEffects();
         neRtcEx.stopAudioMixing();
         super.leaveChannel();
     }
 
-    @Override
-    public void onBackPressed() {
-        if(rlyMusicControl.getVisibility() == View.VISIBLE){
-            rlyMusicControl.setVisibility(View.GONE);
-            return;
+    /**
+     * 停止所有音效
+     */
+    private void stopAllEffects() {
+        if (effectIndex != null) {
+            for (int index = 0; index < effectIndex.length; index++) {
+                if (effectIndex[index] == 1) {
+                    neRtcEx.stopEffect(index2Id(index));
+                }
+            }
         }
-        super.onBackPressed();
     }
 
     /**
      * effect index to id,id can't be 0
+     *
      * @param index
      * @return
      */
-    private int index2Id(int index){
+    private int index2Id(int index) {
         return index + 1;
     }
 }

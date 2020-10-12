@@ -25,7 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.netease.nmc.nertcsample.audiomixing.MainActivity">
+        <activity
+            android:name="com.netease.nmc.nertcsample.audiomixing.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +36,8 @@
         </activity>
 
 
-        <activity android:name="com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity"
+        <activity
+            android:name="com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

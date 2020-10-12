@@ -140,7 +140,6 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
             Object tag = videoView.getTag();
             if (tag != null && tag.equals(userId)) {
                 videoView.setTag(null);
-                videoView.setVisibility(View.INVISIBLE);
                 break;
             }
         }
