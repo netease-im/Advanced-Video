@@ -65,10 +65,11 @@ final class Config {
     }
 
     static int getBackgroundColor() {
-        return Color.GRAY;
+        return Color.WHITE;
     }
 
     static NERtcLiveStreamImageInfo getBackgroundImage() {
-        return backgroundImage;
+//        return backgroundImage;
+        return null;
     }
 }
