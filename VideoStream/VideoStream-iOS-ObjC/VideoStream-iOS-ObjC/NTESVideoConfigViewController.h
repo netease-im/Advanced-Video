@@ -12,10 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NTESVideoConfigVCDelegate <NSObject>
 - (void)didGetStreamURL:(NSString *)URLString;
+- (void)stopPushStream;
 @end
 
 @interface NTESVideoConfigViewController : UIViewController
+@property(strong,nonatomic)NSString *currentURL;
 @property(weak,nonatomic)id delegate;
+@property(assign,nonatomic)BOOL isPushingStream;
 
 @end
 
