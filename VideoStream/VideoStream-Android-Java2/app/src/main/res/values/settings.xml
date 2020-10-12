@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shared_prefs_push_stream" translatable="false">push_stream</string>
+    <string name="setting_push_stream_url_key" translatable="false">setting_push_stream_url_key</string>
+    <string name="setting_push_stream_url_value_default" translatable="false">
+    </string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_view_ratio" translatable="false">10:12</string>
+    <dimen name="spacing">15dp</dimen>
+</resources>

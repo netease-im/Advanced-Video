@@ -168,6 +168,7 @@ static void *KVOContext = &KVOContext;
         }]].firstObject;
         [button setImage:nil forState:UIControlStateNormal];
         [button setTitle:@"Start Share" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:14.0];
         [button setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
         
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:picker];

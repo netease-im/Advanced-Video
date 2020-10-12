@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting_push_stream_url_title">推流地址</string>
+</resources>
