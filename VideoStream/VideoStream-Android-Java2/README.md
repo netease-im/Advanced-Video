@@ -1,205 +1,183 @@
-# NERtcSample-GroupVideoCall-Android-Java
+# NERtcSample-ExternalVideo-Android-Java
 
 ## 功能介绍
 
-这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现多人音视频通话。
+这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现自定义视频推流。
+- 推流到CDN
 
-- 支持多人加入通话和断开通话
+## 环境准备，运行示例项目，多人视频通话功能实现
 
-## 环境准备
-
-- Android SDK API Level Level ≥ 18
-- Android Studio 3.0 或以上版本
-- App 要求 Android 4.3 或以上设备
-
-## 运行示例项目
-
-这个段落主要讲解了如何编译和运行实例程序。
-
-### 创建网易云信账号并获取App Key
-
-在编译和启动实例程序前，您需要首先获取一个可用的`App Key`:
-
-1. 若您已经与专属客户经理取得联系，可直接向他获取Appkey
-
-2. 若您并未与专属客户经理取得联系那么请按后续步骤获取Appkey
-
-3. 首先在 [网易云信](https://id.163yun.com/register?h=media&t=media&clueFrom=nim&from=bdjjnim0035&referrer=https://app.yunxin.163.com/?clueFrom=nim&from=bdjjnim0035) 注册账号
-
-4. 然后在「应用」一栏中创建您的项目
-
-5. 等待专属客户经理联系您，并向他获取Appkey
-
-6. 将 AppID 填写进 "app/src/main/res/values/app_key.xml"
-
-```xml
-<!-- 替换为你自己的AppKey -->
-<string name="app_key">Your App Key</string>
-```
-
-### 集成SDK
-
-集成方式有两种，通过Maven集成和通过SDK库文件集成
-
-#### 通过Maven集成（**强烈推荐**）
-
-在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 Maven 自动集成 SDK 的地址：
-
-```gradle
-implementation 'com.netease.yunxin:nertc:' + versionName
-```
-
-#### 通过SDK库文件集成
-
-Android [视频通话 SDK](https://dev.yunxin.163.com/docs/product/音视频通话G2/SDK下载)
-
-下载的文件包括 libs 文件和 sample 文件，其中 libs 文件包括：
-
-| 文件/文件夹名称     | 文件类型      |
-| ------------------- | ------------- |
-| nertc-sdk-x.x.x.jar | Java JAR 文件 |
-| arm64-v8a           | 文件夹        |
-| armeabi-v7a         | 文件夹        |
-| x86                 | 文件夹        |
-
-##### 添加 SDK
-
-1. 设置 libs 存放路径。使用 Android Studio 打开你想要运行的项目，选择 *app/build.gradle* 文件，将预设的 libs 路径添加到 fileTree 代码行中。
-
-   ![img](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fdefault%2FandroidStudioConfig.jpg)
-
-**注意SDK依赖的JDK版本为Java 8**
-
-1. 添加 libs 文件包。根据步骤 1 中预设的路径添加 libs 文件包。
-2. 同步项目文件。点击 **Sync Project With Gradle Files** 按钮，直到同步完成。
+这个开源示例项目基于多人视频通话，关于**环境准备**，**运行示例项目**，**功能实现**章节请参考[多人视频通话](https://github.com/netease-im/Basic-Video-Call/blob/master/Group-Video/NERtcSample-GroupVideoCall-Android-Java/README.md)
 
 ## 功能实现
 
-### 初始化
+### 管理推流任务
 
-导入以下 NERTC API 包:
+推流任务以 **String** 作为唯一标识，以 **NERtcLiveStreamTaskInfo** 作为信息
 
-- `com.netease.lava.nertc.sdk.NERtcConstants`
-- `com.netease.lava.nertc.sdk.NERtcCallback`
-- `com.netease.lava.nertc.sdk.NERtcEx`
-- `com.netease.lava.nertc.sdk.NERtcParameters`
-- `com.netease.lava.nertc.sdk.video.NERtcVideoView`
-- `com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType`
+#### 管理推流 API
 
-进入房间之前，调用 `init` 进行初始化。在该方法中:
+| api | usage |
+| - | - |
+| addLiveStreamTask | 添加推流任务 |
+| updateLiveStreamTask | 更新推流任务 |
+| removeLiveStreamTask | 删除推流任务 |
 
-- 填入后台应用注册的 **AppKey**。只有 **AppKey** 相同的应用程序才能进入同一个房间进行互通。
-- 指定一个事件回调。SDK 通过指定的事件通知应用程序 SDK 的运行事件，如: 加入或离开房间，新用户加入房间等。
+#### 推流配置
+
+创建推流任务信息
 
 ```java
-import com.netease.lava.nertc.sdk.NERtcCallback;
-import com.netease.lava.nertc.sdk.NERtcConstants;
-import com.netease.lava.nertc.sdk.NERtcEx;
-import com.netease.lava.nertc.sdk.NERtcParameters;
-import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
-import com.netease.lava.nertc.sdk.video.NERtcVideoView;
-
-...
-
-private void setupNERtc() {
-    NERtcParameters parameters = new NERtcParameters();
-    parameters.set(NERtcParameters.KEY_AUTO_SUBSCRIBE_AUDIO, false);
-    NERtcEx.getInstance().setParameters(parameters); //先设置参数，后初始化
-
-    try {
-        NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, null);
-        setAudioEnable(true);
-        setVideoEnable(true);
-    } catch (Exception e) {
-        Toast.makeText(this, "SDK初始化失败", Toast.LENGTH_LONG).show();
-        finish();
+    private static NERtcLiveStreamTaskInfo createLiveStreamTask(String taskId, String pushUrl) {
+        NERtcLiveStreamTaskInfo task = new NERtcLiveStreamTaskInfo();
+        task.taskId = taskId; // 推流任务ID
+        task.url = pushUrl; // 直播推流地址
+        task.serverRecordEnabled = false; // 关闭服务器录制功能
+        task.liveMode = kNERtcLsModeVideo; // 直播推流视频模式
+        return task;
     }
-}
 ```
 
-### 加入房间
-
-在加入房间前，请确保你已完成环境准备、安装包获取等步骤。
-
-#### 加入通信房间
-
-调用 `joinChannel` 方法加入房间。在该方法中:
-
-在该方法中：
-
-- 传入能标识用户角色和权限的 `Token`。如果安全要求不高，也可以将值设为 null。Token 需要在应用程序的服务器端生成，具体生成办法，详见 [密钥说明](https://dev.yunxin.163.com/docs/product/音视频通话G2/服务端API文档?pos=toc-2-15)。
-- 传入能标识房间的房间名称。输入相同房间名称的用户会进入同一个房间。
-- 房间内每个用户的 UID 必须是唯一的。
-
-> 如果已在房间中，用户必须调用 `leaveChannel` 方法退出当前房间，才能进入下一个房间。
+创建推流任务视频布局
 
 ```java
-NERtcEx.getInstance().joinChannel(null, roomId, userId);
+    private static NERtcLiveStreamLayout createLiveStreamLayout() {
+        Rect rectLayout = Config.getRectLayout();
+        NERtcLiveStreamImageInfo backgroundImage = Config.getBackgroundImage();
+        int backgroundColor = Config.getBackgroundColor();
+
+        NERtcLiveStreamLayout layout = new NERtcLiveStreamLayout();
+        layout.width = rectLayout.width(); // 视频推流宽度
+        layout.height = rectLayout.height(); // 视频推流高度
+        layout.backgroundImg = backgroundImage; // 视频推流背景图
+        layout.backgroundColor = backgroundColor; // 视频推流背景色
+        return layout;
+    }
 ```
 
-### 发布和订阅音视频流
-
-在发布和订阅音视频流前，请确保你已完成环境准备、安装包获取等步骤，并成功加入房间。
-
-#### 打开视频模式
-
-调用 `enableLocalVideo` 方法打开视频模式，调用 `enableLocalAudio` 方法打开音频模式。您也可以根据需要关闭默认，在加入房间后自行调用该方法进行打开。
-
-- 如果在通话过程前和过程中都可以通过以下接口实现音视频的开关。
+创建推流任务视频布局中成员布局
 
 ```java
-NERtc.getInstance().enableLocalAudio(boolean enable);
-NERtc.getInstance().enableLocalVideo(boolean enable);
+    private static ArrayList<NERtcLiveStreamUserTranscoding> createUserTranscodingList(List<Long> userIds, Rect[] rectUsers) {
+        ArrayList<NERtcLiveStreamUserTranscoding> userTranscodingList = new ArrayList<>();
+        for (int i = 0; i < userIds.size() && i < rectUsers.length; i++) {
+            NERtcLiveStreamUserTranscoding userTranscoding = new NERtcLiveStreamUserTranscoding();
+            userTranscoding.uid = userIds.get(i);  // 用户uid
+            userTranscoding.audioPush = true; // 推送该用户音频流
+            userTranscoding.videoPush = true; // 推送该用户视频流
+            userTranscoding.adaption = kNERtcLsModeVideoScaleCropFill; // 视频流裁剪模式
+            Rect rectUser = rectUsers[i];
+            userTranscoding.x = rectUser.left; // 离主画面左边距
+            userTranscoding.y = rectUser.top; // 离主画面上边距
+            userTranscoding.width = rectUser.width(); // 在主画面的显示宽度
+            userTranscoding.height = rectUser.height(); // 在主画面的显示高度
+            userTranscodingList.add(userTranscoding);
+        }
+        return userTranscodingList;
+    }
 ```
 
-#### 设置本地视频视图
-
-本地视频视图，是指用户在本地设备上看到的本地视频流的视图。
-
-在加入房间前，调用 `setupLocalVideoCanvas` 方法使应用程序绑定本地视频流的显示视窗，并设置本地看到的本地视频视图。`setupLocalVideoCanvas` 参数默认为 `NERtcVideoView`，`NERtcVideoView` 可以通过:
-
-- 将 setZOrderMediaOverlay 设置为 true，用以覆盖父视图;
-- 通过 setScalingType 设置 View 的缩放模式;
-
-调用 `setupLocalVideoCanvas` 将新画布 对象传递给引擎，该引擎绑定本地视频流的视频窗口(视图) 并配置视频的显示设置;
+Sample code中的 **Config** 类提供了推流配置的参数，展示了一个2 x 2的布局配置。
 
 ```java
-videoView.setZOrderMediaOverlay(true);
-videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
-NERtcEx.getInstance().setupLocalVideoCanvas(videoView);
+/**
+     *              2 x 2 layout
+     *
+     *               720x1280
+     * \---------------------------------\
+     * \      320x480        320x480     \
+     * \   \----------\   \----------\   \
+     * \   \          \   \          \   \
+     * \   \          \   \          \   \
+     * \   \----------\   \----------\   \
+     * \      320x480        320x480     \
+     * \   \----------\   \----------\   \
+     * \   \          \   \          \   \
+     * \   \          \   \          \   \
+     * \   \----------\   \----------\   \
+     * \                                 \
+     * \---------------------------------\
+     */
 ```
 
-#### 订阅远端视频
-
-订阅视频是指在通话中根据用户需要，选择是否查看远端某个用户的视频
-
-在收到远端用户视频发布回调 `onUserVideoStart(long uid,int maxProfile)` 后，可以根据回调中的uid以及maxProfile选择合适的分辨率进行视频订阅 `subscribeRemoteVideoStream` 分辨率档位可参看 [视频档位](https://dev.yunxin.163.com/docs/product/音视频通话G2/SDK开发集成/Android开发集成/视频管理)
+#### 开启推流
 
 ```java
-NERtcEx.getInstance().subscribeRemoteVideoStream(uid, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
+    // 推流任务ID
+    private final String taskId;
+
+    // 推流用户
+    private final List<Long> userIds = new ArrayList<>();
+
+    // 当前推流任务
+    private NERtcLiveStreamTaskInfo task;
+
+    public void start(String url) {
+        task = createLiveStreamTask(taskId, url); // 创建推流配置
+        task.layout = createLiveStreamLayout(); // 创建视频布局
+        task.layout.userTranscodingList = createUserTranscodingList(userIds, Config.getRectUsers()); // 创建用户视频布局
+
+        // 添加推流任务
+        int result = NERtcEx.getInstance().addLiveStreamTask(task, (taskId, result2) -> {
+            if (result2 != 0) {
+                // 添加失败
+            }
+        });
+        if (result != 0) {
+            // 添加失败
+        }
+    }
 ```
 
-#### 设置远端视频视图
-
-远端视频视图，是指用户在本地设备上看到的远端视频流的视图。
-
-调用 `setupRemoteVideoCanvas` 方法设置本地看到的远端用户的视频视图。
-
-用户需要在该方法中指定想要看到的远端视图的用户 **UID**。 UID可以在收到其他用户发布视频的回调事件 `onUserVideoStart` 中获取。
+#### 关闭推流
 
 ```java
-videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
-NERtcEx.getInstance().setupRemoteVideoCanvas(videoView, uid);
+    public void stop() {
+        // 删除推流任务
+        int result = NERtcEx.getInstance().removeLiveStreamTask(taskId, (taskId, result2) -> {
+            if (result2 != 0) {
+                // 删除失败
+            }
+        });
+        if (result != 0) {
+            // 删除失败
+        }
+    }
 ```
 
-### 离开房间
+#### 更新推流
 
-通话或直播结束时，你可以调用 `leaveChannel` 方法离开房间，结束或退出通话或直播。
-
-不论当前是否还在直播中，调用该方法会把直播相关的所有资源释放掉。`leaveChannel` 并不会直接让用户离开房间。调用该方法后 SDK 会触发 `onLeaveChannel` 回调。
+当房间内的用户视频开启，关闭，离开时，需要更新推流任务，
 
 ```java
-NERtcEx.getInstance().leaveChannel();
+    public void update(long userId, boolean add) {
+        // 判断推流用户列表是否改变
+    
+        // 判断是否正在推流
+
+        // 更新推流任务用户布局
+        task.layout.userTranscodingList = createUserTranscodingList(userIds, Config.getRectUsers());
+        // 更新推流任务
+        int result = NERtcEx.getInstance().updateLiveStreamTask(task, (taskId, result2) -> {
+            if (result2 != 0) {
+                // 更新失败
+            }
+        });
+        if (result != 0) {
+            // 更新失败
+        }
+    }
 ```
 
-**如果在调用** `leaveChannel` **方法后立即使用** `release`**，则退出房间会被打断，SDK 也不会触发** `onLeaveChannel` **回调。**
+#### 接收推流状态
+
+方法 **NERtcCallbackEx.onLiveStreamState** 提供推流状态通知，状态定义在 **NERtcConstants.LiveStreamState**
+
+```java
+    @Override
+    public void onLiveStreamState(String taskID, String url, int state) {
+        if (state == NERtcConstants.LiveStreamState.STATE_PUSH_FAIL) {
+            // 推流失败
+        }
+    }
+```

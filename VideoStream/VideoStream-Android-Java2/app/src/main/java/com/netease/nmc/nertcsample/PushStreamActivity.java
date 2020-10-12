@@ -109,7 +109,7 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
 
         // when user start video, update push
         if (pushStream != null) {
-            pushStream.updateUser(userId, true);
+            pushStream.update(userId, true);
         }
     }
 
@@ -119,7 +119,7 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
 
         // when user stop video, update push
         if (pushStream != null) {
-            pushStream.updateUser(userId, false);
+            pushStream.update(userId, false);
         }
     }
 
@@ -129,7 +129,7 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
 
         // when user leave, update push
         if (pushStream != null) {
-            pushStream.updateUser(userId, false);
+            pushStream.update(userId, false);
         }
     }
 
