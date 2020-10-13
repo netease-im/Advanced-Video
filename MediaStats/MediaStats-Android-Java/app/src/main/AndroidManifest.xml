@@ -26,7 +26,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="com.netease.nmc.nertcsample.mediastats.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MeetingActivity"
+            android:name="com.netease.nmc.nertcsample.mediastats.MeetingActivity"
             android:configChanges="orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

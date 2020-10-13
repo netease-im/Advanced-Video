@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		309FE8FAA60E38FA27754250 /* Pods-MediaStats-iOS-Objc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-Objc.debug.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-Objc/Pods-MediaStats-iOS-Objc.debug.xcconfig"; sourceTree = "<group>"; };
 		46588F604A30ED765A40A7F3 /* Pods-MediaStats-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		48CA4BA825108DB3007E57D5 /* MediaStats-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MediaStats-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48CA4BA825108DB3007E57D5 /* 通话统计.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "通话统计.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CA4BB525108DB3007E57D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48CA4BB725108DB4007E57D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48CA4BBA25108DB4007E57D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		48CA4BA925108DB3007E57D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48CA4BA825108DB3007E57D5 /* MediaStats-iOS-ObjC.app */,
+				48CA4BA825108DB3007E57D5 /* 通话统计.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 			);
 			name = "MediaStats-iOS-ObjC";
 			productName = "MediaStats-iOS-Objc";
-			productReference = 48CA4BA825108DB3007E57D5 /* MediaStats-iOS-ObjC.app */;
+			productReference = 48CA4BA825108DB3007E57D5 /* 通话统计.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -386,7 +386,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.MediaStats-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "通话统计";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,7 +407,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.MediaStats-iOS-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "通话统计";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

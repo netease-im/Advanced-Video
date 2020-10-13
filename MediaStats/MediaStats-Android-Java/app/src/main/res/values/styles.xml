@@ -10,7 +10,7 @@
     <style name="text_stats">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textColor">@android:color/holo_green_dark</item>
         <item name="android:textSize">11sp</item>
     </style>
 

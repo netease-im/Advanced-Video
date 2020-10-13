@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.netease.lava.nertc.sdk.NERtcEx;
+import com.netease.lava.nertc.sdk.NERtc;
 import com.netease.lava.nertc.sdk.video.NERtcVideoConfig;
 import com.netease.nmc.nertcsample.settings.SettingsActivity;
 
@@ -55,13 +55,15 @@ public class AVManageActivity extends BasicActivity {
     }
 
     private void setAudioProfile() {
-        NERtcEx.getInstance().setAudioProfile(audioProfile, audioScenario);
+        // 设置音频场景与模式，必须在 init 前设置有效。
+        NERtc.getInstance().setAudioProfile(audioProfile, audioScenario);
     }
 
     private void setVideoProfile() {
         NERtcVideoConfig config = new NERtcVideoConfig();
+        // 设置视频质量
         config.videoProfile = videoProfile;
-        NERtcEx.getInstance().setLocalVideoConfig(config);
+        NERtc.getInstance().setLocalVideoConfig(config);
     }
 
     @Override
@@ -75,9 +77,11 @@ public class AVManageActivity extends BasicActivity {
     }
 
     private void onVideoConfigChange() {
-        NERtcEx.getInstance().enableLocalVideo(false);
+        // 关闭本地视频采集以及发送
+        NERtc.getInstance().enableLocalVideo(false);
         setVideoProfile();
-        NERtcEx.getInstance().enableLocalVideo(true);
+        // 开启本地视频采集以及发送
+        NERtc.getInstance().enableLocalVideo(true);
     }
 
     private void onAudioConfigChange() {
