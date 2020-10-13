@@ -21,12 +21,15 @@ import static com.netease.lava.nertc.sdk.live.NERtcLiveStreamUserTranscoding.NER
 public class PushStream {
     private final Context context;
 
+    // 推流任务ID
     private final String taskId;
 
+    // 推流用户
     private final List<Long> userIds = new ArrayList<>();
 
     private Runnable callback;
 
+    // 当前推流任务
     private NERtcLiveStreamTaskInfo task;
 
     public PushStream(Context context, String taskId, long userId, Runnable callback) {
@@ -41,16 +44,17 @@ public class PushStream {
     }
 
     public void start(String url) {
-        task = createLiveStreamTask(taskId, url);
-        task.layout = createLiveStreamLayout();
-        task.layout.userTranscodingList = createUserTranscodingList(userIds, Config.getRectUsers());
+        task = createLiveStreamTask(taskId, url); // 创建推流配置
+        task.layout = createLiveStreamLayout(); // 创建视频布局
+        task.layout.userTranscodingList = createUserTranscodingList(userIds, Config.getRectUsers()); // 创建用户视频布局
 
-        int result = NERtcEx.getInstance().addLiveStreamTask(task, (taskId, result1) -> {
-            hintResult("add", result1);
-            if (result1 != 0) {
+        // 添加推流任务
+        int result = NERtcEx.getInstance().addLiveStreamTask(task, (taskId, result2) -> {
+            hintResult("add", result2);
+            if (result2 != 0) {
                 task = null;
             }
-            if (result1 == 0) {
+            if (result2 == 0) {
                 notifyStateChange();
             }
         });
@@ -68,15 +72,16 @@ public class PushStream {
 
         notifyStateChange();
 
+        // 删除推流任务
         int result = NERtcEx.getInstance().removeLiveStreamTask(taskId, (taskId, result2) -> {
             hintResult("remove", result2);
         });
         hintResult("remove", result);
     }
 
-    public void updateUser(long userId, boolean start) {
+    public void update(long userId, boolean add) {
         boolean changed = false;
-        if (start) {
+        if (add) {
             if (!userIds.contains(userId)) {
                 userIds.add(userId);
                 changed = true;
@@ -90,7 +95,9 @@ public class PushStream {
         if (task == null) {
             return;
         }
+        // 更新推流任务用户布局
         task.layout.userTranscodingList = createUserTranscodingList(userIds, Config.getRectUsers());
+        // 更新推流任务
         int result = NERtcEx.getInstance().updateLiveStreamTask(task, (taskId, result2) -> {
             hintResult("update", result2);
         });
@@ -99,6 +106,8 @@ public class PushStream {
 
     public void updateState(int state) {
         hintState(state);
+
+        // 推流失败，停止推流
         if (state == NERtcConstants.LiveStreamState.STATE_PUSH_FAIL) {
             stop();
         }
@@ -139,10 +148,10 @@ public class PushStream {
 
     private static NERtcLiveStreamTaskInfo createLiveStreamTask(String taskId, String pushUrl) {
         NERtcLiveStreamTaskInfo task = new NERtcLiveStreamTaskInfo();
-        task.taskId = taskId;
-        task.url = pushUrl;
-        task.serverRecordEnabled = false;
-        task.liveMode = kNERtcLsModeVideo;
+        task.taskId = taskId; // 推流任务ID
+        task.url = pushUrl; // 直播推流地址
+        task.serverRecordEnabled = false; // 关闭服务器录制功能
+        task.liveMode = kNERtcLsModeVideo; // 直播推流视频模式
         return task;
     }
 
@@ -152,10 +161,10 @@ public class PushStream {
         int backgroundColor = Config.getBackgroundColor();
 
         NERtcLiveStreamLayout layout = new NERtcLiveStreamLayout();
-        layout.width = rectLayout.width();
-        layout.height = rectLayout.height();
-        layout.backgroundImg = backgroundImage;
-        layout.backgroundColor = backgroundColor;
+        layout.width = rectLayout.width(); // 视频推流宽度
+        layout.height = rectLayout.height(); // 视频推流高度
+        layout.backgroundImg = backgroundImage; // 视频推流背景图
+        layout.backgroundColor = backgroundColor; // 视频推流背景色
         return layout;
     }
 
@@ -163,15 +172,15 @@ public class PushStream {
         ArrayList<NERtcLiveStreamUserTranscoding> userTranscodingList = new ArrayList<>();
         for (int i = 0; i < userIds.size() && i < rectUsers.length; i++) {
             NERtcLiveStreamUserTranscoding userTranscoding = new NERtcLiveStreamUserTranscoding();
-            userTranscoding.uid = userIds.get(i);
-            userTranscoding.audioPush = true;
-            userTranscoding.videoPush = true;
-            userTranscoding.adaption = kNERtcLsModeVideoScaleCropFill;
+            userTranscoding.uid = userIds.get(i);  // 用户uid
+            userTranscoding.audioPush = true; // 推送该用户音频流
+            userTranscoding.videoPush = true; // 推送该用户视频流
+            userTranscoding.adaption = kNERtcLsModeVideoScaleCropFill; // 视频流裁剪模式
             Rect rectUser = rectUsers[i];
-            userTranscoding.x = rectUser.left;
-            userTranscoding.y = rectUser.top;
-            userTranscoding.width = rectUser.width();
-            userTranscoding.height = rectUser.height();
+            userTranscoding.x = rectUser.left; // 离主画面左边距
+            userTranscoding.y = rectUser.top; // 离主画面上边距
+            userTranscoding.width = rectUser.width(); // 在主画面的显示宽度
+            userTranscoding.height = rectUser.height(); // 在主画面的显示高度
             userTranscodingList.add(userTranscoding);
         }
         return userTranscodingList;
