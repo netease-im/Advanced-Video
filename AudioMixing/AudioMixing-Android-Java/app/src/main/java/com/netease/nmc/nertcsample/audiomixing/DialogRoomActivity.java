@@ -110,7 +110,13 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
 
     @Override
     public boolean stopEffect(int index) {
-        return neRtcEx.stopEffect(index2Id(index)) == 0;
+        if (neRtcEx.stopEffect(index2Id(index)) == 0) {
+            if (effectIndex != null) {
+                effectIndex[index] = 0;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
