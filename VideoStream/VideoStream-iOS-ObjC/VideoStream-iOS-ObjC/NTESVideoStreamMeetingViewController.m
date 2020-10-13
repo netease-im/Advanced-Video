@@ -139,7 +139,7 @@
     NSInteger userWidth = 320;
     NSInteger userHeight = 480;
     NSInteger horizPadding = (layoutWidth-userWidth*2)/3;
-    NSInteger vertPadding = 15;
+    NSInteger vertPadding = 16;
     NSMutableArray *res = NSMutableArray.array;
     for (NSInteger i = 0; i < self.userList.count; i++) {
         NSInteger column = i % 2;
