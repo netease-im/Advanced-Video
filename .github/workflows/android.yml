@@ -58,3 +58,56 @@ jobs:
       with:
         name: VideoStream-Android-Java
         path: ./VideoStream/VideoStream-Android-Java//app/build/outputs/apk/release/VideoStream-Android-Java.apk
+
+  build_screen_share_java:
+    name: Build ScreenShare-Android-Java
+    runs-on: macos-latest
+    env:
+      APP_KEY_FILE_PATH: ${{ './app/src/main/res/values/app_key.xml' }}
+      WRITE_APP_KEY_SCRIPT_PATH: ${{ './workflow/write_app_key.py' }}
+      ENCRYPTED_KEYSTORE_PATH: ${{ './workflow/release.jks.gpg' }}
+      DECRYPTED_KEYSTORE_PATH: ${{ './workflow/release.jks' }}
+      UNSIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/app-release-unsigned.apk' }}
+      SIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/ScreenShare-Android-Java.apk' }}
+      APP_KEY: ${{ secrets.APP_KEY }}
+      KEYSTORE_ENC_PWD: ${{ secrets.KEYSTORE_ENC_PWD }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./ScreenShare/ScreenShare-Android-Java/
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.x'
+
+    - name: Write App Key
+      run: 
+        python $WRITE_APP_KEY_SCRIPT_PATH $APP_KEY_FILE_PATH $APP_KEY
+
+    - name: Configure Keystore
+      run: 
+        gpg -d -o "$DECRYPTED_KEYSTORE_PATH" --pinentry-mode=loopback --passphrase "$KEYSTORE_ENC_PWD" "$ENCRYPTED_KEYSTORE_PATH"
+
+    - name: Build APK
+      run:
+        ./gradlew assembleRelease
+
+    - name: Sign APK
+      run:
+        $HOME/Library/Android/sdk/build-tools/29.0.3/apksigner sign --ks $DECRYPTED_KEYSTORE_PATH --ks-pass pass:$KEYSTORE_ENC_PWD --key-pass pass:$KEYSTORE_ENC_PWD --v1-signing-enabled true --v2-signing-enabled true --in $UNSIGNED_APK_PATH --out $SIGNED_APK_PATH
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ScreenShare-Android-Java
+        path: ./ScreenShare/ScreenShare-Android-Java//app/build/outputs/apk/release/ScreenShare-Android-Java.apk
+		
