@@ -8,7 +8,7 @@
 extern "C"
 JNIEXPORT jstring
 JNICALL
-Java_com_netease_nertcbeautysample_config_NativeConfig_getAppKey__(JNIEnv *env, jclass) {
+Java_com_netease_nmc_nertcsample_beauty_config_NativeConfig_getAppKey__(JNIEnv *env, jclass) {
     std::string appKey = "set your appkey here";
     return env->NewStringUTF(appKey.c_str());
 }
