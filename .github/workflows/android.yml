@@ -110,4 +110,3 @@ jobs:
       with:
         name: ScreenShare-Android-Java
         path: ./ScreenShare/ScreenShare-Android-Java//app/build/outputs/apk/release/ScreenShare-Android-Java.apk
-		
