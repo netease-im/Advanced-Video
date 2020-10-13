@@ -7,6 +7,8 @@ target 'VideoStream-iOS-ObjC' do
 
   pod 'NERtcSDK', '~> 3.6.0'
  
+  pod 'Toast'
+
 
   target 'VideoStream-iOS-ObjCTests' do
     inherit! :search_paths

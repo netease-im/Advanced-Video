@@ -10,6 +10,7 @@
 #import <NERtcSDK/NERtcSDK.h>
 #import "NTESConfig.h"
 #import "NTESVideoConfigViewController.h"
+#import <Toast/Toast.h>
 
 @interface NTESVideoStreamMeetingViewController () <NERtcEngineDelegateEx>
 
@@ -20,6 +21,9 @@
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *userList;
 @property (weak, nonatomic) IBOutlet UIButton *configButton;
 @property (weak, nonatomic) IBOutlet UIButton *hungupButton;
+/// 是否在推流中
+@property(assign,nonatomic)BOOL isPushingStream;
+
 @end
 
 @implementation NTESVideoStreamMeetingViewController
@@ -68,16 +72,17 @@
         NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
         canvas.container = self.localUserView;
         [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
-        [self addLiveStream];
+        [self addLiveStream:kStreamURL];
     }];
 }
 
-- (void)addLiveStream
+- (void)addLiveStream:(NSString *)streamURL
 {
-    NSAssert(![kStreamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
+    NSAssert(![streamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
     self.liveStreamTask = [[NERtcLiveStreamTaskInfo alloc] init];
-    self.liveStreamTask.taskID = self.roomID;
-    self.liveStreamTask.streamURL = kStreamURL;
+    NSString *taskID = [NSString stringWithFormat:@"%d",arc4random()/100];
+    self.liveStreamTask.taskID = taskID;
+    self.liveStreamTask.streamURL = streamURL;
     self.liveStreamTask.lsMode = kNERtcLsModeVideo;
     
     NSInteger layoutWidth = 720;
@@ -94,23 +99,36 @@
     
     int ret = [NERtcEngine.sharedEngine addLiveStreamTask:self.liveStreamTask
                                                compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+        if (errorCode == 0) {
+            self.isPushingStream = YES;
+        }else {
+            self.isPushingStream = NO;
+            self.liveStreamTask = nil;
+        }
         NSString *message = !errorCode ? @"添加成功" : [NSString stringWithFormat:@"添加失败 error = %@",NERtcErrorDescription(errorCode)];
         NSLog(@"%@", message);
+        [self.view makeToast:message];
     }];
     if (ret != 0) {
+        self.isPushingStream = NO;
+        self.liveStreamTask = nil;
         NSLog(@"添加推流任务失败");
+        [self.view makeToast:@"添加推流任务失败"];
     }
 }
-
 - (void)updateLiveStreamTask
 {
     int ret = [NERtcEngine.sharedEngine updateLiveStreamTask:self.liveStreamTask
                                                compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+        self.isPushingStream = !errorCode ? YES:NO;//errorCode == 0表示成功
         NSString *message = !errorCode ? @"更新成功" : [NSString stringWithFormat:@"更新失败 error = %@",NERtcErrorDescription(errorCode)];
         NSLog(@"%@", message);
+        [self.view makeToast:message];
     }];
     if (ret != 0) {
+        self.isPushingStream = NO;
         NSLog(@"更新推流任务失败");
+        [self.view makeToast:@"更新推流任务失败"];
     }
 }
 
@@ -121,7 +139,7 @@
     NSInteger userWidth = 320;
     NSInteger userHeight = 480;
     NSInteger horizPadding = (layoutWidth-userWidth*2)/3;
-    NSInteger vertPadding = 15;
+    NSInteger vertPadding = 16;
     NSMutableArray *res = NSMutableArray.array;
     for (NSInteger i = 0; i < self.userList.count; i++) {
         NSInteger column = i % 2;
@@ -154,21 +172,44 @@
         if (ret != 0) {
             NSLog(@"移除任务失败");
         }
-        
+
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NTESVideoConfigViewController *configVC = segue.destinationViewController;
+    configVC.currentURL = self.liveStreamTask.streamURL;
+    configVC.isPushingStream = self.isPushingStream;
     configVC.delegate = self;
 }
 
 #pragma mark - NTESVideoConfigVCDelegate
 - (void)didGetStreamURL:(NSString *)URLString
 {
-    self.liveStreamTask.streamURL = URLString;
-    [self updateLiveStreamTask];
+    if (!self.liveStreamTask) {
+        [self addLiveStream:URLString];
+    }else {
+        self.liveStreamTask.streamURL = URLString;
+        [self updateLiveStreamTask];
+    }
+}
+- (void)stopPushStream {
+    int res = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+        if (errorCode == 0) {
+            self.isPushingStream = NO;
+            self.liveStreamTask = nil;
+            [self.view makeToast:@"移除推流任务成功"];
+        }else {
+            NSString *errorMsg = [NSString stringWithFormat:@"移除推流任务失败:%@",NERtcErrorDescription(errorCode)];
+            [self.view makeToast:errorMsg];
+        }
+        
+    }];
+    if (res != 0) {
+        NSLog(@"移除推流任务失败");
+        [self.view makeToast:@"移除推流任务失败"];
+    }
 }
 #pragma mark - NERtcEngineDelegate
 

@@ -14,7 +14,7 @@
               <div>云信SDK到云信SDK接入节点的平均往返延时：{{txRtt}}</div>
           </div>
       </div>
-      <div>
+      <div class="sub-window-wrapper">
           <!--小画面div-->
         <template v-if="remoteStreams.length">
             <div
@@ -384,6 +384,7 @@
   .content {
     flex: 1;
     display: flex;
+    position: relative;
 
     .main-window {
       height: 100%;
@@ -408,9 +409,15 @@
       }
     }
 
+    .sub-window-wrapper {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 9;
+        width: 165px;
+    }
+
     .sub-window {
-      width: 160px;
-      height: 90px;
       background: #25252d;
       border: 1px solid #ffffff;
       margin-bottom: 20px;

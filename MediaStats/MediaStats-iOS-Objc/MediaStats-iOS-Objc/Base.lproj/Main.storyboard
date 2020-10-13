@@ -219,6 +219,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ScU-vV-9fT" firstAttribute="top" secondItem="XZQ-eg-keN" secondAttribute="top" constant="12" id="1Eo-Mj-tam"/>
                             <constraint firstAttribute="bottom" secondItem="pCd-Dp-9KD" secondAttribute="bottom" id="71O-Cy-d2N"/>
                             <constraint firstAttribute="trailing" secondItem="pCd-Dp-9KD" secondAttribute="trailing" id="A7e-7r-pML"/>
                             <constraint firstItem="XZQ-eg-keN" firstAttribute="trailing" secondItem="OBC-Ej-QB9" secondAttribute="trailing" constant="8" id="JE0-Nf-BnW"/>
@@ -247,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWN-aq-hYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-69" y="23"/>
+            <point key="canvasLocation" x="-69.375" y="22.183098591549296"/>
         </scene>
         <!--Media Stats View Controller-->
         <scene sceneID="Y1d-Xi-vix">

@@ -8,6 +8,7 @@ import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.netease.lava.nertc.sdk.NERtcConstants.ScreenProfile;
 import com.netease.lava.nertc.sdk.NERtcEx;
@@ -33,35 +34,62 @@ public class ScreenShareActivity extends BasicActivity {
         button.setOnClickListener(view -> toggleScreenCapture());
     }
 
-    private void toggleScreenCapture() {
-        started = !started;
+    private void updateUI() {
         button.setText(started ? R.string.stop_screen_share : R.string.start_screen_share);
-        if (started) {
+    }
+
+    private void toggleScreenCapture() {
+        if (!started) {
             requestScreenCapture();
         } else {
-            NERtcEx.getInstance().stopScreenCapture();
-            NERtcEx.getInstance().enableLocalVideo(true);
+            stopScreenCapture();
+            started = false;
+            updateUI();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void startScreenCapture(Intent data) {
-        NERtcEx.getInstance().enableLocalVideo(false);
-        NERtcEx.getInstance().startScreenCapture(ScreenProfile.HD1080p, data, new MediaProjection.Callback() {
+    private void startScreenCapture(Intent mediaProjectionPermissionResultData) {
+        // 屏幕录制回调
+        final MediaProjection.Callback mediaProjectionCallback = new MediaProjection.Callback() {
             @Override
             public void onStop() {
                 super.onStop();
             }
-        });
+        };
+        // 选择屏幕共享清晰度
+        int screenProfile = ScreenProfile.HD1080p;
+        // 开启屏幕共享
+        int result = NERtcEx.getInstance().startScreenCapture(screenProfile,
+                mediaProjectionPermissionResultData, // 屏幕录制请求返回的Intent
+                mediaProjectionCallback);
+        if (result == 0) {
+            started = true;
+            updateUI();
+        }
+    }
+
+    private void stopScreenCapture() {
+        // 停止屏幕共享
+        NERtcEx.getInstance().stopScreenCapture();
+        // 开启本地视频采集以及发送
+        NERtcEx.getInstance().enableLocalVideo(true);
+    }
+
+    private void requestScreenCapture() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivityForResult(createScreenCaptureIntent(this), REQUEST_CODE_SCREEN_CAPTURE);
+        } else {
+            Toast.makeText(this, R.string.screen_capture_min_sdk_version, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void requestScreenCapture() {
-        MediaProjectionManager mediaProjectionManager =
-                (MediaProjectionManager) getApplication().getSystemService(
+    private static Intent createScreenCaptureIntent(Context context) {
+        MediaProjectionManager manager =
+                (MediaProjectionManager) context.getSystemService(
                         Context.MEDIA_PROJECTION_SERVICE);
-        startActivityForResult(
-                mediaProjectionManager.createScreenCaptureIntent(), REQUEST_CODE_SCREEN_CAPTURE);
+        return manager.createScreenCaptureIntent();
     }
 
     @Override
@@ -71,6 +99,8 @@ public class ScreenShareActivity extends BasicActivity {
         if (requestCode == REQUEST_CODE_SCREEN_CAPTURE) {
             if (resultCode == RESULT_OK) {
                 startScreenCapture(data);
+            } else {
+                Toast.makeText(this, R.string.screen_capture_request_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }

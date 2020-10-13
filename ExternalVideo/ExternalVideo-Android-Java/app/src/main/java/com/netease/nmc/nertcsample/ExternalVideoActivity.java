@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.netease.lava.nertc.sdk.NERtcEx;
+import com.netease.lava.nertc.sdk.video.NERtcVideoFrame;
 import com.netease.nmc.nertcsample.externalvideo.ExternalTextureVideoSource;
 import com.netease.nmc.nertcsample.externalvideo.ExternalVideoSource;
 import com.netease.nmc.nertcsample.externalvideo.FileUtil;
@@ -58,30 +59,42 @@ public class ExternalVideoActivity extends BasicActivity {
             return;
         }
         if (!started) {
-            externalVideoSource = ExternalTextureVideoSource.create(videoPath, videoFrame -> NERtcEx.getInstance().pushExternalVideoFrame(videoFrame));
+            // 创建外部视频源，输入文件路径和视频帧处理回调
+            externalVideoSource = ExternalTextureVideoSource.create(videoPath, this::pushExternalVideoFrame);
             if (externalVideoSource == null) {
                 return;
             }
-        }
-        if (!started) {
-            NERtcEx.getInstance().enableLocalVideo(false); // 先结束原先视频
-            NERtcEx.getInstance().setExternalVideoSource(true); // 设置成外部视频
-            NERtcEx.getInstance().enableLocalVideo(true); // 开启视频推流
-            // 向SDK发送外部数据
+            // 设置为外部视频源
+            setExternalVideoSource(true);
+            // 开始发送视频数据
             if (!externalVideoSource.start()) {
                 return;
             }
         } else {
+            // 停止发送视频数据
             if (externalVideoSource != null) {
-                externalVideoSource.stop(); // 停止向SDK发送外部数据
+                externalVideoSource.stop();
                 externalVideoSource = null;
             }
-            NERtcEx.getInstance().enableLocalVideo(false); // 关闭视频推流
-            NERtcEx.getInstance().setExternalVideoSource(false); // 设置成内部相机
-            NERtcEx.getInstance().enableLocalVideo(true); // 开启视频推流
+            // 取消外部视频源
+            setExternalVideoSource(false);
         }
         started = !started;
         button.setText(started ? R.string.stop_external_video : R.string.start_external_video);
+    }
+
+    private void setExternalVideoSource(boolean enable) {
+        // 关闭本地视频采集以及发送
+        NERtcEx.getInstance().enableLocalVideo(false);
+        // 使用外部视频源
+        NERtcEx.getInstance().setExternalVideoSource(enable);
+        // 开启本地视频采集以及发送
+        NERtcEx.getInstance().enableLocalVideo(true);
+    }
+
+    private void pushExternalVideoFrame(NERtcVideoFrame videoFrame) {
+        // 推送外部视频帧
+        NERtcEx.getInstance().pushExternalVideoFrame(videoFrame);
     }
 
     private void chooseVideoFile() {

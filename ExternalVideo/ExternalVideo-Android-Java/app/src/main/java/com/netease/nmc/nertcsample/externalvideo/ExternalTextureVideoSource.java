@@ -3,16 +3,12 @@ package com.netease.nmc.nertcsample.externalvideo;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.opengl.GLES11Ext;
-import android.opengl.GLES20;
+import android.media.PlaybackParams;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
 
 import com.netease.lava.nertc.sdk.video.NERtcVideoFrame;
-import com.netease.lava.webrtc.EglBase;
-
-import javax.microedition.khronos.opengles.GL10;
 
 public class ExternalTextureVideoSource extends ExternalVideoSource {
     private final String TAG = "ExternalTexture";
@@ -49,7 +45,7 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
 
     private MediaPlayer mediaPlayer;
 
-    private GLHandler handler;
+    private AHandler glHandler;
 
     @Override
     public boolean start() {
@@ -64,8 +60,16 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
         destroyHandler();
     }
 
+    /**
+     * 1. 等待GL线程生成纹理
+     * 2. 创建SurfaceTexture，注册视频帧回调
+     * 3. 创建Surface
+     */
     private void createSurface() {
-        textureId = getExternalOESTextureID();
+        if (textureId <= 0) {
+            ensureGLHandler().postAndWait(() ->
+                    textureId = GLHelper.genTexture());
+        }
         surfaceTexture = new SurfaceTexture(textureId);
         surfaceTexture.setOnFrameAvailableListener(this::onFrameAvailable);
         surface = new Surface(surfaceTexture);
@@ -82,11 +86,16 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
         if (surfaceTexture != null) {
             surfaceTexture.release();
         }
+        this.textureId = 0;
     }
 
+    /**
+     * 播放视频，将视频帧输出到Surface
+     */
     private boolean playVideo(String path, Surface surface) {
         mediaPlayer = new MediaPlayer();
         try {
+            mediaPlayer.setVolume(0, 0);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setDataSource(path);
             mediaPlayer.setSurface(surface);
@@ -98,13 +107,15 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
                     Log.e(TAG, "MediaPlayer start: ex=", ex);
                 }
             });
-            mediaPlayer.setLooping(true); // 设置循环播放
+            // 设置循环播放
+            mediaPlayer.setLooping(true);
             mediaPlayer.setOnErrorListener((mediaPlayer, what, extra) -> {
                 Log.e(TAG, "onError:"
                         + " what=" + what
-                        + " extra:=" + extra
+                        + " extra=" + extra
                 );
-                return false; // 如果发生错误，重新播放
+                // 如果发生错误，重新播放
+                return false;
             });
             return true;
         } catch (Exception ex) {
@@ -124,64 +135,50 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
         }
     }
 
-    private GLHandler ensureHandler() {
-        GLHandler handler = this.handler;
+    private AHandler ensureGLHandler() {
+        AHandler handler = this.glHandler;
         if (handler == null) {
-            handler = new GLHandler(ExternalTextureVideoSource::initGL);
-            this.handler = handler;
+            // 传递线程初始化方法
+            handler = new AHandler(GLHelper::initGLContext);
+            this.glHandler = handler;
         }
         return handler;
     }
 
     private void destroyHandler() {
-        GLHandler handler = this.handler;
-        this.handler = null;
+        AHandler handler = this.glHandler;
+        this.glHandler = null;
         if (handler != null) {
             handler.quit();
         }
     }
 
     private void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        ensureHandler().post(() -> {
-            pushFrame(surfaceTexture);
-        });
+        // 投递到GL线程处理
+        ensureGLHandler().post(() ->
+            onVideoFrame(surfaceTexture)
+        );
     }
 
-    private static void initGL() {
-        EglBase eglBase = EglBase.create(null, EglBase.CONFIG_PIXEL_BUFFER);
-        eglBase.createDummyPbufferSurface();
-        eglBase.makeCurrent();
-    }
-
-    private void pushFrame(SurfaceTexture surfaceTexture) {
+    private void onVideoFrame(SurfaceTexture surfaceTexture) {
+        // 更新纹理内容
         surfaceTexture.updateTexImage();
 
-        final float[] matrix = new float[16];
-        surfaceTexture.getTransformMatrix(matrix);
-
         NERtcVideoFrame videoFrame = new NERtcVideoFrame();
+        // 外部纹理类型
         videoFrame.format = NERtcVideoFrame.Format.TEXTURE_OES;
+        // 视频尺寸
         videoFrame.width = metaData.width;
         videoFrame.height = metaData.height;
+        // 纹理名
         videoFrame.textureId = textureId;
+        // 纹理矩阵
+        final float[] matrix = new float[16];
+        surfaceTexture.getTransformMatrix(matrix);
         videoFrame.transformMatrix = matrix;
+        // 视频角度
         videoFrame.rotation = metaData.rotation;
 
         callback.onVideoFrame(videoFrame);
-    }
-
-    private static int getExternalOESTextureID() {
-        int[] texture = new int[1];
-        GLES20.glGenTextures(1, texture, 0);
-        GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, texture[0]);
-        GLES20.glTexParameterf(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-                GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
-        GLES20.glTexParameterf(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-                GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-        GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-                GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
-        GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-                GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
-        return texture[0];
     }
 }

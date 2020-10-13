@@ -3,7 +3,7 @@
     <div class="content">
       <!--画面div-->
       <div class="main-window" ref="large"></div>
-      <div>
+      <div class="sub-window-wrapper">
           <!--小画面div-->
         <template v-if="remoteStreams.length">
             <div
@@ -317,10 +317,10 @@
                     throw Error('内部错误，请重新加入房间')
                 }
                 this.localStream.resumeAudioMixing().then(res => {
-                    console.warn('恢复伴音成功')
+                    console.warn('播放伴音成功')
                 }).catch(err => {
-                    message('恢复伴音失败')
-                    console.error('恢复伴音失败: ', err)
+                    message('播放伴音失败')
+                    console.error('播放伴音失败: ', err)
                 })
             },
             pauseAudio() {
@@ -359,6 +359,7 @@
   .content {
     flex: 1;
     display: flex;
+    position: relative;
 
     .main-window {
       height: 100%;
@@ -369,9 +370,15 @@
       background: #25252d;
     }
 
+    .sub-window-wrapper {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 9;
+        width: 165px;
+    }
+
     .sub-window {
-      width: 160px;
-      height: 90px;
       background: #25252d;
       border: 1px solid #ffffff;
       margin-bottom: 20px;

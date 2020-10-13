@@ -3,7 +3,7 @@
     <div class="content">
       <!--画面div-->
       <div class="main-window" ref="large"></div>
-      <div>
+      <div class="sub-window-wrapper">
           <!--小画面div-->
         <template v-if="remoteStreams.length">
             <div
@@ -21,12 +21,10 @@
     </div>
     <!--底层栏-->
     <ul class="tab-bar">
-      <li :class="{silence:true, isSilence}" @click="setOrRelieveSilence"></li>
       <li class="set-wrapper" @click="drawer=true">
         <a href="javascript:;" class="set">配置推流</a>
       </li>
       <li class="over" @click="handleOver"></li>
-      <li :class="{stop:true,isStop}" @click="stopOrOpenVideo"></li>
     </ul>
     <el-drawer
       title="配置推流"
@@ -48,6 +46,17 @@
     import WebRTC2 from '../../sdk/NIM_Web_WebRTC2_v3.7.0.js';
     import config from '../../../config';
     import { getToken } from '../../common';
+
+    const pushUser = {
+        uid: null, //用户id
+        x: null, // user1 的视频布局x偏移，相对整体布局的左上角（前提是推流发布user1的视频）
+        y: null, // user1 的视频布局y偏移，相对整体布局的左上角（前提是推流发布user1的视频）
+        width: 500, // user1 的视频布局宽度（前提是推流发布user1的视频）
+        height: 360, //user1 的视频布局高度（前提是推流发布user1的视频）
+        adaption: 1, //自适应，值默认为1
+        pushAudio: true, // 推流是否发布user1 的音频
+        pushVideo: true // 推流是否发布user1的视频
+    }
 
     export default {
         name: 'push',
@@ -74,23 +83,13 @@
                             height: 720, //整体布局高度
                             color: 16777215 //整体布局背景色（转为10进制的数，如：#FFFFFF 16进制转为10进制为 16777215）
                         },
-                        users: [{
-                            uid: null, //用户id
-                            x: 0, // user1 的视频布局x偏移，相对整体布局的左上角（前提是推流发布user1的视频）
-                            y: 0, // user1 的视频布局y偏移，相对整体布局的左上角（前提是推流发布user1的视频）
-                            width: 640, // user1 的视频布局宽度（前提是推流发布user1的视频）
-                            height: 360, //user1 的视频布局高度（前提是推流发布user1的视频）
-                            adaption: 1, //自适应，值默认为1
-                            pushAudio: true, // 推流是否发布user1 的音频
-                            pushVideo: true // 推流是否发布user1的视频
-                        }
-                        ],
+                        users: [],
                         images: [{
-                            url: 'https://www.w3school.com.cn/i/shanghai_lupu_bridge.jpg', //设置背景图片
-                            x: 0, // 背景图片x偏移，相对整体布局的左上角
-                            y: 0, // 背景图片y偏移，相对整体布局的左上角
+                            url: 'https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fdefault%2Fother%2FLark2.jpeg', //设置背景图片
+                            x: 250, // 背景图片x偏移，相对整体布局的左上角
+                            y: 390, // 背景图片y偏移，相对整体布局的左上角
                             width: 480, // 背景图片宽度
-                            height: 360, //背景图片高度
+                            height: 300, //背景图片高度
                             adaption: 1 //自适应，值默认为1
                         }]
                     }
@@ -115,10 +114,12 @@
                 this.remoteStreams = this.remoteStreams.filter(
                     (item) => item.getId() !== evt.uid
                 );
+                this.deleteRtmpTask(evt.uid)
+                this.updateRtmpTask()
             });
 
             this.client.on('stream-added', (evt) => {
-                var remoteStream = evt.stream;
+                const remoteStream = evt.stream;
                 const uid = remoteStream.getId();
                 console.warn('收到对方发布的订阅消息: ', uid);
 
@@ -128,17 +129,22 @@
                 ) {
                     console.warn('房间新加入一人:  ', uid);
                     this.remoteStreams.push(remoteStream);
+                    this.addRtmpTask(uid);
+                    this.updateRtmpTask();
                     this.subscribe(remoteStream);
                 } else { console.warn('房间人数已满') }
             });
 
             this.client.on('stream-removed', (evt) => {
-                var remoteStream = evt.stream;
-                console.warn('对方停止订阅: ', remoteStream.getId());
+                const remoteStream = evt.stream;
+                const uid = remoteStream.getId();
+                console.warn('对方停止订阅: ', uid);
                 remoteStream.stop();
                 this.remoteStreams = this.remoteStreams.filter(
-                    (item) => item.getId() !== remoteStream.getId()
+                    (item) => item.getId() !== uid
                 );
+                this.deleteRtmpTask(uid)
+                this.updateRtmpTask()
             });
 
             this.client.on('stream-subscribed', (evt) => {
@@ -276,6 +282,7 @@
                 this.client
                     .publish(this.localStream)
                     .then(() => {
+                        this.addRtmpTask(this.localUid)
                         console.warn('本地 publish 成功');
                     })
                     .catch((err) => {
@@ -298,96 +305,48 @@
                         message('订阅对方的流失败');
                     });
             },
-            setOrRelieveSilence() {
-                const { isSilence } = this;
-                this.isSilence = !isSilence;
-                if (this.isSilence) {
-                    console.warn('关闭mic');
-                    this.localStream
-                        .close({
-                            type: 'audio',
-                        })
-                        .then(() => {
-                            console.warn('关闭 mic sucess');
-                        })
-                        .catch((err) => {
-                            console.warn('关闭 mic 失败: ', err);
-                            message('关闭 mic 失败');
-                        });
-                } else {
-                    console.warn('打开mic');
-                    if (!this.localStream) {
-                        message('当前不能打开mic');
-                        return;
-                    }
-                    this.localStream
-                        .open({
-                            type: 'audio',
-                        })
-                        .then(() => {
-                            console.warn('打开mic sucess');
-                        })
-                        .catch((err) => {
-                            console.warn('打开mic失败: ', err);
-                            message('打开mic失败');
-                        });
-                }
+            addRtmpTask(uid) {
+                // 最多只显示两人
+                const length = this.rtmpTasks[0].layout.users.length
+                if ( length >= 2 ) return
+                this.rtmpTasks[0].layout.users.push({
+                    ...pushUser,
+                    uid: Number(uid),
+                    x: length ? 550 : 0,
+                    y: 0
+                })
             },
-            stopOrOpenVideo() {
-                const { isStop } = this;
-                this.isStop = !isStop;
-                if (this.isStop) {
-                    console.warn('关闭摄像头');
-                    this.localStream
-                        .close({
-                            type: 'video',
-                        })
-                        .then(() => {
-                            console.warn('关闭摄像头 sucess');
-                        })
-                        .catch((err) => {
-                            console.warn('关闭摄像头失败: ', err);
-                            message('关闭摄像头失败');
-                        });
-                } else {
-                    console.warn('打开摄像头');
-                    if (!this.localStream) {
-                        message('当前不能打开camera');
-                        return;
-                    }
-                    this.localStream
-                        .open({
-                            type: 'video',
-                        })
-                        .then(() => {
-                            console.warn('打开摄像头 sucess');
-                            const div = self.$refs.large;
-                            this.localStream.play(div);
-                            this.localStream.setLocalRenderMode({
-                                // 设置视频窗口大小
-                                width: div.clientWidth,
-                                height: div.clientHeight,
-                                cut: true, // 是否裁剪
-                            });
-                        })
-                        .catch((err) => {
-                            console.warn('打开摄像头失败: ', err);
-                            message('打开摄像头失败');
-                        });
-                }
+            deleteRtmpTask(uid) {
+                const leftUsers = this.rtmpTasks[0].layout.users.filter(item => item.uid !== Number(uid))
+                leftUsers[0].x = 0;
+                this.rtmpTasks[0].layout.users = leftUsers
             },
-            handleOver() {
-                console.warn('离开房间');
-                this.client.leave();
-                this.returnJoin(1);
+            updateRtmpTask() {
+                if (!this.isPushing) return
+                if (!this.client) {
+                    throw Error('内部错误，请重新加入房间')
+                }
+                console.log(this.rtmpTasks)
+                this.client.updateTasks({
+                    rtmpTasks: this.rtmpTasks
+                }).then(() => {
+                    console.warn('更新推流任务接口成功')
+                }).catch(err => {
+                    message('更新推流任务接口失败')
+                    console.warn('更新推流任务接口失败: ' + err)
+                    if (err === 'INVALID_PARAMETER') {
+                        console.warn('参数错误')
+                    }
+                })
             },
             togglePushStats() {
                 if (!this.client) {
                     throw Error('内部错误，请重新加入房间')
                 }
+                console.log(this.rtmpTasks)
                 if (this.isPushing) {
                     this.client.deleteTasks({
-                        taskIds: [this.rtmpTasks[0].taskId] //可以同时删除多个推流任务
+                        taskIds: this.rtmpTasks.map(item => item.taskId) //可以同时删除多个推流任务
                     }).then(() => {
                         console.warn('删除推流任务接口调用成功')
                         this.isPushing = false;
@@ -403,7 +362,6 @@
                         message('请填写推流地址，再开始推流！');
                         return
                     }
-                    this.rtmpTasks[0].layout.users[0].uid = this.localUid;
                     this.client.addTasks({
                         rtmpTasks: this.rtmpTasks
                     }).then(() => {
@@ -417,6 +375,11 @@
                         }
                     })
                 }
+            },
+            handleOver() {
+                console.warn('离开房间');
+                this.client.leave();
+                this.returnJoin(1);
             }
         },
     };
@@ -432,6 +395,7 @@
   .content {
     flex: 1;
     display: flex;
+    position: relative;
 
     .main-window {
       height: 100%;
@@ -442,9 +406,15 @@
       background: #25252d;
     }
 
+    .sub-window-wrapper {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 9;
+        width: 165px;
+    }
+
     .sub-window {
-      width: 160px;
-      height: 90px;
       background: #25252d;
       border: 1px solid #ffffff;
       margin-bottom: 20px;
