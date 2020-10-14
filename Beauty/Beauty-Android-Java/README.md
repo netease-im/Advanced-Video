@@ -10,7 +10,7 @@
 ## 环境准备
 包括云信环境和第三方美颜解决方案相芯环境
 ### 云信环境
-1. 这个开源示例项目基于一对一视频通话，关于云信**环境准备**，**运行示例项目**，**功能实现**章节请参考[README.md](https://github.com/netease-im/Basic-Video-Call/tree/master/One-to-One-Video/NERtcSample-1to1-Android-Java)
+1. 这个开源示例项目基于一对一视频通话，关于云信**环境准备**，**运行示例项目**，**功能实现**章节请参考[1对1音视频通话](https://github.com/netease-im/Basic-Video-Call/tree/master/One-to-One-Video/NERtcSample-1to1-Android-Java)
 2. 本例中 将AppKey填写在config.cpp文件中
 ```
 std::string appKey = "set you APP key here";
@@ -21,7 +21,7 @@ std::string appKey = "set you APP key here";
 
 2.复制authpack.java文件到com.faceunity包下
 
-3.详细参考相芯[集成文档](https://github.com/Georgedamu/FULiveDemoDroid/blob/master/docs/Android_Nama_SDK_%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3.md)
+3.详细参考相芯[集成文档](https://github.com/Faceunity/FULiveDemoDroid/blob/master/docs/Android_Nama_SDK_%E9%9B%86%E6%88%90%E6%8C%87%E5%AF%BC%E6%96%87%E6%A1%A3.md)
 
 ## 功能实现
 
@@ -39,7 +39,7 @@ std::string appKey = "set you APP key here";
         },true);
    ```
 
-2.faceunity model为相芯美颜功能实现，您也可以替换成自己接入的第三方方案。相芯美颜功能具体参看[相芯接入文档](https://github.com/Georgedamu/FULiveDemoDroid/blob/master/docs/Android_Nama_SDK_%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3.md)
+2.faceunity model为相芯美颜功能实现，您也可以替换成自己接入的第三方方案。相芯美颜功能具体参看[相芯接入文档](https://github.com/Faceunity/FULiveDemoDroid/blob/master/docs/Android_Nama_SDK_%E9%9B%86%E6%88%90%E6%8C%87%E5%AF%BC%E6%96%87%E6%A1%A3.md)
    
 
    
