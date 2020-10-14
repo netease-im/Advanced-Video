@@ -12,6 +12,8 @@
     - 本地实时音视频数据
     - 本地上传的音视频文件
 
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=customCollect)
+
 ## 3.技术栈
 vue （vue-cli 4.x）
 

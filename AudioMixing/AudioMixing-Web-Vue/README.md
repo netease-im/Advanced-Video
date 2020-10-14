@@ -10,6 +10,8 @@
 - 多人通话
 - 选择混音文件，暂停、停止、播放混音
 
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=mixSound)
+
 ## 3.技术栈
 vue （vue-cli 4.x）
 

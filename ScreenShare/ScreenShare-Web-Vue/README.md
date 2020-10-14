@@ -10,6 +10,8 @@
 - 多人通话
 - 开始、停止屏幕共享
 
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=screenShare)
+
 ## 3.技术栈
 vue （vue-cli 4.x）
 
