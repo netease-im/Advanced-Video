@@ -4,7 +4,7 @@
 
 ## 环境准备，运行示例项目，多人视频通话功能实现
 
-这个开源示例项目基于多人视频通话，关于**环境准备**，**运行示例项目**，**功能实现**章节请参考[README.md](https://github.com/netease-im/Basic-Video-Call/blob/master/Group-Video/NERtcSample-GroupVideoCall-Android-Java/README.md)
+这个开源示例项目基于多人视频通话，关于**环境准备**，**运行示例项目**，**功能实现**章节请参考[多人视频通话](https://github.com/netease-im/Basic-Video-Call/blob/master/Group-Video/NERtcSample-GroupVideoCall-Android-Java/README.md)
 ## 功能实现
 
 如果需要实现混音音效，参考如下步骤，在你的项目中实现播放混音文件：
