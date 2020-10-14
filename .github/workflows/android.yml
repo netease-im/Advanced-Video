@@ -64,9 +64,9 @@ jobs:
     runs-on: macos-latest
     env:
       APP_KEY_FILE_PATH: ${{ './app/src/main/res/values/app_key.xml' }}
-      WRITE_APP_KEY_SCRIPT_PATH: ${{ './workflow/write_app_key.py' }}
-      ENCRYPTED_KEYSTORE_PATH: ${{ './workflow/release.jks.gpg' }}
-      DECRYPTED_KEYSTORE_PATH: ${{ './workflow/release.jks' }}
+      WRITE_APP_KEY_SCRIPT_PATH: ${{ '../../Shared Files/Android/write_app_key.py' }}
+      ENCRYPTED_KEYSTORE_PATH: ${{ '../../Shared Files/Android/release.jks.gpg' }}
+      DECRYPTED_KEYSTORE_PATH: ${{ './release.jks' }}
       UNSIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/app-release-unsigned.apk' }}
       SIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/ScreenShare-Android-Java.apk' }}
       APP_KEY: ${{ secrets.APP_KEY }}
