@@ -19,27 +19,26 @@
 ### 混音(Mixing)效果实现：
 ```java
 NERtcCreateAudioMixingOption option = new NERtcCreateAudioMixingOption();
-option.path = musicPathArray[musicIndex];
-option.playbackVolume = audioMixingVolume;
-option.sendVolume = audioMixingVolume;
-option.loopCount = 1;
+option.path = musicPathArray[musicIndex];//设置文件地址
+option.playbackVolume = audioMixingVolume;//播放音量
+option.sendVolume = audioMixingVolume;//发送音量
+option.loopCount = 1;//循环次数
 result = NERtcEx.getInstance().startAudioMixing(option);
 ```
 
 ### 音效(Effect)实现
 ```java
 NERtcCreateAudioEffectOption option = new NERtcCreateAudioEffectOption();
-option.path = effectPathArray[index];
-option.playbackVolume = audioEffectVolume;
-option.sendVolume = audioEffectVolume;
-option.loopCount = 1;
+option.path = effectPathArray[index];//设置文件地址
+option.playbackVolume = audioEffectVolume;//播放音量
+option.sendVolume = audioEffectVolume;//发送音量
+option.loopCount = 1;//循环次数
 neRtcEx.stopEffect(index2Id(index));
 return neRtcEx.playEffect(index2Id(index),option) == 0;
 ```
 
 ## 混音（Mixing）与音效(Effect)区别
 混音同一时刻只能播放一首音乐，音效可以播放多首，并设置不同的Id管理。
-详细使用请见[音效与混音文件](https://dev.yunxin.163.com/docs/product/%E9%9F%B3%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D2.0/%E8%BF%9B%E9%98%B6%E5%8A%9F%E8%83%BD/%E9%9F%B3%E9%A2%91%E7%AE%A1%E7%90%86/%E9%9F%B3%E6%95%88%E4%B8%8E%E6%B7%B7%E9%9F%B3%E6%96%87%E4%BB%B6)
 
 
 
