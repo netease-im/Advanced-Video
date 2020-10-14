@@ -91,7 +91,7 @@ jobs:
 
     - name: Write App Key
       run: 
-        python $WRITE_APP_KEY_SCRIPT_PATH $APP_KEY_FILE_PATH $APP_KEY
+        python "$WRITE_APP_KEY_SCRIPT_PATH" "$APP_KEY_FILE_PATH" $APP_KEY
 
     - name: Configure Keystore
       run: 
@@ -103,10 +103,10 @@ jobs:
 
     - name: Sign APK
       run:
-        $HOME/Library/Android/sdk/build-tools/29.0.3/apksigner sign --ks $DECRYPTED_KEYSTORE_PATH --ks-pass pass:$KEYSTORE_ENC_PWD --key-pass pass:$KEYSTORE_ENC_PWD --v1-signing-enabled true --v2-signing-enabled true --in $UNSIGNED_APK_PATH --out $SIGNED_APK_PATH
+        $HOME/Library/Android/sdk/build-tools/29.0.3/apksigner sign --ks "$DECRYPTED_KEYSTORE_PATH" --ks-pass pass:$KEYSTORE_ENC_PWD --key-pass pass:$KEYSTORE_ENC_PWD --v1-signing-enabled true --v2-signing-enabled true --in "$UNSIGNED_APK_PATH" --out "$SIGNED_APK_PATH"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: ScreenShare-Android-Java
-        path: ./ScreenShare/ScreenShare-Android-Java//app/build/outputs/apk/release/ScreenShare-Android-Java.apk
+        path: ./ScreenShare/ScreenShare-Android-Java/app/build/outputs/apk/release/ScreenShare-Android-Java.apk
