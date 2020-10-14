@@ -6,11 +6,11 @@
 ## 2.功能包含
 
 - 加入房间
-- 静音、取消静音
-- 关闭、打开视频
 - 离开房间
 - 多人通话
 - 开始、停止旁路推流
+
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=push)
 
 ## 3.技术栈
 vue （vue-cli 4.x）

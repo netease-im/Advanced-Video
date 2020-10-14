@@ -12,6 +12,8 @@
 - 多人通话
 - 设置音视频质量
 
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=manage)
+
 ## 3.技术栈
 vue （vue-cli 4.x）
 
