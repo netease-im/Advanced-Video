@@ -144,6 +144,11 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
     }
 
     @Override
+    public void onClientRoleChange(int i, int i1) {
+
+    }
+
+    @Override
     public void onFirstAudioDataReceived(long l) {
 
     }
@@ -185,6 +190,11 @@ public class PushStreamActivity extends BasicActivity implements NERtcCallbackEx
 
     @Override
     public void onConnectionTypeChanged(int i) {
+
+    }
+
+    @Override
+    public void onReconnectingStart() {
 
     }
 
