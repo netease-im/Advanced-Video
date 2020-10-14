@@ -36,6 +36,5 @@ void	onRtcStats(NERtcStats stats)
 当前通话统计回调
 
 SDK 定期向 App 报告当前通话的统计信息，每 2 秒触发一次
-详细使用请见[质量透明](https://dev.yunxin.163.com/docs/product/%E9%9F%B3%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9DG2/SDK%E5%BC%80%E5%8F%91%E9%9B%86%E6%88%90/Android%E5%BC%80%E5%8F%91%E9%9B%86%E6%88%90/%E8%B4%A8%E9%87%8F%E9%80%8F%E6%98%8E)
 
 
