@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_leave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:background="@drawable/leave_room_bg"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:text="@string/leave_room"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/play_music_control"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/tv_play_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#c7c7c7" />
+
+        <ImageView
+            android:id="@+id/iv_music_play"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/tv_play_content"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/play_action_state_src" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/tv_play_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/iv_music_play"
+            android:src="@drawable/music_control_next" />
+
+
+        <ImageView
+            android:id="@+id/iv_more_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_play_content"
+            android:layout_toRightOf="@id/iv_next"
+            android:paddingLeft="12dp"
+            android:paddingTop="4dp"
+            android:paddingRight="12dp"
+            android:src="@drawable/music_action_more" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

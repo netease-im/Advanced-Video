@@ -12,6 +12,8 @@
 - 多人通话
 - 显示、关闭通话统计
 
+[在线体验](https://app.yunxin.163.com/webdemo/g2web/index.html#/?path=callStatistics)
+
 ## 3.技术栈
 vue （vue-cli 4.x）
 
