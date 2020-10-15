@@ -299,7 +299,7 @@ jobs:
 
       - name: Write App Key
         run:
-          python "$WRITE_APP_KEY_SCRIPT_PATH" "$APP_KEY_FILE_PATH" $APP_KEY
+          python "$WRITE_APP_KEY_SCRIPT_PATH" $APP_KEY_FILE_PATH $APP_KEY
 
       - name: Configure Keystore
         run:
