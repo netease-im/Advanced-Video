@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48CA4BB625108DB3007E57D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CA4BB425108DB3007E57D5 /* Main.storyboard */; };
+		48CA4BB825108DB4007E57D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CA4BB725108DB4007E57D5 /* Assets.xcassets */; };
+		48CA4BBB25108DB4007E57D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CA4BB925108DB4007E57D5 /* LaunchScreen.storyboard */; };
+		48CA4BBE25108DB4007E57D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BBD25108DB4007E57D5 /* main.m */; };
+		48CA4BC925108E08007E57D5 /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BC625108E08007E57D5 /* NTESAppDelegate.m */; };
+		48CA4BCA25108E08007E57D5 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BC825108E08007E57D5 /* NTESDemoViewController.m */; };
+		48CA4BCD25108EA5007E57D5 /* NTESDemoP2PViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BCC25108EA5007E57D5 /* NTESDemoP2PViewController.m */; };
+		48CA4BD025108EB2007E57D5 /* NTESDemoUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BCF25108EB2007E57D5 /* NTESDemoUserModel.m */; };
+		48CA4BD32510920F007E57D5 /* NTESMediaStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CA4BD22510920F007E57D5 /* NTESMediaStatsViewController.m */; };
+		A0EAFC64A43945554B52536B /* Pods_MediaStats_iOS_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F6431231E567A7527A0419 /* Pods_MediaStats_iOS_ObjC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		309FE8FAA60E38FA27754250 /* Pods-MediaStats-iOS-Objc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-Objc.debug.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-Objc/Pods-MediaStats-iOS-Objc.debug.xcconfig"; sourceTree = "<group>"; };
+		46588F604A30ED765A40A7F3 /* Pods-MediaStats-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		48CA4BA825108DB3007E57D5 /* 通话统计.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "通话统计.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48CA4BB525108DB3007E57D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48CA4BB725108DB4007E57D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48CA4BBA25108DB4007E57D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48CA4BBC25108DB4007E57D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48CA4BBD25108DB4007E57D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48CA4BC425108E08007E57D5 /* AppKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		48CA4BC525108E08007E57D5 /* NTESAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESAppDelegate.h; sourceTree = "<group>"; };
+		48CA4BC625108E08007E57D5 /* NTESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
+		48CA4BC725108E08007E57D5 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
+		48CA4BC825108E08007E57D5 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
+		48CA4BCB25108EA5007E57D5 /* NTESDemoP2PViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoP2PViewController.h; sourceTree = "<group>"; };
+		48CA4BCC25108EA5007E57D5 /* NTESDemoP2PViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoP2PViewController.m; sourceTree = "<group>"; };
+		48CA4BCE25108EB2007E57D5 /* NTESDemoUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoUserModel.h; sourceTree = "<group>"; };
+		48CA4BCF25108EB2007E57D5 /* NTESDemoUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoUserModel.m; sourceTree = "<group>"; };
+		48CA4BD12510920F007E57D5 /* NTESMediaStatsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESMediaStatsViewController.h; sourceTree = "<group>"; };
+		48CA4BD22510920F007E57D5 /* NTESMediaStatsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESMediaStatsViewController.m; sourceTree = "<group>"; };
+		6C87D21932F489EAA5234004 /* Pods-MediaStats-iOS-Objc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-Objc.release.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-Objc/Pods-MediaStats-iOS-Objc.release.xcconfig"; sourceTree = "<group>"; };
+		C6FCDBDABAD6267FCAF70C00 /* Pods-MediaStats-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaStats-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		D4F6431231E567A7527A0419 /* Pods_MediaStats_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediaStats_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48CA4BA525108DB3007E57D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0EAFC64A43945554B52536B /* Pods_MediaStats_iOS_ObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05F30AB565CDABCD8CD96B35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				309FE8FAA60E38FA27754250 /* Pods-MediaStats-iOS-Objc.debug.xcconfig */,
+				6C87D21932F489EAA5234004 /* Pods-MediaStats-iOS-Objc.release.xcconfig */,
+				46588F604A30ED765A40A7F3 /* Pods-MediaStats-iOS-ObjC.debug.xcconfig */,
+				C6FCDBDABAD6267FCAF70C00 /* Pods-MediaStats-iOS-ObjC.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		48CA4B9F25108DB3007E57D5 = {
+			isa = PBXGroup;
+			children = (
+				48CA4BAA25108DB3007E57D5 /* MediaStats-iOS-ObjC */,
+				48CA4BA925108DB3007E57D5 /* Products */,
+				05F30AB565CDABCD8CD96B35 /* Pods */,
+				62EAB7839CA7E3699545CCB5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		48CA4BA925108DB3007E57D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48CA4BA825108DB3007E57D5 /* 通话统计.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48CA4BAA25108DB3007E57D5 /* MediaStats-iOS-ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				48CA4BC425108E08007E57D5 /* AppKey.h */,
+				48CA4BC525108E08007E57D5 /* NTESAppDelegate.h */,
+				48CA4BC625108E08007E57D5 /* NTESAppDelegate.m */,
+				48CA4BC725108E08007E57D5 /* NTESDemoViewController.h */,
+				48CA4BC825108E08007E57D5 /* NTESDemoViewController.m */,
+				48CA4BCB25108EA5007E57D5 /* NTESDemoP2PViewController.h */,
+				48CA4BCC25108EA5007E57D5 /* NTESDemoP2PViewController.m */,
+				48CA4BCE25108EB2007E57D5 /* NTESDemoUserModel.h */,
+				48CA4BCF25108EB2007E57D5 /* NTESDemoUserModel.m */,
+				48CA4BD12510920F007E57D5 /* NTESMediaStatsViewController.h */,
+				48CA4BD22510920F007E57D5 /* NTESMediaStatsViewController.m */,
+				48CA4BB425108DB3007E57D5 /* Main.storyboard */,
+				48CA4BB725108DB4007E57D5 /* Assets.xcassets */,
+				48CA4BB925108DB4007E57D5 /* LaunchScreen.storyboard */,
+				48CA4BBC25108DB4007E57D5 /* Info.plist */,
+				48CA4BBD25108DB4007E57D5 /* main.m */,
+			);
+			path = "MediaStats-iOS-ObjC";
+			sourceTree = "<group>";
+		};
+		62EAB7839CA7E3699545CCB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4F6431231E567A7527A0419 /* Pods_MediaStats_iOS_ObjC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48CA4BA725108DB3007E57D5 /* MediaStats-iOS-ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48CA4BC125108DB4007E57D5 /* Build configuration list for PBXNativeTarget "MediaStats-iOS-ObjC" */;
+			buildPhases = (
+				C2879D161C42918FBD1200AF /* [CP] Check Pods Manifest.lock */,
+				48CA4BA425108DB3007E57D5 /* Sources */,
+				48CA4BA525108DB3007E57D5 /* Frameworks */,
+				48CA4BA625108DB3007E57D5 /* Resources */,
+				3C5165C17A21A8759394A710 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MediaStats-iOS-ObjC";
+			productName = "MediaStats-iOS-Objc";
+			productReference = 48CA4BA825108DB3007E57D5 /* 通话统计.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48CA4BA025108DB3007E57D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1170;
+				ORGANIZATIONNAME = "Wenchao Ding";
+				TargetAttributes = {
+					48CA4BA725108DB3007E57D5 = {
+						CreatedOnToolsVersion = 11.7;
+					};
+				};
+			};
+			buildConfigurationList = 48CA4BA325108DB3007E57D5 /* Build configuration list for PBXProject "MediaStats-iOS-ObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48CA4B9F25108DB3007E57D5;
+			productRefGroup = 48CA4BA925108DB3007E57D5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48CA4BA725108DB3007E57D5 /* MediaStats-iOS-ObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48CA4BA625108DB3007E57D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48CA4BBB25108DB4007E57D5 /* LaunchScreen.storyboard in Resources */,
+				48CA4BB825108DB4007E57D5 /* Assets.xcassets in Resources */,
+				48CA4BB625108DB3007E57D5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C5165C17A21A8759394A710 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MediaStats-iOS-ObjC/Pods-MediaStats-iOS-ObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2879D161C42918FBD1200AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MediaStats-iOS-ObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48CA4BA425108DB3007E57D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48CA4BD025108EB2007E57D5 /* NTESDemoUserModel.m in Sources */,
+				48CA4BD32510920F007E57D5 /* NTESMediaStatsViewController.m in Sources */,
+				48CA4BC925108E08007E57D5 /* NTESAppDelegate.m in Sources */,
+				48CA4BCA25108E08007E57D5 /* NTESDemoViewController.m in Sources */,
+				48CA4BCD25108EA5007E57D5 /* NTESDemoP2PViewController.m in Sources */,
+				48CA4BBE25108DB4007E57D5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		48CA4BB425108DB3007E57D5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48CA4BB525108DB3007E57D5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		48CA4BB925108DB4007E57D5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48CA4BBA25108DB4007E57D5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48CA4BBF25108DB4007E57D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		48CA4BC025108DB4007E57D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48CA4BC225108DB4007E57D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46588F604A30ED765A40A7F3 /* Pods-MediaStats-iOS-ObjC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "MediaStats-iOS-Objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.MediaStats-iOS-ObjC";
+				PRODUCT_NAME = "通话统计";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48CA4BC325108DB4007E57D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6FCDBDABAD6267FCAF70C00 /* Pods-MediaStats-iOS-ObjC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				INFOPLIST_FILE = "MediaStats-iOS-Objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.netease.nmc.MediaStats-iOS-ObjC";
+				PRODUCT_NAME = "通话统计";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48CA4BA325108DB3007E57D5 /* Build configuration list for PBXProject "MediaStats-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48CA4BBF25108DB4007E57D5 /* Debug */,
+				48CA4BC025108DB4007E57D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48CA4BC125108DB4007E57D5 /* Build configuration list for PBXNativeTarget "MediaStats-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48CA4BC225108DB4007E57D5 /* Debug */,
+				48CA4BC325108DB4007E57D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48CA4BA025108DB3007E57D5 /* Project object */;
+}
