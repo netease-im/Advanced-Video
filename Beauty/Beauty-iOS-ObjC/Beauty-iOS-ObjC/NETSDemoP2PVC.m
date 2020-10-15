@@ -182,7 +182,6 @@
 // 在代理方法中对视频数据进行处理
 - (void)onNERtcEngineVideoFrameCaptured:(CVPixelBufferRef)bufferRef rotation:(NERtcVideoRotationType)rotation
 {
-//    fuSetDefaultRotationMode([FUManager shareManager].deviceOrientation);
     if (_enableBeauty) {
         [[FUManager shareManager] renderItemsToPixelBuffer:bufferRef];
     }

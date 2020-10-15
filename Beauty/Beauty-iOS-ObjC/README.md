@@ -1,128 +1,52 @@
-# NERtcSample-1to1-iOS-Objective-C
+# Beauty-iOS-ObjC
 
-这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现1对1音视频通话。
+这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现美颜的功能。
 
- 在这个示例项目中包含了以下功能：
+在这个示例项目中包含了以下功能：
 
 - 加入通话和离开通话
--  静音和解除静音
-- 关闭视频和打开视频 
-- 切换前置摄像头和后置摄像头
+- 打开美颜和关闭美颜
+- 切换大小屏显示远端/本地用户视频
 
 ## 环境准备
 
-- Xcode 10.0+
-- iOS真机设备
-- 支持模拟器运行，但是部分功能无法使用
+包括云信环境和第三方美颜解决方案相芯环境
 
-## 运行示例项目
+### 云信环境
 
-这个段落主要讲解了如何编译和运行实例程序。
+1. 这个开源示例项目基于一对一视频通话，关于云信**环境准备**，**运行示例项目**，**功能实现**章节请参考[1对1音视频通话](https://github.com/netease-im/Basic-Video-Call/blob/master/One-to-One-Video/NERtcSample-1to1-iOS-Objective-C/README.md)
 
-#### 获取APPKey
+2. 本例中 将AppKey填写在AppKey.h文件中
 
-在编译和启动实例程序前，您需要首先获取一个可用的App Key：
-
-1. 若您已经与专属客户经理取得联系，可直接向他获取Appkey
-
-2. 若您并未与专属客户经理取得联系那么请按后续步骤获取Appkey
-
-3. 首先在 [网易云信](https://id.163yun.com/register?h=media&t=media&clueFrom=nim&from=bdjjnim0035&referrer=https://app.yunxin.163.com/?clueFrom=nim&from=bdjjnim0035) 注册账号
-
-4. 然后在「应用」一栏中创建您的项目
-5. 等待专属客户经理联系您，并向他获取Appkey
-
-6. 将AppKey填写进AppKey.h
-
-```objective-c
-NSString *const AppKey = <#请填入您的APPKey#>;
+```
+#define kAppKey @"<#请输入您的AppKey#>";
 ```
 
-#### 集成实时音视频SDK
+### 获取相芯SDK 的证书
 
-1. 进入Demo根路径，执行`Pod install`
-2. 使用Xcode打开NERtcP2pSample.xcworkspace，连接iPhone/iPad测试设备，设置有效的开发者签名后即可运行
+1. 由于本sample美颜的功能是使用相芯SDK实现的。所以您在使用前需要的获取相芯的证书。
+
+2. 复制authpack.h文件到Beauty路径下
+
+3.详细参考相芯[集成文档](https://github.com/Faceunity/FULiveDemo/blob/master/docs/iOS_Nama_SDK_%E9%9B%86%E6%88%90%E6%8C%87%E5%AF%BC%E6%96%87%E6%A1%A3.md)
 
 ## 功能实现
 
-1. 引擎初始化。配置音视频相关参数。
+1. 云信接口提供：
 
-   ```objective-c
-   - (void)setupRTCEngine {
-       NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
-       NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
-       context.engineDelegate = self; //引擎事件回调
-       context.appKey = AppKey;  //注册APPkey
-       [coreEngine setupEngineWithContext:context]; //初始化SDK
-   }
-   ```
+```objc
+// 在代理方法中对视频数据进行处理
+- (void)onNERtcEngineVideoFrameCaptured:(CVPixelBufferRef)bufferRef rotation:(NERtcVideoRotationType)rotation
+{
+    if (_enableBeauty) {
+        [[FUManager shareManager] renderItemsToPixelBuffer:bufferRef];
+    }
+}
+```
 
-2. 加入和离开房间。调用SDK接口加入和退出音视频房间
-
-   ```objective-c
-   /* ---- 加入房间 ---- */
-   NSString *channelName = "频道名称"
-   uint64_t userId = "用户ID"
-   [NERtcEngine.sharedEngine joinChannelWithToken:@""
-                                      channelName:channelName
-                                            myUid:userId
-           completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
-           if (error) {
-   						//加入失败
-           } else {
-               //加入成功，建立本地canvas，准备渲染本地视图
-           }
-   }];
-   
-   /* ---- 离开房间 ---- */
-   [NERtcEngine.sharedEngine leaveChannel];
-   ```
-
-3. 建立Canvas，渲染画面。针对每个用户需要单独建立Canvas用于渲染该用户的图像。
-
-   ```objective-c
-   /* ---- 本地用户渲染 ---- */
-   - (void)setupLocalCanvas {
-       NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
-       canvas.container = _localRenderView;                /* UIView，本地待渲染view */
-       canvas.renderMode = kNERtcVideoRenderScaleCropFill; /* 渲染模式 */
-       [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
-   }
-   
-   /* ---- 远端用户渲染 ----- */
-   - (void)setupRemoteCanvas:(uint64_t)userId {
-       NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
-       canvas.container = _remoteRenderView;               /* UIView，远端待渲染view */
-       canvas.renderMode = kNERtcVideoRenderScaleCropFill; /* 渲染模式 */
-   		[NERtcEngine.sharedEngine setupRemoteVideoCanvas:canvas
-                                              forUserID:userID];
-   }
-   ```
-
-4. 订阅/取消订阅远端视频流
-
-   ```objective-c
-   /* ---- 引擎回调（NERtcEngineDelegateEx），有远端用户开启了视频 --- */
-   - (void)onNERtcEngineUserVideoDidStartWithUserID:(uint64_t)userID
-                                       videoProfile:(NERtcVideoProfileType)profile {
-      [NERtcEngine.sharedEngine subscribeRemoteVideo:YES   /* 参数如果为NO，则为取消订阅 */
-                                forUserID:userID
-                               streamType:kNERtcRemoteVideoStreamTypeHigh];    
-   }
-   ```
-
-5. 音视频控制
-
-   ```objective-c
-   /* ---- 本地音频控制(开关) ---- */
-   BOOL enableLocalAudio = YES;    /* YES:开启音频 NO:关闭音频 */
-   [NERtcEngine.sharedEngine enableLocalAudio:enableLocalAudio];
-   
-   /* ---- 本地视频控制(开关) ---- */
-   BOOL enableLocalVideo = YES;    /* YES:开启视频 NO:关闭视频 */
-   [NERtcEngine.sharedEngine enableLocalVideo:enableLocalVideo];
-   ```
-
+2. faceunity model为相芯美颜功能实现，您也可以替换成自己接入的第三方方案。相芯美颜功能具体参看[相芯接入文档](https://github.com/Faceunity/FULiveDemo/blob/master/docs/iOS_Nama_SDK_%E9%9B%86%E6%88%90%E6%8C%87%E5%AF%BC%E6%96%87%E6%A1%A3.md)
    
 
    
+
+
