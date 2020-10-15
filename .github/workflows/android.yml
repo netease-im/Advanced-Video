@@ -320,7 +320,7 @@ jobs:
           path: ./AudioMixing/AudioMixing-Android-Java/app/build/outputs/apk/release/AudioMixing-Java.apk
 
   build_media_states_java:
-    name: Build Audio Mixing - Java
+    name: Build Media Stats - Java
     runs-on: macos-latest
     env:
       APP_KEY_FILE_PATH: ${{ './app/src/main/cpp/config.cpp' }}
