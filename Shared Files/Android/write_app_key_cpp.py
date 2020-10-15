@@ -8,6 +8,7 @@ APP_KEY = sys.argv[1]
 
 # Stub a string with a evironment variable
 def stubString(searchPattern, rejectPattern, searchtText, replacement, desc):
+	print searchtText
 	searchRet = re.search(searchPattern, searchtText).group()
 	if re.search("\"{}\"".format(rejectPattern), searchRet) is not None:
 		print
