@@ -72,6 +72,7 @@
         NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
         canvas.container = self.localUserView;
         [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
+        //添加推流任务
         [self addLiveStream:kStreamURL];
     }];
 }
@@ -133,6 +134,8 @@
 }
 
 // 根据self.usersForStreaming生成直播成员信息
+
+/// 设置4人视频画面“田”字布局，旁路推流是将多路视频流同步到云端进行混流成一路流，客户端可以通过拉流地址获取到多人画面，此UI配置是指定服务端混流后各个画面的布局。
 - (void)reloadUsers
 {
     NSInteger layoutWidth = self.liveStreamTask.layout.width;
