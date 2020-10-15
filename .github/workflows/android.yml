@@ -272,7 +272,7 @@ jobs:
     runs-on: macos-latest
     env:
       APP_KEY_FILE_PATH: ${{ './app/src/main/cpp/config.cpp' }}
-      WRITE_APP_KEY_SCRIPT_PATH: ${{ './workflow/write_app_key_cpp.py' }}
+      WRITE_APP_KEY_SCRIPT_PATH: ${{ '../../Shared Files/Android/write_app_key_cpp.py' }}
       ENCRYPTED_KEYSTORE_PATH: ${{ '../../Shared Files/Android/release.jks.gpg' }}
       DECRYPTED_KEYSTORE_PATH: ${{ './release.jks' }}
       UNSIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/app-release-unsigned.apk' }}
@@ -299,7 +299,7 @@ jobs:
 
       - name: Write App Key
         run:
-          python $WRITE_APP_KEY_SCRIPT_PATH $APP_KEY_FILE_PATH $APP_KEY
+          python "$WRITE_APP_KEY_SCRIPT_PATH" $APP_KEY_FILE_PATH $APP_KEY
 
       - name: Configure Keystore
         run:
