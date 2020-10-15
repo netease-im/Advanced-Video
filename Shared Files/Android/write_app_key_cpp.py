@@ -2,8 +2,8 @@ import re
 import sys
 import os
 
-APP_CONFIG_FILE = sys.argv[0]
-APP_KEY = sys.argv[1]
+APP_CONFIG_FILE = sys.argv[1]
+APP_KEY = sys.argv[2]
 
 
 # Stub a string with a evironment variable

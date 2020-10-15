@@ -9,6 +9,6 @@ extern "C"
 JNIEXPORT jstring
 JNICALL
 Java_com_netease_nmc_nertcsample_audiomixing_NativeConfig_getAppKey__(JNIEnv *env, jclass) {
-    std::string appKey = "set you APP key here";
+    std::string appKey = "set_your_APP_key_here";
     return env->NewStringUTF(appKey.c_str());
 }
