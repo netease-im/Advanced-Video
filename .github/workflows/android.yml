@@ -292,14 +292,14 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+      - name: Setup Python 2.7
+          uses: actions/setup-python@v2
+          with:
+            python-version: '2.7'
 
       - name: Write App Key
         run:
-          python "$WRITE_APP_KEY_SCRIPT_PATH" "$APP_KEY_FILE_PATH" $APP_KEY
+          python $WRITE_APP_KEY_SCRIPT_PATH $APP_KEY_FILE_PATH $APP_KEY
 
       - name: Configure Keystore
         run:
