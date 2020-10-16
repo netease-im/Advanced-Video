@@ -532,14 +532,14 @@ jobs:
         name: ExternalVideo-iOS-ObjC
         path: ./ExternalVideo/ExternalVideo-iOS-Objc/product/ipa/ExternalVideo-iOS-ObjC.ipa
         
-  build_device_manager_objc:
-    name: Build DeviceManager ObjC
+  build_profile_config_objc:
+    name: Build ProfileConfig ObjC
     runs-on: macos-latest
     env:
-      XC_PROJECT_NAME: ${{ 'DeviceManager-iOS-ObjC' }}
+      XC_PROJECT_NAME: ${{ 'ProfileConfig-iOS-ObjC' }}
       XC_VERSION: ${{ '11.4' }}
-      XC_SCHEME: ${{ 'DeviceManager-iOS-ObjC' }}
-      XC_WORKSPACE: ${{ 'DeviceManager-iOS-ObjC.xcworkspace' }}
+      XC_SCHEME: ${{ 'ProfileConfig-iOS-ObjC' }}
+      XC_WORKSPACE: ${{ 'ProfileConfig-iOS-ObjC.xcworkspace' }}
       XC_CONFIGURATION: ${{ 'release' }}
       XC_ARCHIVE_DIR: ${{ './product/archive' }}
       XC_IPA_DIR: ${{ './product/ipa' }}
@@ -556,11 +556,11 @@ jobs:
       APP_KEY: ${{ secrets.APP_KEY }}
       STREAM_URL: ${{ secrets.iOS_STREAM_URL }}
       KEYCHAIN: ${{ 'temp.keychain' }}
-      APP_CONFIG_HEADER_PATH: ${{ './DeviceManager-iOS-ObjC/AppKey.h' }}
+      APP_CONFIG_HEADER_PATH: ${{ './ProfileConfig-iOS-ObjC/AppKey.h' }}
     defaults:
       run:
         shell: bash
-        working-directory: ./DeviceManager/DeviceManager-iOS-ObjC/
+        working-directory: ./ProfileConfig/ProfileConfig-iOS-ObjC/
 
     steps:
     - uses: actions/checkout@v2
@@ -614,8 +614,8 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: DeviceManager-iOS-ObjC
-        path: ./DeviceManager/DeviceManager-iOS-ObjC/product/ipa/DeviceManager-iOS-ObjC.ipa
+        name: ProfileConfig-iOS-ObjC
+        path: ./ProfileConfig/ProfileConfig-iOS-ObjC/product/ipa/ProfileConfig-iOS-ObjC.ipa
   
   build_audio_mixing_objc:
      name: Build AudioMixing ObjC

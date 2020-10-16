@@ -1,7 +1,0 @@
-<resources>
-    <string name="please_input_user_id">Please input user id</string>
-    <string name="invalid_user_id">invalid user id</string>
-    <string name="please_input_room_id">Please input room id</string>
-    <string name="join_room">Join Room</string>
-    <string name="leave_room">Leave Room</string>
-</resources>
