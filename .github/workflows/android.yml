@@ -1,7 +1,7 @@
 name: Advanced Video - Android 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ master, develop, develop_android_profileconfig ]
   pull_request:
     branches: [ master ]
 
@@ -110,8 +110,8 @@ jobs:
           name: ExternalVideo-Java
           path: ./ExternalVideo/ExternalVideo-Android-Java/app/build/outputs/apk/release/ExternalVideo-Java.apk
 
-  build_av_manage_java:
-    name: Build AV Manage - Java
+  build_profile_config_java:
+    name: Build Profile Config - Java
     runs-on: macos-latest
     env:
       APP_KEY_FILE_PATH: ${{ './app/src/main/res/values/app_key.xml' }}
@@ -119,13 +119,13 @@ jobs:
       ENCRYPTED_KEYSTORE_PATH: ${{ '../../Shared Files/Android/release.jks.gpg' }}
       DECRYPTED_KEYSTORE_PATH: ${{ './release.jks' }}
       UNSIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/app-release-unsigned.apk' }}
-      SIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/AVManage-Java.apk' }}
+      SIGNED_APK_PATH: ${{ './app/build/outputs/apk/release/ProfileConfig-Java.apk' }}
       APP_KEY: ${{ secrets.APP_KEY }}
       KEYSTORE_ENC_PWD: ${{ secrets.KEYSTORE_ENC_PWD }}
     defaults:
       run:
         shell: bash
-        working-directory: ./DeviceManager/AVManage-Android-Java/
+        working-directory: ./ProfileConfig/ProfileConfig-Android-Java/
 
     steps:
       - uses: actions/checkout@v2
@@ -159,8 +159,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: AVManage-Java
-          path: ./DeviceManager/AVManage-Android-Java/app/build/outputs/apk/release/AVManage-Java.apk
+          name: ProfileConfig-Java
+          path: ./ProfileConfig/ProfileConfig-Android-Java/app/build/outputs/apk/release/ProfileConfig-Java.apk
 
   build_video_stream_java:
     name: Build Video Stream - Java
