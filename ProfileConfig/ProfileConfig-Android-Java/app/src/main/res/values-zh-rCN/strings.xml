@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">音视频管理</string>
+    <string name="settings">设置</string>
+    <string name="audio_settings_change_hint">音频设置需要下次进入房间生效</string>
+</resources>
