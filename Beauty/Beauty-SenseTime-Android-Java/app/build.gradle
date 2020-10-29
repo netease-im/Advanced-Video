@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.netease.nmc.nertcsample.beauty.java"
+        applicationId "com.netease.nmc.nertcsample.beauty.sensetime.java"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -35,16 +35,16 @@ android {
             path "src/main/cpp/CMakeLists.txt"
         }
     }
-    ndkVersion '21.3.6528147'
+    ndkVersion '21.0.6113669'
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':sensetime')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.netease.yunxin:nertc:3.6.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }

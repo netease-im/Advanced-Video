@@ -13,20 +13,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.faceunity.FURenderer;
 import com.netease.lava.nertc.sdk.NERtcCallback;
 import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
+import com.netease.lava.nertc.sdk.video.NERtcVideoCallback;
+import com.netease.lava.nertc.sdk.video.NERtcVideoFrame;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 import com.netease.nertcbeautysample.R;
 import com.netease.nmc.nertcsample.beauty.config.NativeConfig;
+import com.netease.nmc.nertcsample.sensetime.SenseTimeEffect;
 
 import java.util.Random;
 
-public class MeetingActivity  extends AppCompatActivity implements NERtcCallback,
-        View.OnClickListener{
+public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
+        View.OnClickListener {
 
     private static final String TAG = "MeetingActivity";
     private static final String EXTRA_ROOM_ID = "extra_room_id";
@@ -34,8 +36,14 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     private boolean enableLocalVideo = true;
     private boolean enableLocalAudio = true;
     private boolean joinedChannel = false;
-    private boolean localLarge = false;//local VideoView 是否放大，默认false
-    private boolean openFilter = false;//美颜功能，默认关闭
+    /**
+     * local VideoView 是否放大，默认false
+     */
+    private boolean localLarge = false;
+    /**
+     * 美颜功能，默认关闭
+     */
+    private boolean needBeautify = false;
 
     private NERtcVideoView smallVideoView;
     private NERtcVideoView bigVideoView;
@@ -45,11 +53,30 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     private ImageView cameraFlipImg;
     private View localUserBgV;
 
-    private long remoteUid;//远端用户id
-
-//    private FURenderer mFuRender;//美颜效果
+    /**
+     * 远端用户id
+     */
+    private long remoteUid;
 
     private int cameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;//摄像头FACE_BACK = 0, FACE_FRONT = 1
+
+    /**
+     * 商汤美颜效果控制入口
+     */
+    private SenseTimeEffect senseTimeEffect;
+
+    /**
+     * 每帧视频回调，此处对每帧视频进行美颜处理
+     */
+    private NERtcVideoCallback videoCallback = neRtcVideoFrame -> {
+        // 也可以在此处替换成其他美颜库
+        if (needBeautify) {
+            neRtcVideoFrame.textureId =
+                    senseTimeEffect.effect(neRtcVideoFrame.textureId, neRtcVideoFrame.width, neRtcVideoFrame.height);
+            neRtcVideoFrame.format = NERtcVideoFrame.Format.TEXTURE_RGB;
+        }
+        return needBeautify;
+    };
 
     public static void startActivity(Activity from, String roomId) {
         Intent intent = new Intent(from, MeetingActivity.class);
@@ -67,35 +94,11 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         String roomId = getIntent().getStringExtra(EXTRA_ROOM_ID);
         long userId = generateRandomUserID();
         joinChannel(userId, roomId);
-//        mFuRender = new FURenderer
-//                .Builder(this)
-//                .maxFaces(1)
-//                .inputImageOrientation(getCameraOrientation(Camera.CameraInfo.CAMERA_FACING_FRONT))
-//                .inputTextureType(FURenderer.FU_ADM_FLAG_EXTERNAL_OES_TEXTURE)
-//                .setOnFUDebugListener(this)
-//                .setOnTrackingStatusChangedListener(this)
-//                .build();
-//        mFuRender.onSurfaceCreated();
-//        mFuRender.setBeautificationOn(true);
-    }
 
-    private int getCameraOrientation(int cameraFacing) {
-        Camera.CameraInfo info = new Camera.CameraInfo();
-        int cameraId = -1;
-        int numCameras = Camera.getNumberOfCameras();
-        for (int i = 0; i < numCameras; i++) {
-            Camera.getCameraInfo(i, info);
-            if (info.facing == cameraFacing) {
-                cameraId = i;
-                break;
-            }
-        }
-        if (cameraId < 0) {
-            // no front camera, regard it as back camera
-            return 90;
-        } else {
-            return info.orientation;
-        }
+        senseTimeEffect = new SenseTimeEffect();
+
+        //设置视频采集数据回调，用于美颜等操作
+        NERtcEx.getInstance().setVideoCallback(videoCallback, true);
     }
 
     /**
@@ -109,9 +112,9 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         NERtcEx.getInstance().joinChannel(null, roomID, userID);
         smallVideoView.setZOrderMediaOverlay(true);
         smallVideoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
-        if(!localLarge) {
+        if (!localLarge) {
             NERtcEx.getInstance().setupLocalVideoCanvas(smallVideoView);
-        }else {
+        } else {
             NERtcEx.getInstance().setupLocalVideoCanvas(bigVideoView);
         }
     }
@@ -119,6 +122,11 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (senseTimeEffect != null) {
+            senseTimeEffect.release();
+        }
+        //设置视频采集数据回调，用于美颜等操作
+        NERtcEx.getInstance().setVideoCallback(videoCallback, false);
         NERtcEx.getInstance().release();
     }
 
@@ -270,9 +278,9 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         remoteUid = uid;
         NERtcEx.getInstance().subscribeRemoteVideoStream(uid, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
         bigVideoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
-        if(!localLarge) {
+        if (!localLarge) {
             NERtcEx.getInstance().setupRemoteVideoCanvas(bigVideoView, uid);
-        }else {
+        } else {
             NERtcEx.getInstance().setupRemoteVideoCanvas(smallVideoView, uid);
         }
 
@@ -331,16 +339,16 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     /**
      * 切换大小视图
      */
-    private void switchVideoView(){
-        if(remoteUid == 0){
+    private void switchVideoView() {
+        if (remoteUid == 0) {
             return;
         }
-        if(!localLarge){
+        if (!localLarge) {
             NERtcEx.getInstance().setupLocalVideoCanvas(bigVideoView);
-            NERtcEx.getInstance().setupRemoteVideoCanvas(smallVideoView,remoteUid);
-        }else {
+            NERtcEx.getInstance().setupRemoteVideoCanvas(smallVideoView, remoteUid);
+        } else {
             NERtcEx.getInstance().setupLocalVideoCanvas(smallVideoView);
-            NERtcEx.getInstance().setupRemoteVideoCanvas(bigVideoView,remoteUid);
+            NERtcEx.getInstance().setupRemoteVideoCanvas(bigVideoView, remoteUid);
         }
         localLarge = !localLarge;
     }
@@ -348,22 +356,13 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     /**
      * 切换美颜开关
      */
-    private void switchFilter(){
-        openFilter = !openFilter;
-        if(openFilter){
+    private void switchFilter() {
+        needBeautify = !needBeautify;
+        if (needBeautify) {
             tvOpenBeauty.setText(R.string.close_beauty);
         } else {
             tvOpenBeauty.setText(R.string.open_beauty);
         }
-        //设置视频采集数据回调，用于美颜等操作
-        NERtcEx.getInstance().setVideoCallback(neRtcVideoFrame -> {
-            if(openFilter) {
-                //此处可自定义第三方的美颜实现
-//                neRtcVideoFrame.textureId = mFuRender.onDrawFrame(neRtcVideoFrame.data,neRtcVideoFrame.textureId,
-//                        neRtcVideoFrame.width,neRtcVideoFrame.height);
-            }
-            return openFilter;
-        },true);
     }
 
     @Override
@@ -377,12 +376,11 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
                 break;
             case R.id.img_camera_flip:
                 NERtcEx.getInstance().switchCamera();
-                if(cameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT){
+                if (cameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                     cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
-                }else {
+                } else {
                     cameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;
                 }
-//                mFuRender.onCameraChange(cameraFacing,getCameraOrientation(cameraFacing));
                 break;
             case R.id.vv_local_user:
                 switchVideoView();
@@ -391,14 +389,4 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
                 break;
         }
     }
-
-//    @Override
-//    public void onFpsChange(double fps, double renderTime) {
-//
-//    }
-//
-//    @Override
-//    public void onTrackStatusChanged(int type, int status) {
-//
-//    }
 }

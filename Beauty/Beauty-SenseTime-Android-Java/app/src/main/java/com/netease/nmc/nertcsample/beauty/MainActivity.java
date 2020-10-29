@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.netease.lava.nertc.sdk.NERtc;
 import com.netease.nertcbeautysample.R;
+import com.netease.nmc.nertcsample.sensetime.utils.STLicenseUtils;
 
 import java.util.List;
 
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView hintTv;
     private EditText roomIdEt;
     private ImageView clearInputImg;
-    private Button joinBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         requestPermissionsIfNeeded();
+        if (!STLicenseUtils.checkLicense(this)) {
+            Toast.makeText(this, "license 验证失败！", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void requestPermissionsIfNeeded() {
@@ -46,18 +50,15 @@ public class MainActivity extends AppCompatActivity {
         hintTv = findViewById(R.id.tv_hint);
         roomIdEt = findViewById(R.id.et_room_id);
         clearInputImg = findViewById(R.id.img_clear_input);
-        joinBtn = findViewById(R.id.btn_join);
 
         // 输入框为空时才显示清除内容的图标
         roomIdEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
@@ -66,10 +67,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clearInputImg.setOnClickListener(v -> {
-            roomIdEt.setText("");
-        });
+        clearInputImg.setOnClickListener(v -> roomIdEt.setText(""));
 
+        Button joinBtn = findViewById(R.id.btn_join);
         joinBtn.setOnClickListener(v -> {
             Editable roomIdEdit = roomIdEt.getText();
             if (roomIdEdit == null || roomIdEt.length() <= 0) {
