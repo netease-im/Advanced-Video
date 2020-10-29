@@ -41,5 +41,4 @@ private NERtcVideoCallback videoCallback = neRtcVideoFrame -> {
         return needBeautify;
     };
 ```
-
 2. `sensetime` module 为商汤美颜功能部分封装，您也可以替换成自己接入的第三方方案。商汤美颜功能具体参看[商汤接入文档]()
