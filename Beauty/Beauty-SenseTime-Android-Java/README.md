@@ -21,7 +21,7 @@ std::string appKey = "set you APP key here";
 
 2.将商汤授权证书 lic 文件修改名称为 `SenseME.lic` 并复制到工程 `assets` 目录下。
 
-3.详细参考商汤[集成文档]()。
+3.详细参考[商汤官网](https://www.sensetime.com/cn)。
 
 ## 功能实现
 
@@ -42,4 +42,4 @@ private NERtcVideoCallback videoCallback = neRtcVideoFrame -> {
     };
 ```
 
-2. `sensetime` module 为商汤美颜功能部分封装，您也可以替换成自己接入的第三方方案。商汤美颜功能具体参看[商汤接入文档]()
+2. `sensetime` module 为商汤美颜功能部分封装，您也可以替换成自己接入的第三方方案。商汤美颜功能具体参看[商汤官网](https://www.sensetime.com/cn)
