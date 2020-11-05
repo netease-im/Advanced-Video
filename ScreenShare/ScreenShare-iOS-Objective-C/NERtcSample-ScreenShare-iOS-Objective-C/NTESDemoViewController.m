@@ -48,7 +48,9 @@ static void *KVOContext = &KVOContext;
 {
     [self.userDefaults removeObserver:self forKeyPath:@"frame"];
     [NERtcEngine.sharedEngine leaveChannel];
-    [NERtcEngine destroyEngine];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 
