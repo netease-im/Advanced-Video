@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">NERTCVoiceChangerSample</string>
+
+    <string name="main_hint_room_id">请输入房间号</string>
+    <string name="join_channel">加入频道</string>
+    <string name="join_room">加入房间</string>
+    <string name="leave_room">离开房间</string>
+    <string name="input_nick">输入昵称</string>
+    <string name="logo">图标</string>
+    <string name="main_fill_in_room_id">请填写房间号</string>
+    <string name="clear_input">清除输入的内容</string>
+    <string name="meeting_wait_hint">等待加入…</string>
+    <string name="switch_camera">切换摄像头</string>
+    <string name="config_voice">设置变声</string>
+    <string name="type_title_changer">变声</string>
+    <string name="type_title_reverberation">混响</string>
+    <string name="type_title_eq">均衡器</string>
+    <string name="type_default">默认</string>
+    <string name="eq_type_deep">低沉</string>
+    <string name="eq_type_mellow">圆润</string>
+    <string name="eq_type_clear">清澈</string>
+    <string name="eq_type_self">自定义</string>
+    <string name="reverberation_type_ktv">KTV</string>
+    <string name="reverberation_type_recite">朗诵</string>
+    <string name="changer_type_robot">机器人</string>
+    <string name="changer_type_giant">巨人</string>
+    <string name="changer_type_church_echo">教堂</string>
+    <string name="changer_type_horror">恐怖</string>
+    <string name="changer_type_muffled">低沉</string>
+    <string name="changer_type_man_to_woman">男变女</string>
+    <string name="changer_type_woman_to_man">女变男</string>
+    <string name="changer_type_man_to_lolita">男变萝莉</string>
+    <string name="changer_type_woman_to_lolita">女变萝莉</string>
+    <string name="eq_type_self_title">自定义均衡器</string>
+</resources>
