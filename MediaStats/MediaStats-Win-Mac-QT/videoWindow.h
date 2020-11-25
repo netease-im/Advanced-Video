@@ -35,6 +35,6 @@ private:
     std::shared_ptr<NRTCEngine> m_engine;
     StatsWidget*      m_statsWidget;
     std::map<int, VideoWidget*> m_videoWindowMap;
-    //×ÔÉí²»Í³¼Æ£¬µÚÒ»´°¿ÚÎª×Ô¼ºÊÓÆµ
+    //è‡ªèº«ä¸ç»Ÿè®¡ï¼Œç¬¬ä¸€çª—å£ä¸ºè‡ªå·±è§†é¢‘
     std::atomic_short       m_videoCount = {1};
 };

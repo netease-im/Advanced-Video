@@ -1,4 +1,4 @@
-﻿#include <QByteArray>
+#include <QByteArray>
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>

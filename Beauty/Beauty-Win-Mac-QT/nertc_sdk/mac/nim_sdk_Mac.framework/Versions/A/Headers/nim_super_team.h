@@ -1,4 +1,4 @@
-﻿/** @file nim_super_team.h
+/** @file nim_super_team.h
   * @brief 超大群组 接口头文件
   * @copyright (c) 2015-2017, NetEase Inc. All rights reserved
   * @author Oleg

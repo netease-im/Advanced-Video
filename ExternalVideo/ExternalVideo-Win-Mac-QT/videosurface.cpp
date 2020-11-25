@@ -1,4 +1,4 @@
-﻿#include "videosurface.h"
+#include "videosurface.h"
 #include <QDebug>
 
 VideoSurface::VideoSurface(QObject* parent) : QAbstractVideoSurface(parent) {

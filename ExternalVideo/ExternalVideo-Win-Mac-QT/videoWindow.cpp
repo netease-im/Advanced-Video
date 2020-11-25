@@ -43,7 +43,7 @@ void VideoWindow::onJoinChannel(QString& roomid, QString& usrId)
     ui.video_1->setUsrID(usrId);
     m_engine->setupLocalVideo(hwnd);
     m_engine->joinChannel("", roomid, usrId, true, true, 2);
-    //¿ªÆôcamera
+    //å¼€å¯camera
     m_engine->enableVideo(true);
 }
 
@@ -63,7 +63,7 @@ void VideoWindow::on_disconnectBtn_clicked(bool checked) {
 }
 
 void VideoWindow::onUserJoined(quint64 uid) {
-    //ÔÝ¶¨×î´ó4ÈË£¬¿ÉÒÔ×Ô¼º¿ª·Å·¿¼ä×î´óÈËÊý
+    //æš‚å®šæœ€å¤§4äººï¼Œå¯ä»¥è‡ªå·±å¼€æ”¾æˆ¿é—´æœ€å¤§äººæ•°
     m_videoCount++;
     if (m_videoCount >= 4) {
         return;
@@ -136,7 +136,7 @@ void VideoWindow::on_VideoStreamBtn_clicked(bool checked) {
     ui.fileLabel->setText(fileName);
 
     if (fileName != "") {
-        auto ret = m_engine->setExternalVideoSource(true);  //ÉèÖÃÊ¹ÓÃ×Ô¶¨ÒåÊý¾ÝÔ´
+        auto ret = m_engine->setExternalVideoSource(true);  //è®¾ç½®ä½¿ç”¨è‡ªå®šä¹‰æ•°æ®æº
         m_engine->enableVideo(true);
 
         mediaPlayer->setVideoOutput(videoSurface);

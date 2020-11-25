@@ -1,4 +1,4 @@
-﻿#include <QThread>
+#include <QThread>
 typedef std::function<void()> InvokerFunc;
 class Invoker: public QObject
 {
