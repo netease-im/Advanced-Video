@@ -1,4 +1,4 @@
-﻿/** @file nertc_base.h
+/** @file nertc_base.h
   * @brief 定义导出宏。该文件只定义导出宏，不定义其他任何东西！
   * @copyright (c) 2015-2019, NetEase Inc. All rights reserved
   * @author Harrison

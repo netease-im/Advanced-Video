@@ -1,4 +1,4 @@
-﻿#include "videowidget.h"
+#include "videowidget.h"
 #include "CNamaSDK.h"					//nama SDK 的头文件
 #include "authpack.h"
 #include <QDebug>

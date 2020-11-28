@@ -1,4 +1,4 @@
-﻿#ifndef NRTC_ENGINE_H
+#ifndef NRTC_ENGINE_H
 #define NRTC_ENGINE_H
 
 #include <memory>

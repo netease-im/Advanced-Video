@@ -20,7 +20,7 @@ VideoWindow::VideoWindow(QWidget *parent /*= Q_NULLPTR*/)
 
 
 
-    /*ÊÓÆµÖÊÁ¿*/
+    /*è§†é¢‘è´¨é‡*/
     ui.videocomboBox->addItem("LOWEST 160x90/120 @15fps", 0);
     ui.videocomboBox->addItem("LOW 320x180/240 @15fps", 1);
     ui.videocomboBox->addItem("STANDARD 640x360/480 @30fps", 2);
@@ -28,12 +28,12 @@ VideoWindow::VideoWindow(QWidget *parent /*= Q_NULLPTR*/)
     ui.videocomboBox->addItem("HD1080p 1920x1280 @30fps", 4);
     ui.videocomboBox->setCurrentIndex(2);
 
-    /*ÒôÆµÖÊÁ¿*/
-    ui.audiocomboBox->addItem(tr("16kHz²ÉÑùÂÊ µ¥ÉùµÀ ±àÂëÂëÂÊ20Kbps"), 0);
-    ui.audiocomboBox->addItem(tr("48kHz²ÉÑùÂÊ µ¥ÉùµÀ ±àÂëÂëÂÊ32Kbps"), 1);
-    ui.audiocomboBox->addItem(tr("48kHz²ÉÑùÂÊ Ë«ÉùµÀ ±àÂëÂëÂÊ64Kbps"), 2);
-    ui.audiocomboBox->addItem(tr("48kHz²ÉÑùÂÊ µ¥ÉùµÀ ±àÂëÂëÂÊ64Kbps"), 3);
-    ui.audiocomboBox->addItem(tr("48kHz²ÉÑùÂÊ Ë«ÉùµÀ ±àÂëÂëÂÊ128Kbps"), 4);
+    /*éŸ³é¢‘è´¨é‡*/
+    ui.audiocomboBox->addItem(tr("16kHzé‡‡æ ·ç‡ å•å£°é“ ç¼–ç ç ç‡20Kbps"), 0);
+    ui.audiocomboBox->addItem(tr("48kHzé‡‡æ ·ç‡ å•å£°é“ ç¼–ç ç ç‡32Kbps"), 1);
+    ui.audiocomboBox->addItem(tr("48kHzé‡‡æ ·ç‡ åŒå£°é“ ç¼–ç ç ç‡64Kbps"), 2);
+    ui.audiocomboBox->addItem(tr("48kHzé‡‡æ ·ç‡ å•å£°é“ ç¼–ç ç ç‡64Kbps"), 3);
+    ui.audiocomboBox->addItem(tr("48kHzé‡‡æ ·ç‡ åŒå£°é“ ç¼–ç ç ç‡128Kbps"), 4);
     ui.audiocomboBox->setCurrentIndex(0);
 
     connect(ui.videocomboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onVideoConfigChanged(int)));
@@ -70,7 +70,7 @@ void VideoWindow::onJoinChannel(QString& roomid, QString& usrId)
     ui.video_1->setUsrID(usrId);
     m_engine->setupLocalVideo(hwnd);
     m_engine->joinChannel("", roomid, usrId, true, true, 2);
-    //¿ªÆôcamera
+    //å¼€å¯camera
     m_engine->enableVideo(true);
     
 
@@ -92,7 +92,7 @@ void VideoWindow::on_disconnectBtn_clicked(bool checked)
 
 void VideoWindow::onUserJoined(quint64 uid)
 {
-    //Ôİ¶¨×î´ó4ÈË£¬¿ÉÒÔ×Ô¼º¿ª·Å·¿¼ä×î´óÈËÊı
+    //æš‚å®šæœ€å¤§4äººï¼Œå¯ä»¥è‡ªå·±å¼€æ”¾æˆ¿é—´æœ€å¤§äººæ•°
     m_videoCount++;
     if (m_videoCount >= 4) {
         return;

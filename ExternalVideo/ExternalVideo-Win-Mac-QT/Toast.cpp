@@ -10,8 +10,8 @@ Toast::Toast(QWidget *parent)
 {
     ui.setupUi(this);
 
-    setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::Tool);// ÎŞ±ß¿ò ÎŞÈÎÎñÀ¸
-    setAttribute(Qt::WA_TranslucentBackground, true);   // ±³¾°Í¸Ã÷
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::Tool);// æ— è¾¹æ¡† æ— ä»»åŠ¡æ 
+    setAttribute(Qt::WA_TranslucentBackground, true);   // èƒŒæ™¯é€æ˜
 }
 
 Toast::~Toast()
@@ -25,7 +25,7 @@ void Toast::setText(const QString& text)
 
 void Toast::showAnimation(int timeout /*= 2000*/)
 {
-    // ¿ªÊ¼¶¯»­
+    // å¼€å§‹åŠ¨ç”»
     QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
     animation->setDuration(1000);
     animation->setStartValue(0);
@@ -35,7 +35,7 @@ void Toast::showAnimation(int timeout /*= 2000*/)
 
     QTimer::singleShot(timeout, [&]
     {
-        // ½áÊø¶¯»­
+        // ç»“æŸåŠ¨ç”»
         QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
         animation->setDuration(1000);
         animation->setStartValue(1);
@@ -44,7 +44,7 @@ void Toast::showAnimation(int timeout /*= 2000*/)
         connect(animation, &QPropertyAnimation::finished, [&]
         {
             close();
-            deleteLater();// ¹Ø±ÕºóÎö¹¹
+            deleteLater();// å…³é—­åææ„
         });
     });
 }
@@ -52,9 +52,9 @@ void Toast::showAnimation(int timeout /*= 2000*/)
 void Toast::showTip(const QString& text, QWidget* parent /*= nullptr*/)
 {
     Toast* toast = new Toast(parent);
-    toast->setWindowFlags(toast->windowFlags() | Qt::WindowStaysOnTopHint); // ÖÃ¶¥
+    toast->setWindowFlags(toast->windowFlags() | Qt::WindowStaysOnTopHint); // ç½®é¡¶
     toast->setText(text);
-    toast->adjustSize();    //ÉèÖÃÍêÎÄ±¾ºóµ÷ÕûÏÂ´óĞ¡
+    toast->adjustSize();    //è®¾ç½®å®Œæ–‡æœ¬åè°ƒæ•´ä¸‹å¤§å°
 
     toast->showAnimation();
 }
@@ -64,10 +64,10 @@ void Toast::paintEvent(QPaintEvent *event)
     QPainter paint(this);
     paint.begin(this);
     auto kBackgroundColor = QColor(255, 255, 255);
-    kBackgroundColor.setAlpha(0.0 * 255);// Í¸Ã÷¶ÈÎª0 
+    kBackgroundColor.setAlpha(0.0 * 255);// é€æ˜åº¦ä¸º0 
     paint.setRenderHint(QPainter::Antialiasing, true);
     paint.setPen(Qt::NoPen);
-    paint.setBrush(QBrush(kBackgroundColor, Qt::SolidPattern));//ÉèÖÃ»­Ë¢ĞÎÊ½ 
+    paint.setBrush(QBrush(kBackgroundColor, Qt::SolidPattern));//è®¾ç½®ç”»åˆ·å½¢å¼ 
     paint.drawRect(0, 0, width(), height());
     paint.end();
 }

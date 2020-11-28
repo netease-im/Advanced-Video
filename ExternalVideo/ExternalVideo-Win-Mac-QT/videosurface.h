@@ -1,4 +1,4 @@
-﻿#ifndef VIDEOSURFACE_H
+#ifndef VIDEOSURFACE_H
 #define VIDEOSURFACE_H
 
 #include <QAbstractVideoSurface>

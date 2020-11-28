@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <QWidget>
 #include "ui_videowidget.h"
 

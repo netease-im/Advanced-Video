@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <QOpenGLWidget>
 #include "ui_videowidget.h"
 #include "invoker.h"
