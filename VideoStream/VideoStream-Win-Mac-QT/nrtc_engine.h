@@ -59,7 +59,7 @@ struct NRTCParameter {
         // auto_subscribe_video = true;
         // force_auto_subscribe_video = true;
         // video_capture_observer_enabled = true;
-        publish_self_stream_enabled = false;
+        publish_self_stream_enabled = true;
         log_level = nertc::kNERtcLogLevelInfo;
         video_smooth_enabled = false;
         video_watermark_enabled = false;

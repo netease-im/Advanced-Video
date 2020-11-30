@@ -125,7 +125,14 @@
    }
    ```
 
-3. 添加推流任务。
+3. 设置推流参数
+   ```c++
+   //设置推流定制参数：publish_self_stream_enabled = true,否则推流失败
+    NRTCParameter param;
+	m_engine->setParameter(param);
+   ```
+
+4. 添加推流任务。
 
    ```c++
    
@@ -177,7 +184,7 @@
    
    ```
 
-4. 更新推流任务。
+5. 更新推流任务。
 
    ```c++
    bool NRTCEngine::updateLiveStream(const QByteArray &byteTaskId, const LiveStreamUsers &liveStreamUsers, const QString &pushUrl)
@@ -221,7 +228,7 @@
    }
    ```
 
-5. 移除推流任务。
+6. 移除推流任务。
 
    ```c++
    bool NRTCEngine::stopLiveStream(const QByteArray &taskId)

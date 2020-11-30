@@ -159,8 +159,8 @@ int NRTCEngine::joinChannel(const QString& token, const QString& roomid, const Q
     setLocalVideoProfileType((NERtcVideoProfileType)video_resolution);
 
 //    NRTCParameter param;
-//    param.auto_start_local_audio = autoStartAudio;
-//    param.auto_start_local_video = autoStartVideo;
+////    param.auto_start_local_audio = autoStartAudio;
+////    param.auto_start_local_video = autoStartVideo;
 //    setParameter(param);
 
     //Join channel
@@ -518,6 +518,7 @@ bool NRTCEngine::updateLiveStream(const QByteArray &byteTaskId, const LiveStream
     }
 
     NERtcLiveStreamLayout layout;
+    memset(&layout, 0x00, sizeof(layout));
     layout.users = users;
     layout.width = LIVE_STREAM_WIDTH;
     layout.height = LIVE_STREAM_HEIGHT;
