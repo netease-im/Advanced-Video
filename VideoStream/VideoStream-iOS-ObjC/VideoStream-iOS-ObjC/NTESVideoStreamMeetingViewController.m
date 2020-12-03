@@ -97,7 +97,6 @@
     self.liveStreamTask.layout = layout;
     
     [self reloadUsers];
-    
     int ret = [NERtcEngine.sharedEngine addLiveStreamTask:self.liveStreamTask
                                                compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
         if (errorCode == 0) {
@@ -237,7 +236,7 @@
 - (void)onNERtcEngineUserVideoDidStartWithUserID:(uint64_t)userID videoProfile:(NERtcVideoProfileType)profile
 {
     [NERtcEngine.sharedEngine subscribeRemoteVideo:YES forUserID:userID streamType:kNERtcRemoteVideoStreamTypeHigh];
-    if (profile != kNERtcVideoProfileNone && ![self.userList containsObject:@(userID)]) {
+    if (![self.userList containsObject:@(userID)]) {
         // 新加入用户，添加至直播成员
         [self.userList addObject:@(userID)];
         [self reloadUsers];
