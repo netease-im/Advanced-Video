@@ -1,5 +1,7 @@
+import CustomCollect from '../views/customCollect/index.vue'
+
 export default [{
   path: '/customCollect',
   name: 'customCollect',
-  component: () => import( /* webpackChunkName: "customCollect" */ '../views/customCollect/index.vue')
+  component: CustomCollect
 }]

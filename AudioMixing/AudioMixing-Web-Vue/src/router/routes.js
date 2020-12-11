@@ -1,5 +1,7 @@
+import MixSound from '../views/mixSound/index.vue'
+
 export default [{
   path: '/mixSound',
   name: 'mixSound',
-  component: () => import( /* webpackChunkName: "mixSound" */ '../views/mixSound/index.vue')
+  component: MixSound
 }]

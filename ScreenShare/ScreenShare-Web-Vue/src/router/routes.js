@@ -1,5 +1,7 @@
+import ScreenShare from '../views/screenShare/index.vue'
+
 export default [{
   path: '/screenShare',
   name: 'screenShare',
-  component: () => import( /* webpackChunkName: "screenShare" */ '../views/screenShare/index.vue')
+  component: ScreenShare
 }]
