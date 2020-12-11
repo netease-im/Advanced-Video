@@ -1,3 +1,0 @@
-include ':senseTime'
-include ':app'
-rootProject.name = "NERTCBeautySample"
