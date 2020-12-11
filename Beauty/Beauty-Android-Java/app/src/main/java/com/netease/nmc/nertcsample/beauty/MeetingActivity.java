@@ -65,10 +65,6 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_meeting);
         initViews();
-        setupNERtc();
-        String roomId = getIntent().getStringExtra(EXTRA_ROOM_ID);
-        long userId = generateRandomUserID();
-        joinChannel(userId, roomId);
         mFuRender = new FURenderer
                 .Builder(this)
                 .maxFaces(1)
@@ -79,6 +75,10 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
                 .build();
         mFuRender.onSurfaceCreated();
         mFuRender.setBeautificationOn(true);
+        setupNERtc();
+        String roomId = getIntent().getStringExtra(EXTRA_ROOM_ID);
+        long userId = generateRandomUserID();
+        joinChannel(userId, roomId);
     }
 
     private int getCameraOrientation(int cameraFacing) {
@@ -122,6 +122,9 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
     protected void onDestroy() {
         super.onDestroy();
         NERtcEx.getInstance().release();
+        if(mFuRender != null){
+            mFuRender.onSurfaceDestroyed();
+        }
     }
 
     @Override
@@ -168,6 +171,15 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         }
         setLocalAudioEnable(true);
         setLocalVideoEnable(true);
+        //设置视频采集数据回调，用于美颜等操作
+        NERtcEx.getInstance().setVideoCallback(neRtcVideoFrame -> {
+            if(openFilter) {
+                //此处可自定义第三方的美颜实现
+                neRtcVideoFrame.textureId = mFuRender.onDrawFrame(neRtcVideoFrame.data,neRtcVideoFrame.textureId,
+                        neRtcVideoFrame.width,neRtcVideoFrame.height);
+            }
+            return openFilter;
+        },true);
     }
 
     /**
@@ -357,15 +369,7 @@ public class MeetingActivity  extends AppCompatActivity implements NERtcCallback
         } else {
             tvOpenBeauty.setText(R.string.open_beauty);
         }
-        //设置视频采集数据回调，用于美颜等操作
-        NERtcEx.getInstance().setVideoCallback(neRtcVideoFrame -> {
-            if(openFilter) {
-                //此处可自定义第三方的美颜实现
-                neRtcVideoFrame.textureId = mFuRender.onDrawFrame(neRtcVideoFrame.data,neRtcVideoFrame.textureId,
-                        neRtcVideoFrame.width,neRtcVideoFrame.height);
-            }
-            return openFilter;
-        },true);
+
     }
 
     @Override
