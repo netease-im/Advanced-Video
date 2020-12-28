@@ -1,4 +1,4 @@
-﻿/** @file nim_pass_through_proxy.h
+/** @file nim_pass_through_proxy.h
   * @brief 透传服务代理 接口头文件
   * @copyright (c) 2015-2017, NetEase Inc. All rights reserved
   * @author Dylan

@@ -1,4 +1,4 @@
-﻿#include "videowidget.h"
+#include "videowidget.h"
 VideoWidget::VideoWidget(QWidget *parent /*= Q_NULLPTR*/)
     :QWidget(parent)
 {

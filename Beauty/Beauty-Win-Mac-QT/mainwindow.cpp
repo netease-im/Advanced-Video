@@ -22,7 +22,7 @@ mainwindow::mainwindow(QWidget *parent)
     connect(videowindowPtr.get(), &VideoWindow::closeVideoWindowSignal, this, &mainwindow::oncloseVideoWindow);
     ui.setupUi(this);
 
-    //±£Ö¤´æÊý×Ö
+    //ä¿è¯å­˜æ•°å­—
     QRegExp rx("^[0-9]{12}$");
     
     QRegExpValidator *validator = new QRegExpValidator(rx, this);
@@ -77,7 +77,7 @@ void mainwindow::on_joinChannel_clicked(bool bchecked)
         return;
     }
 
-    //UIDËæ»úÉú³É£¬¿É×Ô¼º°Ñ¿Ø
+    //UIDéšæœºç”Ÿæˆï¼Œå¯è‡ªå·±æŠŠæŽ§
     auto userid = ui.userId->text();
     if (userid.length() == 0)
     {

@@ -1,4 +1,4 @@
-﻿/** @file nertc_error_code.h
+/** @file nertc_error_code.h
   * @brief NERtc SDK的错误码定义
   * @copyright (c) 2015-2019, NetEase Inc. All rights reserved
   * @author Harrison

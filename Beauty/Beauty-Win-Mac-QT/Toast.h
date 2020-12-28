@@ -1,5 +1,5 @@
 /** @file   Toast.h
- *  @brief  QtÄ£Äâ°²×¿ÒÆ¶¯¿Í»§¶ËToastÌáÊ¾ÏûÏ¢
+ *  @brief  Qtæ¨¡æ‹Ÿå®‰å“ç§»åŠ¨å®¢æˆ·ç«¯Toastæç¤ºæ¶ˆæ¯
  *  @note   qss set in ui file
  *  @author liangkdm
  *  @date   2020/09/22
@@ -19,10 +19,10 @@ public:
 
     void setText(const QString& text);
 
-    void showAnimation(int timeout = 2000);// ¶¯»­·½Ê½show³ö£¬Ä¬ÈÏ2ÃëºóÏûÊ§
+    void showAnimation(int timeout = 2000);// åŠ¨ç”»æ–¹å¼showå‡ºï¼Œé»˜è®¤2ç§’åæ¶ˆå¤±
 
 public:
-    // ¾²Ì¬µ÷ÓÃ
+    // é™æ€è°ƒç”¨
     static void showTip(const QString& text, QWidget* parent = nullptr);
 
 protected:

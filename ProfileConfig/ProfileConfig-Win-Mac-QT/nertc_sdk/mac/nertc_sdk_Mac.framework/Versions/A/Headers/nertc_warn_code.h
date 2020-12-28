@@ -1,4 +1,4 @@
-﻿/** @file nertc_warn_code.h
+/** @file nertc_warn_code.h
   * @brief NERtc SDK的警告码定义
   * @copyright (c) 2015-2019, NetEase Inc. All rights reserved
   * @author Harrison

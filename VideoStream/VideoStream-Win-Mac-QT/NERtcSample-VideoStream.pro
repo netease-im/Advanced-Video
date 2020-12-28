@@ -8,9 +8,7 @@ CONFIG += c++11
 
 TEMPLATE = app
 TARGET = demo
-DESTDIR = ./bin
-
-
+DESTDIR = $$PWD/bin
 
 
 win32 {

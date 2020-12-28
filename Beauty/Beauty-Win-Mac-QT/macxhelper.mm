@@ -1,4 +1,4 @@
-﻿#include "macxhelper.h"
+#include "macxhelper.h"
 #include <CoreVideo/CVPixelBuffer.h>
 #import <AppKit/AppKit.h>
 Macxhelper::Macxhelper(QObject* parent)

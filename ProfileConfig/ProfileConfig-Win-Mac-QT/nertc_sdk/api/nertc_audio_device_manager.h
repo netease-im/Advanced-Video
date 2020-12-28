@@ -1,4 +1,4 @@
-﻿/** @file nertc_audio_device_manager.h
+/** @file nertc_audio_device_manager.h
 * @brief NERTC SDK音频设备管理接口头文件。
 * NERTC SDK所有接口参数说明: 所有与字符串相关的参数(char *)全部为UTF-8编码。
 * @copyright (c) 2015-2019, NetEase Inc. All rights reserved

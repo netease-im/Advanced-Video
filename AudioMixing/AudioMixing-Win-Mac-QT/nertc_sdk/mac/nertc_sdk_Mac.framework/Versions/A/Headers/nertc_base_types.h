@@ -1,4 +1,4 @@
-﻿/** @file nertc_base_types.h
+/** @file nertc_base_types.h
   * @brief SDK基本类型定义
   * @copyright (c) 2015-2019, NetEase Inc. All rights reserved
   * @author Harrison
