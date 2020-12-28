@@ -96,6 +96,9 @@ void VideoWindow::on_VideoStreamBtn_clicked(bool checked)
 {
     if(checked){
         qDebug()<<"start video push";
+        //设置推流定制参数：publish_self_stream_enabled = true,否则推流失败
+        NRTCParameter param;
+        m_engine->setParameter(param);
         ui.VideoStreamBtn->setText(QStringLiteral("stop"));
         LiveStreamUsers users;
         for ( int i = 0 ; i < m_videoCount; ++i) {
