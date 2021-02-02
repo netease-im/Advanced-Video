@@ -56,7 +56,7 @@
 </template>
 <script>
     import { message } from '../../components/message';
-    import WebRTC2 from '../../sdk/NIM_Web_WebRTC2_v3.7.0.js';
+    import WebRTC2 from '../../sdk/NIM_Web_WebRTC2_v3.9.1.js';
     import config from '../../../config';
     import { getToken } from '../../common';
 
@@ -142,7 +142,7 @@
             this.client.on('peer-leave', (evt) => {
                 console.warn(`${evt.uid} 离开房间`);
                 this.remoteStreams = this.remoteStreams.filter(
-                    (item) => item.getId() !== evt.uid
+                    (item) => !!item.getId() && item.getId() !== evt.uid
                 );
             });
 
@@ -175,7 +175,7 @@
                 const remoteStream = evt.stream;
                 //用于播放对方视频画面的div节点
                 const div = [...this.$refs.small].find(
-                    (item) => item.dataset.uid === remoteStream.getId()
+                    (item) => Number(item.dataset.uid) === Number(remoteStream.getId())
                 );
                 remoteStream
                     .play(div)
