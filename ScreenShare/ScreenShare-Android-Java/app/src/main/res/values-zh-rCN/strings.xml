@@ -4,4 +4,8 @@
     <string name="stop_screen_share">关闭屏幕共享</string>
     <string name="screen_capture_min_sdk_version">屏幕录制功能要求API >= 21</string>
     <string name="screen_capture_request_denied">屏幕录制请求被拒绝</string>
+    <string name="screen_capture_server_start_failed">屏幕录制服务启动失败</string>
+    <string name="screen_capture_server_is_null">屏幕录制服务为空</string>
+    <string name="start_video">开启视频</string>
+    <string name="stop_video">关闭视频</string>
 </resources>

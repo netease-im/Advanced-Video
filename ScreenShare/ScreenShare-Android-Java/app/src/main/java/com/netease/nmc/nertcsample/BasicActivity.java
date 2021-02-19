@@ -1,16 +1,20 @@
 package com.netease.nmc.nertcsample;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.netease.lava.nertc.sdk.NERtc;
-import com.netease.lava.nertc.sdk.NERtcCallback;
 import com.netease.lava.nertc.sdk.NERtcConstants;
+import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
@@ -18,25 +22,40 @@ import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasicActivity extends AppCompatActivity implements NERtcCallback {
-    private NERtcVideoView localVideoView;
-    private List<NERtcVideoView> remoteViewViews = new ArrayList<>();
+public class BasicActivity extends AppCompatActivity {
+
+    private static final String TAG = "BasicActivity_TAG";
+
+    private Handler uiHandler;
+    private List<NERtcVideoView> rendererViews = new ArrayList<>();
+    private long selfUid;
+    private String roomId;
+    private TextView tvLocalInfo;
+
+    protected NERtcVideoView localVideoRenderer;
+    protected NERtcVideoView localScreenRenderer;
+
+
+    private Runnable updateLocalInfoTask = new Runnable() {
+        @Override
+        public void run() {
+            tvLocalInfo.setText("UID : " + selfUid + ", Thread Time : " + SystemClock.currentThreadTimeMillis());
+            uiHandler.postDelayed(updateLocalInfoTask, 1000);
+        }
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        String roomId = getIntent().getStringExtra(Extras.ROOM_ID);
-        long userId = getIntent().getLongExtra(Extras.USER_ID, -1);
+        uiHandler = new Handler();
+        roomId = getIntent().getStringExtra(Extras.ROOM_ID);
+        selfUid = getIntent().getLongExtra(Extras.USER_ID, -1);
 
         setContentView(R.layout.activity_group_video_call);
-
-        initVideoViews();
-        initPanelViews();
-
+        initViews();
         setupNERtc();
-        setupLocalVideo(localVideoView);
-        joinChannel(userId, roomId);
+        joinChannel(selfUid, roomId);
     }
 
     @Override
@@ -44,19 +63,16 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
         leaveChannel();
     }
 
-    private void initVideoViews() {
+    private void initViews() {
         View container = findViewById(R.id.vv_container);
-        localVideoView = container.findViewById(R.id.vv_local_user);
-        remoteViewViews.add(container.findViewById(R.id.vv_remote_user1));
-        remoteViewViews.add(container.findViewById(R.id.vv_remote_user2));
-        remoteViewViews.add(container.findViewById(R.id.vv_remote_user3));
-    }
+        localVideoRenderer = container.findViewById(R.id.vv_local_video_renderer);
+        localScreenRenderer = container.findViewById(R.id.vv_local_screen_renderer);
+        rendererViews.clear();
+        rendererViews.add(container.findViewById(R.id.vv_remote_renderer_1));
+        rendererViews.add(container.findViewById(R.id.vv_remote_renderer_2));
+        rendererViews.add(container.findViewById(R.id.vv_remote_renderer_3));
+        rendererViews.add(container.findViewById(R.id.vv_remote_renderer_4));
 
-    protected int getPanelLayoutId() {
-        return 0;
-    }
-
-    private void initPanelViews() {
         ViewStub viewStub = findViewById(R.id.panel);
         int layoutId = getPanelLayoutId();
         if (layoutId != 0) {
@@ -64,6 +80,13 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
         }
         View panel = viewStub.inflate();
         initPanelViews(panel);
+
+        tvLocalInfo = findViewById(R.id.tv_local_info);
+        uiHandler.post(updateLocalInfoTask);
+    }
+
+    protected int getPanelLayoutId() {
+        return 0;
     }
 
     protected void initPanelViews(View panel) {
@@ -72,11 +95,12 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
 
     private void setupNERtc() {
         NERtcParameters parameters = new NERtcParameters();
-        NERtc.getInstance().setParameters(parameters); //先设置参数，后初始化
+        //先设置参数，后初始化
+        NERtcEx.getInstance().setParameters(parameters);
         try {
-            NERtc.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, null);
-            NERtc.getInstance().enableLocalAudio(true);
-            NERtc.getInstance().enableLocalVideo(true);
+            NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), simpleNERtcCallbackEx, null);
+            NERtcEx.getInstance().enableLocalAudio(true);
+//            enableLocalVideo(true);
         } catch (Exception e) {
             Toast.makeText(this, "SDK初始化失败", Toast.LENGTH_LONG).show();
             finish();
@@ -84,80 +108,135 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
     }
 
     protected void joinChannel(long userId, String roomId) {
-        NERtc.getInstance().joinChannel("", roomId, userId);
+        NERtcEx.getInstance().joinChannel("", roomId, userId);
     }
 
     protected void leaveChannel() {
-        NERtc.getInstance().leaveChannel();
+        uiHandler.removeCallbacks(updateLocalInfoTask);
+        NERtcEx.getInstance().leaveChannel();
     }
 
-    protected void setupLocalVideo(NERtcVideoView videoView) {
-        videoView.setZOrderMediaOverlay(true);
-        videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_BALANCED);
-        NERtc.getInstance().setupLocalVideoCanvas(videoView);
+    protected void setupRemoteVideoRenderer(NERtcVideoView videoView, long userId) {
+        if (videoView != null) {
+            videoView.setTag("video#" + userId);
+            videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
+        }
+        NERtcEx.getInstance().setupRemoteVideoCanvas(videoView, userId);
     }
 
-    protected void setupRemoteVideo(NERtcVideoView videoView, long userId) {
-        videoView.setZOrderMediaOverlay(true);
-        videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_BALANCED);
-        NERtc.getInstance().setupRemoteVideoCanvas(videoView, userId);
+    protected void setupRemoteScreenRenderer(NERtcVideoView videoView, long userId) {
+        if (videoView != null) {
+            videoView.setTag("screen#" + userId);
+            videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
+
+        }
+        NERtcEx.getInstance().setupRemoteSubStreamVideoCanvas(videoView, userId);
     }
 
-    @Override
-    public void onUserJoined(long userId) {
-        for (NERtcVideoView videoView : remoteViewViews) {
-            if (videoView.getTag() == null) {
-                videoView.setTag(userId);
-                setupRemoteVideo(videoView, userId);
-                break;
+
+    private final SimpleNERtcCallbackEx simpleNERtcCallbackEx = new SimpleNERtcCallbackEx() {
+
+        @Override
+        public void onUserJoined(long userId) {
+
+        }
+
+        @Override
+        public void onUserLeave(long userId, int reason) {
+
+        }
+
+        /**
+         * 远端用户开启视频
+         */
+        @Override
+        public void onUserVideoStart(long userId, int profile) {
+            for (NERtcVideoView videoView : rendererViews) {
+                //设置画布并订阅
+                if (videoView.getTag() == null) {
+                    setupRemoteVideoRenderer(videoView, userId);
+                    NERtcEx.getInstance().subscribeRemoteVideoStream(userId, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
+                    return;
+                }
+            }
+            Log.e(TAG, "onUserVideoStart , uid : " + userId + " , but cannot find idle renderer");
+        }
+
+        /**
+         * 远端用户关闭视频
+         */
+        @Override
+        public void onUserVideoStop(long userId) {
+            String videoTag = "video#" + userId;
+            for (NERtcVideoView videoView : rendererViews) {
+                if (videoTag.equals(videoView.getTag())) {
+                    videoView.setTag(null);
+                    setupRemoteVideoRenderer(null, userId);
+                    return;
+                }
+            }
+
+        }
+
+        /**
+         * 远端用户开启屏幕共享
+         */
+        @Override
+        public void onUserSubStreamVideoStart(long userId, int maxProfile) {
+            for (NERtcVideoView videoView : rendererViews) {
+                //设置画布并订阅
+                if (videoView.getTag() == null) {
+                    setupRemoteScreenRenderer(videoView, userId);
+                    NERtcEx.getInstance().subscribeRemoteSubStreamVideo(userId, true);
+                    return;
+                }
+            }
+            Log.e(TAG, "onUserSubStreamVideoStart , uid : " + userId + " , but cannot find idle renderer");
+
+        }
+
+        /**
+         * 远端用户关闭屏幕共享
+         */
+        @Override
+        public void onUserSubStreamVideoStop(long userId) {
+            String screenTag = "screen#" + userId;
+            for (NERtcVideoView videoView : rendererViews) {
+                if (screenTag.equals(videoView.getTag())) {
+                    videoView.setTag(null);
+                    setupRemoteScreenRenderer(null, userId);
+                    return;
+                }
             }
         }
-    }
 
-    @Override
-    public void onUserLeave(long userId, int i) {
-        for (NERtcVideoView videoView : remoteViewViews) {
-            Object tag = videoView.getTag();
-            if (tag != null && tag.equals(userId)) {
-                videoView.setTag(null);
-                break;
-            }
+        @Override
+        public void onJoinChannel(int result, long channelId, long elapsed) {
+
         }
-    }
 
-    @Override
-    public void onUserVideoStart(long userId, int profile) {
-        NERtc.getInstance().subscribeRemoteVideoStream(userId, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
-    }
+        @Override
+        public void onLeaveChannel(int result) {
+            NERtcEx.getInstance().release();
+            finish();
+        }
 
-    @Override
-    public void onJoinChannel(int i, long l, long l1) {
+        @Override
+        public void onUserAudioStart(long userId) {
 
-    }
+        }
 
-    @Override
-    public void onLeaveChannel(int i) {
-        NERtc.getInstance().release();
-        finish();
-    }
+        @Override
+        public void onUserAudioStop(long userId) {
 
-    @Override
-    public void onUserAudioStart(long l) {
+        }
 
-    }
 
-    @Override
-    public void onUserAudioStop(long l) {
+        @Override
+        public void onDisconnect(int reason) {
+            NERtcEx.getInstance().release();
+            finish();
+        }
 
-    }
-
-    @Override
-    public void onUserVideoStop(long l) {
-
-    }
-
-    @Override
-    public void onDisconnect(int i) {
-
-    }
+    };
 }

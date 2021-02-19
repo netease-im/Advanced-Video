@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.netease.nmc.nertcsample" >
+    package="com.netease.nmc.nertcsample">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,27 +25,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
         <service
-            android:name="com.netease.lava.video.device.screencapture.ScreenShareService"
+            android:name=".SimpleScreenShareService"
             android:foregroundServiceType="mediaProjection">
             <intent-filter>
                 <action android:name="com.netease.Yunxin.ScreenShare" />
             </intent-filter>
         </service>
-        <activity android:name=".MainActivity"
+
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BasicActivity"
+
+        <activity
+            android:name=".BasicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ScreenShareActivity"
+
+        <activity
+            android:name=".ScreenShareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

@@ -4,4 +4,8 @@
     <string name="stop_screen_share">Stop Screen Share</string>
     <string name="screen_capture_min_sdk_version">screen capture require API >= 21</string>
     <string name="screen_capture_request_denied">screen capture request denied</string>
+    <string name="screen_capture_server_start_failed">screen capture server start failed</string>
+    <string name="screen_capture_server_is_null">screen capture server is null</string>
+    <string name="start_video">Start Video</string>
+    <string name="stop_video">Stop Video</string>
 </resources>
