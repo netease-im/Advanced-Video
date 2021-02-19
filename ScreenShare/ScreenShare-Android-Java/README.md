@@ -2,8 +2,7 @@
 
 ## 功能介绍
 
-这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现屏幕共享。
-- 将屏幕录制作为采集源
+这个开源示例项目演示了如何快速集成网易云信新一代（G2）音视频 SDK，并实现屏幕共享。
 
 ## 环境准备，运行示例项目，多人视频通话功能实现
 
@@ -12,19 +11,20 @@
 ### 开发注意事项
 
 - **MediaProjection** 等 API 需要 Android API level 21+，相关的使用方法请参考[Google MediaProjection API 文档](https://developer.android.com/reference/android/media/projection/MediaProjection)。
-- **Android 10** 及以后的版本屏幕共享系统要求开启一个前台服务，因此需要在AndroidManifest.xml中添加以下service，同时将 **compileSdkVersion** 设置为 29及以上。
+- **Android 10** 及以后的版本屏幕共享系统要求开启一个前台服务，因此需要自行添加一个前台Server(参考工程示例代码`SimpleScreenShareService`)并在AndroidManifest.xml做相关配置，同时将 **compileSdkVersion** 设置为 29及以上。
 
 ```xml
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" /><!-- 添加前台服务权限-->
+<!-- 添加前台服务权限-->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 <application>
     <service
-        android:name="com.netease.lava.video.device.screencapture.ScreenShareService"
-        android:foregroundServiceType="mediaProjection">
-        <intent-filter>
-            <action android:name="com.netease.Yunxin.ScreenShare" />
-        </intent-filter>
-    </service>
+            android:name="xxx.SimpleScreenShareService"
+            android:foregroundServiceType="mediaProjection">
+            <intent-filter>
+                <action android:name="com.netease.Yunxin.ScreenShare" />
+            </intent-filter>
+        </service>
 </application>
 ```
 
@@ -32,7 +32,7 @@
 
 ### 开启屏幕共享
 
-- 选择清晰度，**NERtcConstants.ScreenProfile** 提供清晰度定义
+- 选择清晰度，**NERtcConstants.VideoProfile** 提供清晰度定义
 - 获得屏幕录制请求结果Intent，具体查看[请求屏幕录制](#request_screen_capture)
 - 设置屏幕录制回调，用于接收录制结束事件
 
@@ -46,16 +46,20 @@
                 super.onStop();
             }
         };
+        
+        NERtcScreenConfig screenConfig = new NERtcScreenConfig();
         // 选择屏幕共享清晰度
-        int screenProfile = ScreenProfile.HD1080p;
+        screenProfile.videoProfile = NERtcConstants.VideoProfile.HD1080p;
+        // 选择屏幕共享帧率
+        screenProfile.frameRate = NERtcEncodeConfig.NERtcVideoFrameRate.FRAME_RATE_FPS_15;
+
         // 开启屏幕共享
-        int result = NERtcEx.getInstance().startScreenCapture(screenProfile,
-                mediaProjectionPermissionResultData, // 屏幕录制请求返回的Intent
-                mediaProjectionCallback);
+        int result = NERtcEx.getInstance().startScreenCapture(screenConfig,       mediaProjectionPermissionResultData,mediaProjectionCallback);
+
     }
 ```
 
-注意，调用 **startScreenCapture** API不需要先调用 **enableLocalVideo(false)**，如果启动成功，SDK会自动停止本地视频采集。
+注意，从3.9.0开始，屏幕共享与视频可以同时开启，两个互不干扰， **startScreenCapture**、**stopScreenCapture** 用于开关屏幕共享，  **enableLocalVideo()**，用于开关视频。
 
 ### 停止屏幕共享
 
@@ -63,12 +67,9 @@
     private void stopScreenCapture() {
         // 停止屏幕共享
         NERtcEx.getInstance().stopScreenCapture();
-        // 开启本地视频采集以及发送
-        NERtcEx.getInstance().enableLocalVideo(true);
+    
     }
 ```
-
-注意，调用 **stopScreenCapture** API后需要调用 **enableLocalVideo(true)**，重新启动本地视频采集。
 
 <span id="request_screen_capture"></span>
 ### 请求屏幕录制
@@ -78,9 +79,7 @@
 ```java
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private static Intent createScreenCaptureIntent(Context context) {
-        MediaProjectionManager manager =
-                (MediaProjectionManager) context.getSystemService(
-                        Context.MEDIA_PROJECTION_SERVICE);
+        MediaProjectionManager manager =(MediaProjectionManager) context.getSystemService(Context.MEDIA_PROJECTION_SERVICE);
         return manager.createScreenCaptureIntent();
     }
 ```

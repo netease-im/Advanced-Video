@@ -1,24 +1,51 @@
 package com.netease.nmc.nertcsample;
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.netease.lava.nertc.sdk.NERtcConstants.ScreenProfile;
+import androidx.annotation.Nullable;
+
+import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;
+import com.netease.lava.nertc.sdk.video.NERtcEncodeConfig;
+import com.netease.lava.nertc.sdk.video.NERtcScreenConfig;
 
 public class ScreenShareActivity extends BasicActivity {
+
     private static final int REQUEST_CODE_SCREEN_CAPTURE = 10000;
+    private static final String TAG = "ScreenShareActivity_Log";
+    private Button btnVideo;
+    private Button btnScreen;
 
-    private boolean started;
+    private boolean videoStarted;
+    private boolean screenStarted;
 
-    private Button button;
+    private ScreenShareServiceConnection mServiceConnection;
+    private SimpleScreenShareService mScreenService;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bindScreenService();
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindScreenService();
+        super.onDestroy();
+    }
 
     @Override
     protected int getPanelLayoutId() {
@@ -28,28 +55,48 @@ public class ScreenShareActivity extends BasicActivity {
     @Override
     protected void initPanelViews(View panel) {
         super.initPanelViews(panel);
+        btnVideo = panel.findViewById(R.id.btn_start_video);
+        btnScreen = panel.findViewById(R.id.btn_screen_share);
 
-        button = panel.findViewById(R.id.btn_screen_share);
-
-        button.setOnClickListener(view -> toggleScreenCapture());
+        btnVideo.setOnClickListener(view -> toggleLocalVideo());
+        btnScreen.setOnClickListener(view -> toggleScreenCapture());
     }
 
-    private void updateUI() {
-        button.setText(started ? R.string.stop_screen_share : R.string.start_screen_share);
+    private void updateBtnUI() {
+        btnVideo.setText(videoStarted ? R.string.stop_video : R.string.start_video);
+        btnScreen.setText(screenStarted ? R.string.stop_screen_share : R.string.start_screen_share);
+    }
+
+
+    protected void toggleLocalVideo() {
+        videoStarted = !videoStarted;
+        NERtcEx.getInstance().setupLocalVideoCanvas(videoStarted ? localVideoRenderer : null);
+        NERtcEx.getInstance().enableLocalVideo(videoStarted);
+        updateBtnUI();
     }
 
     private void toggleScreenCapture() {
-        if (!started) {
+        if (!screenStarted) {
             requestScreenCapture();
         } else {
             stopScreenCapture();
-            started = false;
-            updateUI();
+            screenStarted = false;
+            NERtcEx.getInstance().setupLocalSubStreamVideoCanvas(null);
+            updateBtnUI();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startScreenCapture(Intent mediaProjectionPermissionResultData) {
+
+        if (mScreenService == null) {
+            Toast.makeText(this, R.string.screen_capture_server_start_failed, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //todo 画布尺寸比例与实际屏幕共享分辨率比例不一致，可能存在截断，实际开发中调整好画布尺寸比例即可
+        NERtcEx.getInstance().setupLocalSubStreamVideoCanvas(localScreenRenderer);
+
         // 屏幕录制回调
         final MediaProjection.Callback mediaProjectionCallback = new MediaProjection.Callback() {
             @Override
@@ -57,23 +104,28 @@ public class ScreenShareActivity extends BasicActivity {
                 super.onStop();
             }
         };
-        // 选择屏幕共享清晰度
-        int screenProfile = ScreenProfile.HD1080p;
+
+        NERtcScreenConfig screenProfile = new NERtcScreenConfig();
+        screenProfile.videoProfile = NERtcConstants.VideoProfile.HD1080p;
+        screenProfile.frameRate = NERtcEncodeConfig.NERtcVideoFrameRate.FRAME_RATE_FPS_15;
         // 开启屏幕共享
-        int result = NERtcEx.getInstance().startScreenCapture(screenProfile,
+        int result = mScreenService.startScreenCapture(screenProfile,
                 mediaProjectionPermissionResultData, // 屏幕录制请求返回的Intent
                 mediaProjectionCallback);
-        if (result == 0) {
-            started = true;
-            updateUI();
+
+        if (result == NERtcConstants.ErrorCode.OK) {
+            screenStarted = true;
+            updateBtnUI();
         }
     }
 
     private void stopScreenCapture() {
+        if (mScreenService == null) {
+            Toast.makeText(this, R.string.screen_capture_server_is_null, Toast.LENGTH_SHORT).show();
+            return;
+        }
         // 停止屏幕共享
-        NERtcEx.getInstance().stopScreenCapture();
-        // 开启本地视频采集以及发送
-        NERtcEx.getInstance().enableLocalVideo(true);
+        mScreenService.stopScreenCapture();
     }
 
     private void requestScreenCapture() {
@@ -102,6 +154,36 @@ public class ScreenShareActivity extends BasicActivity {
             } else {
                 Toast.makeText(this, R.string.screen_capture_request_denied, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+
+    private void bindScreenService() {
+        Intent intent = new Intent();
+        intent.setClass(this, SimpleScreenShareService.class);
+        mServiceConnection = new ScreenShareServiceConnection();
+        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindScreenService() {
+        if (mServiceConnection != null) {
+            unbindService(mServiceConnection);
+        }
+    }
+
+    private class ScreenShareServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+
+            if (service instanceof SimpleScreenShareService.ScreenShareBinder) {
+                mScreenService = ((SimpleScreenShareService.ScreenShareBinder) service).getService();
+                Log.i(TAG, "onServiceConnect");
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            mScreenService = null;
         }
     }
 }

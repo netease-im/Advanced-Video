@@ -1,53 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vv_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/vv_container"
-    android:padding="@dimen/spacing"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+    android:padding="@dimen/spacing">
 
-    <com.netease.lava.nertc.sdk.video.NERtcVideoView
-        android:id="@+id/vv_local_user"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="@string/video_view_ratio"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/vv_remote_user1" />
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <com.netease.lava.nertc.sdk.video.NERtcVideoView
-        android:id="@+id/vv_remote_user1"
-        android:layout_width="0dp"
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_local_video_renderer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_local_screen_renderer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="@string/video_view_ratio"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/vv_local_user"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/spacing"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="@dimen/spacing"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <com.netease.lava.nertc.sdk.video.NERtcVideoView
-        android:id="@+id/vv_remote_user2"
-        android:layout_width="0dp"
+
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_remote_renderer_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_remote_renderer_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="@string/video_view_ratio"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/vv_remote_user3"
-        app:layout_constraintTop_toBottomOf="@id/vv_local_user"
-        android:layout_marginTop="@dimen/spacing" />
+        android:layout_marginTop="@dimen/spacing"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <com.netease.lava.nertc.sdk.video.NERtcVideoView
-        android:id="@+id/vv_remote_user3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="@string/video_view_ratio"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/vv_remote_user2"
-        android:layout_marginStart="@dimen/spacing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vv_local_user"
-        android:layout_marginTop="@dimen/spacing" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_remote_renderer_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.netease.lava.nertc.sdk.video.NERtcVideoView
+            android:id="@+id/vv_remote_renderer_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>
