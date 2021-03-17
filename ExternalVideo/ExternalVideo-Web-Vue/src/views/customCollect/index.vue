@@ -63,6 +63,8 @@
                 max: 4,
                 uploadStream: null,
                 customStream: null,
+                canvas: null,
+                canvasTimer: null
             };
         },
         mounted() {
@@ -271,6 +273,9 @@
             },
             handleOver() {
                 console.warn('离开房间');
+                clearInterval(this.canvasTimer)
+                this.canvasTimer = null
+                this.canvas = null
                 this.client.leave();
                 this.returnJoin(1);
             },
@@ -288,11 +293,14 @@
                     const videoDom = document.createElement('video');
                     videoDom.autoplay = 'autoplay';
                     videoDom.loop = true;
-                    videoDom.muted = true;
                     videoDom.src = e.target.result;
+                    //如果不要音频，可以设置muted
+                    //videoDom.muted = true;
+
                     videoDom.oncanplay = e => {
                         let stream = null
-                        if (videoDom.captureStream) {
+                        //chrome 88版本 video标签的captureStream有bug，webrtc发送失败
+                        /*if (videoDom.captureStream) {
                             stream = videoDom.captureStream();
                             console.log('Captured stream from videoDom with captureStream', stream);
                         } else if (videoDom.mozCaptureStream) {
@@ -300,10 +308,22 @@
                             console.log('Captured stream from videoDom with mozCaptureStream()', stream);
                         } else {
                             console.log('captureStream() not supported');
-                        }
+                        }*/
+                        console.log('触发了 播放事件')
+                        //用anvas容器代替video标签
+                        this.canvas = document.createElement('canvas')
+                        this.canvas.width = videoDom.videoWidth
+                        this.canvas.height = videoDom.videoHeight
+                        this.canvasTimer = setInterval(() => {
+                            this.canvas.getContext('2d').drawImage(videoDom, 0, 0, this.canvas.width, this.canvas.height)
+                        }, 50)
+
+                        stream = this.canvas.captureStream()
                         if (stream) {
                             this.uploadStream = stream
                         }
+                        //循环播放会重复触发oncanplay事件
+                        videoDom.oncanplay = null
                     }
                     videoDom.play();
                 })
@@ -318,6 +338,9 @@
                         this.localStream.stop();
                         this.localStream.destroy();
                         this.localStream = null;
+                        clearInterval(this.canvasTimer)
+                        this.canvasTimer = null
+                        this.canvas = null
                         console.info('停止推送自定义流成功！');
                     }).catch(err => {
                         console.error('停止推送自定义流失败: ', err);
