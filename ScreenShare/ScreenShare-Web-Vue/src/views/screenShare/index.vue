@@ -113,6 +113,12 @@
                     });
             });
 
+            // 监听分享关闭事件
+            this.client.on('stopScreenSharing', () => {
+                console.warn('屏幕共享已经停止');
+                this.closeShare();
+            });
+
             this.getToken().then(token => {
                 this.joinChannel(token)
             }).catch(e => {
@@ -180,12 +186,6 @@
                     audio: true, //是否启动mic
                     video: true, //是否启动camera
                     screen: false, //是否启动屏幕共享
-                });
-
-                // 监听分享关闭事件
-                this.localStream.on('stopScreenSharing', () => {
-                    console.warn('屏幕共享已经停止');
-                    this.closeShare();
                 });
 
                 //设置本地视频质量
