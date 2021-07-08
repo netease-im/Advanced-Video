@@ -136,12 +136,12 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         NERtcEx.getInstance().setParameters(parameters); //先设置参数，后初始化
 
         try {
-            NERtcEx.getInstance().init(getApplicationContext(), NativeConfig.getAppKey(), this, null);
+            NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, null);
         } catch (Exception e) {
             // 可能由于没有release导致初始化失败，release后再试一次
             NERtcEx.getInstance().release();
             try {
-                NERtcEx.getInstance().init(getApplicationContext(), NativeConfig.getAppKey(), this, null);
+                NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, null);
             } catch (Exception ex) {
                 Toast.makeText(this, "SDK初始化失败", Toast.LENGTH_LONG).show();
                 finish();
@@ -284,6 +284,11 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         if (reason != NERtcConstants.ErrorCode.OK) {
             finish();
         }
+    }
+
+    @Override
+    public void onClientRoleChange(int old, int newRole) {
+        Log.i(TAG, "onUserAudioStart old: " + old + ", newRole : " + newRole);
     }
 
     /**
