@@ -6,6 +6,6 @@ target 'MediaStats-iOS-ObjC' do
   use_frameworks!
 
   # Pods for MediaStats-iOS-Objc
-  pod 'NERtcSDK', '~> 3.6.2'
+  pod 'NERtcSDK', '4.3.0'
 
 end

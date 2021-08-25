@@ -69,15 +69,23 @@
 
 - (void)onLocalVideoStat:(NERtcVideoSendStats *)stat
 {
-    self.localResolutionLabel.text = [NSString stringWithFormat:@"%@x%@",@(stat.encodedFrameHeight),@(stat.encodedFrameWidth)];
-    self.localFrameRateLabel.text = [NSString stringWithFormat:@"%@fps", @(stat.sentFrameRate)];
+    NERtcVideoLayerSendStats *videoLayerSendStats = stat.videoLayers.lastObject;
+    if (!videoLayerSendStats)
+        return;
+    
+    self.localResolutionLabel.text = [NSString stringWithFormat:@"%@x%@",@(videoLayerSendStats.height),@(videoLayerSendStats.width)];
+    self.localFrameRateLabel.text = [NSString stringWithFormat:@"%@fps", @(videoLayerSendStats.sentFrameRate)];
 }
 
 - (void)onRemoteVideoStats:(NSArray<NERtcVideoRecvStats *> *)stats
 {
     NERtcVideoRecvStats *stat = stats.lastObject;
-    self.remoteResolutionLabel.text = [NSString stringWithFormat:@"%@x%@",@(stat.height),@(stat.width)];
-    self.remoteFrameRateLabel.text = [NSString stringWithFormat:@"%@fps", @(stat.rendererOutputFrameRate)];
+    NERtcVideoLayerRecvStats *videoLayerRecvStats = stat.videoLayers.lastObject;
+    if (!videoLayerRecvStats)
+        return;
+    
+    self.remoteResolutionLabel.text = [NSString stringWithFormat:@"%@x%@",@(videoLayerRecvStats.height),@(videoLayerRecvStats.width)];
+    self.remoteFrameRateLabel.text = [NSString stringWithFormat:@"%@fps", @(videoLayerRecvStats.rendererOutputFrameRate)];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -93,7 +101,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

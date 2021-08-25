@@ -130,7 +130,7 @@
 }
 
 - (IBAction)onStatsClick:(id)sender {
-    [self.navigationController pushViewController:self.statsViewController animated:YES];
+    [self presentViewController:self.statsViewController animated:YES completion:nil];
 }
 
 #pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）

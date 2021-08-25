@@ -59,7 +59,7 @@
     context.engineDelegate = self;
     context.appKey = kAppKey;
     [coreEngine setupEngineWithContext:context];
-    [coreEngine setExternalVideoSource:YES];
+    [coreEngine setExternalVideoSource:YES isScreen:NO];
     [coreEngine enableLocalAudio:YES];
     [coreEngine enableLocalVideo:YES];
 }
