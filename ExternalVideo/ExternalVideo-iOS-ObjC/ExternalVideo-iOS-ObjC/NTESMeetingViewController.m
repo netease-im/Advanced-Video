@@ -39,8 +39,6 @@
 
 - (void)dealloc
 {
-    [NERtcEngine.sharedEngine leaveChannel];
-    [NERtcEngine destroyEngine];
 }
 
 - (void)setupUI
@@ -110,7 +108,6 @@
         self.videoReader.delegate = self;
         [self.videoReader startReading];
     }
-
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -152,6 +149,15 @@
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     imagePicker.mediaTypes = @[(__bridge NSString *)kUTTypeMovie, (__bridge NSString *)kUTTypeVideo];
     [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (IBAction)onLeaveMeeting:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [NERtcEngine.sharedEngine leaveChannel];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 @end

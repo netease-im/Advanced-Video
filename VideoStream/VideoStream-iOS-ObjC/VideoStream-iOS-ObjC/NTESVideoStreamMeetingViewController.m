@@ -31,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationItem setHidesBackButton:YES];
     self.configButton.layer.cornerRadius = 8;
     self.hungupButton.layer.cornerRadius = 8;
     self.title = [NSString stringWithFormat:@"Room %@", self.roomID];
@@ -51,6 +53,9 @@
         }
     }
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 - (void)setupRTCEngine
@@ -174,7 +179,9 @@
         if (ret != 0) {
             NSLog(@"移除任务失败");
         }
-
+    }
+    else {
+        [NERtcEngine.sharedEngine leaveChannel];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
