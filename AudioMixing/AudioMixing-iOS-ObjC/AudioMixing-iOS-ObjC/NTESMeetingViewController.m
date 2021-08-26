@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Leave" style:UIBarButtonItemStylePlain target:self action:@selector(onBackAction:)];;
     self.title = [NSString stringWithFormat:@"Room %@", self.roomID];
     [self setupRTCEngine];
     [self joinCurrentRoom];
@@ -33,10 +34,6 @@
 
 - (void)dealloc
 {
-    [NERtcEngine.sharedEngine leaveChannel];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [NERtcEngine destroyEngine];
-    });
 }
 
 - (void)setupRTCEngine
@@ -101,6 +98,16 @@
     [self.view addSubview:_playerManager.view];
     [self.view addSubview:_playerManager.maskView];
     [self.view addSubview:_playerManager.audioPanelView];
+}
+
+
+- (void)onBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [NERtcEngine.sharedEngine leaveChannel];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 @end

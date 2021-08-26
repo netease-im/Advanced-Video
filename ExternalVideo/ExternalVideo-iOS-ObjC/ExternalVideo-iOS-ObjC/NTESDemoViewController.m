@@ -68,6 +68,4 @@
     return shouldJoin;
 }
 
-- (IBAction)unwind:(UIStoryboardSegue *)segue {}
-
 @end

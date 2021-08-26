@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Leave" style:UIBarButtonItemStylePlain target:self action:@selector(onBackAction:)];
     self.title = [NSString stringWithFormat:@"Room %@", self.roomID];
     self.userList = [NSMutableArray arrayWithObject:@(self.userID)];
     [self setupRTCEngine];
@@ -33,15 +34,6 @@
 
 - (void)dealloc
 {
-    [NERtcEngine.sharedEngine leaveChannel];
-    if (self.liveStreamTask) {
-        int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
-            NSLog(@"移除任务[%@] error = %@",taskId, NERtcErrorDescription(errorCode));
-        }];
-        if (ret != 0) {
-            NSLog(@"移除任务失败");
-        }
-    }
 }
 
 - (void)setupRTCEngine
@@ -187,6 +179,24 @@
         [self reloadUsers];
         [self updateLiveStream];
     }
+}
+
+#pragma mark - Actions
+- (void)onBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [NERtcEngine.sharedEngine leaveChannel];
+    if (self.liveStreamTask) {
+        int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+            NSLog(@"移除任务[%@] error = %@",taskId, NERtcErrorDescription(errorCode));
+        }];
+        if (ret != 0) {
+            NSLog(@"移除任务失败");
+        }
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 @end

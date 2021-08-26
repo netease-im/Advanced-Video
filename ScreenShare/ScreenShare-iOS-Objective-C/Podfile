@@ -6,7 +6,7 @@ target 'NERtcSample-ScreenShare-iOS-Objective-C' do
   use_frameworks!
 
   # Pods for NERtcSample-ScreenShare-iOS-Objective-C
-  pod 'NERtcSDK', '4.0.3'
+  pod 'NERtcSDK', '4.3.8'
 
 
 end

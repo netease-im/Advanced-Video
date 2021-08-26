@@ -33,7 +33,6 @@
 @implementation NTESDemoP2PViewController
 
 - (void)dealloc {
-    [NERtcEngine destroyEngine]; //销毁SDK
 }
 
 - (void)viewDidLoad {
@@ -108,8 +107,11 @@
 #pragma mark - Actions
 //UI 挂断按钮事件
 - (IBAction)onHungupAction:(UIButton *)sender {
-    [NERtcEngine.sharedEngine leaveChannel];
     [self dismiss];
+    [NERtcEngine.sharedEngine leaveChannel];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NERtcEngine destroyEngine];
+    });
 }
 
 //UI 切换摄像头按钮事件
@@ -130,7 +132,7 @@
 }
 
 - (IBAction)onStatsClick:(id)sender {
-    [self.navigationController pushViewController:self.statsViewController animated:YES];
+    [self presentViewController:self.statsViewController animated:YES completion:nil];
 }
 
 #pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
