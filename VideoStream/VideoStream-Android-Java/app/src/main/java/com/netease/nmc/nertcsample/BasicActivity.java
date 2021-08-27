@@ -44,12 +44,6 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        NERtc.getInstance().release();
-    }
-
-    @Override
     public void onBackPressed() {
         leaveChannel();
     }
@@ -153,6 +147,7 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
 
     @Override
     public void onLeaveChannel(int i) {
+        NERtc.getInstance().release();
         finish();
     }
 
