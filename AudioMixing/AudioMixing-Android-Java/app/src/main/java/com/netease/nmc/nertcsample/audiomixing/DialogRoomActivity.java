@@ -1,6 +1,10 @@
 package com.netease.nmc.nertcsample.audiomixing;
 
 
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PAUSED;
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PLAYING;
+import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_STOPPED;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,13 +15,12 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtcConstants;
+import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.audio.NERtcCreateAudioEffectOption;
 import com.netease.lava.nertc.sdk.audio.NERtcCreateAudioMixingOption;
 
@@ -26,10 +29,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PAUSED;
-import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_PLAYING;
-import static com.netease.nmc.nertcsample.audiomixing.DialogRoomActivity.AudioMixingPlayState.STATE_STOPPED;
 
 
 public class DialogRoomActivity extends BasicActivity implements AudioControlDialog.DialogActionsCallBack {
@@ -74,7 +73,7 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
     public void setMusicPlay(int index) {
         musicIndex = index;
         playMusicState = STATE_STOPPED;
-        neRtcEx.stopAudioMixing();
+        NERtcEx.getInstance().stopAudioMixing();
         if (controlDialog != null) {
             if (index == 0) {
                 controlDialog.setTextViewSelected(AudioControlDialog.TV_MUSIC_1, switchMusicState());
@@ -87,8 +86,8 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
     @Override
     public void onMusicVolumeChange(int progress) {
         audioMixingVolume = progress;
-        neRtcEx.setAudioMixingSendVolume(progress);
-        neRtcEx.setAudioMixingPlaybackVolume(progress);
+        NERtcEx.getInstance().setAudioMixingSendVolume(progress);
+        NERtcEx.getInstance().setAudioMixingPlaybackVolume(progress);
     }
 
     @Override
@@ -102,15 +101,15 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
         //sample 中简单实用一个seekbar 控制所有effect的音量
         for (int i = 0; i < index.length; i++) {
             if (index[i] == 1) {
-                neRtcEx.setEffectSendVolume(index2Id(i), audioEffectVolume);
-                neRtcEx.setEffectPlaybackVolume(index2Id(i), audioEffectVolume);
+                NERtcEx.getInstance().setEffectSendVolume(index2Id(i), audioEffectVolume);
+                NERtcEx.getInstance().setEffectPlaybackVolume(index2Id(i), audioEffectVolume);
             }
         }
     }
 
     @Override
     public boolean stopEffect(int index) {
-        if (neRtcEx.stopEffect(index2Id(index)) == 0) {
+        if (NERtcEx.getInstance().stopEffect(index2Id(index)) == 0) {
             if (effectIndex != null) {
                 effectIndex[index] = 0;
             }
@@ -211,7 +210,7 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
             musicIndex = 0;
         }
         playMusicState = STATE_STOPPED;
-        neRtcEx.stopAudioMixing();
+        NERtcEx.getInstance().stopAudioMixing();
         if (switchMusicState()) {
             Toast.makeText(this, "已经播放下一首", Toast.LENGTH_SHORT).show();
             if (controlDialog != null) {
@@ -237,10 +236,10 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
         int result;
         if (stateOld == STATE_PLAYING) {
             stateNew = STATE_PAUSED;
-            result = neRtcEx.pauseAudioMixing();
+            result = NERtcEx.getInstance().pauseAudioMixing();
         } else if (stateOld == STATE_PAUSED) {
             stateNew = STATE_PLAYING;
-            result = neRtcEx.resumeAudioMixing();
+            result = NERtcEx.getInstance().resumeAudioMixing();
         } else {
             stateNew = STATE_PLAYING;
             NERtcCreateAudioMixingOption option = new NERtcCreateAudioMixingOption();
@@ -248,7 +247,7 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
             option.playbackVolume = audioMixingVolume;
             option.sendVolume = audioMixingVolume;
             option.loopCount = 1;
-            result = neRtcEx.startAudioMixing(option);
+            result = NERtcEx.getInstance().startAudioMixing(option);
         }
         if (result == 0) {
             playMusicState = stateNew;
@@ -308,12 +307,12 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
         option.playbackVolume = audioEffectVolume;
         option.sendVolume = audioEffectVolume;
         option.loopCount = 1;
-        neRtcEx.stopEffect(index2Id(index));
+        NERtcEx.getInstance().stopEffect(index2Id(index));
         if (effectIndex == null) {
             effectIndex = new int[2];
         }
         effectIndex[index] = 1;
-        return neRtcEx.playEffect(index2Id(index), option) == 0;
+        return NERtcEx.getInstance().playEffect(index2Id(index), option) == 0;
     }
 
     @Override
@@ -435,7 +434,7 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
     @Override
     protected void leaveChannel() {
         stopAllEffects();
-        neRtcEx.stopAudioMixing();
+        NERtcEx.getInstance().stopAudioMixing();
         super.leaveChannel();
     }
 
@@ -446,7 +445,7 @@ public class DialogRoomActivity extends BasicActivity implements AudioControlDia
         if (effectIndex != null) {
             for (int index = 0; index < effectIndex.length; index++) {
                 if (effectIndex[index] == 1) {
-                    neRtcEx.stopEffect(index2Id(index));
+                    NERtcEx.getInstance().stopEffect(index2Id(index));
                 }
             }
         }

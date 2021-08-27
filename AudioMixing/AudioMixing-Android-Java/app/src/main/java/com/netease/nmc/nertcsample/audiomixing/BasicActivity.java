@@ -1,5 +1,6 @@
 package com.netease.nmc.nertcsample.audiomixing;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
@@ -8,13 +9,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.netease.audiomixing.BuildConfig;
 import com.netease.audiomixing.R;
 import com.netease.lava.nertc.sdk.NERtcCallbackEx;
 import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;
+import com.netease.lava.nertc.sdk.NERtcOption;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.stats.NERtcAudioVolumeInfo;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
+import com.netease.lava.nertc.sdk.video.NERtcVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 
 import java.util.ArrayList;
@@ -28,8 +32,6 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
     private NERtcVideoView localVideoView;
     private List<NERtcVideoView> remoteViewViews = new ArrayList<>();
     
-    protected NERtcEx neRtcEx;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,6 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
         long userId = getIntent().getLongExtra(USER_ID, -1);
 
         setContentView(R.layout.activity_group_video_call);
-        neRtcEx = NERtcEx.getInstance();
 
         initVideoViews();
         initPanelViews();
@@ -90,11 +91,20 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
 
     private void setupNERtc() {
         NERtcParameters parameters = new NERtcParameters();
-        neRtcEx.setParameters(parameters); //先设置参数，后初始化
+        NERtcEx.getInstance().setParameters(parameters); //先设置参数，后初始化
+
+        NERtcOption options = new NERtcOption();
+
+        if (BuildConfig.DEBUG) {
+            options.logLevel = NERtcConstants.LogLevel.INFO;
+        } else {
+            options.logLevel = NERtcConstants.LogLevel.WARNING;
+        }
+
         try {
-            neRtcEx.init(getApplicationContext(), NativeConfig.getAppKey(), this, null);
-            neRtcEx.enableLocalAudio(true);
-            neRtcEx.enableLocalVideo(true);
+            NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, options);
+            NERtcEx.getInstance().enableLocalAudio(true);
+            NERtcEx.getInstance().enableLocalVideo(true);
         } catch (Exception e) {
             Toast.makeText(this, "SDK初始化失败", Toast.LENGTH_LONG).show();
             finish();
@@ -102,24 +112,24 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
     }
 
     protected void joinChannel(long userId, String roomId) {
-        neRtcEx.joinChannel("", roomId, userId);
+        NERtcEx.getInstance().joinChannel("", roomId, userId);
     }
 
     protected void leaveChannel() {
-        neRtcEx.leaveChannel();
+        NERtcEx.getInstance().leaveChannel();
     }
 
     protected void setupLocalVideo(NERtcVideoView videoView) {
         videoView.setZOrderMediaOverlay(true);
         videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_BALANCED);
-        neRtcEx.setupLocalVideoCanvas(videoView);
+        NERtcEx.getInstance().setupLocalVideoCanvas(videoView);
         videoView.setVisibility(View.VISIBLE);
     }
 
     protected void setupRemoteVideo(NERtcVideoView videoView, long userId) {
         videoView.setZOrderMediaOverlay(true);
         videoView.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_BALANCED);
-        neRtcEx.setupRemoteVideoCanvas(videoView, userId);
+        NERtcEx.getInstance().setupRemoteVideoCanvas(videoView, userId);
         videoView.setVisibility(View.VISIBLE);
     }
 
@@ -147,7 +157,7 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
 
     @Override
     public void onUserVideoStart(long userId, int profile) {
-        neRtcEx.subscribeRemoteVideoStream(userId, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
+        NERtcEx.getInstance().subscribeRemoteVideoStream(userId, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
     }
 
     @Override
@@ -157,7 +167,7 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
 
     @Override
     public void onLeaveChannel(int i) {
-        neRtcEx.release();
+        NERtcEx.getInstance().release();
         finish();
     }
 
@@ -178,6 +188,21 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
 
     @Override
     public void onDisconnect(int i) {
+
+    }
+
+    @Override
+    public void onClientRoleChange(int i, int i1) {
+
+    }
+
+    @Override
+    public void onUserSubStreamVideoStart(long l, int i) {
+
+    }
+
+    @Override
+    public void onUserSubStreamVideoStop(long l) {
 
     }
 
@@ -237,6 +262,11 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
     }
 
     @Override
+    public void onReconnectingStart() {
+
+    }
+
+    @Override
     public void onReJoinChannel(int i, long l) {
 
     }
@@ -272,12 +302,57 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallbackEx 
     }
 
     @Override
+    public void onConnectionStateChanged(int i, int i1) {
+
+    }
+
+    @Override
+    public void onCameraFocusChanged(Rect rect) {
+
+    }
+
+    @Override
+    public void onCameraExposureChanged(Rect rect) {
+
+    }
+
+    @Override
+    public void onRecvSEIMsg(long l, String s) {
+
+    }
+
+    @Override
+    public void onAudioRecording(int i, String s) {
+
+    }
+
+    @Override
     public void onError(int i) {
 
     }
 
     @Override
     public void onWarning(int i) {
+
+    }
+
+    @Override
+    public void onMediaRelayStatesChange(int i, String s) {
+
+    }
+
+    @Override
+    public void onMediaRelayReceiveEvent(int i, int i1, String s) {
+
+    }
+
+    @Override
+    public void onLocalPublishFallbackToAudioOnly(boolean b, NERtcVideoStreamType neRtcVideoStreamType) {
+
+    }
+
+    @Override
+    public void onRemoteSubscribeFallbackToAudioOnly(long l, boolean b, NERtcVideoStreamType neRtcVideoStreamType) {
 
     }
 }
