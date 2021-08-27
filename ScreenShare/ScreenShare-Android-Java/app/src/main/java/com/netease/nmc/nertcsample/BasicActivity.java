@@ -3,7 +3,6 @@ package com.netease.nmc.nertcsample;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;
+import com.netease.lava.nertc.sdk.NERtcOption;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BasicActivity extends AppCompatActivity {
 
-    private static final String TAG = "BasicActivity_TAG";
+    private static final String TAG = "BasicActivity";
 
     private Handler uiHandler;
     private List<NERtcVideoView> rendererViews = new ArrayList<>();
@@ -97,8 +97,17 @@ public class BasicActivity extends AppCompatActivity {
         NERtcParameters parameters = new NERtcParameters();
         //先设置参数，后初始化
         NERtcEx.getInstance().setParameters(parameters);
+
+        NERtcOption options = new NERtcOption();
+
+        if (BuildConfig.DEBUG) {
+            options.logLevel = NERtcConstants.LogLevel.INFO;
+        } else {
+            options.logLevel = NERtcConstants.LogLevel.WARNING;
+        }
+
         try {
-            NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), simpleNERtcCallbackEx, null);
+            NERtcEx.getInstance().init(getApplicationContext(), getString(R.string.app_key), simpleNERtcCallbackEx, options);
             NERtcEx.getInstance().enableLocalAudio(true);
 //            enableLocalVideo(true);
         } catch (Exception e) {
