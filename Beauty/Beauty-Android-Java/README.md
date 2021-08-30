@@ -11,10 +11,14 @@
 包括云信环境和第三方美颜解决方案相芯环境
 ### 云信环境
 1. 这个开源示例项目基于一对一视频通话，关于云信**环境准备**，**运行示例项目**，**功能实现**章节请参考[1对1音视频通话](https://github.com/netease-im/Basic-Video-Call/tree/master/One-to-One-Video/NERtcSample-1to1-Android-Java)
-2. 本例中 将AppKey填写在config.cpp文件中
+
+2. 将App Key填写进 "app/src/main/res/values/app_key.xml"
+
 ```
-std::string appKey = "set you APP key here";
+<!-- 替换为你自己的AppKey -->
+<string name="app_key">YOUR APP KEY</string>
 ```
+
 ### 获取相芯SDK 的证书
 
 1.由于本sample美颜的功能是使用相芯SDK实现的。所以您在使用前需要的获取相芯的证书。

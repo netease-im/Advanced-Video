@@ -4,49 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/meeting_background"
-    tools:context="com.netease.nmc.nertcsample.beauty.MeetingActivity">
+    android:background="@color/meeting_background">
 
+    <View
+        android:id="@+id/v_function_container"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
+    <ImageButton
+        android:id="@+id/ib_audio"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/meeting_background"
+        android:contentDescription="@string/leave_room"
+        android:src="@drawable/selector_meeting_mute"
+        app:layout_constraintBottom_toBottomOf="@id/v_function_container"
+        app:layout_constraintEnd_toStartOf="@id/ib_leave"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@id/v_function_container"
+        app:layout_constraintTop_toTopOf="@id/v_function_container" />
+
+    <ImageButton
+        android:id="@+id/ib_leave"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/meeting_background"
+        android:contentDescription="@string/leave_room"
+        android:src="@drawable/selector_meeting_leave"
+        app:layout_constraintBottom_toBottomOf="@id/v_function_container"
+        app:layout_constraintEnd_toStartOf="@id/ib_video"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/ib_audio"
+        app:layout_constraintTop_toTopOf="@id/v_function_container" />
+
+    <ImageButton
+        android:id="@+id/ib_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/meeting_background"
+        android:contentDescription="@string/leave_room"
+        android:src="@drawable/selector_meeting_close_video"
+        app:layout_constraintBottom_toBottomOf="@id/v_function_container"
+        app:layout_constraintEnd_toEndOf="@id/v_function_container"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/ib_leave"
+        app:layout_constraintTop_toTopOf="@id/v_function_container" />
 
 
     <com.netease.lava.nertc.sdk.video.NERtcVideoView
         android:id="@+id/vv_remote_user"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/v_function_container"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_open_beauty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_leave"
-        android:layout_marginBottom="@dimen/main_margin_side"
-        android:padding="@dimen/text_padding_size"
-        android:paddingStart="@dimen/text_padding_side_size"
-        android:paddingEnd="@dimen/text_padding_side_size"
-        android:background="@drawable/shape_main_btn_join"
-        android:text="@string/open_beauty"
-        android:textSize="@dimen/text_size"
-        android:textColor="@color/white"/>
-
-    <TextView
-        android:id="@+id/tv_leave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_open_beauty"
-        android:layout_marginBottom="@dimen/main_margin_side"
-        android:padding="@dimen/text_padding_size"
-        android:paddingStart="@dimen/text_padding_side_size"
-        android:paddingEnd="@dimen/text_padding_side_size"
-        android:background="@drawable/shape_btn_leave"
-        android:text="@string/leave_room"
-        android:textSize="@dimen/text_size"
-        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/tv_wait_hint"
@@ -88,5 +99,23 @@
         android:src="@mipmap/ic_camera_flip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.faceunity.nama.ui.FaceUnityView
+        android:id="@+id/fu_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/ib_audio"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_fps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="0"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_camera_flip"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
