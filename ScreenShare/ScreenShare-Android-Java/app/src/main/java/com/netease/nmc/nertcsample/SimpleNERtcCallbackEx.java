@@ -4,6 +4,7 @@ import android.graphics.Rect;
 
 import com.netease.lava.nertc.sdk.NERtcCallbackEx;
 import com.netease.lava.nertc.sdk.stats.NERtcAudioVolumeInfo;
+import com.netease.lava.nertc.sdk.video.NERtcVideoStreamType;
 
 public class SimpleNERtcCallbackEx implements NERtcCallbackEx {
 
@@ -128,12 +129,42 @@ public class SimpleNERtcCallbackEx implements NERtcCallbackEx {
     }
 
     @Override
+    public void onRecvSEIMsg(long l, String s) {
+
+    }
+
+    @Override
+    public void onAudioRecording(int i, String s) {
+
+    }
+
+    @Override
     public void onError(int i) {
 
     }
 
     @Override
     public void onWarning(int i) {
+
+    }
+
+    @Override
+    public void onMediaRelayStatesChange(int i, String s) {
+
+    }
+
+    @Override
+    public void onMediaRelayReceiveEvent(int i, int i1, String s) {
+
+    }
+
+    @Override
+    public void onLocalPublishFallbackToAudioOnly(boolean b, NERtcVideoStreamType neRtcVideoStreamType) {
+
+    }
+
+    @Override
+    public void onRemoteSubscribeFallbackToAudioOnly(long l, boolean b, NERtcVideoStreamType neRtcVideoStreamType) {
 
     }
 

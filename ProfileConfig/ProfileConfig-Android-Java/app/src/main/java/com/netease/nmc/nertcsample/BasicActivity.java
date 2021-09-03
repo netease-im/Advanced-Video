@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.netease.lava.nertc.sdk.NERtc;
 import com.netease.lava.nertc.sdk.NERtcCallback;
 import com.netease.lava.nertc.sdk.NERtcConstants;
+import com.netease.lava.nertc.sdk.NERtcOption;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
@@ -73,8 +74,16 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
     protected void setupNERtc() {
         NERtcParameters parameters = new NERtcParameters();
         NERtc.getInstance().setParameters(parameters); //先设置参数，后初始化
+
+        NERtcOption options = new NERtcOption();
+        if (BuildConfig.DEBUG) {
+            options.logLevel = NERtcConstants.LogLevel.INFO;
+        } else {
+            options.logLevel = NERtcConstants.LogLevel.WARNING;
+        }
+
         try {
-            NERtc.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, null);
+            NERtc.getInstance().init(getApplicationContext(), getString(R.string.app_key), this, options);
             NERtc.getInstance().enableLocalAudio(true);
             NERtc.getInstance().enableLocalVideo(true);
         } catch (Exception e) {
@@ -158,6 +167,11 @@ public class BasicActivity extends AppCompatActivity implements NERtcCallback {
 
     @Override
     public void onDisconnect(int i) {
+
+    }
+
+    @Override
+    public void onClientRoleChange(int i, int i1) {
 
     }
 }

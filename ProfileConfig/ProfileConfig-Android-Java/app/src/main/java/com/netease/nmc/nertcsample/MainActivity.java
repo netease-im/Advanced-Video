@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-//            SampleLauncher.startBasic(this, roomId, userId);
             SampleLauncher.startProfileConfig(this, roomId, userId);
 
             hideSoftKeyboard();

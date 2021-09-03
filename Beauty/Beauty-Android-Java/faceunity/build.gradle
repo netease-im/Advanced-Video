@@ -1,38 +1,27 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 730
+        versionName "7.3.0"
+        // 7_1_0_phy_5cadfa8_f92de5b
     }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    packagingOptions {
-        pickFirst 'lib/x86_64/libCNamaSDK.so'
-    }
-
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-//    implementation 'com.faceunity:nama:7.1.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidXConstraintlayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidXRecyclerviewVersion"
+    implementation "com.faceunity:nama:$faceunityVersion"
 }

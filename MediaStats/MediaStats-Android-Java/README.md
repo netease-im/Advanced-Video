@@ -5,7 +5,7 @@
 ## 环境准备，运行示例项目，一对一通话功能实现
 1. 这个开源示例项目基于一对一视频通话，关于**环境准备**，**运行示例项目**，**功能实现**章节请参考[1对1音视频通话](https://github.com/netease-im/Basic-Video-Call/tree/master/One-to-One-Video/NERtcSample-1to1-Android-Java)
 
-2. 将AppID 填写进 "app/src/main/res/values/strings.xml"
+2. 将App Key填写进 "app/src/main/res/values/app_key.xml"
 
 ```
 <!-- 替换为你自己的AppKey -->

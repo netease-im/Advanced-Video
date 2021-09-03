@@ -18,23 +18,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters "arm64-v8a", "armeabi-v7a", "x86"
-            }
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    externalNativeBuild {
-        cmake {
-            version "3.6.0"
-            path "src/main/cpp/CMakeLists.txt"
-        }
-    }
-    ndkVersion '21.3.6528147'
 }
 
 dependencies {
@@ -44,6 +33,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.netease.yunxin:nertc:3.6.0'
+    implementation 'com.netease.yunxin:nertc:4.3.8'
 
 }

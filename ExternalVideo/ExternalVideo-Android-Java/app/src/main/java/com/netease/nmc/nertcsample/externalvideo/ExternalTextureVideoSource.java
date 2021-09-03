@@ -11,7 +11,7 @@ import android.view.Surface;
 import com.netease.lava.nertc.sdk.video.NERtcVideoFrame;
 
 public class ExternalTextureVideoSource extends ExternalVideoSource {
-    private final String TAG = "ExternalTexture";
+    private static final String TAG = "ExternalTexture";
 
     private final String path;
     private final MediaMetadata metaData;
@@ -19,6 +19,7 @@ public class ExternalTextureVideoSource extends ExternalVideoSource {
 
     public static ExternalVideoSource create(String path, Callback callback) {
         if (TextUtils.isEmpty(path)) {
+            Log.e(TAG, "Media file path is empty");
             return null;
         }
         MediaMetadata metaData = MediaMetadataExtractor.extractVideo(path);

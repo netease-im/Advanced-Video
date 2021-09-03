@@ -15,9 +15,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters "arm64-v8a", "armeabi-v7a"
-            }
         }
     }
     compileOptions {
@@ -37,5 +34,5 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.netease.yunxin:nertc:3.7.0'
+    implementation 'com.netease.yunxin:nertc:4.3.8'
 }
