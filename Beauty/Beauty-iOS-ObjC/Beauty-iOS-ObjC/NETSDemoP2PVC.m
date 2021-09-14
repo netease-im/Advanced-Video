@@ -48,24 +48,19 @@
 
 - (void)setupRTCEngine
 {
-    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
-    NSDictionary *params = @{
-        kNERtcKeyPublishSelfStreamEnabled: @YES,    // 打开推流
-        kNERtcKeyVideoCaptureObserverEnabled: @YES  // 将摄像头采集的数据回调给用户
-    };
-    [coreEngine setParameters:params];
-    
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kAppKey;
-    [coreEngine setupEngineWithContext:context];
-    
-    [coreEngine enableLocalAudio:YES];
-    [coreEngine enableLocalVideo:YES];
-    
-    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
-    config.maxProfile = kNERtcVideoProfileHD720P;
-    [coreEngine setLocalVideoConfig:config];
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+}
+
+- (void)destroyRTCEngine {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        int res = [NERtcEngine destroyEngine];
+        if (res != 0) {
+            NELPLogError(@"Destory engine error: %d", res);
+        }
+    });
 }
 
 - (void)viewDidLoad {
@@ -117,11 +112,31 @@
 // 加入房间
 - (void)joinChannelWithRoomId:(NSString *)roomId userId:(uint64_t)userId
 {
+    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    // 1v1视频通话，视频推荐配置
+    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
+    config.maxProfile = kNERtcVideoProfileStandard;
+    config.frameRate = kNERtcVideoFrameRateFps15;
+    [coreEngine setLocalVideoConfig:config];
+    
+    // 1v1视频通话，音频推荐配置
+    [coreEngine setAudioProfile:kNERtcAudioProfileStandard
+                       scenario:kNERtcAudioScenarioSpeech];
+    
+    NSDictionary *params = @{
+        kNERtcKeyVideoCaptureObserverEnabled: @YES  // 将摄像头采集的数据回调给用户
+    };
+    [coreEngine setParameters:params];
+    
+    [coreEngine enableLocalAudio:YES];
+    [coreEngine enableLocalVideo:YES];
+    
     __weak typeof(self) weakSelf = self;
-    [NERtcEngine.sharedEngine joinChannelWithToken:@""
-                                       channelName:roomId
-                                             myUid:userId
-                                        completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+    [coreEngine joinChannelWithToken:@""
+                         channelName:roomId
+                               myUid:userId
+                          completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
         if (error) {
             //加入失败了，弹框之后退出当前页面
             NSString *msg = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
@@ -166,8 +181,8 @@
     //订阅远端视频流
     _remoteCanvas.subscribedVideo = YES;
     [NERtcEngine.sharedEngine subscribeRemoteVideo:YES
-                                 forUserID:userID
-                                streamType:kNERtcRemoteVideoStreamTypeHigh];
+                                         forUserID:userID
+                                        streamType:kNERtcRemoteVideoStreamTypeHigh];
 }
 
 - (void)onNERtcEngineUserDidLeaveWithUserID:(uint64_t)userID reason:(NERtcSessionLeaveReason)reason
@@ -187,6 +202,24 @@
     }
 }
 
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason {
+    [self destroyRTCEngine];
+    
+    ntes_main_async_safe(^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+}
+
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result {
+    [self destroyRTCEngine];
+    
+    ntes_main_async_safe(^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+}
+
+#pragma mark - Action
+
 - (void)clickBtn:(UIButton *)sender
 {
     if (sender == self.beautyBtn) {
@@ -196,16 +229,7 @@
     }
     
     if (sender == self.hangupBtn) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [[NERtcEngine sharedEngine] leaveChannel];
-            int res = [NERtcEngine destroyEngine];
-            if (res != 0) {
-                NELPLogError(@"Destory engine error: %d", res);
-            }
-            ntes_main_async_safe(^{
-                [self.navigationController popViewControllerAnimated:YES];
-            });
-        });
+        [[NERtcEngine sharedEngine] leaveChannel];
     }
 }
 
