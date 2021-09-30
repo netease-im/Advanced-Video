@@ -91,6 +91,12 @@
     [self.reader startReading];
 }
 
+- (void)stopReading
+{
+    [self.displayLink invalidate];
+    [self.reader cancelReading];
+}
+
 #pragma mark - Private methods
 
 - (void)pollNextFrame
