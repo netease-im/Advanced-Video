@@ -8,11 +8,12 @@
 
 #import "NETSDemoP2PVC.h"
 #import "NTESDemoUserModel.h"
-#import <NERtcSDK/NERtcSDK.h>
-#import "AppKey.h"
 #import "NTESGlobalMacro.h"
+#import "AppKey.h"
 #import "UIView+NTES.h"
 #import "FUManager.h"
+
+#import <NERtcSDK/NERtcSDK.h>
 
 @interface NETSDemoP2PVC () <NERtcEngineDelegateEx>
 
@@ -33,6 +34,8 @@
 
 @implementation NETSDemoP2PVC
 
+#pragma mark - Public
+
 - (instancetype)initWithRoomId:(NSString *)roomId userId:(uint64_t)userId
 {
     self = [super init];
@@ -46,24 +49,15 @@
     return self;
 }
 
-- (void)setupRTCEngine
+#pragma mark - Life Cycle
+
+- (void)dealloc
 {
-    NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
-    context.engineDelegate = self;
-    context.appKey = kAppKey;
-    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+    NSLog(@"%s", __FUNCTION__);
 }
 
-- (void)destroyRTCEngine {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        int res = [NERtcEngine destroyEngine];
-        if (res != 0) {
-            NELPLogError(@"Destory engine error: %d", res);
-        }
-    });
-}
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -71,6 +65,37 @@
     [self joinChannelWithRoomId:_roomId userId:_userId];
     
     [[FUManager shareManager] loadFilter];
+}
+
+#pragma mark - Functions
+
+- (void)setupRTCEngine
+{
+    // 默认情况下日志会存储在App沙盒的Documents目录下
+    NERtcLogSetting *logSetting = [[NERtcLogSetting alloc] init];
+#if DEBUG
+    logSetting.logLevel = kNERtcLogLevelInfo;
+#else
+    logSetting.logLevel = kNERtcLogLevelWarning;
+#endif
+    
+    NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
+    context.engineDelegate = self;
+    context.appKey = kAppKey;
+    context.logSetting = logSetting;
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+}
+
+//释放SDK资源
+- (void)destroyRTCEngineWithCompletion:(void(^)(void))completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [NERtcEngine destroyEngine];
+        
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 - (void)setupViews
@@ -114,18 +139,21 @@
 {
     NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
     
-    // 1v1视频通话，视频推荐配置
+    //1v1音视频通话+美颜场景的视频推荐配置
+    //其他场景下请联系云信技术支持获取配置
     NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
-    config.maxProfile = kNERtcVideoProfileStandard;
+    config.width = 640;
+    config.height = 360;
     config.frameRate = kNERtcVideoFrameRateFps15;
     [coreEngine setLocalVideoConfig:config];
     
-    // 1v1视频通话，音频推荐配置
+    //1v1音视频通话+美颜场景的音频推荐配置
+    //其他场景下请联系云信技术支持获取配置
     [coreEngine setAudioProfile:kNERtcAudioProfileStandard
                        scenario:kNERtcAudioScenarioSpeech];
     
     NSDictionary *params = @{
-        kNERtcKeyVideoCaptureObserverEnabled: @YES  // 将摄像头采集的数据回调给用户
+        kNERtcKeyVideoCaptureObserverEnabled: @YES // 将摄像头采集的数据回调给用户
     };
     [coreEngine setParameters:params];
     
@@ -138,23 +166,31 @@
                                myUid:userId
                           completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
         if (error) {
-            //加入失败了，弹框之后退出当前页面
-            NSString *msg = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
-            [weakSelf showDismissAlert:msg];
+            //加入失败，弹框之后退出当前页面
+            NSString *message = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
+            [weakSelf showDismissAlertWithMessage:message actionBlock:^{
+                [weakSelf destroyRTCEngineWithCompletion:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    });
+                }];
+            }];
         } else {
             //加入成功，建立本地canvas渲染本地视图
             NERtcVideoCanvas *canvas = [weakSelf setupLocalCanvasWithUid:weakSelf.userId render:weakSelf.localRender];
-            [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
+            [coreEngine setupLocalVideoCanvas:canvas];
         }
     }];
 }
 
-#pragma mark - NERtcEngineDelegateEx
+#pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
 
 - (void)onNERtcEngineDidError:(NERtcError)errCode
 {
-    NSString *msg = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
-    [self showDismissAlert:msg];
+    NSString *message = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
+    [self showDismissAlertWithMessage:message actionBlock:^{
+        [[NERtcEngine sharedEngine] leaveChannel];
+    }];
 }
 
 - (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
@@ -202,20 +238,19 @@
     }
 }
 
-- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason {
-    [self destroyRTCEngine];
-    
-    ntes_main_async_safe(^{
-        [self.navigationController popViewControllerAnimated:YES];
-    });
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason
+{
+    //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
 }
 
-- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result {
-    [self destroyRTCEngine];
-    
-    ntes_main_async_safe(^{
-        [self.navigationController popViewControllerAnimated:YES];
-    });
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
+{
+    //调用leaveChannel之后，若需要释放SDK资源，建议在收到该回调之后，再调用destroyEngine
+    [self destroyRTCEngineWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
 }
 
 #pragma mark - Action
@@ -233,33 +268,22 @@
     }
 }
 
-#pragma mark - Getter
-//判断当前房间是否已经满员
-- (BOOL)membersIsFull
-{
-    return (_remoteCanvas != nil);
-}
-
 #pragma mark - Helper
-- (void)showDismissAlert:(NSString *)msg
+
+- (void)showDismissAlertWithMessage:(NSString *)message actionBlock:(void(^)(void))actionBlock
 {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"退出提示"
-                                                                     message:msg
+                                                                     message:message
                                                               preferredStyle:UIAlertControllerStyleAlert];
-    
-    __weak typeof(self) weakSelf = self;
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"退出"
-                                                   style:UIAlertActionStyleDefault
-                                                 handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf dismiss];
+    UIAlertAction *exitAction = [UIAlertAction actionWithTitle:@"退出"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+        if (actionBlock) {
+            actionBlock();
+        }
     }];
-    [alertVC addAction:sure];
+    [alertVC addAction:exitAction];
     [self presentViewController:alertVC animated:YES completion:nil];
-}
-
-- (void)dismiss
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)switchCanvas
