@@ -8,11 +8,10 @@
 
 #import "NTESSettingVC.h"
 #import "UIView+NTES.h"
+#import "NSDictionary+NTES.h"
 #import "NTESGlobalMacro.h"
 #import "NTESPickView.h"
-#import <NERtcSDK/NERtcEngineEnum.h>
 #import "NTESPickViewSettingModel.h"
-#import <NERtcSDK/NERtcSDK.h>
 
 @interface NTESSettingVC () <NTESPickViewDelegate>
 
@@ -25,11 +24,35 @@
 
 @property (nonatomic, assign)   BOOL            changeConfig;
 
+@property (nonatomic, strong) NTESPickViewSettingModel *videoConfig;
+@property (nonatomic, strong) NTESPickViewSettingModel *audioProfile;
+@property (nonatomic, strong) NTESPickViewSettingModel *audioScenario;
+
+@property (nonatomic, strong) NSDictionary *videoProfileMap;
+@property (nonatomic, strong) NSDictionary *audioProfileMap;
+@property (nonatomic, strong) NSDictionary *audioScenarioMap;
+
 @end
 
 @implementation NTESSettingVC
 
-- (void)viewDidLoad {
+- (void)setCurrentVideoProfile:(NERtcVideoProfileType)videoProfile
+{
+    _videoConfig = [[NTESPickViewSettingModel alloc] initWithTitle:[self.videoProfileMap objectForKey:@(videoProfile)] value:videoProfile type:NTESPickViewSettingVideo];
+}
+
+- (void)setCurrentAudioProfile:(NERtcAudioProfileType)audioProfile
+{
+    _audioProfile = [[NTESPickViewSettingModel alloc] initWithTitle:[self.audioProfileMap objectForKey:@(audioProfile)] value:audioProfile type:NTESPickViewSettingAudio];
+}
+
+- (void)setCurrentAudioScenario:(NERtcAudioScenarioType)audioScenario
+{
+    _audioScenario = [[NTESPickViewSettingModel alloc] initWithTitle:[self.audioScenarioMap objectForKey:@(audioScenario)] value:audioScenario type:NTESPickViewSettingAudioMode];
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -68,19 +91,11 @@
 - (void)backAction
 {
     if (_changeConfig) {
-        NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
-        
-        NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
-        config.maxProfile = _videoConfig.value;
-        [coreEngine setLocalVideoConfig:config];
-        [coreEngine setAudioProfile:_audioProfile.value scenario:_audioScenario.value];
-        
-        // 重启本地音视频能力使配置生效
-        [coreEngine enableLocalAudio:NO];
-        [coreEngine enableLocalVideo:NO];
-        
-        [coreEngine enableLocalAudio:YES];
-        [coreEngine enableLocalVideo:YES];
+        if (_delegate && [_delegate respondsToSelector:@selector(didChangeSettingsWithVideoProfile:audioProfile:audioScenario:)]) {
+            [_delegate didChangeSettingsWithVideoProfile:_videoConfig.value
+                                            audioProfile:_audioProfile.value
+                                           audioScenario:_audioScenario.value];
+        }
     }
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -88,28 +103,33 @@
 
 - (void)clickAction:(UIButton *)sender
 {
-    NSArray *configs = nil;
+    NSMutableArray *configs = [NSMutableArray array];
+    
     if (sender == self.videoQualityVal) {
-        NTESPickViewSettingModel *item0 = [[NTESPickViewSettingModel alloc] initWithTitle:@"320x180/240 @15fps" value:kNERtcVideoProfileLow type:NTESPickViewSettingVideo];
-        NTESPickViewSettingModel *item1 = [[NTESPickViewSettingModel alloc] initWithTitle:@"640x360/480 @30fps" value:kNERtcVideoProfileStandard type:NTESPickViewSettingVideo];
-        NTESPickViewSettingModel *item2 = [[NTESPickViewSettingModel alloc] initWithTitle:@"1280x720 @30 fps" value:kNERtcVideoProfileHD720P type:NTESPickViewSettingVideo];
-        NTESPickViewSettingModel *item3 = [[NTESPickViewSettingModel alloc] initWithTitle:@"1920x1080 @30fps" value:kNERtcVideoProfileHD1080P type:NTESPickViewSettingVideo];
-        configs = @[item0, item1, item2, item3];
+        NSArray *ascendingKeys = [self.videoProfileMap getAscendingKeys];
+        for (NSNumber *key in ascendingKeys) {
+            NERtcVideoProfileType videoProfile = [key intValue];
+            NTESPickViewSettingModel *item = [[NTESPickViewSettingModel alloc] initWithTitle:[self.videoProfileMap objectForKey:key] value:videoProfile type:NTESPickViewSettingVideo];
+            [configs addObject:item];
+        }
     }
     
     if (sender == self.audioQualityVal) {
-        NTESPickViewSettingModel *item0 = [[NTESPickViewSettingModel alloc] initWithTitle:@"普通 16000Hz,20Kbps" value:kNERtcAudioProfileStandard type:NTESPickViewSettingAudio];
-        NTESPickViewSettingModel *item1 = [[NTESPickViewSettingModel alloc] initWithTitle:@"中等 48000Hz,32Kbps" value:kNERtcAudioProfileMiddleQuality type:NTESPickViewSettingAudio];
-        NTESPickViewSettingModel *item2 = [[NTESPickViewSettingModel alloc] initWithTitle:@"中等立体声 48000Hz*2,64Kbps" value:kNERtcAudioProfileMiddleQualityStereo type:NTESPickViewSettingAudio];
-        NTESPickViewSettingModel *item3 = [[NTESPickViewSettingModel alloc] initWithTitle:@"高质量 48000Hz,64Kbps" value:kNERtcAudioProfileHighQuality type:NTESPickViewSettingAudio];
-        NTESPickViewSettingModel *item4 = [[NTESPickViewSettingModel alloc] initWithTitle:@"高质量立体声 48000Hz*2,128Kbps" value:kNERtcAudioProfileHighQualityStereo type:NTESPickViewSettingAudio];
-        configs = @[item0, item1, item2, item3, item4];
+        NSArray *ascendingKeys = [self.audioProfileMap getAscendingKeys];
+        for (NSNumber *key in ascendingKeys) {
+            NERtcAudioProfileType audioProfile = [key intValue];
+            NTESPickViewSettingModel *item = [[NTESPickViewSettingModel alloc] initWithTitle:[self.audioProfileMap objectForKey:key] value:audioProfile type:NTESPickViewSettingAudio];
+            [configs addObject:item];
+        }
     }
-    
+
     if (sender == self.audioModeVal) {
-        NTESPickViewSettingModel *item0 = [[NTESPickViewSettingModel alloc] initWithTitle:@"语音场景" value:kNERtcAudioScenarioSpeech type:NTESPickViewSettingAudioMode];
-        NTESPickViewSettingModel *item1 = [[NTESPickViewSettingModel alloc] initWithTitle:@"音乐场景" value:kNERtcAudioScenarioMusic type:NTESPickViewSettingAudioMode];
-        configs = @[item0, item1];
+        NSArray *ascendingKeys = [self.audioScenarioMap getAscendingKeys];
+        for (NSNumber *key in ascendingKeys) {
+            NERtcAudioScenarioType audioScenario = [key intValue];
+            NTESPickViewSettingModel *item = [[NTESPickViewSettingModel alloc] initWithTitle:[self.audioScenarioMap objectForKey:key] value:audioScenario type:NTESPickViewSettingAudioMode];
+            [configs addObject:item];
+        }
     }
     
     if ([configs count] > 0) {
@@ -126,6 +146,15 @@
     }
     UIButton *target = nil;
     switch (model.type) {
+        case NTESPickViewSettingVideo:
+        {
+            target = self.videoQualityVal;
+            if (_videoConfig.value != model.value) {
+                _videoConfig = model;
+                _changeConfig = YES;
+            }
+        }
+            break;
         case NTESPickViewSettingAudio:
         {
             target = self.audioQualityVal;
@@ -140,18 +169,12 @@
             target = self.audioModeVal;
             if (_audioScenario.value != model.value) {
                 _audioScenario = model;
+                _changeConfig = YES;
             }
         }
             break;
             
         default:
-        {
-            target = self.videoQualityVal;
-            if (_videoConfig.value != model.value) {
-                _videoConfig = model;
-                _changeConfig = YES;
-            }
-        }
             break;
     }
     if (target) {
@@ -246,6 +269,44 @@
         [_audioModeVal addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _audioModeVal;
+}
+
+- (NSDictionary *)videoProfileMap
+{
+    if (!_videoProfileMap) {
+        _videoProfileMap = @{@(kNERtcVideoProfileLowest) : @"160x90/120 @15fps",
+                             @(kNERtcVideoProfileLow) : @"320x180/240 @15fps",
+                             @(kNERtcVideoProfileStandard) : @"640x360/480 @30fps",
+                             @(kNERtcVideoProfileHD720P) : @"1280x720 @30 fps",
+                             @(kNERtcVideoProfileHD1080P) : @"1920x1080 @30fps"};
+    }
+    
+    return _videoProfileMap;
+}
+
+- (NSDictionary *)audioProfileMap
+{
+    if (!_audioProfileMap) {
+        _audioProfileMap = @{@(kNERtcAudioProfileStandard) : @"标准 16000Hz,20Kbps",
+                             @(kNERtcAudioProfileStandardExtend) : @"标准扩展 16000Hz,32Kbps",
+                             @(kNERtcAudioProfileMiddleQuality) : @"中等 48000Hz,32Kbps",
+                             @(kNERtcAudioProfileMiddleQualityStereo) : @"中等立体声 48000Hz*2,64Kbps",
+                             @(kNERtcAudioProfileHighQuality) : @"高质量 48000Hz,64Kbps",
+                             @(kNERtcAudioProfileHighQualityStereo) : @"高质量立体声 48000Hz*2,128Kbps"};
+    }
+    
+    return _audioProfileMap;
+}
+
+- (NSDictionary *)audioScenarioMap
+{
+    if (!_audioScenarioMap) {
+        _audioScenarioMap = @{@(kNERtcAudioScenarioSpeech) : @"语音场景",
+                              @(kNERtcAudioScenarioMusic) : @"音乐场景",
+                              @(kNERtcAudioScenarioChatRoom) : @"语音聊天室场景"};
+    }
+    
+    return _audioScenarioMap;
 }
 
 @end

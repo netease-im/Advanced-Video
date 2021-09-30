@@ -14,6 +14,7 @@
 		48FB8CE924EE651C00F9C3BC /* NTESMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FB8CE424EE651C00F9C3BC /* NTESMeetingViewController.m */; };
 		48FB8CEA24EE651C00F9C3BC /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FB8CE524EE651C00F9C3BC /* NTESDemoViewController.m */; };
 		48FB8CEB24EE651C00F9C3BC /* NTESAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FB8CE824EE651C00F9C3BC /* NTESAppDelegate.m */; };
+		6AB2B3EE2703194100DE1077 /* NSDictionary+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2B3ED2703194100DE1077 /* NSDictionary+NTES.m */; };
 		86A494582511B8A500E11A78 /* NTESPickViewSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A494572511B8A500E11A78 /* NTESPickViewSettingModel.m */; };
 		86C6335C251482A50036B19E /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6335A251482A50036B19E /* UIView+NTES.m */; };
 		86D5BB2A2510A4C6002FEEDF /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D5BB292510A4C6002FEEDF /* NTESGlobalMacro.m */; };
@@ -38,6 +39,8 @@
 		48FB8CE524EE651C00F9C3BC /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
 		48FB8CE624EE651C00F9C3BC /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
 		48FB8CE824EE651C00F9C3BC /* NTESAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESAppDelegate.m; sourceTree = "<group>"; };
+		6AB2B3EC2703194100DE1077 /* NSDictionary+NTES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NTES.h"; sourceTree = "<group>"; };
+		6AB2B3ED2703194100DE1077 /* NSDictionary+NTES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NTES.m"; sourceTree = "<group>"; };
 		707771EB0384B59A437EA2FF /* Pods-ProfileConfig-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfileConfig-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-ProfileConfig-iOS-ObjC/Pods-ProfileConfig-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		86A494562511B8A500E11A78 /* NTESPickViewSettingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NTESPickViewSettingModel.h; sourceTree = "<group>"; };
 		86A494572511B8A500E11A78 /* NTESPickViewSettingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NTESPickViewSettingModel.m; sourceTree = "<group>"; };
@@ -118,8 +121,10 @@
 		86C63359251482A50036B19E /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				86C6335A251482A50036B19E /* UIView+NTES.m */,
 				86C6335B251482A50036B19E /* UIView+NTES.h */,
+				86C6335A251482A50036B19E /* UIView+NTES.m */,
+				6AB2B3EC2703194100DE1077 /* NSDictionary+NTES.h */,
+				6AB2B3ED2703194100DE1077 /* NSDictionary+NTES.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			files = (
 				86C6335C251482A50036B19E /* UIView+NTES.m in Sources */,
 				48FB8CEB24EE651C00F9C3BC /* NTESAppDelegate.m in Sources */,
+				6AB2B3EE2703194100DE1077 /* NSDictionary+NTES.m in Sources */,
 				86A494582511B8A500E11A78 /* NTESPickViewSettingModel.m in Sources */,
 				48FB8CEA24EE651C00F9C3BC /* NTESDemoViewController.m in Sources */,
 				86D5BB362510A936002FEEDF /* NTESSettingVC.m in Sources */,
