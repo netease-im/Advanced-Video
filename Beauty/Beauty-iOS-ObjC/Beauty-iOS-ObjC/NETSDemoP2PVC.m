@@ -67,7 +67,7 @@
     [[FUManager shareManager] loadFilter];
 }
 
-#pragma mark - Functions
+#pragma mark - Function
 
 - (void)setupRTCEngine
 {
@@ -241,6 +241,7 @@
 - (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason
 {
     //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
+    //此时已与房间断开连接，如果需要重新加入房间，必须再次调用join接口
 }
 
 - (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
