@@ -41,6 +41,8 @@ static void *KVOContext = &KVOContext;
 
 @implementation NTESDemoViewController
 
+#pragma mark - Life Cycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,6 +61,8 @@ static void *KVOContext = &KVOContext;
         [NERtcEngine destroyEngine];
     });
 }
+
+#pragma mark - Override
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
@@ -86,6 +90,8 @@ static void *KVOContext = &KVOContext;
     [self.view endEditing:YES];
 }
 
+#pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
+
 - (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
 {
     //设置对方摄像头画布
@@ -110,12 +116,19 @@ static void *KVOContext = &KVOContext;
     [NERtcEngine.sharedEngine subscribeRemoteSubStreamVideo:YES forUserID:userID];
 }
 
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason {
+    //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
+    //此时已与房间断开连接，如果需要重新加入房间，必须再次调用join接口
+}
+
 - (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
 {
     if (result == kNERtcNoError) {
         self.currentUserID = nil; // clear user id
     }
 }
+
+#pragma mark - Action
 
 - (IBAction)onCameraButtonClick:(id)sender {
     [NERtcEngine.sharedEngine enableLocalVideo:!_cameraOn];
@@ -173,6 +186,8 @@ static void *KVOContext = &KVOContext;
     [NERtcEngine.sharedEngine leaveChannel];
 }
 
+#pragma mark - Function
+
 - (NSString *)randomUserID
 {
     uint64_t uid = 10000 + arc4random() % (99999 - 10000);
@@ -188,21 +203,45 @@ static void *KVOContext = &KVOContext;
 
 - (void)setupRTCEngine
 {
-    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    //默认情况下日志会存储在App沙盒的Documents目录下
+    NERtcLogSetting *logSetting = [[NERtcLogSetting alloc] init];
+#if DEBUG
+    logSetting.logLevel = kNERtcLogLevelInfo;
+#else
+    logSetting.logLevel = kNERtcLogLevelWarning;
+#endif
+    
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kAppKey;
-    [coreEngine setupEngineWithContext:context];
+    context.logSetting = logSetting;
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
 }
 
 - (void)willJoinChannel
 {
     NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    //1v1音视频通话场景的视频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
+    config.width = 640;
+    config.height = 360;
+    config.frameRate = kNERtcVideoFrameRateFps15;
+    [coreEngine setLocalVideoConfig:config];
+    
+    //1v1音视频通话场景的音频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    [coreEngine setAudioProfile:kNERtcAudioProfileStandard
+                       scenario:kNERtcAudioScenarioSpeech];
+    
     [coreEngine setExternalVideoSource:YES isScreen:YES];
-    NERtcVideoSubStreamEncodeConfiguration *config = [[NERtcVideoSubStreamEncodeConfiguration alloc] init];
-    [coreEngine startScreenCapture:config];
+    NERtcVideoSubStreamEncodeConfiguration *subStreamConfig = [[NERtcVideoSubStreamEncodeConfiguration alloc] init];
+    [coreEngine startScreenCapture:subStreamConfig];
+    
     [coreEngine enableLocalAudio:YES];
     [coreEngine enableLocalVideo:YES];
+    
     _cameraOn = YES;
     _screenShareOn = YES;
 }
