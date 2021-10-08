@@ -29,17 +29,23 @@
 
 @implementation NTESMeetingViewController
 
+#pragma mark - Life Cycle
+
+- (void)dealloc
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self setupUI];
     [self setupRTCEngine];
     [self joinCurrentRoom];
 }
 
-- (void)dealloc
-{
-}
+#pragma mark - Function
 
 - (void)setupUI
 {
@@ -52,22 +58,75 @@
 
 - (void)setupRTCEngine
 {
-    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    //默认情况下日志会存储在App沙盒的Documents目录下
+    NERtcLogSetting *logSetting = [[NERtcLogSetting alloc] init];
+#if DEBUG
+    logSetting.logLevel = kNERtcLogLevelInfo;
+#else
+    logSetting.logLevel = kNERtcLogLevelWarning;
+#endif
+    
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kAppKey;
-    [coreEngine setupEngineWithContext:context];
-    [coreEngine setExternalVideoSource:YES isScreen:NO];
-    [coreEngine enableLocalAudio:YES];
-    [coreEngine enableLocalVideo:YES];
+    context.logSetting = logSetting;
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+}
+
+- (void)destroyRTCEngineWithCompletion:(void(^)(void))completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [NERtcEngine destroyEngine];
+        
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 - (void)joinCurrentRoom
 {
-    [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:self.roomID myUid:self.userID completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
-        NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
-        canvas.container = self.localUserView;
-        [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
+    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    //多人音视频通话场景的音频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    [coreEngine setAudioProfile:kNERtcAudioProfileStandard
+                       scenario:kNERtcAudioScenarioSpeech];
+    
+    //开启外部视频源
+    [coreEngine setExternalVideoSource:YES isScreen:NO];
+    
+    [coreEngine enableLocalAudio:YES];
+    [coreEngine enableLocalVideo:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    [coreEngine joinChannelWithToken:@"" channelName:self.roomID myUid:self.userID completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+        if (error) {
+            //加入失败，弹框之后退出当前页面
+            NSString *message = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
+            [weakSelf showDismissAlertWithMessage:message actionBlock:^{
+                [weakSelf destroyRTCEngineWithCompletion:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    });
+                }];
+            }];
+        } else {
+            //加入成功，建立本地canvas渲染本地视图
+            NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
+            canvas.container = self.localUserView;
+            [coreEngine setupLocalVideoCanvas:canvas];
+        }
+    }];
+}
+
+#pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
+
+- (void)onNERtcEngineDidError:(NERtcError)errCode
+{
+    NSString *message = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
+    [self showDismissAlertWithMessage:message actionBlock:^{
+        [[NERtcEngine sharedEngine] leaveChannel];
     }];
 }
 
@@ -94,6 +153,24 @@
     [self.view viewWithTag:(NSInteger)userID].tag = 0;
 }
 
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason
+{
+    //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
+    //此时已与房间断开连接，如果需要重新加入房间，必须再次调用join接口
+}
+
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
+{
+    //调用leaveChannel之后，若需要释放SDK资源，建议在收到该回调之后，再调用destroyEngine
+    [self destroyRTCEngineWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -114,6 +191,8 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - NTESExternalVideoReaderDelegate
 
 - (void)videoReader:(NTESExternalVideoReader *)videoReader didReadSampleBuffer:(CMSampleBufferRef)sampleBuffer totalFramesWritten:(NSUInteger)totalFramesWritten totalFrames:(NSUInteger)totalFrames
 {
@@ -142,6 +221,8 @@
     self.progressView.progress = totalFramesWritten/(CGFloat)totalFrames;
 }
 
+#pragma mark - Action
+
 - (IBAction)onClickSelectVideo:(id)sender
 {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -153,11 +234,26 @@
 
 - (IBAction)onLeaveMeeting:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.videoReader stopReading];
     [NERtcEngine.sharedEngine leaveChannel];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [NERtcEngine destroyEngine];
-    });
+}
+
+#pragma mark - Helper
+
+- (void)showDismissAlertWithMessage:(NSString *)message actionBlock:(void(^)(void))actionBlock
+{
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"退出提示"
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *exitAction = [UIAlertAction actionWithTitle:@"退出"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+        if (actionBlock) {
+            actionBlock();
+        }
+    }];
+    [alertVC addAction:exitAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 @end

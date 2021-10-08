@@ -7,17 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NERtcSDK/NERtcSDK.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@protocol NTESSettingVCDelegate <NSObject>
 
-@class NTESPickViewSettingModel;
-
-@interface NTESSettingVC : UIViewController
-
-@property (nonatomic, strong)   NTESPickViewSettingModel    *videoConfig;
-@property (nonatomic, strong)   NTESPickViewSettingModel    *audioProfile;
-@property (nonatomic, strong)   NTESPickViewSettingModel    *audioScenario;
+- (void)didChangeSettingsWithVideoProfile:(NERtcVideoProfileType)videoProfile
+                             audioProfile:(NERtcAudioProfileType)audioProfile
+                            audioScenario:(NERtcAudioScenarioType)audioScenario;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@interface NTESSettingVC : UIViewController
+
+@property (nonatomic, weak) id<NTESSettingVCDelegate> delegate;
+
+- (void)setCurrentVideoProfile:(NERtcVideoProfileType)videoProfile;
+- (void)setCurrentAudioProfile:(NERtcAudioProfileType)audioProfile;
+- (void)setCurrentAudioScenario:(NERtcAudioScenarioType)audioScenario;
+
+@end

@@ -28,6 +28,21 @@
 
 @implementation NTESVideoStreamMeetingViewController
 
+#pragma mark - Life Cycle
+
+- (void)dealloc
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NTESVideoConfigViewController *configVC = segue.destinationViewController;
+    configVC.currentURL = self.liveStreamTask.streamURL;
+    configVC.isPushingStream = self.isPushingStream;
+    configVC.delegate = self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,54 +52,98 @@
     self.hungupButton.layer.cornerRadius = 8;
     self.title = [NSString stringWithFormat:@"Room %@", self.roomID];
     self.userList = [NSMutableArray arrayWithObject:@(self.userID)];
+    
     [self setupRTCEngine];
     [self joinCurrentRoom];
 }
 
-- (void)dealloc
-{
-    if (self.liveStreamTask.streamURL) {
-        int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
-            NSLog(@"移除任务[%@] error = %@",taskId, NERtcErrorDescription(errorCode));
-            [NERtcEngine.sharedEngine leaveChannel];
-        }];
-        if (ret != 0) {
-            NSLog(@"移除任务失败");
-        }
-    }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [NERtcEngine destroyEngine];
-    });
-}
+#pragma mark - Function
 
 - (void)setupRTCEngine
 {
     NSAssert(![kAppKey isEqualToString:@"<#AppKey#>"], @"请设置AppKey");
-    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    //默认情况下日志会存储在App沙盒的Documents目录下
+    NERtcLogSetting *logSetting = [[NERtcLogSetting alloc] init];
+#if DEBUG
+    logSetting.logLevel = kNERtcLogLevelInfo;
+#else
+    logSetting.logLevel = kNERtcLogLevelWarning;
+#endif
+    
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kAppKey;
-    [coreEngine setupEngineWithContext:context];
-    [coreEngine enableLocalAudio:YES];
-    [coreEngine enableLocalVideo:YES];
-    [coreEngine setParameters:@{kNERtcKeyPublishSelfStreamEnabled: @YES}]; // 打开推流
+    context.logSetting = logSetting;
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+}
+
+- (void)destroyRTCEngineWithCompletion:(void(^)(void))completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [NERtcEngine destroyEngine];
+        
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 - (void)joinCurrentRoom
 {
-    [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:self.roomID myUid:self.userID completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
-        NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
-        canvas.container = self.localUserView;
-        [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
-        //添加推流任务
-        [self addLiveStream:kStreamURL];
+    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    //互动直播场景的视频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
+    config.width = 960;
+    config.height = 540;
+    config.frameRate = kNERtcVideoFrameRateFps15;
+    [coreEngine setLocalVideoConfig:config];
+    
+    //互动直播场景的音频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    [coreEngine setAudioProfile:kNERtcAudioProfileHighQuality
+                       scenario:kNERtcAudioScenarioChatRoom];
+    
+    //互动直播场景的房间推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    [coreEngine setChannelProfile:kNERtcChannelProfileLiveBroadcasting];
+    
+    [coreEngine enableLocalAudio:YES];
+    [coreEngine enableLocalVideo:YES];
+    
+    //打开推流
+    [coreEngine setParameters:@{kNERtcKeyPublishSelfStreamEnabled: @YES}];
+    
+    __weak typeof(self) weakSelf = self;
+    [coreEngine joinChannelWithToken:@"" channelName:self.roomID myUid:self.userID completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+        if (error) {
+            //加入失败，弹框之后退出当前页面
+            NSString *message = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
+            [weakSelf showDismissAlertWithMessage:message actionBlock:^{
+                [weakSelf destroyRTCEngineWithCompletion:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    });
+                }];
+            }];
+        } else {
+            //加入成功，建立本地canvas渲染本地视图
+            NERtcVideoCanvas *canvas = [[NERtcVideoCanvas alloc] init];
+            canvas.container = weakSelf.localUserView;
+            [coreEngine setupLocalVideoCanvas:canvas];
+            
+            //添加推流任务
+            [weakSelf addLiveStream:kStreamURL];
+        }
     }];
 }
 
 - (void)addLiveStream:(NSString *)streamURL
 {
     NSAssert(![streamURL isEqualToString:@"<#推流地址#>"], @"请设置推流地址");
+    
     self.liveStreamTask = [[NERtcLiveStreamTaskInfo alloc] init];
     NSString *taskID = [NSString stringWithFormat:@"%d",arc4random()/100];
     self.liveStreamTask.taskID = taskID;
@@ -121,10 +180,11 @@
         [self.view makeToast:@"添加推流任务失败"];
     }
 }
+
 - (void)updateLiveStreamTask
 {
     int ret = [NERtcEngine.sharedEngine updateLiveStreamTask:self.liveStreamTask
-                                               compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
+                                                  compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
         self.isPushingStream = !errorCode ? YES:NO;//errorCode == 0表示成功
         NSString *message = !errorCode ? @"更新成功" : [NSString stringWithFormat:@"更新失败 error = %@",NERtcErrorDescription(errorCode)];
         NSLog(@"%@", message);
@@ -165,8 +225,11 @@
     }
     self.liveStreamTask.layout.users = [NSArray arrayWithArray:res];
 }
-#pragma mark - event
-- (IBAction)hungupEvent:(id)sender {
+
+#pragma mark - Action
+
+- (IBAction)hungupEvent:(id)sender
+{
     if (self.liveStreamTask) {
         __weak typeof(self)weakSelf = self;
         int ret = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
@@ -179,21 +242,13 @@
         if (ret != 0) {
             NSLog(@"移除任务失败");
         }
-    }
-    else {
+    } else {
         [NERtcEngine.sharedEngine leaveChannel];
     }
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NTESVideoConfigViewController *configVC = segue.destinationViewController;
-    configVC.currentURL = self.liveStreamTask.streamURL;
-    configVC.isPushingStream = self.isPushingStream;
-    configVC.delegate = self;
 }
 
 #pragma mark - NTESVideoConfigVCDelegate
+
 - (void)didGetStreamURL:(NSString *)URLString
 {
     if (!self.liveStreamTask) {
@@ -203,7 +258,9 @@
         [self updateLiveStreamTask];
     }
 }
-- (void)stopPushStream {
+
+- (void)stopPushStream
+{
     int res = [NERtcEngine.sharedEngine removeLiveStreamTask:self.liveStreamTask.taskID compeltion:^(NSString * _Nonnull taskId, kNERtcLiveStreamError errorCode) {
         if (errorCode == 0) {
             self.isPushingStream = NO;
@@ -220,7 +277,16 @@
         [self.view makeToast:@"移除推流任务失败"];
     }
 }
-#pragma mark - NERtcEngineDelegate
+
+#pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
+
+- (void)onNERtcEngineDidError:(NERtcError)errCode
+{
+    NSString *message = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
+    [self showDismissAlertWithMessage:message actionBlock:^{
+        [[NERtcEngine sharedEngine] leaveChannel];
+    }];
+}
 
 - (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID userName:(NSString *)userName
 {
@@ -277,6 +343,40 @@
             NSLog(@"Unknown state for task [%@]", taskID);
             break;
     }
+}
+
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason
+{
+    //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
+    //此时已与房间断开连接，如果需要重新加入房间，必须再次调用join接口
+}
+
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result
+{
+    //调用leaveChannel之后，若需要释放SDK资源，建议在收到该回调之后，再调用destroyEngine
+    [self destroyRTCEngineWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
+}
+
+#pragma mark - Helper
+
+- (void)showDismissAlertWithMessage:(NSString *)message actionBlock:(void(^)(void))actionBlock
+{
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"退出提示"
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *exitAction = [UIAlertAction actionWithTitle:@"退出"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+        if (actionBlock) {
+            actionBlock();
+        }
+    }];
+    [alertVC addAction:exitAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 @end

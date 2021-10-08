@@ -32,18 +32,28 @@
 
 @implementation NTESDemoP2PViewController
 
+#pragma mark - Life Cycle
+
 - (void)dealloc {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"MediaStats"]) {
+        self.statsViewController = segue.destinationViewController;
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupUI];
     [self setupRTCEngine];
     //直接加入channel
     [self joinChannelWithRoomId:_roomId userId:_userId];
 }
 
-#pragma mark - Functions
+#pragma mark - Function
 
 - (void)setupUI {
     self.statsButton.layer.cornerRadius = 6;
@@ -53,17 +63,30 @@
 
 //初始化SDK
 - (void)setupRTCEngine {
-    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    //默认情况下日志会存储在App沙盒的Documents目录下
+    NERtcLogSetting *logSetting = [[NERtcLogSetting alloc] init];
+#if DEBUG
+    logSetting.logLevel = kNERtcLogLevelInfo;
+#else
+    logSetting.logLevel = kNERtcLogLevelWarning;
+#endif
+    
     NERtcEngineContext *context = [[NERtcEngineContext alloc] init];
     context.engineDelegate = self;
     context.appKey = kAppKey;
-    
-    [coreEngine setupEngineWithContext:context];
-    [coreEngine enableLocalAudio:YES];
-    [coreEngine enableLocalVideo:YES];
-    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
-    config.maxProfile = kNERtcVideoProfileHD720P;
-    [coreEngine setLocalVideoConfig:config];
+    context.logSetting = logSetting;
+    [[NERtcEngine sharedEngine] setupEngineWithContext:context];
+}
+
+//释放SDK资源
+- (void)destroyRTCEngineWithCompletion:(void(^)(void))completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [NERtcEngine destroyEngine];
+        
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 //建立本地canvas模型
@@ -85,33 +108,51 @@
 //加入房间
 - (void)joinChannelWithRoomId:(NSString *)roomId
                        userId:(uint64_t)userId {
+    NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
+    
+    //1v1音视频通话场景的视频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
+    config.width = 640;
+    config.height = 360;
+    config.frameRate = kNERtcVideoFrameRateFps15;
+    [coreEngine setLocalVideoConfig:config];
+    
+    //1v1音视频通话场景的音频推荐配置
+    //其他场景下请联系云信技术支持获取配置
+    [coreEngine setAudioProfile:kNERtcAudioProfileStandard
+                       scenario:kNERtcAudioScenarioSpeech];
+    
+    [coreEngine enableLocalAudio:YES];
+    [coreEngine enableLocalVideo:YES];
+    
     __weak typeof(self) weakSelf = self;
-    [NERtcEngine.sharedEngine joinChannelWithToken:@""
-                                       channelName:roomId
-                                             myUid:userId
-                                        completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+    [coreEngine joinChannelWithToken:@""
+                         channelName:roomId
+                               myUid:userId
+                          completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
         if (error) {
-            
-            //加入失败了，弹框之后退出当前页面
-            NSString *msg = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
-            [weakSelf showDismissAlert:msg];
+            //加入失败，弹框之后退出当前页面
+            NSString *message = [NSString stringWithFormat:@"join channel fail.code:%@", @(error.code)];
+            [weakSelf showDismissAlertWithMessage:message actionBlock:^{
+                [weakSelf destroyRTCEngineWithCompletion:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    });
+                }];
+            }];
         } else {
-            
             //加入成功，建立本地canvas渲染本地视图
             NERtcVideoCanvas *canvas = [weakSelf setupLocalCanvas];
-            [NERtcEngine.sharedEngine setupLocalVideoCanvas:canvas];
+            [coreEngine setupLocalVideoCanvas:canvas];
         }
     }];
 }
 
-#pragma mark - Actions
+#pragma mark - Action
 //UI 挂断按钮事件
 - (IBAction)onHungupAction:(UIButton *)sender {
-    [self dismiss];
     [NERtcEngine.sharedEngine leaveChannel];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [NERtcEngine destroyEngine];
-    });
 }
 
 //UI 切换摄像头按钮事件
@@ -138,13 +179,14 @@
 #pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
 
 - (void)onNERtcEngineDidError:(NERtcError)errCode {
-    NSString *msg = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
-    [self showDismissAlert:msg];
+    NSString *message = [NSString stringWithFormat:@"nertc engine did error.code:%@", @(errCode)];
+    [self showDismissAlertWithMessage:message actionBlock:^{
+        [[NERtcEngine sharedEngine] leaveChannel];
+    }];
 }
 
 - (void)onNERtcEngineUserDidJoinWithUserID:(uint64_t)userID
                                   userName:(NSString *)userName {
-
     //如果已经setup了一个远端的canvas，则不需要再建立了
     if (_remoteCanvas != nil) {
         return;
@@ -166,8 +208,8 @@
     //订阅远端视频流
     _remoteCanvas.subscribedVideo = YES;
     [NERtcEngine.sharedEngine subscribeRemoteVideo:YES
-                                 forUserID:userID
-                                streamType:kNERtcRemoteVideoStreamTypeHigh];
+                                         forUserID:userID
+                                        streamType:kNERtcRemoteVideoStreamTypeHigh];
 }
 
 - (void)onNERtcEngineUserVideoDidStop:(uint64_t)userID {
@@ -178,7 +220,6 @@
 
 - (void)onNERtcEngineUserDidLeaveWithUserID:(uint64_t)userID
                                      reason:(NERtcSessionLeaveReason)reason {
-    
     //如果远端的人离开了，重置远端模型和UI
     if (userID == _remoteCanvas.uid) {
         _remoteStatLab.hidden = NO;
@@ -187,39 +228,34 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"MediaStats"]) {
-        self.statsViewController = segue.destinationViewController;
-    }
+- (void)onNERtcEngineDidDisconnectWithReason:(NERtcError)reason {
+    //网络连接中断时会触发该回调，触发之后的操作则由开发者按需实现
+    //此时已与房间断开连接，如果需要重新加入房间，必须再次调用join接口
 }
 
-
-
-#pragma mark - Getter
-//判断当前房间是否已经满员
-- (BOOL)membersIsFull {
-    return (_remoteCanvas != nil);
+- (void)onNERtcEngineDidLeaveChannelWithResult:(NERtcError)result {
+    //调用leaveChannel之后，若需要释放SDK资源，建议在收到该回调之后，再调用destroyEngine
+    [self destroyRTCEngineWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
 }
 
 #pragma mark - Helper
-- (void)showDismissAlert:(NSString *)msg {
+- (void)showDismissAlertWithMessage:(NSString *)message actionBlock:(void(^)(void))actionBlock {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"退出提示"
-                                                                     message:msg
+                                                                     message:message
                                                               preferredStyle:UIAlertControllerStyleAlert];
-    
-    __weak typeof(self) weakSelf = self;
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"退出"
-                                                   style:UIAlertActionStyleDefault
-                                                 handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf dismiss];
+    UIAlertAction *exitAction = [UIAlertAction actionWithTitle:@"退出"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+        if (actionBlock) {
+            actionBlock();
+        }
     }];
-    [alertVC addAction:sure];
+    [alertVC addAction:exitAction];
     [self presentViewController:alertVC animated:YES completion:nil];
-}
-
-- (void)dismiss {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
