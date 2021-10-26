@@ -1,0 +1,7 @@
+{
+    "models" : [{
+        "model": "daredevil.obj",
+        "diffusetex": "albedo_2k.png"
+    }],
+    "occluder": "occluder.obj"
+}

@@ -1,0 +1,66 @@
+{
+	"v":	"4.6.9",
+	"fr":	24,
+	"sf":	0,
+	"ef":	2000000000,
+	"w":	1,
+	"h":	1,
+	"color":	[0, 0, 0, 0],
+	"assets":	[{
+			"id":	"pre_00",
+			"w":	1,
+			"h":	1,
+			"p":	"images/pre_00.tex",
+			"s":	0,
+			"sm":	0,
+			"ext":	"",
+			"prefix":	"",
+			"absolute":	0,
+			"allseq":	0,
+			"rndpic":	0,
+			"timescale":	1,
+			"fixsize":	1,
+			"micdb":	0,
+			"artype":	0
+		},{
+			"id":	"eff_00",
+			"w":	512,
+			"h":	512,
+			"p":	"images/eff_00.png",
+			"s":	0,
+			"sm":	0,
+			"ext":	"",
+			"prefix":	"",
+			"absolute":	0,
+			"allseq":	0,
+			"rndpic":	0,
+			"timescale":	1,
+			"fixsize":	1,
+			"micdb":	0,
+			"artype":	0
+		}],
+	"effects":	[],
+	"layers":	[{
+			"id":	1,
+			"sf":	0,
+			"ef":	2000000000,
+			"offset":	0,
+			"aid":	"pre_00",
+			"mt":	0,
+			"vl":	0,
+			"bm":	0,
+			"effects":	[{
+					"id":	"287FCB82-F678-4869-9568-8A6016F8EAF5",
+					"sf":	-1,
+					"ef":	-1,
+					"export":	1,
+					"props":	[{
+						"ty":	3,
+						"v":	0.4
+					},{
+						"ty":	11,
+						"v":	"eff_00"
+					}]
+				}]
+		}]
+}

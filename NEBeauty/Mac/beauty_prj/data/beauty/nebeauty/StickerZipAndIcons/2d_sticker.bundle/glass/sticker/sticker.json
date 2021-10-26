@@ -1,0 +1,44 @@
+{
+    "elements": [
+        {
+            "path": "ear",
+            "size": 1,
+            "suffix": "png",
+            "w": 450,
+            "h": 100,
+            "anchor": [0.0, 2],
+            "scale": [1, 1],
+            "rotate": [0, 0, 0],
+            "point": 2,
+            "duration": 83,
+            "beat": 0
+        },
+        {
+            "path": "face",
+            "size": 10,
+            "suffix": "png",
+            "w": 450,
+            "h": 200,
+            "anchor": [0.0, -0.1],
+            "scale": [1.2,1.2],
+            "rotate": [0, 0, 0],
+            "point": 5,
+            "duration": 83,
+            "beat": 0
+       
+        },
+        {
+            "path": "ring",
+            "size": 15,
+            "suffix": "png",
+            "w": 400,
+            "h": 400,
+            "anchor": [1.0, -1.0],
+            "scale": [1,1],
+            "rotate": [0, 0, 0],
+            "point": 8,
+            "duration": 83,
+            "beat": 0
+        }
+    ]
+}

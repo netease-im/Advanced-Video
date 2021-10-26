@@ -1,0 +1,37 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+<file alias="source/resource/image/background.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/background.png</file>
+<file alias="source/resource/image/beaut-on.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/beaut-on.png</file>
+<file alias="source/resource/image/beauty-off.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/beauty-off.png</file>
+<file alias="source/resource/image/btn_show_device_down_normal.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/btn_show_device_down_normal.png</file>
+<file alias="source/resource/image/btn_show_device_normal.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/btn_show_device_normal.png</file>
+<file alias="source/resource/image/cancel_call.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/cancel_call.png</file>
+<file alias="source/resource/image/check.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/check.png</file>
+<file alias="source/resource/image/clear.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/clear.png</file>
+<file alias="source/resource/image/data.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/data.png</file>
+<file alias="source/resource/image/device_selector_normal.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/device_selector_normal.png</file>
+<file alias="source/resource/image/device_selector_pushed.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/device_selector_pushed.png</file>
+<file alias="source/resource/image/networkquality_bad.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/networkquality_bad.svg</file>
+<file alias="source/resource/image/networkquality_general.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/networkquality_general.svg</file>
+<file alias="source/resource/image/networkquality_good.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/networkquality_good.svg</file>
+<file alias="source/resource/image/networkquality_unknown.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/networkquality_unknown.svg</file>
+<file alias="source/resource/image/normal.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/normal.png</file>
+<file alias="source/resource/image/radio-check.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/radio-check.png</file>
+<file alias="source/resource/image/radio-uncheck.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/radio-uncheck.png</file>
+<file alias="source/resource/image/right_white.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/right_white.svg</file>
+<file alias="source/resource/image/setting.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/setting.png</file>
+<file alias="source/resource/image/smlie-active.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/smlie-active.svg</file>
+<file alias="source/resource/image/thumb-up-active.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/thumb-up-active.svg</file>
+<file alias="source/resource/image/thumb-up.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/thumb-up.svg</file>
+<file alias="source/resource/image/thumbs-down-active.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/thumbs-down-active.svg</file>
+<file alias="source/resource/image/thumbs-down.svg">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/thumbs-down.svg</file>
+<file alias="source/resource/image/triangle-combox.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/triangle-combox.png</file>
+<file alias="source/resource/image/triangle-down.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/triangle-down.png</file>
+<file alias="source/resource/image/video-off.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/video-off.png</file>
+<file alias="source/resource/image/video-on.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/video-on.png</file>
+<file alias="source/resource/image/voice-off.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/voice-off.png</file>
+<file alias="source/resource/image/voice-on.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/voice-on.png</file>
+<file alias="source/resource/image/zoomIn.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/zoomIn.png</file>
+<file alias="source/resource/image/zoomOut.png">/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image/zoomOut.png</file>
+</qresource>
+</RCC>

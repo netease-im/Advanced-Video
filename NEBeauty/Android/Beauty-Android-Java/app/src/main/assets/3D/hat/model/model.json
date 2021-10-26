@@ -1,0 +1,7 @@
+{
+    "models" : [{
+        "model": "hat.obj",
+        "diffusetex": "diffuse.png"
+    }],
+    "occluder": "occluder.obj"
+}

@@ -1,0 +1,1399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+		5E618435888B9D49F8540165 = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Qt Qmake";
+			shellPath = "/bin/sh";
+			shellScript = "make -C /Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj -f 1v1_beauty.xcodeproj/qt_makeqmake.mak";
+			showEnvVarsInLog = "0";
+		};
+		58F222D343955070197B26EC = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/main.cpp";
+			name = "main.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DAE66F47FFAD6232B9DD78B8 = {
+			fileRef = "58F222D343955070197B26EC";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		9A3B2BCAA853CBB25FBD4B37 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/beauty_item_widget.cpp";
+			name = "beauty_item_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DC8C9CEF248D75D9D179BF60 = {
+			fileRef = "9A3B2BCAA853CBB25FBD4B37";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		AACD96C0EA7748DD6688E2ED = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/beauty_tabwidget.cpp";
+			name = "beauty_tabwidget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		47DE37A022608D320568C4E3 = {
+			fileRef = "AACD96C0EA7748DD6688E2ED";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		3FEF39F03C6EAD28A8E96196 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/call_widget.cpp";
+			name = "call_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		C7C4853C3770A9234A90BDD4 = {
+			fileRef = "3FEF39F03C6EAD28A8E96196";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7C06C499E9EE40F06B810C67 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/engine.cpp";
+			name = "engine.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		6CBBE75A2846AFA7510AD9DD = {
+			fileRef = "7C06C499E9EE40F06B810C67";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		9E505B85A4B8EF18B3FA6DC9 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/face_beauty_widget.cpp";
+			name = "face_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		894869CE3FB02AA4C7F5D85F = {
+			fileRef = "9E505B85A4B8EF18B3FA6DC9";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		53CB00C9A0F5565DB0DB76F8 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/filter_beauty_widget.cpp";
+			name = "filter_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		5DA414AB0EEF1D43D44A7376 = {
+			fileRef = "53CB00C9A0F5565DB0DB76F8";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		DC664D720EA5880C1C1DFDBD = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/item_sticker_widget.cpp";
+			name = "item_sticker_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8DBD598F13CF404F908CB044 = {
+			fileRef = "DC664D720EA5880C1C1DFDBD";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		78ADCC9C6FC2A745AD439EA6 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/join_widget.cpp";
+			name = "join_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		E01CC3F88AB8638D82E22F0F = {
+			fileRef = "78ADCC9C6FC2A745AD439EA6";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		2B7972D9E731CCD7C5D5F67A = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/other_beauty_widget.cpp";
+			name = "other_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8B9D7A00C2C02C0A67A294B0 = {
+			fileRef = "2B7972D9E731CCD7C5D5F67A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7E4F890F7DDC5CD0EA8DB674 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/room_button.cpp";
+			name = "room_button.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		CA258F9620F8E3C679BAD5FB = {
+			fileRef = "7E4F890F7DDC5CD0EA8DB674";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		E29A2CF89FC7BF07ACA7387A = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/skin_beauty_widget.cpp";
+			name = "skin_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		0B6B05B8685477797E124732 = {
+			fileRef = "E29A2CF89FC7BF07ACA7387A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		30903F3D8C8093364367FA17 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/video_widget.cpp";
+			name = "video_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2F11B71E65169F5AA42C4EAE = {
+			fileRef = "30903F3D8C8093364367FA17";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		83F5087D6D4E04E092F3485C = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/src/engine_beauty_mac.mm";
+			name = "engine_beauty_mac.mm";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.objcpp";
+		};
+		08306606E337777649C7719C = {
+			fileRef = "83F5087D6D4E04E092F3485C";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		99D471863A903191D94D5B8A = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/qrc_image.cpp";
+			name = "qrc_image.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		8C2DE7C9C29743DAA7DC1C9A = {
+			fileRef = "99D471863A903191D94D5B8A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6C6A3ADD610B0CFBF1AC1A1D = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/qrc_qmake_qmake_immediate.cpp";
+			name = "qrc_qmake_qmake_immediate.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		319BC572ABEA4BCF9B555107 = {
+			fileRef = "6C6A3ADD610B0CFBF1AC1A1D";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		F4FBE3B6BA8FC95B7E1FE89E = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_beauty_item_widget.cpp";
+			name = "moc_beauty_item_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		29F4BD7BF616B284E66ABEAD = {
+			fileRef = "F4FBE3B6BA8FC95B7E1FE89E";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		6A6524413F5812263E8695A5 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_beauty_tabwidget.cpp";
+			name = "moc_beauty_tabwidget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		AA9A2D34E79201A6FFF2801A = {
+			fileRef = "6A6524413F5812263E8695A5";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		E38F8236EA7EF3B720D37265 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_call_widget.cpp";
+			name = "moc_call_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		A8CD19A23883D7AEF92F6BD1 = {
+			fileRef = "E38F8236EA7EF3B720D37265";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		612CE1C98FBFAC1DD4301AB9 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_engine.cpp";
+			name = "moc_engine.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		0DF786403D8101163EEA737F = {
+			fileRef = "612CE1C98FBFAC1DD4301AB9";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		075D42B98E4034DB7E11DF36 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_face_beauty_widget.cpp";
+			name = "moc_face_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		B67D7B2ACD7B3BBC7D9906D0 = {
+			fileRef = "075D42B98E4034DB7E11DF36";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A594746682B14DB1A04C8377 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_filter_beauty_widget.cpp";
+			name = "moc_filter_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		2A7D33DC0FD3107960993BCF = {
+			fileRef = "A594746682B14DB1A04C8377";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		53FDBFC6C02DEF01F1C01797 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_item_sticker_widget.cpp";
+			name = "moc_item_sticker_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		682F55308F94E74C26192EFF = {
+			fileRef = "53FDBFC6C02DEF01F1C01797";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		38EB842C23CA109BA6D4B47A = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_join_widget.cpp";
+			name = "moc_join_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		763133D08B2B458A413C6D62 = {
+			fileRef = "38EB842C23CA109BA6D4B47A";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		AD34C36B344F9744D8737ED2 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_other_beauty_widget.cpp";
+			name = "moc_other_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		430019EC94875719DF9AA2B6 = {
+			fileRef = "AD34C36B344F9744D8737ED2";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		04836FEA38BE856AC6762B51 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_room_button.cpp";
+			name = "moc_room_button.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		4ACF0DFF92A7090F5F4AA65E = {
+			fileRef = "04836FEA38BE856AC6762B51";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		B83082442F4FFA1D9D031688 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/moc_skin_beauty_widget.cpp";
+			name = "moc_skin_beauty_widget.cpp";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.cpp.cpp";
+		};
+		DB598B9FD580F0D2FBD3DDB3 = {
+			fileRef = "B83082442F4FFA1D9D031688";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		A47D5A21FF687B282C7C944D = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/beauty_item_widget.h";
+			name = "beauty_item_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		9D1651E8CE8E09536F93A9EF = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/beauty_tabwidget.h";
+			name = "beauty_tabwidget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		54E067633260E73BA21E549A = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/call_widget.h";
+			name = "call_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		01A761DD350AC31B718419AB = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/engine.h";
+			name = "engine.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		425712705A53DD3D7607E66E = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/face_beauty_widget.h";
+			name = "face_beauty_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		84A72CE1977243B452F895C8 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/filter_beauty_widget.h";
+			name = "filter_beauty_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		A9BE4F0EB57C33FCDC3FB54E = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/item_sticker_widget.h";
+			name = "item_sticker_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		529D8748FD7749BFAD514B92 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/join_widget.h";
+			name = "join_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		D45E4401277F2A1D77EDA1D5 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/other_beauty_widget.h";
+			name = "other_beauty_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		D9C25928677E49004712A6B8 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/room_button.h";
+			name = "room_button.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		24A51A1195A7D1AA35C6CF61 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/skin_beauty_widget.h";
+			name = "skin_beauty_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		D1189765309D70011CE1A0C5 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/include/video_widget.h";
+			name = "video_widget.h";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "sourcecode.c.h";
+		};
+		B095044DA08DB66F181FE23B = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/source/resource/image.qrc";
+			name = "image.qrc";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		9CFF08669AFD52EA01177C6D = {
+			fileRef = "B095044DA08DB66F181FE23B";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		468AB847E063E8C330FC4D02 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/qmake_qmake_immediate.qrc";
+			name = "qmake_qmake_immediate.qrc";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		128B569CE76995C40FCD12DD = {
+			fileRef = "468AB847E063E8C330FC4D02";
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					);
+			};
+		};
+		7CAD638E6B5C64AEFC67D4F4 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/beauty_prj.pro";
+			name = "beauty_prj.pro";
+			sourceTree = "<absolute>";
+			lastKnownFileType = "text";
+		};
+		D79F7F487069A42BB2519305 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/.qmake.stash";
+			name = ".qmake.stash";
+			sourceTree = "<absolute>";
+		};
+		25B08E2869634E9BCBA333A2 = {
+			isa = PBXGroup;
+			children = (
+				"99D471863A903191D94D5B8A",
+				"6C6A3ADD610B0CFBF1AC1A1D",
+				"F4FBE3B6BA8FC95B7E1FE89E",
+				"6A6524413F5812263E8695A5",
+				"E38F8236EA7EF3B720D37265",
+				"612CE1C98FBFAC1DD4301AB9",
+				"075D42B98E4034DB7E11DF36",
+				"A594746682B14DB1A04C8377",
+				"53FDBFC6C02DEF01F1C01797",
+				"38EB842C23CA109BA6D4B47A",
+				"AD34C36B344F9744D8737ED2",
+				"04836FEA38BE856AC6762B51",
+				"B83082442F4FFA1D9D031688");
+			name = "Generated Sources";
+			sourceTree = "<group>";
+		};
+		A8ED8EAA56293BC7BBECE4C8 = {
+			isa = PBXGroup;
+			children = (
+				"77C31C432AE7A6DE3B7A3254");
+			name = "source";
+			sourceTree = "<group>";
+		};
+		77C31C432AE7A6DE3B7A3254 = {
+			isa = PBXGroup;
+			children = (
+				"B095044DA08DB66F181FE23B");
+			name = "resource";
+			sourceTree = "<group>";
+		};
+		51A8A62A48A31E05FD1F4896 = {
+			isa = PBXGroup;
+			children = (
+				"B7581B38083E01155ADCCF76",
+				"2D344A902AE7109D8BC0D638");
+			name = "source";
+			sourceTree = "<group>";
+		};
+		2D344A902AE7109D8BC0D638 = {
+			isa = PBXGroup;
+			children = (
+				"A47D5A21FF687B282C7C944D",
+				"9D1651E8CE8E09536F93A9EF",
+				"54E067633260E73BA21E549A",
+				"01A761DD350AC31B718419AB",
+				"425712705A53DD3D7607E66E",
+				"84A72CE1977243B452F895C8",
+				"A9BE4F0EB57C33FCDC3FB54E",
+				"529D8748FD7749BFAD514B92",
+				"D45E4401277F2A1D77EDA1D5",
+				"D9C25928677E49004712A6B8",
+				"24A51A1195A7D1AA35C6CF61",
+				"D1189765309D70011CE1A0C5");
+			name = "include";
+			sourceTree = "<group>";
+		};
+		B7581B38083E01155ADCCF76 = {
+			isa = PBXGroup;
+			children = (
+				"9A3B2BCAA853CBB25FBD4B37",
+				"AACD96C0EA7748DD6688E2ED",
+				"3FEF39F03C6EAD28A8E96196",
+				"7C06C499E9EE40F06B810C67",
+				"9E505B85A4B8EF18B3FA6DC9",
+				"53CB00C9A0F5565DB0DB76F8",
+				"DC664D720EA5880C1C1DFDBD",
+				"78ADCC9C6FC2A745AD439EA6",
+				"2B7972D9E731CCD7C5D5F67A",
+				"7E4F890F7DDC5CD0EA8DB674",
+				"E29A2CF89FC7BF07ACA7387A",
+				"30903F3D8C8093364367FA17",
+				"83F5087D6D4E04E092F3485C");
+			name = "src";
+			sourceTree = "<group>";
+		};
+		87DF60DE337FB58864343E39 = {
+			isa = PBXGroup;
+			children = (
+				"A8ED8EAA56293BC7BBECE4C8",
+				"468AB847E063E8C330FC4D02");
+			name = "Resources";
+			sourceTree = "<group>";
+		};
+		2EB56BE3C2D93CDAB0C52E67 = {
+			isa = PBXGroup;
+			children = (
+				"58F222D343955070197B26EC",
+				"51A8A62A48A31E05FD1F4896");
+			name = "Sources";
+			sourceTree = "<group>";
+		};
+		74B182DB50CB5611B5C1C297 = {
+			isa = PBXGroup;
+			children = (
+				"7CAD638E6B5C64AEFC67D4F4",
+				"D79F7F487069A42BB2519305");
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7EF0942E79C014DCEC8976BC = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			isa = PBXShellScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Qt Preprocessors";
+			inputPaths = (
+				"source/resource/image.qrc",
+				"qmake_qmake_immediate.qrc",
+				"source/include/beauty_item_widget.h",
+				"source/include/beauty_tabwidget.h",
+				"source/include/call_widget.h",
+				"source/include/engine.h",
+				"source/include/face_beauty_widget.h",
+				"source/include/filter_beauty_widget.h",
+				"source/include/item_sticker_widget.h",
+				"source/include/join_widget.h",
+				"source/include/other_beauty_widget.h",
+				"source/include/room_button.h",
+				"source/include/skin_beauty_widget.h");
+			outputPaths = (
+				"qrc_image.cpp",
+				"qrc_qmake_qmake_immediate.cpp",
+				"moc_beauty_item_widget.cpp",
+				"moc_beauty_tabwidget.cpp",
+				"moc_call_widget.cpp",
+				"moc_engine.cpp",
+				"moc_face_beauty_widget.cpp",
+				"moc_filter_beauty_widget.cpp",
+				"moc_item_sticker_widget.cpp",
+				"moc_join_widget.cpp",
+				"moc_other_beauty_widget.cpp",
+				"moc_room_button.cpp",
+				"moc_skin_beauty_widget.cpp");
+			shellPath = "/bin/sh";
+			shellScript = "make -C /Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj -f 1v1_beauty.xcodeproj/qt_preprocess.mak";
+			showEnvVarsInLog = "0";
+		};
+		F7E50F631C51CD5B5DC0BC43 = {
+			buildActionMask = 2147483647;
+			files = (
+				"DAE66F47FFAD6232B9DD78B8",
+				"DC8C9CEF248D75D9D179BF60",
+				"47DE37A022608D320568C4E3",
+				"C7C4853C3770A9234A90BDD4",
+				"6CBBE75A2846AFA7510AD9DD",
+				"894869CE3FB02AA4C7F5D85F",
+				"5DA414AB0EEF1D43D44A7376",
+				"8DBD598F13CF404F908CB044",
+				"E01CC3F88AB8638D82E22F0F",
+				"8B9D7A00C2C02C0A67A294B0",
+				"CA258F9620F8E3C679BAD5FB",
+				"0B6B05B8685477797E124732",
+				"2F11B71E65169F5AA42C4EAE",
+				"08306606E337777649C7719C",
+				"8C2DE7C9C29743DAA7DC1C9A",
+				"319BC572ABEA4BCF9B555107",
+				"29F4BD7BF616B284E66ABEAD",
+				"AA9A2D34E79201A6FFF2801A",
+				"A8CD19A23883D7AEF92F6BD1",
+				"0DF786403D8101163EEA737F",
+				"B67D7B2ACD7B3BBC7D9906D0",
+				"2A7D33DC0FD3107960993BCF",
+				"682F55308F94E74C26192EFF",
+				"763133D08B2B458A413C6D62",
+				"430019EC94875719DF9AA2B6",
+				"4ACF0DFF92A7090F5F4AA65E",
+				"DB598B9FD580F0D2FBD3DDB3");
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Compile Sources";
+		};
+		F923F38E989CF0F61A164DD8 = {
+			isa = PBXFileReference;
+			name = "CoreVideo.framework";
+			path = "/System/Library/Frameworks/CoreVideo.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		6602E41D28CF886E694AD752 = {
+			fileRef = "F923F38E989CF0F61A164DD8";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		4792E47EB81F47C63B331BAF = {
+			isa = PBXFileReference;
+			name = "NEFundation_Mac.framework";
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac/NEFundation_Mac.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		D3C2716E86E7A51DCDF0E33C = {
+			fileRef = "4792E47EB81F47C63B331BAF";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		DC1DE281550D73EC6DDA6E27 = {
+			isa = PBXFileReference;
+			name = "nertc_sdk_Mac.framework";
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac/nertc_sdk_Mac.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		668D7FE7B7684A82228479D9 = {
+			fileRef = "DC1DE281550D73EC6DDA6E27";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		094DD6C9B22076FB469A5C73 = {
+			isa = PBXFileReference;
+			name = "jsoncpp";
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/jsoncpp/lib/mac/libjsoncpp.dylib";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		75F19254622BAE949C0B1CEF = {
+			fileRef = "094DD6C9B22076FB469A5C73";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		FCC237CA5AD60B9BA4447615 = {
+			isa = PBXFileReference;
+			name = "Foundation.framework";
+			path = "/System/Library/Frameworks/Foundation.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		F26454630C80841CBDCFE1CA = {
+			fileRef = "FCC237CA5AD60B9BA4447615";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		CD76D729E419BC7E1AA78337 = {
+			isa = PBXFileReference;
+			name = "QtWidgets.framework";
+			path = "/Users/robin/Qt/6.2.0/macos/lib/QtWidgets.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		B84A23B9D5CA35754F0917BC = {
+			fileRef = "CD76D729E419BC7E1AA78337";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AF35EB3149E8B4D81070508 = {
+			isa = PBXFileReference;
+			name = "QtGui.framework";
+			path = "/Users/robin/Qt/6.2.0/macos/lib/QtGui.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		8DCA26DB75E8D0AC962ABEE6 = {
+			fileRef = "7AF35EB3149E8B4D81070508";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		723F90793B2C195E2CCB2233 = {
+			isa = PBXFileReference;
+			name = "AppKit.framework";
+			path = "/System/Library/Frameworks/AppKit.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		F2A75ACAC9DF6A3F4E5711E7 = {
+			fileRef = "723F90793B2C195E2CCB2233";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3A8EF9C62A8D4790CBB89CEA = {
+			isa = PBXFileReference;
+			name = "ImageIO.framework";
+			path = "/System/Library/Frameworks/ImageIO.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		61EEC397DC8556BF8C4E36A7 = {
+			fileRef = "3A8EF9C62A8D4790CBB89CEA";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		1B2543FCC48E9436F21C4F63 = {
+			isa = PBXFileReference;
+			name = "Metal.framework";
+			path = "/System/Library/Frameworks/Metal.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		B3FE8FAC746D3D5BB24FA398 = {
+			fileRef = "1B2543FCC48E9436F21C4F63";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		148043E9607781498006A737 = {
+			isa = PBXFileReference;
+			name = "QtCore.framework";
+			path = "/Users/robin/Qt/6.2.0/macos/lib/QtCore.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		030EFC1D84ADD5EAF1624C2D = {
+			fileRef = "148043E9607781498006A737";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2B774D8E4178765CE52EAAF5 = {
+			isa = PBXFileReference;
+			name = "DiskArbitration.framework";
+			path = "/System/Library/Frameworks/DiskArbitration.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		A99B2AA0F9CBBDD12BA126A4 = {
+			fileRef = "2B774D8E4178765CE52EAAF5";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		A1A67BEAA744704B29168D39 = {
+			isa = PBXFileReference;
+			name = "IOKit.framework";
+			path = "/System/Library/Frameworks/IOKit.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		8D267F2E4776F0ECA2F49DC8 = {
+			fileRef = "A1A67BEAA744704B29168D39";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		8D9815BDB5BD9F90D2BC05C5 = {
+			isa = PBXFileReference;
+			name = "AGL.framework";
+			path = "/System/Library/Frameworks/AGL.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		E45E51A644D5FC9F942ECE55 = {
+			fileRef = "8D9815BDB5BD9F90D2BC05C5";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		D4B32C2222F82AC56BADEB21 = {
+			isa = PBXFileReference;
+			name = "OpenGL.framework";
+			path = "/System/Library/Frameworks/OpenGL.framework";
+			refType = 0;
+			sourceTree = "<absolute>";
+			lastKnownFileType = "wrapper.framework";
+		};
+		8771A8C96E9C391044035D99 = {
+			fileRef = "D4B32C2222F82AC56BADEB21";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		AF39DD055C3EF8226FBE929D = {
+			children = (
+				"F923F38E989CF0F61A164DD8",
+				"4792E47EB81F47C63B331BAF",
+				"DC1DE281550D73EC6DDA6E27",
+				"094DD6C9B22076FB469A5C73",
+				"FCC237CA5AD60B9BA4447615",
+				"CD76D729E419BC7E1AA78337",
+				"7AF35EB3149E8B4D81070508",
+				"723F90793B2C195E2CCB2233",
+				"3A8EF9C62A8D4790CBB89CEA",
+				"1B2543FCC48E9436F21C4F63",
+				"148043E9607781498006A737",
+				"2B774D8E4178765CE52EAAF5",
+				"A1A67BEAA744704B29168D39",
+				"8D9815BDB5BD9F90D2BC05C5",
+				"D4B32C2222F82AC56BADEB21");
+			isa = PBXGroup;
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		D1C883685E82D5676953459A = {
+			buildActionMask = 2147483647;
+			files = (
+				"6602E41D28CF886E694AD752",
+				"D3C2716E86E7A51DCDF0E33C",
+				"668D7FE7B7684A82228479D9",
+				"75F19254622BAE949C0B1CEF",
+				"F26454630C80841CBDCFE1CA",
+				"B84A23B9D5CA35754F0917BC",
+				"8DCA26DB75E8D0AC962ABEE6",
+				"F2A75ACAC9DF6A3F4E5711E7",
+				"61EEC397DC8556BF8C4E36A7",
+				"B3FE8FAC746D3D5BB24FA398",
+				"030EFC1D84ADD5EAF1624C2D",
+				"A99B2AA0F9CBBDD12BA126A4",
+				"8D267F2E4776F0ECA2F49DC8",
+				"E45E51A644D5FC9F942ECE55",
+				"8771A8C96E9C391044035D99");
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Link Binary With Libraries";
+		};
+		9C316F444A62BF296E3E1F25 = {
+			isa = PBXShellScriptBuildPhase;
+			name = "Project Copy";
+			buildActionMask = 2147483647;
+			files = (
+				);
+			inputPaths = (
+				);
+			outputPaths = (
+				);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh";
+			shellScript = "cp -r $BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME /Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/bin";
+			showEnvVarsInLog = "0";
+		};
+		A9B82ACFE4E15062ECB8A555 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac/NEFundation_Mac.framework";
+			name = "NEFundation_Mac.framework";
+			sourceTree = "<absolute>";
+		};
+		3E66F8CE02304D26E220A2B8 = {
+			fileRef = "A9B82ACFE4E15062ECB8A555";
+			isa = PBXBuildFile;
+			settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); };
+		};
+		62B1D7AAE2F48D72E7CA9E86 = {
+			name = "Copy 'NEFUNDATION_FRAMEWORK' Files to Bundle";
+			buildActionMask = 2147483647;
+			dstPath = "/Contents/Frameworks";
+			dstSubfolderSpec = 1;
+			isa = PBXCopyFilesBuildPhase;
+			files = (
+				"3E66F8CE02304D26E220A2B8");
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF3F900BA7871D72E5B24C25 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac/nertc_sdk_Mac.framework";
+			name = "nertc_sdk_Mac.framework";
+			sourceTree = "<absolute>";
+		};
+		14D8C7CE14DA609F8C1C286D = {
+			fileRef = "AF3F900BA7871D72E5B24C25";
+			isa = PBXBuildFile;
+			settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); };
+		};
+		C53BA637750F994828878543 = {
+			name = "Copy 'NERTC_SDK_FRAMEWORK' Files to Bundle";
+			buildActionMask = 2147483647;
+			dstPath = "/Contents/Frameworks";
+			dstSubfolderSpec = 1;
+			isa = PBXCopyFilesBuildPhase;
+			files = (
+				"14D8C7CE14DA609F8C1C286D");
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F47D0E0E091676A738BF067 = {
+			isa = PBXFileReference;
+			path = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/data";
+			name = "data";
+			sourceTree = "<absolute>";
+		};
+		EC7458A1C755E073053021FD = {
+			fileRef = "5F47D0E0E091676A738BF067";
+			isa = PBXBuildFile;
+		};
+		26A681DB236BCCB438B9B5F0 = {
+			name = "Copy 'BeautyFiles' Files to Bundle";
+			buildActionMask = 2147483647;
+			dstPath = "Contents/RESOURCES";
+			dstSubfolderSpec = 1;
+			isa = PBXCopyFilesBuildPhase;
+			files = (
+				"EC7458A1C755E073053021FD");
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		858FCAB0EB1F29CF8B07677C = {
+			children = (
+				"A9B82ACFE4E15062ECB8A555",
+				"AF3F900BA7871D72E5B24C25",
+				"5F47D0E0E091676A738BF067");
+			isa = PBXGroup;
+			name = "Bundle Data";
+			sourceTree = "<group>";
+		};
+		30414803F31797EB689AE508 = {
+			buildActionMask = 2147483647;
+			files = (
+				);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Copy Bundle Resources";
+		};
+		99542592E9780B9225F24AA8 = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB89CAE5E12641F388EE86FD = {
+			isa = PBXFileReference;
+			includeInIndex = 0;
+			explicitFileType = "wrapper.application";
+			path = "1v1_beauty.app";
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FE0A091FDBFB3E9C31B7A1BD = {
+			children = (
+				"FB89CAE5E12641F388EE86FD");
+			isa = PBXGroup;
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		E8C543AB96796ECAA2E65C57 = {
+			children = (
+				"2EB56BE3C2D93CDAB0C52E67",
+				"25B08E2869634E9BCBA333A2",
+				"87DF60DE337FB58864343E39",
+				"74B182DB50CB5611B5C1C297",
+				"AF39DD055C3EF8226FBE929D",
+				"858FCAB0EB1F29CF8B07677C",
+				"FE0A091FDBFB3E9C31B7A1BD");
+			isa = PBXGroup;
+			name = "1v1_beauty";
+			sourceTree = "<group>";
+		};
+		C3E1C59887151A88D15152BD = {
+			buildPhases = (
+				"5E618435888B9D49F8540165",
+				"7EF0942E79C014DCEC8976BC");
+			dependencies = (
+				);
+			buildConfigurationList = 6CC3B5D2136C7CD6A5CF5A59;
+			isa = PBXAggregateTarget;
+			buildRules = (
+);
+			productName = "Qt Preprocess";
+			name = "Qt Preprocess";
+		};
+		08DF7AF36981728C8544AB44 = {
+			isa = PBXTargetDependency;
+			target = "C3E1C59887151A88D15152BD";
+		};
+		5C66D4B1887C1ABBFEA8F303 = {
+			buildPhases = (
+				"F7E50F631C51CD5B5DC0BC43",
+				"D1C883685E82D5676953459A",
+				"9C316F444A62BF296E3E1F25",
+				"62B1D7AAE2F48D72E7CA9E86",
+				"C53BA637750F994828878543",
+				"26A681DB236BCCB438B9B5F0",
+				"30414803F31797EB689AE508",
+				"99542592E9780B9225F24AA8");
+			dependencies = (
+				"08DF7AF36981728C8544AB44");
+			productReference = "FB89CAE5E12641F388EE86FD";
+			buildConfigurationList = 6CC3B5D2136C7CD6A5CF5A59;
+			isa = PBXNativeTarget;
+			buildRules = (
+);
+			productType = "com.apple.product-type.application";
+			name = "1v1_beauty";
+			productName = "1v1_beauty";
+			productInstallPath = "bin/";
+		};
+		3AA6C32AC930069E80220CF1 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				DEVELOPMENT_TEAM = "7C9A6NRV5L";
+				ENABLE_BITCODE = "NO";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				ONLY_ACTIVE_ARCH = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "1v1_beauty";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				CC = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang";
+				LDPLUSPLUS = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++";
+				INFOPLIST_FILE = "Info.plist";
+				SYMROOT = ".xcode";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				INSTALL_DIR = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/bin/";
+				DYLIB_CURRENT_VERSION = "1.0.0";
+				DYLIB_COMPATIBILITY_VERSION = "1.0";
+				MACOSX_DEPLOYMENT_TARGET = "10.14";
+				HEADER_SEARCH_PATHS = (
+					".",
+					".",
+					"3rdparty/nertc/mac/NEFundation_Mac.framework/Headers",
+					"3rdparty/nertc/mac/nertc_sdk_Mac.framework/Headers",
+					"3rdparty/jsoncpp/include/mac",
+					"source/include",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtGui.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtCore.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/mkspecs/macx-clang");
+				LIBRARY_SEARCH_PATHS = (
+					"/System/Library/Frameworks/",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/jsoncpp/lib/mac",
+					"/Users/robin/Qt/6.2.0/macos/lib");
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/robin/Qt/6.2.0/macos/lib",
+					"/Users/robin/Qt/6.2.0/macos/lib",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac");
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-Wextra",
+					"-fPIC",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-stdlib=libc++",
+					"-O2",
+					"-std=gnu++1z",
+					"-Wall",
+					"-Wextra",
+					"-fPIC",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_LDFLAGS = (
+						"-stdlib=libc++",
+						"-headerpad_max_install_names",
+						"-Wl,-rpath,@executable_path/../Frameworks",
+						"-Wl,-rpath,/Users/robin/Qt/6.2.0/macos/lib",
+						"-F/Users/robin/Qt/6.2.0/macos/lib",
+						"-ObjC",
+						"-F/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac",
+						"-L/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/jsoncpp/lib/mac");
+				ARCHS = "x86_64 arm64";
+			};
+			name = "Debug";
+		};
+		77418F46922677BB04ED38DD = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				DEVELOPMENT_TEAM = "7C9A6NRV5L";
+				ENABLE_BITCODE = "NO";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				ONLY_ACTIVE_ARCH = "YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "1v1_beauty";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				PRODUCT_NAME = "1v1_beauty";
+			};
+			name = "Debug";
+		};
+		339EE1B2CC4FC24589A0EA95 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				DEVELOPMENT_TEAM = "7C9A6NRV5L";
+				ENABLE_BITCODE = "NO";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "1v1_beauty";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				CC = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang";
+				LDPLUSPLUS = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++";
+				INFOPLIST_FILE = "Info.plist";
+				SYMROOT = ".xcode";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				INSTALL_DIR = "/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/bin/";
+				DYLIB_CURRENT_VERSION = "1.0.0";
+				DYLIB_COMPATIBILITY_VERSION = "1.0";
+				MACOSX_DEPLOYMENT_TARGET = "10.14";
+				HEADER_SEARCH_PATHS = (
+					".",
+					".",
+					"3rdparty/nertc/mac/NEFundation_Mac.framework/Headers",
+					"3rdparty/nertc/mac/nertc_sdk_Mac.framework/Headers",
+					"3rdparty/jsoncpp/include/mac",
+					"source/include",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtGui.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/lib/QtCore.framework/Headers",
+					".",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+					"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers",
+					"/Users/robin/Qt/6.2.0/macos/mkspecs/macx-clang");
+				LIBRARY_SEARCH_PATHS = (
+					"/System/Library/Frameworks/",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/jsoncpp/lib/mac",
+					"/Users/robin/Qt/6.2.0/macos/lib");
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/robin/Qt/6.2.0/macos/lib",
+					"/Users/robin/Qt/6.2.0/macos/lib",
+					"/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac");
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-Wextra",
+					"-fPIC",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-stdlib=libc++",
+					"-O2",
+					"-std=gnu++1z",
+					"-Wall",
+					"-Wextra",
+					"-fPIC",
+					"-DQT_DEPRECATED_WARNINGS",
+					"-DQT_NO_DEBUG",
+					"-DQT_WIDGETS_LIB",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB");
+				OTHER_LDFLAGS = (
+						"-stdlib=libc++",
+						"-headerpad_max_install_names",
+						"-Wl,-rpath,@executable_path/../Frameworks",
+						"-Wl,-rpath,/Users/robin/Qt/6.2.0/macos/lib",
+						"-F/Users/robin/Qt/6.2.0/macos/lib",
+						"-ObjC",
+						"-F/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/nertc/mac",
+						"-L/Users/robin/01-workspace/netease/SampleCode/nebeauty/nebeauty-sample/Mac/beauty_prj/3rdparty/jsoncpp/lib/mac");
+				ARCHS = "x86_64 arm64";
+			};
+			name = "Release";
+		};
+		6666AA5E688052234F6758D8 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = "NO";
+				"ARCHS[sdk=macosx*]" = "x86_64 arm64";
+				COPY_PHASE_STRIP = "NO";
+				DEVELOPMENT_TEAM = "7C9A6NRV5L";
+				ENABLE_BITCODE = "NO";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "1v1_beauty";
+				QMAKE_FULL_VERSION = "1.0.0";
+				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_SHORT_VERSION = "1.0";
+				QT_LIBRARY_SUFFIX = "";
+				SDKROOT = "macosx";
+				PRODUCT_NAME = "1v1_beauty";
+			};
+			name = "Release";
+		};
+		DAC4C1AA5EDEA1C85E9CA5E6 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"3AA6C32AC930069E80220CF1",
+				"339EE1B2CC4FC24589A0EA95");
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		6CC3B5D2136C7CD6A5CF5A59 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"77418F46922677BB04ED38DD",
+				"6666AA5E688052234F6758D8");
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		6DB9C3763D02B1415CD9D565 = {
+			hasScannedForEncodings = 1;
+			compatibilityVersion = "Xcode 3.2";
+			isa = PBXProject;
+			mainGroup = "E8C543AB96796ECAA2E65C57";
+			productRefGroup = "FE0A091FDBFB3E9C31B7A1BD";
+			buildConfigurationList = "DAC4C1AA5EDEA1C85E9CA5E6";
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"5C66D4B1887C1ABBFEA8F303",
+				"C3E1C59887151A88D15152BD");
+			attributes = {
+				TargetAttributes = {
+				};
+			};
+		};
+	};
+	rootObject = "6DB9C3763D02B1415CD9D565";
+}

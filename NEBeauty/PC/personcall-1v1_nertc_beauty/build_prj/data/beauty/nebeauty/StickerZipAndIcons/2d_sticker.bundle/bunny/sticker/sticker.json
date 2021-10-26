@@ -1,0 +1,60 @@
+{
+    "elements": [
+        {
+            "path": "ear",
+            "size": 18,
+            "suffix": "png",
+            "w": 711,
+            "h": 429,
+            "anchor": [0.0, 1.5],
+            "scale": [0.6, 0.6],
+            "rotate": [0, 0, 0],
+            "point": 2,
+            "duration": 80,
+            "beat": 0
+        },
+        {
+            "path": "ring",
+            "size": 14,
+            "suffix": "png",
+            "w": 438,
+            "h": 288,
+            "anchor": [0.0, -0.3],
+            "scale": [0.6, 0.6],
+            "rotate": [0, 0, 0],
+            "point": 15,
+            "duration": 80,
+            "beat": 0
+        },
+        {
+            "path": "hearta",
+            "size": 23,
+            "suffix": "png",
+            "w": 303,
+            "h": 399,
+            "anchor": [1.0, 0.6],
+            "scale": [0.6, 0.6],
+            "rotate": [0, 0, 0],
+            "point": 3,
+            "duration": 80,
+            "triggerloop": 2,
+            "trigger": 4,
+            "beat": 0
+        },
+        {
+            "path": "heartb",
+            "size": 23,
+            "suffix": "png",
+            "w": 255,
+            "h": 511,
+            "anchor": [-1.2, 0.6],
+            "scale": [0.6, 0.6],
+            "rotate": [0, 0, 0],
+            "point": 4,
+            "duration": 80,
+            "triggerloop": 2,
+            "trigger": 4,
+            "beat": 0
+        }
+    ]
+}
