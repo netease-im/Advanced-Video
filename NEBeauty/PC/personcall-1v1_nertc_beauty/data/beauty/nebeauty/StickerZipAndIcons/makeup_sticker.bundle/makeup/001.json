@@ -1,0 +1,50 @@
+{
+	"v":	"4.6.9",
+	"fr":	24,
+	"sf":	0,
+	"ef":	20000000,
+	"w":	1,
+	"h":	1,
+	"color":	[0, 0, 0, 0],
+	"assets":	[{
+			"id":	"pre_00",
+			"w":	1,
+			"h":	1,
+			"p":	"images/pre_00.tex",
+			"s":	0,
+			"sm":	0,
+			"ext":	"",
+			"prefix":	"",
+			"absolute":	0,
+			"allseq":	0,
+			"rndpic":	0,
+			"timescale":	1,
+			"fixsize":	0,
+			"micdb":	0,
+			"artype":	0
+		}],
+	"effects":	[],
+	"layers":	[{
+			"id":	1,
+			"sf":	0,
+			"ef":	20000000,
+			"offset":	0,
+			"aid":	"pre_00",
+			"mt":	0,
+			"vl":	0,
+			"bm":	0,
+			"effects":	[{
+					"id":	"62830694-DE1B-4F3D-86A9-41E6EF12C4C6",
+					"sf":	-1,
+					"ef":	-1,
+					"export":	1,
+					"props":	[{
+						"ty":	5,
+						"v":	"makeup/"
+					},{
+						"ty":	3,
+						"v":	0.5
+					}]
+				}]
+		}]
+}

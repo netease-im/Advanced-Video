@@ -1,0 +1,12 @@
+{
+    "nm": "rabbit",
+	"ty": 4,
+    "segs": [
+        {
+            "id": 0,
+            "p": "001.json"
+        }
+    ],
+    "trigger": 4,
+    "decode": 0
+}
