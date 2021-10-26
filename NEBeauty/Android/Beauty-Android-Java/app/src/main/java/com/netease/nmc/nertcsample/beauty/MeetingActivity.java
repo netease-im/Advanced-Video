@@ -311,7 +311,7 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         NERtcEx.getInstance().enableLocalVideo(enableLocalVideo);
         enableVideoIb.setImageResource(enable ? R.drawable.selector_meeting_close_video : R.drawable.selector_meeting_open_video);
         localUserVv.setVisibility(enable ? View.VISIBLE : View.INVISIBLE);
-        localUserBgV.setBackgroundColor(getResources().getColor(enable ? R.color.white : R.color.black));
+        //localUserBgV.setBackgroundColor(getResources().getColor(enable ? R.color.white : R.color.black));
     }
 
     @Override
