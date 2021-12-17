@@ -13,6 +13,7 @@
 #import "NEBeautyManager.h"
 
 #import <NERtcSDK/NERtcSDK.h>
+#import <Masonry/Masonry.h>
 
 @interface NETSDemoP2PViewController ()<NERtcEngineDelegateEx>
 
@@ -28,6 +29,11 @@
 //Demo的 canvas 模型，包括uid 和 container, 用来建立sdk canvas
 @property (nonatomic, strong) NTESDemoUserModel *localCanvas;  //本地
 @property (nonatomic, strong) NTESDemoUserModel *remoteCanvas; //远端
+
+@property (nonatomic, strong) UIView *functionMenu;
+@property (nonatomic, strong) UIButton *muteAudioButton;
+@property (nonatomic, strong) UIButton *muteVideoButton;
+@property (nonatomic, strong) UIButton *hangupButton;
 
 @end
 
@@ -56,6 +62,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setupLayout];
     
     //初始化美颜模块
     [[NEBeautyManager sharedManager] initNEBeauty];
@@ -158,44 +166,87 @@
     }];
 }
 
+- (void)setupLayout {
+    [self.view addSubview:self.functionMenu];
+    [self.functionMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(@120);
+    }];
+    
+    NSMutableArray<UIButton *> *buttonArray = [NSMutableArray array];
+    NSArray<NSString *> *titleArray = @[@"滤镜", @"美颜", @"美妆"];
+    NSArray<NSString *> *selectorNameArray = @[@"onOpenFilterMenuAction:",
+                                               @"onOpenBeautyMenuAction:",
+                                               @"onOpenMakeupMenuAction:"];
+    for (unsigned int i = 0; i < titleArray.count; i++) {
+        NSString *title = titleArray[i];
+        NSString *selectorName = selectorNameArray[i];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
+        button.backgroundColor = [UIColor clearColor];
+        button.titleLabel.font = [UIFont systemFontOfSize:18];
+        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button addTarget:self action:NSSelectorFromString(selectorName) forControlEvents:UIControlEventTouchUpInside];
+        
+        [buttonArray addObject:button];
+        [self.functionMenu addSubview:button];
+    }
+    [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.functionMenu).offset(10);
+    }];
+    [buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+    
+    [self.functionMenu addSubview:self.muteAudioButton];
+    [self.functionMenu addSubview:self.muteVideoButton];
+    [self.functionMenu addSubview:self.hangupButton];
+    
+    NSArray<UIButton *> *functionButtonArray = @[self.muteAudioButton, self.hangupButton, self.muteVideoButton];
+    [functionButtonArray mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.functionMenu).offset(25);
+    }];
+    [functionButtonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+}
+
 #pragma mark - Actions
 
 //UI 挂断按钮事件
-- (IBAction)onHungupAction:(UIButton *)sender {
+- (void)onHungupAction:(UIButton *)sender {
     [NERtcEngine.sharedEngine leaveChannel];
 }
 
 //UI 关闭本地音频按钮事件
-- (IBAction)onAudioMuteAction:(UIButton *)sender {
+- (void)onAudioMuteAction:(UIButton *)sender {
     sender.selected = !sender.selected;
     [NERtcEngine.sharedEngine enableLocalAudio:!sender.selected];
 }
 
 //UI 关闭本地视频按钮事件
-- (IBAction)onVideoMuteAction:(UIButton *)sender {
+- (void)onVideoMuteAction:(UIButton *)sender {
     sender.selected = !sender.selected;
     [NERtcEngine.sharedEngine enableLocalVideo:!sender.selected];
+}
+
+- (void)onOpenFilterMenuAction:(UIButton *)sender {
+    [[NEBeautyManager sharedManager] displayFilterMenuWithContainer:self.view];
+}
+
+- (void)onOpenBeautyMenuAction:(UIButton *)sender {
+    [[NEBeautyManager sharedManager] displayBeautyMenuWithContainer:self.view];
+}
+
+- (void)onOpenSitckerMenuAction:(UIButton *)sender {
+    [[NEBeautyManager sharedManager] displayStickerMenuWithContainer:self.view];
+}
+
+- (void)onOpenMakeupMenuAction:(UIButton *)sender {
+    [[NEBeautyManager sharedManager] displayMakeupMenuWithContainer:self.view];
 }
 
 //UI 切换摄像头按钮事件
 - (IBAction)onSwitchCameraAction:(UIButton *)sender {
     [NERtcEngine.sharedEngine switchCamera];
-}
-
-- (IBAction)onOpenFilterMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayFilterMenuWithContainer:self.view];
-}
-
-- (IBAction)onOpenBeautyMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayBeautyMenuWithContainer:self.view];
-}
-
-- (IBAction)onOpenSitckerMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayStickerMenuWithContainer:self.view];
-}
-
-- (IBAction)onOpenMakeupMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayMakeupMenuWithContainer:self.view];
 }
 
 - (IBAction)onCompareButtonTouchDown:(UIButton *)sender {
@@ -288,6 +339,53 @@
     }];
     [alertVC addAction:exitAction];
     [self presentViewController:alertVC animated:YES completion:nil];
+}
+
+#pragma mark - Getter
+
+- (UIView *)functionMenu {
+    if (!_functionMenu) {
+        _functionMenu = [[UIView alloc] initWithFrame:CGRectZero];
+        _functionMenu.backgroundColor = [UIColor colorWithRed:44.0f/255.0f green:44.0f/255.0f blue:54.0f/255.0f alpha:1.0];
+    }
+    
+    return _functionMenu;
+}
+
+- (UIButton *)muteAudioButton {
+    if (!_muteAudioButton) {
+        _muteAudioButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        _muteAudioButton.backgroundColor = [UIColor clearColor];
+        [_muteAudioButton setImage:[UIImage imageNamed:@"Audio"] forState:UIControlStateNormal];
+        [_muteAudioButton setImage:[UIImage imageNamed:@"Audio_s"] forState:UIControlStateSelected];
+        [_muteAudioButton addTarget:self action:@selector(onAudioMuteAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _muteAudioButton;
+}
+
+- (UIButton *)muteVideoButton {
+    if (!_muteVideoButton) {
+        _muteVideoButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        _muteVideoButton.backgroundColor = [UIColor clearColor];
+        [_muteVideoButton setImage:[UIImage imageNamed:@"Video"] forState:UIControlStateNormal];
+        [_muteVideoButton setImage:[UIImage imageNamed:@"Video_s"] forState:UIControlStateSelected];
+        [_muteVideoButton addTarget:self action:@selector(onVideoMuteAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _muteVideoButton;
+}
+
+- (UIButton *)hangupButton {
+    if (!_hangupButton) {
+        _hangupButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        _hangupButton.backgroundColor = [UIColor clearColor];
+        [_hangupButton setImage:[UIImage imageNamed:@"Hunghp"] forState:UIControlStateNormal];
+        [_hangupButton setImage:[UIImage imageNamed:@"Hunghp_h"] forState:UIControlStateHighlighted];
+        [_hangupButton addTarget:self action:@selector(onHungupAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _hangupButton;
 }
 
 @end

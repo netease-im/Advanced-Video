@@ -139,6 +139,14 @@
 - (void)reloadWithModelArray:(NSArray<NECollectionViewDisplayModel *> *)modelArray {
     self.modelArray = modelArray;
     
+    for (NECollectionViewDisplayModel *model in modelArray) {
+        if (model.isSelected) {
+            self.selectedModel = model;
+            
+            break;
+        }
+    }
+    
     [self reloadData];
 }
 

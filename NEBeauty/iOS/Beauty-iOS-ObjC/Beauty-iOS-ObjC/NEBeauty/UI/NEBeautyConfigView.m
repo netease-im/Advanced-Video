@@ -103,6 +103,10 @@
         }
         case NEBeautyConfigViewTypeFilter: {
             [self addSubview:self.filterStrengthView];
+            if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelForFilterStrength)]) {
+                NEBeautySliderDisplayModel *model = [_dataSource sliderModelForFilterStrength];
+                [_filterStrengthView updateWithModel:model];
+            }
             [self addSubview:self.filterView];
             if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
                 NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeFilter effectType:NEBeautyEffectTypeFilter];
@@ -293,14 +297,7 @@
 - (NEBeautySliderView *)filterStrengthView {
     if (!_filterStrengthView) {
         _filterStrengthView = [[NEBeautySliderView alloc] initWithFrame:CGRectMake(0, kNEBeautyTitleViewHeight, SCREEN_WIDTH, 60)];
-        
-        NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
-        model.type = NEBeautySliderTypeFilterStrength;
-        model.title = @"强度";
-        model.imageName = nil;
-        model.value = 0;
-        [_filterStrengthView updateWithModel:model];
-        
+         
         __weak typeof (self) weakSelf = self;
         [_filterStrengthView updateValueChangeBlock:^(NEBeautySliderType type, float value) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didChangeSliderValueWithType:value:)]) {

@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, NEBeautyConfigViewType) {
 // 美颜的数据源
 - (NSArray<NEBeautySliderDisplayModel *> *)sliderModelArrayForTitleType:(NEBeautyEffectType)type;
 
+// 滤镜强度的数据源
+- (NEBeautySliderDisplayModel *)sliderModelForFilterStrength;
+
 @end
 
 @interface NEBeautyConfigView : UIView
