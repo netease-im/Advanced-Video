@@ -5,7 +5,7 @@ target 'Beauty-iOS-ObjC' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'NERtcSDK', '4.2.204'
+  pod 'NERtcSDK', '4.2.205'
   pod 'SSZipArchive'
   pod 'Masonry'
 

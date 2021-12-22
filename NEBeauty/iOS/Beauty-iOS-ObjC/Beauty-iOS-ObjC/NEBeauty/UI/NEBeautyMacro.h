@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, NEBeautyEffectType) {
     NEBeautyEffectTypeBeautyAdv,
     NEBeautyEffectTypeBeautyAdv2,
     NEBeautyEffectTypeBeautyAdv3,
+    NEBeautyEffectTypeBeautyAdv4,
     
     NEBeautyEffectTypeSticker2D,
     NEBeautyEffectTypeSticker3D,
@@ -44,6 +45,7 @@ typedef NS_ENUM(NSInteger, NEBeautySliderType) {
     NEBeautySliderTypeSmallFace,
     NEBeautySliderTypeJaw,
     NEBeautySliderTypeThinFace,
+    NEBeautySliderTypeFaceRuddy,
     NEBeautySliderTypeLongNose,
     NEBeautySliderTypeRenZhong,
     NEBeautySliderTypeMouthAngle,
@@ -53,6 +55,7 @@ typedef NS_ENUM(NSInteger, NEBeautySliderType) {
     NEBeautySliderTypeThinUnderjaw,
     NEBeautySliderTypeNarrowFace,
     NEBeautySliderTypeCheekBone,
+    NEBeautySliderTypeFaceSharpen,
     
     NEBeautySliderTypeFilterStrength
 };
