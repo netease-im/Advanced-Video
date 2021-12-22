@@ -6,4 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SliderTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+
+
 </resources>

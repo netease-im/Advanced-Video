@@ -26,8 +26,34 @@
         android:layout_margin="12dp"
         android:contentDescription="@string/switch_camera"
         android:src="@mipmap/ic_camera_flip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/img_beauty_constrast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_beauty_contrast"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/vp_pager"/>
+
+    <com.netease.nmc.nertcsample.beauty.ui.WrapContentViewPager
+        android:id="@+id/vp_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tab_bottom"
+        android:background="@color/semitransparent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/semitransparent"
+        android:layout_above="@id/ll_rtc_controller"
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/base_blue"
+        app:tabTextColor="@color/white"/>
 
     <LinearLayout
         android:id="@+id/ll_rtc_controller"
@@ -67,7 +93,4 @@
             android:contentDescription="@string/leave_room"
             android:src="@drawable/selector_meeting_close_video" />
     </LinearLayout>
-
-    <include layout="@layout/activity_interaction"/>
-
 </RelativeLayout>

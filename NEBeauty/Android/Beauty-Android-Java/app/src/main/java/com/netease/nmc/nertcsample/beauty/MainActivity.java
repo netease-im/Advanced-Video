@@ -1,9 +1,7 @@
 package com.netease.nmc.nertcsample.beauty;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,11 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.netease.lava.nertc.sdk.NERtc;
 import com.netease.nertcbeautysample.R;
+import com.netease.nmc.nertcsample.beauty.module.NEAssetsEnum;
+import com.netease.nmc.nertcsample.beauty.utils.AssetUtils;
 
+import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,13 +32,28 @@ public class MainActivity extends AppCompatActivity {
     private EditText roomIdEt;
     private ImageView clearInputImg;
     private Button joinBtn;
+    private boolean isAssetLoadComplete = false;
+    private String extFilesDirPath;
+    private BeauyAssetsLoaderTask beauyAssetsLoaderTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        extFilesDirPath = getExternalFilesDir(null).getAbsolutePath();
         initViews();
         requestPermissionsIfNeeded();
+        beauyAssetsLoaderTask = new BeauyAssetsLoaderTask();
+        beauyAssetsLoaderTask.execute();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (beauyAssetsLoaderTask != null) {
+            beauyAssetsLoaderTask.cancel(true);
+            beauyAssetsLoaderTask = null;
+        }
     }
 
     private void requestPermissionsIfNeeded() {
@@ -76,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 hintTv.setVisibility(View.VISIBLE);
                 return;
             }
+
+            if (!isAssetLoadComplete) {
+                showToast("assets not load completely");
+                return;
+            }
+
             hintTv.setVisibility(View.GONE);
             MeetingActivity.startActivity(this, roomIdEt.getText().toString());
             hideSoftKeyboard();
@@ -88,4 +115,44 @@ public class MainActivity extends AppCompatActivity {
         if (imm == null) return;
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
+
+    private class BeauyAssetsLoaderTask extends AsyncTask<Void, Void, Integer> {
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            int ret = 0;
+            for (NEAssetsEnum type : NEAssetsEnum.values()) {
+                ret = AssetUtils.copyAssetRecursive(getAssets(), type.getAssetsPath(), getBeautyAssetPath(type), false);
+                if (ret != 0) break;
+                if (isCancelled()) break;
+            }
+            return ret;
+        }
+
+        @Override
+        protected void onPostExecute(Integer ret) {
+            super.onPostExecute(ret);
+            if (ret == 0) {
+                isAssetLoadComplete = true;
+            } else {
+                showToast("Load assets failed, ret: " + ret);
+                isAssetLoadComplete = false;
+            }
+        }
+    }
+
+    /**
+     * 生成滤镜和美妆模板资源文件的路径，资源文件在App启动后会拷贝到的App的外部存储路径
+     * @param type @see NEAssetsEnum 对应assets目录下的美颜，滤镜或者美妆资源目录
+     * @return 美颜，滤镜或者美妆的App外部存储路径
+     */
+    private String getBeautyAssetPath(NEAssetsEnum type) {
+        String separator = File.separator;
+        return String.format(Locale.getDefault(), "%s%s%s", extFilesDirPath, separator, type.getAssetsPath());
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 }

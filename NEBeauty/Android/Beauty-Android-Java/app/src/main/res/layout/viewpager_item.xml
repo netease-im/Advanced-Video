@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.netease.nmc.nertcsample.beauty.MeetingActivity">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scrollv"
+        android:background="@android:color/transparent"
+        android:scrollbars="none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.netease.nmc.nertcsample.beauty.ui.NEBeautyRadioGroup
+            android:id="@+id/radio_group_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+</LinearLayout>

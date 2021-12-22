@@ -23,22 +23,6 @@
 			"micdb":	0,
 			"artype":	0
 		},{
-			"id":	"eff_00",
-			"w":	512,
-			"h":	512,
-			"p":	"images/eff_00.png",
-			"s":	0,
-			"sm":	0,
-			"ext":	"",
-			"prefix":	"",
-			"absolute":	0,
-			"allseq":	0,
-			"rndpic":	0,
-			"timescale":	1,
-			"fixsize":	1,
-			"micdb":	0,
-			"artype":	0
-		},{
 			"id":	"eff_03",
 			"w":	512,
 			"h":	512,
@@ -116,6 +100,12 @@
 					},{
 						"ty":	11,
 						"v":	"eff_02"
+					},{
+						"ty":	3,
+						"v":	0.0
+					},{
+						"ty":	3,
+						"v":	0.0
 					}]
 				
 				},{

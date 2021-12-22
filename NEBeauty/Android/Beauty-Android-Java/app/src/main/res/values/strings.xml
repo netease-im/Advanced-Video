@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">云信RTC</string>
+    <string name="app_name">云信美颜</string>
     <string name="main_hint_room_id">请输入房间号</string>
     <string name="join_channel">加入频道</string>
     <string name="join_room">加入房间</string>
@@ -11,4 +11,94 @@
     <string name="clear_input">清除输入的内容</string>
     <string name="meeting_wait_hint">等待加入…</string>
     <string name="switch_camera">切换摄像头</string>
+
+    <!--beauty-->
+    <string name="effect_recover">恢复</string>
+    <string name="effect_smooth">磨皮</string>
+    <string name="effect_whiten">美白</string>
+    <string name="effect_thinface">瘦脸</string>
+    <string name="effect_mouth">嘴巴</string>
+    <string name="effect_whiteteeth">美牙</string>
+    <string name="effect_lighteye">亮眼</string>
+    <string name="effect_smallnose">小鼻</string>
+    <string name="effect_eyedis">眼距</string>
+    <string name="effect_eyeangle">眼角</string>
+    <string name="effect_bigeye">大眼</string>
+    <string name="effect_smallface">小脸</string>
+    <string name="effect_jaw">下巴</string>
+    <string name="effect_faceruddy">红润</string>
+    <string name="effect_longnose">长鼻</string>
+    <string name="effect_philtrum">人中</string>
+    <string name="effect_mouthangle">嘴角</string>
+    <string name="effect_roundeye">圆眼</string>
+    <string name="effect_eyecorner">眼角</string>
+    <string name="effect_vface">V脸</string>
+    <string name="effect_underjaw">下颌</string>
+    <string name="effect_narrowface">窄脸</string>
+    <string name="effect_cheekbone">脸颊</string>
+    <string name="effect_facesharpen">锐化</string>
+    <!--filter-->
+    <string name="filter_origin">原图</string>
+    <string name="filter_f1">f1</string>
+    <string name="filter_f2">f2</string>
+    <string name="filter_f3">f3</string>
+    <string name="filter_f4">f4</string>
+    <string name="filter_fn1">FN1</string>
+    <string name="filter_fn2">FN2</string>
+    <string name="filter_n2">n2</string>
+    <string name="filter_p1">个性1</string>
+    <string name="filter_p2">个性2</string>
+    <string name="filter_p3">个性3</string>
+    <string name="filter_p4">个性4</string>
+    <string name="filter_p5">个性5</string>
+    <string name="filter_p6">个性6</string>
+    <string name="filter_summer">夏日</string>
+    <string name="filter_winter">寒冬</string>
+    <string name="filter_shimmer">微光</string>
+    <string name="filter_feminine">柔美</string>
+    <string name="filter_forest">森林</string>
+    <string name="filter_waterl">水光</string>
+    <string name="filter_soda">汽水</string>
+    <string name="filter_refresh1">清新1</string>
+    <string name="filter_refresh2">清新2</string>
+    <string name="filter_refresh3">清新3</string>
+    <string name="filter_refresh4">清新4</string>
+    <string name="filter_refresh5">清新5</string>
+    <string name="filter_refresh6">清新6</string>
+    <string name="filter_fair">白皙</string>
+    <string name="filter_fair1">白皙1</string>
+    <string name="filter_fair2">白皙2</string>
+    <string name="filter_fair3">白皙3</string>
+    <string name="filter_fair4">白皙4</string>
+    <string name="filter_fair5">白皙5</string>
+    <string name="filter_fair6">白皙6</string>
+    <string name="filter_autumn">秋分</string>
+    <string name="filter_nature">自然</string>
+    <string name="filter_nature1">自然1</string>
+    <string name="filter_nature2">自然2</string>
+    <string name="filter_nature3">自然3</string>
+    <string name="filter_nature4">自然4</string>
+    <string name="filter_nature5">自然5</string>
+    <string name="filter_nature6">自然6</string>
+    <string name="filter_stamen">花蕊</string>
+    <string name="filter_texture">质感</string>
+    <string name="filter_texture1">质感1</string>
+    <string name="filter_texture2">质感2</string>
+    <string name="filter_texture3">质感3</string>
+    <string name="filter_texture4">质感4</string>
+    <string name="filter_texture5">质感5</string>
+    <string name="filter_texture6">质感6</string>
+    <!--sticker-->
+    <string name="sticker_bunny">兔耳</string>
+    <string name="sticker_rabbiteating">兔子</string>
+    <string name="sticker_lianpu">脸谱</string>
+    <!--makeups-->
+    <string name="makeup_eyeshadow">美妆</string>
+    <string name="makeup_remover">卸妆</string>
+
+    <string-array name="beauty_option_tags">
+        <item>滤镜</item>
+        <item>美颜</item>
+        <item>美妆</item>
+    </string-array>
 </resources>

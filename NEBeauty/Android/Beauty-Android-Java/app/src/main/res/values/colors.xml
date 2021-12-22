@@ -13,29 +13,6 @@
     <color name="meeting_background">#FF212129</color>
     <color name="edit_hint">#FFB0B6BE</color>
 
-    <color name="colorWelcomeStart">#ff645f</color>
-    <color name="colorWelcomeEnd">#fe3f35</color>
-
-    <color name="purple">#ff00ff</color>
-    <color name="orange">#FF9800</color>
-    <color name="orange_700">#F57C00</color>
-    <color name="blue_grey_700">#455A64</color>
-    <color name="gray">#6f6f6f</color>
-    <color name="red2">#fe5553</color>
-
-    <color name="red">#F44336</color>
-    <color name="light_blue">#03A9F4</color>
-    <color name="cyan">#00BCD4</color>
-    <color name="teal">#009688</color>
-    <color name="green">#4CAF50</color>
-    <color name="light_green">#8BC34A</color>
-    <color name="lime">#CDDC39</color>
-    <color name="brown">#795548</color>
-    <color name="grey">#9E9E9E</color>
-
-    <color name="colorPrimary2">#3F51B5</color>
-    <color name="colorPrimaryDark2">#303F9F</color>
-    <color name="colorAccent2">#FF4081</color>
-    <color name="colorFont">#959595</color>
+    <color name="semitransparent">#80000000</color>
 
 </resources>

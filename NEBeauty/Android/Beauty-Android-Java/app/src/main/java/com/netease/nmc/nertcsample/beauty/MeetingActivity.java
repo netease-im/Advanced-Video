@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
 
+import com.google.android.material.slider.Slider;
+import com.google.android.material.tabs.TabLayout;
 import com.netease.lava.nertc.sdk.NERtcCallback;
 import com.netease.lava.nertc.sdk.NERtcConstants;
 import com.netease.lava.nertc.sdk.NERtcEx;
@@ -22,13 +27,27 @@ import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 import com.netease.nertcbeautysample.BuildConfig;
 import com.netease.nertcbeautysample.R;
+import com.netease.nmc.nertcsample.beauty.module.NEAssetsEnum;
+import com.netease.nmc.nertcsample.beauty.module.NEEffect;
+import com.netease.nmc.nertcsample.beauty.module.NEEffectEnum;
+import com.netease.nmc.nertcsample.beauty.module.NEFilter;
+import com.netease.nmc.nertcsample.beauty.module.NEFilterEnum;
+import com.netease.nmc.nertcsample.beauty.module.NEMakeup;
+import com.netease.nmc.nertcsample.beauty.module.NEMakeupEnum;
+import com.netease.nmc.nertcsample.beauty.ui.NEBeautyRadioGroup;
+import com.netease.nmc.nertcsample.beauty.ui.WrapContentViewPager;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 //  Created by NetEase on 7/31/20.
 //  Copyright (c) 2014-2020 NetEase, Inc. All rights reserved.
 //
-public class MeetingActivity extends BaseActivity implements NERtcCallback, View.OnClickListener {
+public class MeetingActivity extends AppCompatActivity implements NERtcCallback, View.OnClickListener {
 
     private static final String TAG = "MeetingActivity";
     private static final String EXTRA_ROOM_ID = "extra_room_id";
@@ -39,12 +58,29 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
 
     private NERtcVideoView localUserVv;
     private NERtcVideoView remoteUserVv;
-    private TextView waitHintTv;
+    //private TextView waitHintTv;
     private ImageButton enableAudioIb;
     private ImageButton leaveIb;
     private ImageButton enableVideoIb;
     private ImageView cameraFlipImg;
-    private View localUserBgV;
+    //private View remoteUserBgV;
+    private ImageView beautyConstrastImg;
+
+    private String[] tabTags;
+    private TabLayout tabLayout;
+    private WrapContentViewPager viewPager;
+    private Slider filterLevelSlider;
+    private NEBeautyRadioGroup filterRadioGroup;
+    private int currentFilterStyle;
+    private NEBeautyRadioGroup effectRadioGroup;
+    private Slider effectLevelSlider;
+    private NEBeautyRadioGroup makeupRadioGroup;
+    private String extFilesDirPath;
+    private int currentEffect;
+    private List<View> tabViews;
+    private HashMap<Integer, NEFilter> filters;
+    private HashMap<Integer, NEEffect> effects;
+    private HashMap<Integer, NEMakeup> makeups;
 
     public static void startActivity(Activity from, String roomId) {
         Intent intent = new Intent(from, MeetingActivity.class);
@@ -57,8 +93,9 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_meeting);
+
+        initData();
         initViews();
-        initFaceBeauty();
         setupNERtc();
         String roomId = getIntent().getStringExtra(EXTRA_ROOM_ID);
         long userId = generateRandomUserID();
@@ -77,12 +114,12 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         localUserVv.setZOrderMediaOverlay(true);
         localUserVv.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FILL);
         NERtcEx.getInstance().setupLocalVideoCanvas(localUserVv);
-        NERtcEx.getInstance().startBeauty();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        NERtcEx.getInstance().stopBeauty();
         NERtcEx.getInstance().release();
     }
 
@@ -94,19 +131,149 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
     private void initViews() {
         localUserVv = findViewById(R.id.vv_local_user);
         remoteUserVv = findViewById(R.id.vv_remote_user);
+        remoteUserVv.setVisibility(View.INVISIBLE);
         //waitHintTv = findViewById(R.id.tv_wait_hint);
         enableAudioIb = findViewById(R.id.ib_audio);
         leaveIb = findViewById(R.id.ib_leave);
         enableVideoIb = findViewById(R.id.ib_video);
         cameraFlipImg = findViewById(R.id.img_camera_flip);
-        //localUserBgV = findViewById(R.id.v_local_user_bg);
+        //remoteUserBgV = findViewById(R.id.v_remote_user_bg);
+        //remoteUserBgV.setVisibility(View.INVISIBLE);
 
         localUserVv.setVisibility(View.INVISIBLE);
         enableAudioIb.setOnClickListener(this);
         leaveIb.setOnClickListener(this);
         enableVideoIb.setOnClickListener(this);
         cameraFlipImg.setOnClickListener(this);
+
+        beautyConstrastImg = findViewById(R.id.img_beauty_constrast);
+        beautyConstrastImg.setOnTouchListener((view, motionEvent) -> {
+            int action = motionEvent.getAction();
+            if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE) {
+                view.setAlpha(0.75f);
+                NERtcEx.getInstance().enableBeauty(false);
+            } else if (action == MotionEvent.ACTION_UP) {
+                view.setAlpha(1.0f);
+                NERtcEx.getInstance().enableBeauty(true);
+            }
+            return true;
+        });
+        tabLayout = findViewById(R.id.tab_bottom);
+        viewPager = findViewById(R.id.vp_pager);
+        tabViews = new ArrayList<>();
+        tabTags = getResources().getStringArray(R.array.beauty_option_tags);
+
+        View filterTab = getLayoutInflater().inflate(R.layout.tab_filter, null);
+        tabViews.add(filterTab);
+
+        View beautyTab = getLayoutInflater().inflate(R.layout.tab_effect, null);
+        tabViews.add(beautyTab);
+
+        View makeupTab = getLayoutInflater().inflate(R.layout.tab_makeup, null);
+        tabViews.add(makeupTab);
+
+        for(String tag : tabTags) {
+            tabLayout.addTab(tabLayout.newTab().setText(tag));
+        }
+
+        filterLevelSlider = filterTab.findViewById(R.id.slider_filter_level);
+        filterRadioGroup = filterTab.findViewById(R.id.radio_group_filter);
+        filterRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            currentFilterStyle = checkedId;
+            NEFilter filter = filters.get(currentFilterStyle);
+            if (filter != null && filter.getResId() != R.id.rb_filter_origin) {
+                float level = filter.getLevel();
+                filterLevelSlider.setValue(level * 100);
+                NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, filter.getName()));
+                NERtcEx.getInstance().setBeautyFilterLevel(level);
+            } else {
+                filterLevelSlider.setValue(0);
+                NERtcEx.getInstance().removeBeautyFilter();
+            }
+        });
+        filterLevelSlider.addOnChangeListener((slider, value, fromUser) -> {
+            NEFilter filter = filters.get(currentFilterStyle);
+            if (filter != null && filter.getResId() != R.id.rb_filter_origin) {
+                float level = value / 100;
+                filter.setLevel(level);
+                NERtcEx.getInstance().setBeautyFilterLevel(level);
+            }
+        });
+
+        effectLevelSlider = beautyTab.findViewById(R.id.slider_effect_level);
+        effectRadioGroup = beautyTab.findViewById(R.id.radio_group_effect);
+        effectRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            currentEffect = checkedId;
+            NEEffect effect = effects.get(checkedId);
+            if (effect != null) {
+                float level = effect.getLevel();
+                effectLevelSlider.setValue(level * 100);
+                NERtcEx.getInstance().setBeautyEffect(effect.getType(), level);
+            }
+
+            if (checkedId == R.id.rb_effect_recover) {
+                effectLevelSlider.setValue(0);
+                resetEffect();
+            }
+        });
+        effectLevelSlider.addOnChangeListener((slider, value, fromUser) -> {
+            NEEffect effect = effects.get(currentEffect);
+            if (effect != null) {
+                float level = value / 100;
+                effect.setLevel(level);
+                NERtcEx.getInstance().setBeautyEffect(effect.getType(), level);
+            }
+        });
+
+        makeupRadioGroup = makeupTab.findViewById(R.id.radio_group_makeup);
+        makeupRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            NEMakeup makeup = makeups.get(checkedId);
+            if (makeup != null) {
+                NERtcEx.getInstance().addBeautyMakeup(getBeautyAssetPath(NEAssetsEnum.MAKEUPS, makeup.getName()));
+            } else {
+                NERtcEx.getInstance().removeBeautyMakeup();
+            }
+        });
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        viewPager.setAdapter(new PagerAdapter() {
+            @Override
+            public int getCount() {
+                return tabViews.size();
+            }
+
+            @Override
+            public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+                return view == object;
+            }
+
+            @Override
+            public Object instantiateItem(@NonNull ViewGroup container, int position) {
+                View view = tabViews.get(position);
+                container.addView(view);
+                return view;
+            }
+
+            @Override
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+                container.removeView((View) object);
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return tabTags[position];
+            }
+        });
     }
+
+    private void initData() {
+        extFilesDirPath = getExternalFilesDir(null).getAbsolutePath();
+        filters = NEFilterEnum.getFilters();
+        effects = NEEffectEnum.getEffects();
+        makeups = NEMakeupEnum.getMakeups();
+    }
+
 
     /**
      * 初始化SDK
@@ -116,7 +283,6 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         NERtcEx.getInstance().setParameters(parameters); //先设置参数，后初始化
 
         NERtcOption options = new NERtcOption();
-
         if (BuildConfig.DEBUG) {
             options.logLevel = NERtcConstants.LogLevel.INFO;
         } else {
@@ -138,6 +304,38 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         }
         setLocalAudioEnable(true);
         setLocalVideoEnable(true);
+        NERtcEx.getInstance().startBeauty();
+        resetBeauty();
+    }
+
+    /**
+     * 设置美颜特效默认参数，设置默认滤镜为白皙
+     */
+    private void resetBeauty() {
+        resetEffect();
+        NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, NEFilterEnum.FAIR.getName()));
+        NERtcEx.getInstance().setBeautyFilterLevel(NEFilterEnum.FAIR.getLevel());
+    }
+
+    /**
+     * 设置美颜默认参数
+     */
+    private void resetEffect() {
+        effects = NEEffectEnum.getEffects();
+        for (NEEffect effect : effects.values()) {
+            NERtcEx.getInstance().setBeautyEffect(effect.getType(), effect.getLevel());
+        }
+    }
+
+    /**
+     * 生成滤镜和美妆模板资源文件的路径，资源文件在App启动后会拷贝到的App的外部存储路径
+     * @param type @see NEAssetsEnum
+     * @param name 滤镜或者美妆的名称，对应assets下的资源文件名
+     * @return 滤镜或者美妆的App外部存储路径
+     */
+    private String getBeautyAssetPath(NEAssetsEnum type, String name) {
+        String separator = File.separator;
+        return String.format(Locale.getDefault(), "%s%s%s%s%s", extFilesDirPath, separator, type.getAssetsPath(), separator, name);
     }
 
     /**
@@ -174,7 +372,7 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
     }
 
     @Override
-    public void onJoinChannel(int result, long channelId, long elapsed, long l2) {
+    public void onJoinChannel(int result, long channelId, long elapsed, long uid) {
         Log.i(TAG, "onJoinChannel result: " + result + " channelId: " + channelId + " elapsed: " + elapsed);
         if (result == NERtcConstants.ErrorCode.OK) {
             joinedChannel = true;
@@ -236,7 +434,7 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         }
 
         NERtcEx.getInstance().subscribeRemoteVideoStream(uid, NERtcRemoteVideoStreamType.kNERtcRemoteVideoStreamTypeHigh, true);
-        remoteUserVv.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FIT);
+        remoteUserVv.setScalingType(NERtcConstants.VideoScalingType.SCALE_ASPECT_FILL);
         NERtcEx.getInstance().setupRemoteVideoCanvas(remoteUserVv, uid);
 
         // 更新界面
@@ -311,12 +509,11 @@ public class MeetingActivity extends BaseActivity implements NERtcCallback, View
         NERtcEx.getInstance().enableLocalVideo(enableLocalVideo);
         enableVideoIb.setImageResource(enable ? R.drawable.selector_meeting_close_video : R.drawable.selector_meeting_open_video);
         localUserVv.setVisibility(enable ? View.VISIBLE : View.INVISIBLE);
-        //localUserBgV.setBackgroundColor(getResources().getColor(enable ? R.color.white : R.color.black));
+        //remoteUserBgV.setBackgroundColor(getResources().getColor(enable ? R.color.white : R.color.black));
     }
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.ib_audio:
                 changeAudioEnable();
