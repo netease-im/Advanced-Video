@@ -3,29 +3,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-#definitions
-#add_definitions(-DGLOG_NO_ABBREVIATED_SEVERITIES -DGOOGLE_GLOG_DLL_DECL=)
-
 # Qt
-find_package(Qt5Widgets)
-if(NOT Qt5Widgets_FOUND)
-    return()
-endif()
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
-find_package(Qt5Core)
-if(NOT Qt5Core_FOUND)
-    return()
-endif()
-
-find_package(Qt5Gui)
-if(NOT Qt5Gui_FOUND)
-    return()
-endif()
-
-#
-include_directories(${Qt5Widgets_INCLUDE_DIRS})
-include_directories(${Qt5Core_INCLUDE_DIRS})
-include_directories(${Qt5Gui_INCLUDE_DIRS})
 #
 include_directories(${NERTC_INCLUDE_DIR})
 link_directories(${NERTC_LIBRARY_DIRS})
@@ -46,16 +26,13 @@ set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
 # execute
 add_executable(1v1_beauty ${demo_srcs} ${demo_hdrs} ${qrcs})
 
-# link
-set(dependend_LIB
-    ${Qt5Core_LIBRARIES}
-    ${Qt5Widgets_LIBRARIES}
-	${Qt5Gui_LIBRARIES}
-    nertc_sdk
-)
+#
+qt5_use_modules(1v1_beauty Core)
+qt5_use_modules(1v1_beauty Gui)
+qt5_use_modules(1v1_beauty Widgets)
 
 #
-target_link_libraries(1v1_beauty ${dependend_LIB} debug jsoncppd optimized jsoncpp)
+target_link_libraries(1v1_beauty nertc_sdk.lib debug jsoncppd optimized jsoncpp)
 
 #
 set_target_properties(1v1_beauty PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
