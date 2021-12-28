@@ -28,7 +28,7 @@ public:
     int SetParameters(const char* parameters);
 
     //
-    int StartBeauty();
+    int StartBeauty(const QString &path);
     void StopBeauty();
     void EnableNertcBeauty(const bool &enable);
     void EnableNertcMirror(const bool &enable);

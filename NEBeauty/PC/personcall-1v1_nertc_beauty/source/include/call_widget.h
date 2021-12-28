@@ -67,7 +67,6 @@ private:
 private:
     Engine          *engine_;
     RoomButton      *room_button_;
-    BeautyTabWidget *beauty_tabwidget_;
     BeautyTabWidget *nertc_beauty_tabwidget_;
 
 private:

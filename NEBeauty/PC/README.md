@@ -19,10 +19,9 @@
     +jsoncpp                     //json库文件目录
     +nertc                       //NERtc SDK库文件目录
   +build_prj                     //工程生成目录
-    +data                        //资源目录
-    +x86                         //可执行文件执行所需的动态库目录
-    build.bat                    //CMAKE 生成VS工程的脚本
-    demo_debug_copy_win32.bat    //拷贝动态库脚本
+    +vs2017                      //资源目录
+      build_x64.bat              //CMAKE 生成x64工程的脚本
+      build_x86.bat              //CMAKE 生成Win32工程的脚本
   +source                        //GUI文件目录
   +data 			  	         //资源目录
 ```
@@ -37,10 +36,24 @@ Windows7及以上
 ##### 3.1.2 开发环境
 ```
 vs2017
-vs2017解决方案平台：Win32
 Qt5.14.2及以上
 ```
 #### 3.2 编译运行
 
-- 安装CMake 3.10及以上版本, 点击build.bat 生成脚本，在build目录中打开工程，编译。选择1v1_beauty为启动项目
-- 编译运行会报找不到动态库的错误，此时点击demo_debug_copy_win32.bat用于库的拷贝
+- 在engine.h中需要设置app_key_
+
+- 安装CMake 3.10及以上版本,用户根据VS及Qt库的配置选择 build_x64.bat或build_x86 生成vs工程，在x64或x86目录中打开工程，编译。选择1v1_beauty为启动项目
+
+- 选择美颜资源路径为nebeauty所在的路径。如：xxx/data/beauty/nebeauty
+
+#### 3.3 功能模块
+##### 3.3.1 startBeauty
+
+调用此接口后，开启美颜引擎。美颜引擎开启后，后续美颜启用才能生效。美颜引擎开启失败或未开启，都会导致美颜无效。
+
+##### 3.3.2 enableBeauty
+
+开启或关闭美颜功能。美颜开启需在美颜引擎开启之后使用。
+
+
+

@@ -1,7 +1,4 @@
 #
-set(AppName 1v1_beauty)
-
-#
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -41,15 +38,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #
 file(GLOB_RECURSE demo_srcs "*.cpp" "*.c")
 file(GLOB_RECURSE demo_hdrs "*.hpp" "*.h")
-set(qrcs 
-    ${CMAKE_CURRENT_SOURCE_DIR}/resource/image.qrc)
+set(qrcs ${CMAKE_CURRENT_SOURCE_DIR}/resource/image.qrc)
 
 #
-source_group_by_dir(demo_srcs)
-source_group_by_dir(demo_hdrs)
+set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
 
 # execute
-add_executable(${AppName} ${demo_srcs} ${demo_hdrs} ${qrcs})
+add_executable(1v1_beauty ${demo_srcs} ${demo_hdrs} ${qrcs})
 
 # link
 set(dependend_LIB
@@ -57,10 +52,10 @@ set(dependend_LIB
     ${Qt5Widgets_LIBRARIES}
 	${Qt5Gui_LIBRARIES}
     nertc_sdk
-	jsoncpp
 )
 
 #
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
+target_link_libraries(1v1_beauty ${dependend_LIB} debug jsoncppd optimized jsoncpp)
 
-target_link_libraries(${AppName} ${dependend_LIB})
+#
+set_target_properties(1v1_beauty PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")

@@ -29,19 +29,9 @@ bool Engine::Init(const char* log_dir_path)
     engine_context.event_handler = this;
     engine_context.video_use_exnternal_render = false;
 
-#if 1
-    // server config
     nertc::NERtcServerAddresses server_addr;
-    memset(server_addr.channel_server, 0, kNERtcMaxURILength);
-    memset(server_addr.statistics_server, 0, kNERtcMaxURILength);
-    memset(server_addr.room_server, 0, kNERtcMaxURILength);
-    memset(server_addr.compat_server, 0, kNERtcMaxURILength);
-    memset(server_addr.nos_lbs_server, 0, kNERtcMaxURILength);
-    memset(server_addr.nos_upload_sever, 0, kNERtcMaxURILength);
-    memset(server_addr.nos_token_server, 0, kNERtcMaxURILength);
-    server_addr.use_ipv6 = false;
+    memset(&server_addr, 0, sizeof(nertc::NERtcServerAddresses));
     engine_context.server_config = server_addr;
-#endif
 
     // 初始化RTC引擎，
     //在调用 createNERtcEngine() 方法创建 IRtcEngine 对象后，必须先调用该方法进行初始化，才能使用其他方法。
@@ -50,18 +40,6 @@ bool Engine::Init(const char* log_dir_path)
         std::cout << "ERROR: Failed to initialize NERtc Engine" << std::endl;
         return false;
     }
-
-    //美妆路径
-    make_up_path_ = log_dir_path;
-    make_up_path_ += "\\..\\..\\data\\beauty\\nebeauty\\StickerZipAndIcons\\makeup_sticker.bundle\\makeup\\template.json";
-
-    //贴纸路径
-    sticker_folder_path_ = log_dir_path;
-    sticker_folder_path_ += "\\..\\..\\data\\beauty\\nebeauty\\StickerZipAndIcons\\2d_sticker.bundle\\";
-
-    //滤镜路径
-    image_filters_folder_path_ = log_dir_path;
-    image_filters_folder_path_ += "\\..\\..\\data\\beauty\\nebeauty\\Filters\\filters.bundle\\";
 
 
     return true;
@@ -140,11 +118,23 @@ int Engine::SetParameters(const char* parameters)
 
 
 #ifdef _WIN32
-int Engine::StartBeauty()
+int Engine::StartBeauty(const QString &path)
 {
     if (rtc_engine_)
     {
-        return rtc_engine_->startBeauty();
+        std::string str = path.toStdString();
+
+        //美妆路径
+        make_up_path_ = str + "\\StickerZipAndIcons\\makeup_sticker.bundle\\makeup\\template.json";
+
+        //贴纸路径
+        sticker_folder_path_ = str + "\\\StickerZipAndIcons\\2d_sticker.bundle\\";
+
+        //滤镜路径
+        image_filters_folder_path_ = str + "\\Filters\\filters.bundle\\";
+
+        const char* ch = str.c_str();
+        return rtc_engine_->startBeauty(ch);
     }
     return -1;
 }

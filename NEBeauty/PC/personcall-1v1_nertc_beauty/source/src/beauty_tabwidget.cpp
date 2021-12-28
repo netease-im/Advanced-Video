@@ -26,6 +26,7 @@ BeautyTabWidget::BeautyTabWidget(QWidget* parent /*= nullptr*/)
     connect(face_beauty_widget_, &FaceBeautyWidget::sigFaceBeautyChanged, this, &BeautyTabWidget::sigBeautyChanged);
 
     //
+    connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyStart, this, &BeautyTabWidget::onBeautyStart);
     connect(other_beauty_widget_, &OtherBeautyWidget::sigBautyEnable, this, &BeautyTabWidget::sigBautyEnable);
     connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyMirror, this, &BeautyTabWidget::sigBeautyMirror);
     connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyMakeup, this, &BeautyTabWidget::sigBeautyMakeup);
@@ -39,6 +40,21 @@ BeautyTabWidget::BeautyTabWidget(QWidget* parent /*= nullptr*/)
 BeautyTabWidget::~BeautyTabWidget()
 {
     qDebug() << "BeautyTabWidget::~BeautyTabWidget";
+}
+
+QString BeautyTabWidget::GetBeautyPath()
+{
+    return other_beauty_widget_->GetBeautyPath();
+}
+
+void BeautyTabWidget::DisEnableBeauty()
+{
+    other_beauty_widget_->DisEnableBeauty();
+}
+
+void BeautyTabWidget::SetBeautyStartState(const bool& beauty_state)
+{
+    beauty_state_ = beauty_state;
 }
 
 void BeautyTabWidget::setUi()
@@ -74,5 +90,10 @@ void BeautyTabWidget::setUi()
     h_layout->setSpacing(0);
     h_layout->setContentsMargins(0, 0, 0, 0);
     h_layout->addWidget(tabwidget_);
+}
+
+void BeautyTabWidget::onBeautyStart()
+{
+    Q_EMIT sigBeautyStart(beauty_state_);
 }
 

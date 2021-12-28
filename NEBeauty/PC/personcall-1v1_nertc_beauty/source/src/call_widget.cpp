@@ -18,8 +18,6 @@ CallWidget::CallWidget(Engine* engine, QWidget *parent /*= nullptr*/)
 
     room_button_ = new RoomButton(this);
 
-    beauty_tabwidget_ = new BeautyTabWidget(this);
-
     nertc_beauty_tabwidget_ = new BeautyTabWidget(this);
 
     connect(engine_, &Engine::sigJoinChannel, this, &CallWidget::onJoinChannel);
@@ -31,6 +29,7 @@ CallWidget::CallWidget(Engine* engine, QWidget *parent /*= nullptr*/)
     connect(room_button_, &RoomButton::sigStartBeauty, this, &CallWidget::onStartBeauty);
     connect(room_button_, &RoomButton::sigNertcBeautySetting, this, [=] {nertc_beauty_tabwidget_->show(); });
 
+    connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyStart, this, &CallWidget::onStartBeauty);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBautyEnable, this, &CallWidget::onBeautyEnable);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyMirror, this, &CallWidget::onBeautyMirror);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyMakeup, this, &CallWidget::onBeautyMakeup);
@@ -203,15 +202,19 @@ void CallWidget::onItemStickerChanged(const std::string &str)
 
 void CallWidget::onStartBeauty(const bool& start_enabled)
 {
+    nertc_beauty_tabwidget_->SetBeautyStartState(start_enabled);
     if (true == start_enabled)
     {
-        int ret = engine_->StartBeauty();
+        QString path = nertc_beauty_tabwidget_->GetBeautyPath();
+
+        int ret = engine_->StartBeauty(path);
 
         qDebug() << "ret:" << ret;
     }
     else
     {
         engine_->StopBeauty();
+        nertc_beauty_tabwidget_->DisEnableBeauty();
     }
 }
 

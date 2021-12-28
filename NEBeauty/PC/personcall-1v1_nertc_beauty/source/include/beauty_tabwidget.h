@@ -17,8 +17,16 @@ public:
     BeautyTabWidget(QWidget* parent = nullptr);
     ~BeautyTabWidget();
 
+public:
+    QString GetBeautyPath();
+    void DisEnableBeauty();
+    void SetBeautyStartState(const bool& beauty_state);
+
 private:
     void setUi();
+
+private Q_SLOTS:
+    void onBeautyStart();
 
 Q_SIGNALS:
     void sigBeautyChanged(const int &id, const int &val);
@@ -26,6 +34,7 @@ Q_SIGNALS:
     void sigItemStickerChanged(const std::string &str);
 
     //
+    void sigBeautyStart(const bool& enable);
     void sigBautyEnable(const bool &enable);
     void sigBeautyMirror(const bool& enable);
     void sigBeautyMakeup(const bool& enable);
@@ -37,6 +46,7 @@ private:
     FilterBeautyWidget* filter_beauty_widget_;
     OtherBeautyWidget* other_beauty_widget_;
     ItemStickerWidget* item_sticker_widget_;
+    bool beauty_state_ = false;
 };
 
 #endif
