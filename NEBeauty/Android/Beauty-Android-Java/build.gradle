@@ -6,7 +6,7 @@ buildscript {
         minSdkVersion = 19
         targetSdkVersion = 30
 
-        nertcVersion = "4.2.205"
+        nertcVersion = "4.2.207"
         androidXAppCompatVersion = "1.3.0"
         androidXConstraintlayoutVersion = "1.1.3"
         androidXRecyclerviewVersion = "1.2.1"

@@ -31,7 +31,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidXConstraintlayoutVersion"
-    //implementation "com.netease.yunxin:nertc:$nertcVersion"
+    implementation "com.netease.yunxin:nertc:$nertcVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidXAppjunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
