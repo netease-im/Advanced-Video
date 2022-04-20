@@ -321,8 +321,8 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
      */
     private void resetBeauty() {
         resetEffect();
-        NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, NEFilterEnum.FAIR.getName()));
-        NERtcEx.getInstance().setBeautyFilterLevel(NEFilterEnum.FAIR.getLevel());
+        //NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, NEFilterEnum.FAIR.getName()));
+        //NERtcEx.getInstance().setBeautyFilterLevel(NEFilterEnum.FAIR.getLevel());
     }
 
     /**
