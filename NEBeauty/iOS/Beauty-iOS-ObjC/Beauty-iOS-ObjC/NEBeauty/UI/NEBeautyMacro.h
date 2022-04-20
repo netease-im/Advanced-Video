@@ -20,7 +20,6 @@ typedef NS_ENUM(NSInteger, NEBeautyEffectType) {
     NEBeautyEffectTypeBeautyAdv,
     NEBeautyEffectTypeBeautyAdv2,
     NEBeautyEffectTypeBeautyAdv3,
-    NEBeautyEffectTypeBeautyAdv4,
     
     NEBeautyEffectTypeSticker2D,
     NEBeautyEffectTypeSticker3D,

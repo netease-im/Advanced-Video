@@ -37,7 +37,6 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 @property (nonatomic, strong) NSArray<NEBeautySliderDisplayModel *> *advancedSliderModelArray;
 @property (nonatomic, strong) NSArray<NEBeautySliderDisplayModel *> *advancedSliderModelArray2;
 @property (nonatomic, strong) NSArray<NEBeautySliderDisplayModel *> *advancedSliderModelArray3;
-@property (nonatomic, strong) NSArray<NEBeautySliderDisplayModel *> *advancedSliderModelArray4;
 
 // 滤镜UI数据源
 @property (nonatomic, strong) NSArray<NECollectionViewDisplayModel *> *filterItemModelArray;
@@ -114,7 +113,6 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
     _advancedSliderModelArray = nil;
     _advancedSliderModelArray2 = nil;
     _advancedSliderModelArray3 = nil;
-    _advancedSliderModelArray4 = nil;
     
     _beautyMenu = nil;
     _filterMenu = nil;
@@ -277,63 +275,112 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 
 - (void)applyDefaultSettings {
     for (NEBeautySliderDisplayModel *model in self.baseSliderModelArray) {
-        if (model.type == NEBeautySliderTypeWhiten) {
-            model.value = 0.3;
-        } else if (model.type == NEBeautySliderTypeSmooth) {
-            model.value = 0.3;
+        if (model.type == NEBeautySliderTypeSmooth) {
+            model.value = 0.65;
+        } else if (model.type == NEBeautySliderTypeWhiten) {
+            model.value = 0.8;
+        } else if (model.type == NEBeautySliderTypeMouth) {
+            model.value = 0.8;
         } else if (model.type == NEBeautySliderTypeThinFace) {
-            model.value = 0.5;
+            model.value = 0.35;
+        } else if (model.type == NEBeautySliderTypeFaceRuddy) {
+            model.value = 0.1;
+        } else if (model.type == NEBeautySliderTypeFaceSharpen) {
+            model.value = 0.1;
         }
     }
+    
     for (NEBeautySliderDisplayModel *model in self.shapeSliderModelArray) {
-        if (model.type == NEBeautySliderTypeSmallFace) {
-            model.value = 0.7;
-        } else if (model.type == NEBeautySliderTypeBigEye) {
-            model.value = 0.7;
+        if (model.type == NEBeautySliderTypeBigEye) {
+            model.value = 0.3;
+        } else if (model.type == NEBeautySliderTypeSmallFace) {
+            model.value = 0.1;
         } else if (model.type == NEBeautySliderTypeJaw) {
-            model.value = 0.5;
+            model.value = 0.4;
         }
     }
+    
     for (NEBeautySliderDisplayModel *model in self.advancedSliderModelArray) {
-        if (model.type == NEBeautySliderTypeSmallNose) {
-            model.value = 0.5;
+        if (model.type == NEBeautySliderTypeLightEye) {
+            model.value = 0.6;
         } else if (model.type == NEBeautySliderTypeWhiteTeeth) {
-            model.value = 0.6;
-        } else if (model.type == NEBeautySliderTypeLightEye) {
-            model.value = 0.6;
+            model.value = 0.3;
+        } else if (model.type == NEBeautySliderTypeSmallNose) {
+            model.value = 0.4;
         } else if (model.type == NEBeautySliderTypeEyeDis) {
+            model.value = 0.4;
+        } else if (model.type == NEBeautySliderTypeEyeAngle) {
             model.value = 0.5;
         }
     }
     
-    [NERtcBeauty shareInstance].whiteSkin = 0.3;
-    [NERtcBeauty shareInstance].smoothSkin = 0.3;
-    [NERtcBeauty shareInstance].smallFace = 0.7;
-    [NERtcBeauty shareInstance].bigEye = 0.7;
-    [NERtcBeauty shareInstance].thinFace = 0.5f;
-    [NERtcBeauty shareInstance].jaw = 0.5;
-    [NERtcBeauty shareInstance].smallNose = 0.5;
-    [NERtcBeauty shareInstance].teeth = 0.6;
-    [NERtcBeauty shareInstance].brightEye = 0.6;
-    [NERtcBeauty shareInstance].eyesDistance = 0.5;
-    
-    self.filterStrengthModel.value = 0.7;
-    NECollectionViewDisplayModel *selectedModel = nil;
-    for (NECollectionViewDisplayModel *model in self.filterItemModelArray) {
-        if ([model.name isEqualToString:@"白皙"]) {
-            selectedModel = model;
-            
-            break;
+    for (NEBeautySliderDisplayModel *model in self.advancedSliderModelArray2) {
+        if (model.type == NEBeautySliderTypeLongNose) {
+            model.value = 0;
+        } else if (model.type == NEBeautySliderTypeRenZhong) {
+            model.value = 0.5;
+        } else if (model.type == NEBeautySliderTypeMouthAngle) {
+            model.value = 0.5;
+        } else if (model.type == NEBeautySliderTypeRoundEye) {
+            model.value = 0.8;
+        } else if (model.type == NEBeautySliderTypeOpenEyeAngle) {
+            model.value = 0;
         }
     }
-    if (!selectedModel) {
-        return;
+    
+    for (NEBeautySliderDisplayModel *model in self.advancedSliderModelArray3) {
+        if (model.type == NEBeautySliderTypeVFace) {
+            model.value = 0;
+        } else if (model.type == NEBeautySliderTypeThinUnderjaw) {
+            model.value = 0;
+        } else if (model.type == NEBeautySliderTypeNarrowFace) {
+            model.value = 0;
+        } else if (model.type == NEBeautySliderTypeCheekBone) {
+            model.value = 0;
+        }
     }
-    selectedModel.isSelected = YES;
-    _filterStrength = 0.7;
-    [[NERtcBeauty shareInstance] removeBeautyFilter];
-    [[NERtcBeauty shareInstance] addBeautyFilterWithPath:selectedModel.resourcePath andName:@"template.json"];
-    [NERtcBeauty shareInstance].filterStrength = 0.7;
+    
+    [NERtcBeauty shareInstance].smoothSkin = 0.65;
+    [NERtcBeauty shareInstance].whiteSkin = 0.8;
+    [NERtcBeauty shareInstance].mouth = 0.8;
+    [NERtcBeauty shareInstance].thinFace = 0.35;
+    [NERtcBeauty shareInstance].faceRuddyStrength = 0.1;
+    [NERtcBeauty shareInstance].faceSharpenStrength = 0.1;
+    [NERtcBeauty shareInstance].bigEye = 0.3;
+    [NERtcBeauty shareInstance].smallFace = 0.1;
+    [NERtcBeauty shareInstance].jaw = 0.4;
+    [NERtcBeauty shareInstance].brightEye = 0.6;
+    [NERtcBeauty shareInstance].teeth = 0.3;
+    [NERtcBeauty shareInstance].smallNose = 0.4;
+    [NERtcBeauty shareInstance].eyesDistance = 0.4;
+    [NERtcBeauty shareInstance].eyesAngle = 0.5;
+    [NERtcBeauty shareInstance].longNoseStrength = 0;
+    [NERtcBeauty shareInstance].renZhongStrength = 0.5;
+    [NERtcBeauty shareInstance].mouthAngle = 0.5;
+    [NERtcBeauty shareInstance].roundEyeStrength = 0.8;
+    [NERtcBeauty shareInstance].openEyeAngleStrength = 0;
+    [NERtcBeauty shareInstance].vFaceStrength = 0;
+    [NERtcBeauty shareInstance].thinUnderjawStrength = 0;
+    [NERtcBeauty shareInstance].narrowFaceStrength = 0;
+    [NERtcBeauty shareInstance].cheekBoneStrength = 0;
+    
+//    self.filterStrengthModel.value = 0.7;
+//    NECollectionViewDisplayModel *selectedModel = nil;
+//    for (NECollectionViewDisplayModel *model in self.filterItemModelArray) {
+//        if ([model.name isEqualToString:@"白皙"]) {
+//            selectedModel = model;
+//
+//            break;
+//        }
+//    }
+//    if (!selectedModel) {
+//        return;
+//    }
+//    selectedModel.isSelected = YES;
+//    _filterStrength = 0.7;
+//    [[NERtcBeauty shareInstance] removeBeautyFilter];
+//    [[NERtcBeauty shareInstance] addBeautyFilterWithPath:selectedModel.resourcePath andName:@"template.json"];
+//    [NERtcBeauty shareInstance].filterStrength = 0.7;
 }
 
 #pragma mark - NEBeautyConfigViewDelegate
@@ -598,9 +645,6 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
         case NEBeautyEffectTypeBeautyAdv3: {
             return self.advancedSliderModelArray3;
         }
-        case NEBeautyEffectTypeBeautyAdv4: {
-            return self.advancedSliderModelArray4;
-        }
             
         default: {
             return nil;
@@ -649,13 +693,12 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 - (NSArray<NETitleDisplayModel *> *)beautyTitleModelArray {
     if (!_beautyTitleModelArray) {
         NSMutableArray *modelArray = [NSMutableArray array];
-        NSArray *titleArray = @[@"基础美颜", @"美形", @"高级", @"高级2", @"高级3", @"高级4"];
+        NSArray *titleArray = @[@"基础美颜", @"美形", @"高级", @"高级2", @"高级3"];
         NSArray *typeArray = @[@(NEBeautyEffectTypeBeautyBase),
                                @(NEBeautyEffectTypeBeautyShape),
                                @(NEBeautyEffectTypeBeautyAdv),
                                @(NEBeautyEffectTypeBeautyAdv2),
-                               @(NEBeautyEffectTypeBeautyAdv3),
-                               @(NEBeautyEffectTypeBeautyAdv4)];
+                               @(NEBeautyEffectTypeBeautyAdv3)];
         for (int i = 0; i < titleArray.count; i++) {
             NETitleDisplayModel *model = [[NETitleDisplayModel alloc] init];
             model.type = [typeArray[i] integerValue];
@@ -717,13 +760,15 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 - (NSArray<NEBeautySliderDisplayModel *> *)baseSliderModelArray {
     if (!_baseSliderModelArray) {
         NSMutableArray *modelArray = [NSMutableArray array];
-        NSArray *titleArray = @[@"磨皮", @"美白", @"瘦脸", @"嘴巴"];
+        NSArray *titleArray = @[@"磨皮", @"美白", @"瘦脸", @"嘴巴", @"红润", @"锐化"];
         NSArray *typeArray = @[@(NEBeautySliderTypeSmooth),
                                @(NEBeautySliderTypeWhiten),
                                @(NEBeautySliderTypeThinFace),
-                               @(NEBeautySliderTypeMouth)];
-        NSArray *imageNameArray = @[@"mopi", @"meibai", @"thinner_face", @"mouth"];
-        NSArray *initialValueArray = @[@(0), @(0), @(0), @(0.5)];
+                               @(NEBeautySliderTypeMouth),
+                               @(NEBeautySliderTypeFaceRuddy),
+                               @(NEBeautySliderTypeFaceSharpen)];
+        NSArray *imageNameArray = @[@"mopi", @"meibai", @"thinner_face", @"mouth", @"btn_beauty", @"btn_beauty"];
+        NSArray *initialValueArray = @[@(0), @(0), @(0), @(0.5), @(0), @(0)];
         for (int i = 0; i < titleArray.count; i++) {
             NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
             model.title = titleArray[i];
@@ -843,28 +888,28 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
     return _advancedSliderModelArray3;
 }
 
-- (NSArray<NEBeautySliderDisplayModel *> *)advancedSliderModelArray4 {
-    if (!_advancedSliderModelArray4) {
-        NSMutableArray *modelArray = [NSMutableArray array];
-        NSArray *titleArray = @[@"红润", @"锐化"];
-        NSArray *typeArray = @[@(NEBeautySliderTypeFaceRuddy),
-                               @(NEBeautySliderTypeFaceSharpen)];
-        NSArray *initialValueArray = @[@(0), @(0), @(0), @(0)];
-        for (int i = 0; i < titleArray.count; i++) {
-            NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
-            model.title = titleArray[i];
-            model.type = [typeArray[i] integerValue];
-            model.imageName = @"btn_beauty";
-            model.value = [initialValueArray[i] floatValue];
-            
-            [modelArray addObject:model];
-        }
-        
-        _advancedSliderModelArray4 = modelArray;
-    }
-    
-    return _advancedSliderModelArray4;
-}
+//- (NSArray<NEBeautySliderDisplayModel *> *)advancedSliderModelArray4 {
+//    if (!_advancedSliderModelArray4) {
+//        NSMutableArray *modelArray = [NSMutableArray array];
+//        NSArray *titleArray = @[@"红润", @"锐化"];
+//        NSArray *typeArray = @[@(NEBeautySliderTypeFaceRuddy),
+//                               @(NEBeautySliderTypeFaceSharpen)];
+//        NSArray *initialValueArray = @[@(0), @(0), @(0), @(0)];
+//        for (int i = 0; i < titleArray.count; i++) {
+//            NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
+//            model.title = titleArray[i];
+//            model.type = [typeArray[i] integerValue];
+//            model.imageName = @"btn_beauty";
+//            model.value = [initialValueArray[i] floatValue];
+//
+//            [modelArray addObject:model];
+//        }
+//
+//        _advancedSliderModelArray4 = modelArray;
+//    }
+//
+//    return _advancedSliderModelArray4;
+//}
 
 - (NEBeautySliderDisplayModel *)filterStrengthModel {
     if (!_filterStrengthModel) {
