@@ -7,7 +7,6 @@
 #include "face_beauty_widget.h"
 #include "filter_beauty_widget.h"
 #include "other_beauty_widget.h"
-#include "item_sticker_widget.h"
 
 BeautyTabWidget::BeautyTabWidget(QWidget* parent /*= nullptr*/)
 :QDialog(parent)
@@ -26,13 +25,10 @@ BeautyTabWidget::BeautyTabWidget(QWidget* parent /*= nullptr*/)
     connect(face_beauty_widget_, &FaceBeautyWidget::sigFaceBeautyChanged, this, &BeautyTabWidget::sigBeautyChanged);
 
     //
-    connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyStart, this, &BeautyTabWidget::onBeautyStart);
+    connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyStart, this, &BeautyTabWidget::sigBeautyStart);
     connect(other_beauty_widget_, &OtherBeautyWidget::sigBautyEnable, this, &BeautyTabWidget::sigBautyEnable);
-    connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyMirror, this, &BeautyTabWidget::sigBeautyMirror);
-    connect(other_beauty_widget_, &OtherBeautyWidget::sigBeautyMakeup, this, &BeautyTabWidget::sigBeautyMakeup);
 
     //
-    connect(item_sticker_widget_, &ItemStickerWidget::sigItemStickerChanged, this, &BeautyTabWidget::sigItemStickerChanged);
     connect(filter_beauty_widget_, &FilterBeautyWidget::sigFilterPathChanged, this, &BeautyTabWidget::sigFilterChanged);
 
 }
@@ -52,9 +48,19 @@ void BeautyTabWidget::DisEnableBeauty()
     other_beauty_widget_->DisEnableBeauty();
 }
 
-void BeautyTabWidget::SetBeautyStartState(const bool& beauty_state)
+void BeautyTabWidget::GetFaceBeautyParams(std::map<int, int> &parmas_map)
 {
-    beauty_state_ = beauty_state;
+    face_beauty_widget_->GetFaceBeautyParams(parmas_map);
+}
+
+void BeautyTabWidget::GetSkinBeautyParams(std::map<int, int> &parmas_map)
+{
+    skin_beauty_widget_->GetSkinBeautyParams(parmas_map);
+}
+
+void BeautyTabWidget::GetFilterParams(QString& path, int& val)
+{
+    filter_beauty_widget_->GetFilterParams(path, val);
 }
 
 void BeautyTabWidget::setUi()
@@ -83,17 +89,8 @@ void BeautyTabWidget::setUi()
     filter_beauty_widget_ = new FilterBeautyWidget();
     tabwidget_->addTab(filter_beauty_widget_, u8"滤镜");
 
-    item_sticker_widget_ = new ItemStickerWidget();
-    tabwidget_->addTab(item_sticker_widget_, u8"贴纸");
-
     QHBoxLayout* h_layout = new QHBoxLayout(this);
     h_layout->setSpacing(0);
     h_layout->setContentsMargins(0, 0, 0, 0);
     h_layout->addWidget(tabwidget_);
 }
-
-void BeautyTabWidget::onBeautyStart()
-{
-    Q_EMIT sigBeautyStart(beauty_state_);
-}
-

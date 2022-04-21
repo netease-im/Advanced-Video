@@ -17,16 +17,13 @@ private:
     void setUi();
 
 Q_SIGNALS:
-    void sigStartBeauty(const bool &start_enabled);
     void sigNertcBeautySetting();
 
 private Q_SLOTS:
-    void onNertcBeautyClicked();
     void onNertcBeautySettingClicked();
 
 private:
 
-    QPushButton* nertc_beauty_btn_;
     QPushButton* nertc_beauty_setting_btn_;
 };
 

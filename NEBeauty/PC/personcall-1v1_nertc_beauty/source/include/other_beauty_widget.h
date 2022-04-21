@@ -24,16 +24,13 @@ private Q_SLOTS:
     void onOpenBeautyDir();
 
 Q_SIGNALS:
-    void sigBeautyStart();
+    void sigBeautyStart(const bool& enable);
     void sigBautyEnable(const bool& enbale);
-    void sigBeautyMirror(const bool& enable);
-    void sigBeautyMakeup(const bool& enable);
 
 private:
     QLineEdit* beauty_path_edit_;
+    QCheckBox* start_check_;
     QCheckBox* enable_check_;
-    QCheckBox* mirror_check_;
-    QCheckBox* makeup_check_;
 };
 
 

@@ -22,16 +22,13 @@ bool Engine::Init(const char* log_dir_path)
 
     // rtcEngineContext信息初始化
     nertc::NERtcEngineContext engine_context;
+    memset(&engine_context, 0, sizeof(nertc::NERtcEngineContext));
     engine_context.app_key = app_key_.c_str();
     engine_context.log_dir_path = log_dir_path;
     engine_context.log_level = nertc::kNERtcLogLevelInfo;
     engine_context.log_file_max_size_KBytes = 1024 * 10;
     engine_context.event_handler = this;
     engine_context.video_use_exnternal_render = false;
-
-    nertc::NERtcServerAddresses server_addr;
-    memset(&server_addr, 0, sizeof(nertc::NERtcServerAddresses));
-    engine_context.server_config = server_addr;
 
     // 初始化RTC引擎，
     //在调用 createNERtcEngine() 方法创建 IRtcEngine 对象后，必须先调用该方法进行初始化，才能使用其他方法。
@@ -153,51 +150,6 @@ void Engine::EnableNertcBeauty(const bool &enable)
     {
         rtc_engine_->enableBeauty(enable);
     }
-}
-
-void Engine::EnableNertcMirror(const bool &enable)
-{
-    if (rtc_engine_)
-    {
-        rtc_engine_->enableBeautyMirrorMode(enable);
-    }
-}
-
-int Engine::EnableNertcMakeup(const bool &enable)
-{
-    if (rtc_engine_)
-    {
-        if (false == enable)
-        {
-            return rtc_engine_->removeBeautyMakeup();
-        }
-        else
-        {
-            return rtc_engine_->addBeautyMakeup(make_up_path_.c_str());
-        }
-    }
-
-    return -1;
-}
-
-int Engine::SelectBeautySticker(const std::string &bundle_name)
-{
-    if (rtc_engine_)
-    {
-        if (0 != strcmp("none", bundle_name.c_str()))
-        {
-            std::string file_path = sticker_folder_path_ + bundle_name;
-            int ret = rtc_engine_->addBeautySticker(file_path.c_str());
-            return ret;
-        }
-        else
-        {
-            int ret = rtc_engine_->removeBeautySticker();
-            return ret;
-        }
-    }
-
-    return -1;
 }
 
 int Engine::SelectBeautyFilter(const std::string &filter_path, const int &val)

@@ -26,15 +26,11 @@ CallWidget::CallWidget(Engine* engine, QWidget *parent /*= nullptr*/)
     connect(engine_, &Engine::sigUserLeft, this, &CallWidget::onUserLeft);
 
     //
-    connect(room_button_, &RoomButton::sigStartBeauty, this, &CallWidget::onStartBeauty);
     connect(room_button_, &RoomButton::sigNertcBeautySetting, this, [=] {nertc_beauty_tabwidget_->show(); });
 
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyStart, this, &CallWidget::onStartBeauty);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBautyEnable, this, &CallWidget::onBeautyEnable);
-    connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyMirror, this, &CallWidget::onBeautyMirror);
-    connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyMakeup, this, &CallWidget::onBeautyMakeup);
 
-    connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigItemStickerChanged, this, &CallWidget::onItemStickerChanged);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigFilterChanged, this, &CallWidget::onFilterChanged);
     connect(nertc_beauty_tabwidget_, &BeautyTabWidget::sigBeautyChanged, this, &CallWidget::onBeautyChanged);
 }
@@ -195,14 +191,8 @@ void CallWidget::onFilterChanged(const QString& path, const int &val)
     engine_->SelectBeautyFilter(std::string(path.toLocal8Bit()), val);
 }
 
-void CallWidget::onItemStickerChanged(const std::string &str)
-{
-    engine_->SelectBeautySticker(str);
-}
-
 void CallWidget::onStartBeauty(const bool& start_enabled)
 {
-    nertc_beauty_tabwidget_->SetBeautyStartState(start_enabled);
     if (true == start_enabled)
     {
         QString path = nertc_beauty_tabwidget_->GetBeautyPath();
@@ -222,16 +212,24 @@ void CallWidget::onBeautyEnable(const bool& enable)
 {
     qDebug() << "CallWidget::onBeautyEnable:" << enable;
     engine_->EnableNertcBeauty(enable);
-}
 
-void CallWidget::onBeautyMirror(const bool& enable)
-{
-    qDebug() << "CallWidget::onBeautyMirror:" << enable;
-    engine_->EnableNertcMirror(enable);
-}
+    std::map<int, int> face_params;
+    nertc_beauty_tabwidget_->GetFaceBeautyParams(face_params);
+    for (auto &it : face_params)
+    {
+        engine_->SetBeautyEffect(it.first, it.second / 100.f);
+    }
 
-void CallWidget::onBeautyMakeup(const bool& enable)
-{
-    engine_->EnableNertcMakeup(enable);
+    std::map<int, int> skin_parmas;
+    nertc_beauty_tabwidget_->GetSkinBeautyParams(skin_parmas);
+    for (auto &it : skin_parmas)
+    {
+        engine_->SetBeautyEffect(it.first, it.second / 100.f);
+    }
+
+    QString path = "";
+    int val = 0;
+    nertc_beauty_tabwidget_->GetFilterParams(path, val);
+    engine_->SelectBeautyFilter(std::string(path.toLocal8Bit()), val);
 }
 

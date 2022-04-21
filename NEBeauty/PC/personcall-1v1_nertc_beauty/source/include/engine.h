@@ -31,9 +31,6 @@ public:
     int StartBeauty(const QString &path);
     void StopBeauty();
     void EnableNertcBeauty(const bool &enable);
-    void EnableNertcMirror(const bool &enable);
-    int EnableNertcMakeup(const bool &enable);
-    int SelectBeautySticker(const std::string &bundle_name);
     int SelectBeautyFilter(const std::string &filter_path, const int &val);
     int SetBeautyEffect(const int &type, float level);
 
@@ -73,7 +70,7 @@ Q_SIGNALS:
 
 
 private:
-    const std::string app_key_ = "";
+    const std::string app_key_ = "";  //用户appkey，需填写正确的appkey
 
 private:
     nertc::IRtcEngineEx* rtc_engine_ = nullptr;

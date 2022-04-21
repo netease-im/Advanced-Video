@@ -50,13 +50,10 @@ private Q_SLOTS:
     //
     void onBeautyChanged(const int& id, const int &val);
     void onFilterChanged(const QString& path, const int &val);
-    void onItemStickerChanged(const std::string &str);
 
     //
     void onStartBeauty(const bool& start_enabled);
     void onBeautyEnable(const bool& enable);
-    void onBeautyMirror(const bool& enable);
-    void onBeautyMakeup(const bool& enable);
 
 private:
     QHBoxLayout* video_hlayout_;

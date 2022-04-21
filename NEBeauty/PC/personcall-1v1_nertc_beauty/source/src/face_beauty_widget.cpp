@@ -48,23 +48,23 @@ FaceBeautyWidget::FaceBeautyWidget(QWidget* parent /*= nullptr*/)
     type_.push_back("slider");
     type_.push_back("slider");
 
-    value_.push_back("0;100;0");  //瘦脸
-    value_.push_back("0;100;0");    //小脸
-    value_.push_back("0;100;0"); //下巴
-    value_.push_back("0;100;50");    //眼距
-    value_.push_back("0;100;50"); //嘴型
-    value_.push_back("0;100;0");  //大眼
-    value_.push_back("0;100;0");   //小鼻
-    value_.push_back("0;100;0");    //开眼角
-    value_.push_back("0;100;50");    //长鼻
-    value_.push_back("0;100;50");    //微笑嘴角
-    value_.push_back("0;100;50");    //缩人中
-    value_.push_back("0;100;50");    //眼角调整
-    value_.push_back("0;100;0");   //圆眼
-    value_.push_back("0;100;0");   //V脸
-    value_.push_back("0;100;0"); //瘦下颌骨
-    value_.push_back("0;100;0");    //窄脸
-    value_.push_back("0;100;0");    //瘦颧骨
+    value_.push_back("0;100;35");  //瘦脸
+    value_.push_back("0;100;10");  //小脸
+    value_.push_back("0;100;40");  //下巴
+    value_.push_back("0;100;40"); //眼距
+    value_.push_back("0;100;80"); //嘴型
+    value_.push_back("0;100;30");  //大眼
+    value_.push_back("0;100;40");  //小鼻
+    value_.push_back("0;100;0");  //开眼角
+    value_.push_back("0;100;0"); //长鼻
+    value_.push_back("0;100;50"); //微笑嘴角
+    value_.push_back("0;100;50"); //缩人中
+    value_.push_back("0;100;50"); //眼角调整
+    value_.push_back("0;100;80");  //圆眼
+    value_.push_back("0;100;0");  //V脸
+    value_.push_back("0;100;0");  //瘦下颌骨
+    value_.push_back("0;100;0");  //窄脸
+    value_.push_back("0;100;0");  //瘦颧骨
 
     setUi();
 }
@@ -72,6 +72,16 @@ FaceBeautyWidget::FaceBeautyWidget(QWidget* parent /*= nullptr*/)
 FaceBeautyWidget::~FaceBeautyWidget()
 {
     qDebug() << "FaceBeautyWidget::~FaceBeautyWidget";
+}
+
+void FaceBeautyWidget::GetFaceBeautyParams(std::map<int, int> &parmas_map)
+{
+    for (int i = 0; i < items_.size(); ++i)
+    {
+        int key = param_types_beauty_[i];
+        int val = items_[i]->GetValue();
+        parmas_map.emplace(key, val);
+    }
 }
 
 void FaceBeautyWidget::setUi()

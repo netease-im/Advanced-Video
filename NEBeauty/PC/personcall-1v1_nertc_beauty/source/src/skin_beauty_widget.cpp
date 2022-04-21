@@ -23,10 +23,10 @@ SkinBeautyWidget::SkinBeautyWidget(QWidget* parent /*= nullptr*/)
     type_.push_back("slider");
 
     //
-    value_.push_back("0;100;0");
-    value_.push_back("0;100;0");
-    value_.push_back("0;100;0");
-    value_.push_back("0;100;0");
+    value_.push_back("0;100;65");
+    value_.push_back("0;100;80");
+    value_.push_back("0;100;60");
+    value_.push_back("0;100;30");
 
     setUi();
 }
@@ -34,6 +34,16 @@ SkinBeautyWidget::SkinBeautyWidget(QWidget* parent /*= nullptr*/)
 SkinBeautyWidget::~SkinBeautyWidget()
 {
     qDebug() << "SkinBeautyWidget::~SkinBeautyWidget";
+}
+
+void SkinBeautyWidget::GetSkinBeautyParams(std::map<int, int> &parmas_map)
+{
+    for (int i = 0; i < items_.size(); ++i)
+    {
+        int key = param_types_beauty_[i];
+        int val = items_[i]->GetValue();
+        parmas_map.emplace(key, val);
+    }
 }
 
 void SkinBeautyWidget::setUi()
