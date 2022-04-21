@@ -14,6 +14,9 @@ public:
     FaceBeautyWidget(QWidget* parent = nullptr);
     ~FaceBeautyWidget();
 
+public:
+    void GetFaceBeautyParams(std::map<int, int> &parmas_map);
+
 private:
     void setUi();
 

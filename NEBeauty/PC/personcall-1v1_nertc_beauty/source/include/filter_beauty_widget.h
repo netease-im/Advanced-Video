@@ -14,6 +14,8 @@ public:
     FilterBeautyWidget(QWidget* parent = nullptr);
     ~FilterBeautyWidget();
 
+    void GetFilterParams(QString& path, int& val);
+
 private:
     void setUi();
 

@@ -95,6 +95,12 @@ FilterBeautyWidget::~FilterBeautyWidget()
     qDebug() << "FilterBeautyWidget::~FilterBeautyWidget";
 }
 
+void FilterBeautyWidget::GetFilterParams(QString& path, int& val)
+{
+    path = filter_path_list_[index_];
+    val = default_[index_];
+}
+
 void FilterBeautyWidget::setUi()
 {
     QFormLayout *form_layout = new QFormLayout();

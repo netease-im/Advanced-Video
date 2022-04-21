@@ -14,6 +14,8 @@ public:
     SkinBeautyWidget(QWidget* parent = nullptr);
     ~SkinBeautyWidget();
 
+    void GetSkinBeautyParams(std::map<int, int> &parmas_map);
+
 private:
     void setUi();
 
