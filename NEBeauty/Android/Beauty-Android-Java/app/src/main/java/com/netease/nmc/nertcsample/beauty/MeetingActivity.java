@@ -24,6 +24,7 @@ import com.netease.lava.nertc.sdk.NERtcEx;
 import com.netease.lava.nertc.sdk.NERtcOption;
 import com.netease.lava.nertc.sdk.NERtcParameters;
 import com.netease.lava.nertc.sdk.video.NERtcRemoteVideoStreamType;
+import com.netease.lava.nertc.sdk.video.NERtcVideoConfig;
 import com.netease.lava.nertc.sdk.video.NERtcVideoView;
 import com.netease.nertcbeautysample.BuildConfig;
 import com.netease.nertcbeautysample.R;
@@ -302,6 +303,13 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
                 return;
             }
         }
+
+        NERtcVideoConfig videoConfig = new NERtcVideoConfig();
+        videoConfig.width = 360;
+        videoConfig.height = 640;
+        videoConfig.frameRate = NERtcVideoConfig.NERtcVideoFrameRate.FRAME_RATE_FPS_15;
+        NERtcEx.getInstance().setLocalVideoConfig(videoConfig);
+
         setLocalAudioEnable(true);
         setLocalVideoEnable(true);
         NERtcEx.getInstance().startBeauty();
@@ -313,8 +321,8 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
      */
     private void resetBeauty() {
         resetEffect();
-        NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, NEFilterEnum.FAIR.getName()));
-        NERtcEx.getInstance().setBeautyFilterLevel(NEFilterEnum.FAIR.getLevel());
+        //NERtcEx.getInstance().addBeautyFilter(getBeautyAssetPath(NEAssetsEnum.FILTERS, NEFilterEnum.FAIR.getName()));
+        //NERtcEx.getInstance().setBeautyFilterLevel(NEFilterEnum.FAIR.getLevel());
     }
 
     /**
