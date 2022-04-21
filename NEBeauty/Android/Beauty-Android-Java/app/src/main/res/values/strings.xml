@@ -88,17 +88,9 @@
     <string name="filter_texture4">质感4</string>
     <string name="filter_texture5">质感5</string>
     <string name="filter_texture6">质感6</string>
-    <!--sticker-->
-    <string name="sticker_bunny">兔耳</string>
-    <string name="sticker_rabbiteating">兔子</string>
-    <string name="sticker_lianpu">脸谱</string>
-    <!--makeups-->
-    <string name="makeup_eyeshadow">美妆</string>
-    <string name="makeup_remover">卸妆</string>
 
     <string-array name="beauty_option_tags">
         <item>滤镜</item>
         <item>美颜</item>
-        <item>美妆</item>
     </string-array>
 </resources>

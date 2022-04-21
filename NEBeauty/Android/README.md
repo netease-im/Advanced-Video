@@ -16,6 +16,7 @@
 <!-- 替换为你自己的AppKey -->
 <string name="app_key">YOUR APP KEY</string>
 ```
+3. 云信美颜提供美白、磨皮、红润、锐化四种免费特效,滤镜及高级特效提供2分钟的试用体验,如果要使用高级特效及滤镜功能,请联系客户经理开通相关权限.
 
 ## 功能实现
 
@@ -148,5 +149,5 @@ NERtcEx.getInstance().removeBeautyMakeup();
 2.初始化美颜引擎
 * 将assets下的相关资源拷贝到`/sdcard/Android/data/your.pkg.name`下
 * 使用`startBeauty()`接口初始化美颜引擎
-* 根据需要调用`setBeautyEffect`，`addBeautyFilter`,`addBeautySticker`接口来设置美颜，滤镜，贴纸效果
+* 根据需要调用`setBeautyEffect`，`addBeautyFilter`接口来设置美颜，滤镜效果
 * 最终不再使用美颜功能时，通过`stopBeauty`来结束美颜功能，销毁美颜引擎并释放资源。

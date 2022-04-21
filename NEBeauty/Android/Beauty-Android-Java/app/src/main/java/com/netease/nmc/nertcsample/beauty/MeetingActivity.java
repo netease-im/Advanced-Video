@@ -33,8 +33,6 @@ import com.netease.nmc.nertcsample.beauty.module.NEEffect;
 import com.netease.nmc.nertcsample.beauty.module.NEEffectEnum;
 import com.netease.nmc.nertcsample.beauty.module.NEFilter;
 import com.netease.nmc.nertcsample.beauty.module.NEFilterEnum;
-import com.netease.nmc.nertcsample.beauty.module.NEMakeup;
-import com.netease.nmc.nertcsample.beauty.module.NEMakeupEnum;
 import com.netease.nmc.nertcsample.beauty.ui.NEBeautyRadioGroup;
 import com.netease.nmc.nertcsample.beauty.ui.WrapContentViewPager;
 
@@ -75,13 +73,11 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
     private int currentFilterStyle;
     private NEBeautyRadioGroup effectRadioGroup;
     private Slider effectLevelSlider;
-    private NEBeautyRadioGroup makeupRadioGroup;
     private String extFilesDirPath;
     private int currentEffect;
     private List<View> tabViews;
     private HashMap<Integer, NEFilter> filters;
     private HashMap<Integer, NEEffect> effects;
-    private HashMap<Integer, NEMakeup> makeups;
 
     public static void startActivity(Activity from, String roomId) {
         Intent intent = new Intent(from, MeetingActivity.class);
@@ -170,9 +166,6 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         View beautyTab = getLayoutInflater().inflate(R.layout.tab_effect, null);
         tabViews.add(beautyTab);
 
-        View makeupTab = getLayoutInflater().inflate(R.layout.tab_makeup, null);
-        tabViews.add(makeupTab);
-
         for(String tag : tabTags) {
             tabLayout.addTab(tabLayout.newTab().setText(tag));
         }
@@ -226,16 +219,6 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
             }
         });
 
-        makeupRadioGroup = makeupTab.findViewById(R.id.radio_group_makeup);
-        makeupRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
-            NEMakeup makeup = makeups.get(checkedId);
-            if (makeup != null) {
-                NERtcEx.getInstance().addBeautyMakeup(getBeautyAssetPath(NEAssetsEnum.MAKEUPS, makeup.getName()));
-            } else {
-                NERtcEx.getInstance().removeBeautyMakeup();
-            }
-        });
-
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.setAdapter(new PagerAdapter() {
@@ -272,7 +255,6 @@ public class MeetingActivity extends AppCompatActivity implements NERtcCallback,
         extFilesDirPath = getExternalFilesDir(null).getAbsolutePath();
         filters = NEFilterEnum.getFilters();
         effects = NEEffectEnum.getEffects();
-        makeups = NEMakeupEnum.getMakeups();
     }
 
 
