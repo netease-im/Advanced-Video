@@ -146,8 +146,18 @@ NERtcEx.getInstance().addBeautyMakeup(String path);
 NERtcEx.getInstance().removeBeautyMakeup();
 
 ```
-2.初始化美颜引擎
-* 将assets下的相关资源拷贝到`/sdcard/Android/data/your.pkg.name`下
-* 使用`startBeauty()`接口初始化美颜引擎
-* 根据需要调用`setBeautyEffect`，`addBeautyFilter`接口来设置美颜，滤镜效果
-* 最终不再使用美颜功能时，通过`stopBeauty`来结束美颜功能，销毁美颜引擎并释放资源。
+
+2. 示例代码:
+```java
+// 1. 准备美颜相关资源
+// 将assets下的相关资源拷贝到/sdcard/Android/data/your.pkg.name下
+// 2.开启美颜
+NERtcEx.getInstance().startBeauty();
+// 3. 根据需要调用setBeautyEffect，addBeautyFilter接口来设置美颜及强度，滤镜效果
+NERtcEx.getInstance().setBeautyEffect(NERtcBeautyEffectType beautyType, float level);
+NERtcEx.getInstance().addBeautyFilter(String path);
+// 4. 根据需要设置filter强度
+NERtcEx.getInstance().setBeautyFilterLevel(float level);
+// 5. 最终不再使用美颜功能时，通过stopBeauty来结束美颜功能，销毁美颜引擎并释放资源。
+NERtcEx.getInstance().stopBeauty();
+```
