@@ -14,6 +14,17 @@
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
+typedef NS_ENUM(NSUInteger, NEBeautyConfigViewType) {
+    // 美颜
+    NEBeautyConfigViewTypeBeauty = 0x1,
+    // 滤镜
+    NEBeautyConfigViewTypeFilter = 0x2,
+    // 贴纸
+    NEBeautyConfigViewTypeSticker = 0x4,
+    // 美妆
+    NEBeautyConfigViewTypeMakeup = 0x8
+};
+
 typedef NS_ENUM(NSInteger, NEBeautyEffectType) {
     NEBeautyEffectTypeBeautyBase,
     NEBeautyEffectTypeBeautyShape,

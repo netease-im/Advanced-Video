@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NEBeautyMacro.h"
 
 @interface NEBeautyManager : NSObject
 
@@ -20,12 +21,12 @@
 
 - (void)enableNEBeauty:(BOOL)enable;
 
-- (void)displayBeautyMenuWithContainer:(UIView *)container;
+/// 展示菜单
+/// @param type 菜单类型（可以组合）
+/// @param container 父视图
+- (void)displayMenuWithType:(NEBeautyConfigViewType)type container:(UIView *)container;
 
-- (void)displayFilterMenuWithContainer:(UIView *)container;
-
-- (void)displayStickerMenuWithContainer:(UIView *)container;
-
-- (void)displayMakeupMenuWithContainer:(UIView *)container;
+/// 关闭菜单
+- (void)dismissMenuWithType:(NEBeautyConfigViewType)type;
 
 @end

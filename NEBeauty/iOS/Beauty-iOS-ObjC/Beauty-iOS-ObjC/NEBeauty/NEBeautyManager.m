@@ -20,10 +20,7 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 
 @property (nonatomic, copy) NSString *localResourcePath;
 
-@property (nonatomic, strong) NEBeautyConfigView *beautyMenu;
-@property (nonatomic, strong) NEBeautyConfigView *filterMenu;
-@property (nonatomic, strong) NEBeautyConfigView *stickerMenu;
-@property (nonatomic, strong) NEBeautyConfigView *makeupMenu;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber*, NEBeautyConfigView*> *menuMap;
 
 // 标题tab数据源
 @property (nonatomic, strong) NSArray<NETitleDisplayModel *> *beautyTitleModelArray;
@@ -107,17 +104,6 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
     _filterStrength = 0;
     [NERtcBeauty shareInstance].filterStrength = 0;
     [[NERtcBeauty shareInstance] stopBeauty];
-    
-    _baseSliderModelArray = nil;
-    _shapeSliderModelArray = nil;
-    _advancedSliderModelArray = nil;
-    _advancedSliderModelArray2 = nil;
-    _advancedSliderModelArray3 = nil;
-    
-    _beautyMenu = nil;
-    _filterMenu = nil;
-    _stickerMenu = nil;
-    _makeupMenu = nil;
 }
 
 - (void)enableNEBeauty:(BOOL)enable {
@@ -125,20 +111,21 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
     [NERtcBeauty shareInstance].isOpenBeauty = enable;
 }
 
-- (void)displayBeautyMenuWithContainer:(UIView *)container {
-    [self.beautyMenu displayWithContainer:container];
+- (void)displayMenuWithType:(NEBeautyConfigViewType)type container:(UIView *)container {
+    NEBeautyConfigView *view = [self.menuMap objectForKey:@(type)];
+    if (!view) {
+        view = [[NEBeautyConfigView alloc] initWithType:type dataSource:self delegate:self];
+        [self.menuMap setObject:view forKey:@(type)];
+    }
+    [view displayWithContainer:container];
 }
 
-- (void)displayFilterMenuWithContainer:(UIView *)container {
-    [self.filterMenu displayWithContainer:container];
-}
-
-- (void)displayStickerMenuWithContainer:(UIView *)container {
-    [self.stickerMenu displayWithContainer:container];
-}
-
-- (void)displayMakeupMenuWithContainer:(UIView *)container {
-    [self.makeupMenu displayWithContainer:container];
+- (void)dismissMenuWithType:(NEBeautyConfigViewType)type {
+    NEBeautyConfigView *view = [self.menuMap objectForKey:@(type)];
+    if (!view) {
+        return;
+    }
+    [view dismiss];
 }
 
 #pragma mark - Private
@@ -387,6 +374,9 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 
 - (void)didTriggerResetActionWithConfigViewType:(NEBeautyConfigViewType)type {
     switch (type) {
+        case NEBeautyConfigViewTypeBeauty: {
+            break;
+        }
         case NEBeautyConfigViewTypeFilter: {
             [[NERtcBeauty shareInstance] removeBeautyFilter];
             
@@ -658,36 +648,12 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
 
 #pragma mark - Getter
 
-- (NEBeautyConfigView *)beautyMenu {
-    if (!_beautyMenu) {
-        _beautyMenu = [[NEBeautyConfigView alloc] initWithType:NEBeautyConfigViewTypeBeauty dataSource:self delegate:self];
+- (NSMutableDictionary<NSNumber *,NEBeautyConfigView *> *)menuMap {
+    if (!_menuMap) {
+        _menuMap = [NSMutableDictionary dictionary];
     }
     
-    return _beautyMenu;
-}
-
-- (NEBeautyConfigView *)filterMenu {
-    if (!_filterMenu) {
-        _filterMenu = [[NEBeautyConfigView alloc] initWithType:NEBeautyConfigViewTypeFilter dataSource:self delegate:self];
-    }
-    
-    return _filterMenu;
-}
-
-- (NEBeautyConfigView *)stickerMenu {
-    if (!_stickerMenu) {
-        _stickerMenu = [[NEBeautyConfigView alloc] initWithType:NEBeautyConfigViewTypeSticker dataSource:self delegate:self];
-    }
-    
-    return _stickerMenu;
-}
-
-- (NEBeautyConfigView *)makeupMenu {
-    if (!_makeupMenu) {
-        _makeupMenu = [[NEBeautyConfigView alloc] initWithType:NEBeautyConfigViewTypeMakeup dataSource:self delegate:self];
-    }
-    
-    return _makeupMenu;
+    return _menuMap;
 }
 
 - (NSArray<NETitleDisplayModel *> *)beautyTitleModelArray {
@@ -887,29 +853,6 @@ static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
     
     return _advancedSliderModelArray3;
 }
-
-//- (NSArray<NEBeautySliderDisplayModel *> *)advancedSliderModelArray4 {
-//    if (!_advancedSliderModelArray4) {
-//        NSMutableArray *modelArray = [NSMutableArray array];
-//        NSArray *titleArray = @[@"红润", @"锐化"];
-//        NSArray *typeArray = @[@(NEBeautySliderTypeFaceRuddy),
-//                               @(NEBeautySliderTypeFaceSharpen)];
-//        NSArray *initialValueArray = @[@(0), @(0), @(0), @(0)];
-//        for (int i = 0; i < titleArray.count; i++) {
-//            NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
-//            model.title = titleArray[i];
-//            model.type = [typeArray[i] integerValue];
-//            model.imageName = @"btn_beauty";
-//            model.value = [initialValueArray[i] floatValue];
-//
-//            [modelArray addObject:model];
-//        }
-//
-//        _advancedSliderModelArray4 = modelArray;
-//    }
-//
-//    return _advancedSliderModelArray4;
-//}
 
 - (NEBeautySliderDisplayModel *)filterStrengthModel {
     if (!_filterStrengthModel) {

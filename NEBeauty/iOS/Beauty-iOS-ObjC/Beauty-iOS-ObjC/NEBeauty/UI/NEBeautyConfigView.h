@@ -12,17 +12,6 @@
 #import "NETitleDisplayModel.h"
 #import "NEBeautySliderDisplayModel.h"
 
-typedef NS_ENUM(NSInteger, NEBeautyConfigViewType) {
-    // 美颜
-    NEBeautyConfigViewTypeBeauty = 0,
-    // 滤镜
-    NEBeautyConfigViewTypeFilter,
-    // 贴纸
-    NEBeautyConfigViewTypeSticker,
-    // 美妆
-    NEBeautyConfigViewTypeMakeup
-};
-
 @protocol NEBeautyConfigViewDelegate <NSObject>
 
 // 重置操作触发的回调
@@ -54,10 +43,18 @@ typedef NS_ENUM(NSInteger, NEBeautyConfigViewType) {
 
 @interface NEBeautyConfigView : UIView
 
+/// 初始化
+/// @param type 菜单类型（可以组合）
+/// @param dataSource 数据源
+/// @param delegate 代理
 - (instancetype)initWithType:(NEBeautyConfigViewType)type
                   dataSource:(id<NEBeautyConfigViewDataSource>)dataSource
                     delegate:(id<NEBeautyConfigViewDelegate>)delegate;
 
 - (void)displayWithContainer:(UIView *)container;
+
+- (void)dismiss;
+
+- (void)reloadData;
 
 @end

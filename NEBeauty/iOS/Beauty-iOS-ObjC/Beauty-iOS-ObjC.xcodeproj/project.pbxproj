@@ -15,11 +15,6 @@
 		419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */; };
 		419DA0BD24D7EDF90001A561 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B124D7EDF90001A561 /* main.m */; };
 		6A2B977527153078007495C5 /* filters.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B976227153078007495C5 /* filters.bundle */; };
-		6A2B977E27153078007495C5 /* 2d_sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B977027153078007495C5 /* 2d_sticker.bundle */; };
-		6A2B977F27153078007495C5 /* particle_sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B977127153078007495C5 /* particle_sticker.bundle */; };
-		6A2B978027153078007495C5 /* 3d_sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B977227153078007495C5 /* 3d_sticker.bundle */; };
-		6A2B978127153078007495C5 /* face_change_sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B977327153078007495C5 /* face_change_sticker.bundle */; };
-		6A2B978227153078007495C5 /* makeup_sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B977427153078007495C5 /* makeup_sticker.bundle */; };
 		6A2B978427153082007495C5 /* beauty in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B978327153082007495C5 /* beauty */; };
 		6A2B978827153536007495C5 /* NETSDemoP2PViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */; };
 		6A2B979127155C7C007495C5 /* NEBeautyConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979027155C7C007495C5 /* NEBeautyConfigView.m */; };
@@ -62,11 +57,6 @@
 		48B7FB62128890C428F4C63C /* Pods-NERtcP2pSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSampleTests/Pods-NERtcP2pSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		48CFCBFC24C5766E002DE0CA /* 美颜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "美颜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2B976227153078007495C5 /* filters.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = filters.bundle; sourceTree = "<group>"; };
-		6A2B977027153078007495C5 /* 2d_sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = 2d_sticker.bundle; sourceTree = "<group>"; };
-		6A2B977127153078007495C5 /* particle_sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = particle_sticker.bundle; sourceTree = "<group>"; };
-		6A2B977227153078007495C5 /* 3d_sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = 3d_sticker.bundle; sourceTree = "<group>"; };
-		6A2B977327153078007495C5 /* face_change_sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = face_change_sticker.bundle; sourceTree = "<group>"; };
-		6A2B977427153078007495C5 /* makeup_sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = makeup_sticker.bundle; sourceTree = "<group>"; };
 		6A2B978327153082007495C5 /* beauty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = beauty; sourceTree = "<group>"; };
 		6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSDemoP2PViewController.m; sourceTree = "<group>"; };
 		6A2B978727153536007495C5 /* NETSDemoP2PViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSDemoP2PViewController.h; sourceTree = "<group>"; };
@@ -204,7 +194,6 @@
 			children = (
 				6A2B978327153082007495C5 /* beauty */,
 				6A2B976127153078007495C5 /* Filters */,
-				6A2B976F27153078007495C5 /* stickerZipAndIcons */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -215,18 +204,6 @@
 				6A2B976227153078007495C5 /* filters.bundle */,
 			);
 			path = Filters;
-			sourceTree = "<group>";
-		};
-		6A2B976F27153078007495C5 /* stickerZipAndIcons */ = {
-			isa = PBXGroup;
-			children = (
-				6A2B977027153078007495C5 /* 2d_sticker.bundle */,
-				6A2B977227153078007495C5 /* 3d_sticker.bundle */,
-				6A2B977127153078007495C5 /* particle_sticker.bundle */,
-				6A2B977327153078007495C5 /* face_change_sticker.bundle */,
-				6A2B977427153078007495C5 /* makeup_sticker.bundle */,
-			);
-			path = stickerZipAndIcons;
 			sourceTree = "<group>";
 		};
 		6A2B97852715308A007495C5 /* UI */ = {
@@ -356,16 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A2B978427153082007495C5 /* beauty in Resources */,
-				6A2B977E27153078007495C5 /* 2d_sticker.bundle in Resources */,
 				419DA0BA24D7EDF90001A561 /* LaunchScreen.storyboard in Resources */,
-				6A2B977F27153078007495C5 /* particle_sticker.bundle in Resources */,
 				419DA0B824D7EDF90001A561 /* Assets.xcassets in Resources */,
 				419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */,
-				6A2B978127153078007495C5 /* face_change_sticker.bundle in Resources */,
-				6A2B978027153078007495C5 /* 3d_sticker.bundle in Resources */,
 				6A2B977527153078007495C5 /* filters.bundle in Resources */,
 				6A2B97B12715B7D9007495C5 /* Images.xcassets in Resources */,
-				6A2B978227153078007495C5 /* makeup_sticker.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
