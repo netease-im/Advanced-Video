@@ -130,8 +130,10 @@
     //1v1音视频通话场景的视频推荐配置
     //其他场景下请联系云信技术支持获取配置
     NERtcVideoEncodeConfiguration *config = [[NERtcVideoEncodeConfiguration alloc] init];
-    config.width = 640;
-    config.height = 360;
+//    config.width = 640;
+//    config.height = 360;
+    config.width = 1280;
+    config.height = 720;
     config.frameRate = kNERtcVideoFrameRateFps15;
     [coreEngine setLocalVideoConfig:config];
     
@@ -174,10 +176,9 @@
     }];
     
     NSMutableArray<UIButton *> *buttonArray = [NSMutableArray array];
-    NSArray<NSString *> *titleArray = @[@"滤镜", @"美颜", @"美妆"];
+    NSArray<NSString *> *titleArray = @[@"滤镜", @"美颜"];
     NSArray<NSString *> *selectorNameArray = @[@"onOpenFilterMenuAction:",
-                                               @"onOpenBeautyMenuAction:",
-                                               @"onOpenMakeupMenuAction:"];
+                                               @"onOpenBeautyMenuAction:"];
     for (unsigned int i = 0; i < titleArray.count; i++) {
         NSString *title = titleArray[i];
         NSString *selectorName = selectorNameArray[i];
@@ -229,19 +230,19 @@
 }
 
 - (void)onOpenFilterMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayFilterMenuWithContainer:self.view];
+    [[NEBeautyManager sharedManager] displayMenuWithType:NEBeautyConfigViewTypeFilter container:self.view];
 }
 
 - (void)onOpenBeautyMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayBeautyMenuWithContainer:self.view];
+    [[NEBeautyManager sharedManager] displayMenuWithType:NEBeautyConfigViewTypeBeauty container:self.view];
 }
 
 - (void)onOpenSitckerMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayStickerMenuWithContainer:self.view];
+    [[NEBeautyManager sharedManager] displayMenuWithType:NEBeautyConfigViewTypeSticker container:self.view];
 }
 
 - (void)onOpenMakeupMenuAction:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] displayMakeupMenuWithContainer:self.view];
+    [[NEBeautyManager sharedManager] displayMenuWithType:NEBeautyConfigViewTypeMakeup container:self.view];
 }
 
 //UI 切换摄像头按钮事件

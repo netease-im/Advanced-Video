@@ -17,6 +17,7 @@
 @interface NEBeautyConfigView ()
 
 @property (nonatomic, assign) NEBeautyConfigViewType type;
+@property (nonatomic, assign) NEBeautyConfigViewType containerType;
 @property (nonatomic, weak) id<NEBeautyConfigViewDataSource> dataSource;
 @property (nonatomic, weak) id<NEBeautyConfigViewDelegate> delegate;
 
@@ -56,6 +57,7 @@
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
         
         _type = type;
+        _containerType = NEBeautyConfigViewTypeBeauty;
         _dataSource = dataSource;
         _delegate = delegate;
         
@@ -77,90 +79,176 @@
     }];
 }
 
+- (void)dismiss {
+    if (!self.superview) {
+        return;
+    }
+    
+    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGRect frame = self.frame;
+        frame.origin.y = SCREEN_HEIGHT;
+        self.frame = frame;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+- (void)reloadData {
+    if (_type & NEBeautyConfigViewTypeBeauty) {
+        if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelArrayForTitleType:)]) {
+            NSArray<NEBeautySliderDisplayModel *> *modelArray = [_dataSource sliderModelArrayForTitleType:NEBeautyEffectTypeBeautyBase];
+            [self.beautyView reloadWithSliderModelArray:modelArray];
+        }
+    }
+    
+    if (_type & NEBeautyConfigViewTypeFilter) {
+        if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelForFilterStrength)]) {
+            NEBeautySliderDisplayModel *model = [_dataSource sliderModelForFilterStrength];
+            [self.filterStrengthView updateWithModel:model];
+        }
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeFilter effectType:NEBeautyEffectTypeFilter];
+            [self.filterView reloadWithModelArray:itemModelArray];
+        }
+    }
+    
+    if (_type & NEBeautyConfigViewTypeSticker) {
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeSticker effectType:NEBeautyEffectTypeSticker2D];
+            [self.stickerView reloadWithModelArray:itemModelArray];
+        }
+    }
+    
+    if (_type & NEBeautyConfigViewTypeMakeup) {
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeMakeup effectType:NEBeautyEffectTypeMakeup];
+            [self.makeupView reloadWithModelArray:itemModelArray];
+        }
+    }
+}
+
 #pragma mark - Private
 
 - (void)setupSubviews {
     [self addSubview:self.closeButton];
-    if (_type != NEBeautyConfigViewTypeBeauty) {
-        [self addSubview:self.resetButton];
+    [self addSubview:self.resetButton];
+    
+    NSMutableArray *titleModels = [NSMutableArray array];
+    
+    if (_type & NEBeautyConfigViewTypeFilter) {
+        _containerType = NEBeautyConfigViewTypeFilter;
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(titleModelArrayForConfigViewWithType:)]) {
+            NSArray *titleModelArray = [_dataSource titleModelArrayForConfigViewWithType:NEBeautyConfigViewTypeFilter];
+            [titleModels addObjectsFromArray:titleModelArray];
+        }
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelForFilterStrength)]) {
+            NEBeautySliderDisplayModel *model = [_dataSource sliderModelForFilterStrength];
+            [self.filterStrengthView updateWithModel:model];
+        }
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeFilter effectType:NEBeautyEffectTypeFilter];
+            [self.filterView reloadWithModelArray:itemModelArray];
+        }
     }
     
-    if (_dataSource && [_dataSource respondsToSelector:@selector(titleModelArrayForConfigViewWithType:)]) {
-        NSArray *titleModelArray = [_dataSource titleModelArrayForConfigViewWithType:_type];
-        NEScrollTitleView *titleView = [self generateTitleViewWithModelArray:titleModelArray];
-        [self addSubview:titleView];
+    if (_type & NEBeautyConfigViewTypeBeauty) {
+        _containerType = NEBeautyConfigViewTypeBeauty;
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(titleModelArrayForConfigViewWithType:)]) {
+            NSArray *titleModelArray = [_dataSource titleModelArrayForConfigViewWithType:NEBeautyConfigViewTypeBeauty];
+            [titleModels addObjectsFromArray:titleModelArray];
+        }
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelArrayForTitleType:)]) {
+            NSArray<NEBeautySliderDisplayModel *> *modelArray = [_dataSource sliderModelArrayForTitleType:NEBeautyEffectTypeBeautyBase];
+            [self.beautyView reloadWithSliderModelArray:modelArray];
+        }
     }
     
-    switch (_type) {
-        case NEBeautyConfigViewTypeBeauty: {
-            [self addSubview:self.beautyView];
-            if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelArrayForTitleType:)]) {
-                NSArray<NEBeautySliderDisplayModel *> *modelArray = [_dataSource sliderModelArrayForTitleType:NEBeautyEffectTypeBeautyBase];
-                [_beautyView reloadWithSliderModelArray:modelArray];
-            }
-            
-            break;
+    if (_type & NEBeautyConfigViewTypeSticker) {
+        _containerType = NEBeautyConfigViewTypeSticker;
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(titleModelArrayForConfigViewWithType:)]) {
+            NSArray *titleModelArray = [_dataSource titleModelArrayForConfigViewWithType:NEBeautyConfigViewTypeSticker];
+            [titleModels addObjectsFromArray:titleModelArray];
         }
-        case NEBeautyConfigViewTypeFilter: {
-            [self addSubview:self.filterStrengthView];
-            if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelForFilterStrength)]) {
-                NEBeautySliderDisplayModel *model = [_dataSource sliderModelForFilterStrength];
-                [_filterStrengthView updateWithModel:model];
-            }
-            [self addSubview:self.filterView];
-            if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
-                NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeFilter effectType:NEBeautyEffectTypeFilter];
-                [_filterView reloadWithModelArray:itemModelArray];
-            }
-            
-            break;
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeSticker effectType:NEBeautyEffectTypeSticker2D];
+            [self.stickerView reloadWithModelArray:itemModelArray];
         }
-        case NEBeautyConfigViewTypeSticker: {
-            [self addSubview:self.stickerView];
-            if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
-                NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeSticker effectType:NEBeautyEffectTypeSticker2D];
-                [_stickerView reloadWithModelArray:itemModelArray];
-            }
-            
-            break;
-        }
-        case NEBeautyConfigViewTypeMakeup: {
-            [self addSubview:self.makeupView];
-            if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
-                NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeMakeup effectType:NEBeautyEffectTypeMakeup];
-                [_makeupView reloadWithModelArray:itemModelArray];
-            }
-            
-            break;
-        }
-            
-        default:
-            break;
     }
+    
+    if (_type & NEBeautyConfigViewTypeMakeup) {
+        _containerType = NEBeautyConfigViewTypeMakeup;
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(titleModelArrayForConfigViewWithType:)]) {
+            NSArray *titleModelArray = [_dataSource titleModelArrayForConfigViewWithType:NEBeautyConfigViewTypeMakeup];
+            [titleModels addObjectsFromArray:titleModelArray];
+        }
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+            NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeMakeup effectType:NEBeautyEffectTypeMakeup];
+            [self.makeupView reloadWithModelArray:itemModelArray];
+        }
+    }
+    
+    NEScrollTitleView *titleView = [self generateTitleViewWithModelArray:titleModels];
+    [self addSubview:titleView];
 }
 
 - (void)changeContentWithEffectType:(NEBeautyEffectType)type {
-    switch (_type) {
-        case NEBeautyConfigViewTypeBeauty: {
+    [_beautyView removeFromSuperview];
+    [_filterStrengthView removeFromSuperview];
+    [_filterView removeFromSuperview];
+    [_stickerView removeFromSuperview];
+    [_makeupView removeFromSuperview];
+    
+    switch (type) {
+        case NEBeautyEffectTypeBeautyBase:
+        case NEBeautyEffectTypeBeautyShape:
+        case NEBeautyEffectTypeBeautyAdv:
+        case NEBeautyEffectTypeBeautyAdv2:
+        case NEBeautyEffectTypeBeautyAdv3: {
             if (_dataSource && [_dataSource respondsToSelector:@selector(sliderModelArrayForTitleType:)]) {
                 NSArray<NEBeautySliderDisplayModel *> *modelArray = [_dataSource sliderModelArrayForTitleType:type];
                 [_beautyView reloadWithSliderModelArray:modelArray];
             }
             
-            break;
-        }
-        case NEBeautyConfigViewTypeFilter: {
-            break;
-        }
-        case NEBeautyConfigViewTypeSticker: {
-            if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
-                NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:_type effectType:type];
-                [_stickerView reloadWithModelArray:itemModelArray];
-            }
+            [self addSubview:_beautyView];
+            _containerType = NEBeautyConfigViewTypeBeauty;
             
             break;
         }
-        case NEBeautyConfigViewTypeMakeup: {
+        case NEBeautyEffectTypeFilter: {
+            [self addSubview:_filterStrengthView];
+            [self addSubview:_filterView];
+            _containerType = NEBeautyConfigViewTypeFilter;
+            
+            break;
+        }
+        case NEBeautyEffectTypeSticker2D:
+        case NEBeautyEffectTypeSticker3D:
+        case NEBeautyEffectTypeStickerFaceChange:
+        case NEBeautyEffectTypeStickerParticle: {
+            if (_dataSource && [_dataSource respondsToSelector:@selector(itemModelArrayForConfigViewWithType:effectType:)]) {
+                NSArray *itemModelArray = [_dataSource itemModelArrayForConfigViewWithType:NEBeautyConfigViewTypeSticker effectType:type];
+                [_stickerView reloadWithModelArray:itemModelArray];
+            }
+            
+            [self addSubview:_stickerView];
+            _containerType = NEBeautyConfigViewTypeSticker;
+            
+            break;
+        }
+        case NEBeautyEffectTypeMakeup: {
+            [self addSubview:_makeupView];
+            _containerType = NEBeautyConfigViewTypeMakeup;
+            
             break;
         }
             
@@ -197,12 +285,12 @@
     NSMutableArray *titleArray = [NSMutableArray array];
     NSMutableArray *typeArray = [NSMutableArray array];
     for (NETitleDisplayModel *model in modelArray) {
-        [titleArray addObject:model.title ?: @"title"];
+        [titleArray addObject:model.title ?: @"unknown"];
         [typeArray addObject:@(model.type)];
     }
     
     __weak typeof(self) weakSelf = self;
-    CGFloat leftOffset = (_type != NEBeautyConfigViewTypeBeauty) ? 60 + 30 : 60;
+    CGFloat leftOffset = 60 + 30;
     NEScrollTitleView *titleView = [[NEScrollTitleView alloc] initWithFrame:CGRectMake(leftOffset, 0, SCREEN_WIDTH - leftOffset, kNEBeautyTitleViewHeight) titles:titleArray effectsType:typeArray titleOnClick:^(NETitleViewItem *titleView, NSInteger index, NEBeautyEffectType type) {
         [weakSelf changeContentWithEffectType:type];
     }];
@@ -211,7 +299,7 @@
 }
 
 - (void)clearSelection {
-    switch (_type) {
+    switch (_containerType) {
         case NEBeautyConfigViewTypeFilter: {
             [_filterView clearSelection];
             
@@ -249,7 +337,7 @@
     [self clearSelection];
     
     if (_delegate && [_delegate respondsToSelector:@selector(didTriggerResetActionWithConfigViewType:)]) {
-        [_delegate didTriggerResetActionWithConfigViewType:_type];
+        [_delegate didTriggerResetActionWithConfigViewType:_containerType];
     }
 }
 
