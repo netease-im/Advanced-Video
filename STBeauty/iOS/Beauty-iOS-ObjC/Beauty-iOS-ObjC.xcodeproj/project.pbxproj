@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		419DA0B724D7EDF90001A561 /* NETSDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0A724D7EDF90001A561 /* NETSDemoViewController.m */; };
+		419DA0B824D7EDF90001A561 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 419DA0A824D7EDF90001A561 /* Assets.xcassets */; };
+		419DA0B924D7EDF90001A561 /* NETSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0A924D7EDF90001A561 /* NETSAppDelegate.m */; };
+		419DA0BA24D7EDF90001A561 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419DA0AA24D7EDF90001A561 /* LaunchScreen.storyboard */; };
+		419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419DA0AC24D7EDF90001A561 /* Main.storyboard */; };
+		419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */; };
+		419DA0BD24D7EDF90001A561 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B124D7EDF90001A561 /* main.m */; };
+		6A2B977527153078007495C5 /* filters.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B976227153078007495C5 /* filters.bundle */; };
+		6A2B978427153082007495C5 /* beauty in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B978327153082007495C5 /* beauty */; };
+		6A2B978827153536007495C5 /* NETSDemoP2PViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */; };
+		6A2B979127155C7C007495C5 /* NEBeautyConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979027155C7C007495C5 /* NEBeautyConfigView.m */; };
+		6A2B979727155CB3007495C5 /* NEScrollTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979327155CB2007495C5 /* NEScrollTitleView.m */; };
+		6A2B979D27155F64007495C5 /* NEBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979C27155F64007495C5 /* NEBeautyManager.m */; };
+		6A2B97A827157A6F007495C5 /* NECollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B97A427157A6E007495C5 /* NECollectionView.m */; };
+		6A2B97A927157A6F007495C5 /* NECollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B97A527157A6E007495C5 /* NECollectionViewCell.m */; };
+		6A2B97B12715B7D9007495C5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B97B02715B7D9007495C5 /* Images.xcassets */; };
+		6A4AB4B627199869000322D9 /* NEBeautySliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4B527199869000322D9 /* NEBeautySliderTableViewCell.m */; };
+		6A4AB4B927199875000322D9 /* NEBeautySliderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4B827199875000322D9 /* NEBeautySliderTableView.m */; };
+		6A4AB4BE271D1BC9000322D9 /* NEBeautySliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4BD271D1BC9000322D9 /* NEBeautySliderView.m */; };
+		6A4AB4C4271D1FE8000322D9 /* NETitleDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4C0271D1FE8000322D9 /* NETitleDisplayModel.m */; };
+		6A4AB4C5271D1FE8000322D9 /* NEBeautySliderDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4C1271D1FE8000322D9 /* NEBeautySliderDisplayModel.m */; };
+		6AA8E839271D45E9009BA3AC /* NECollectionViewDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */; };
+		86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C6333C2512FBCE0036B19E /* CoreML.framework */; };
+		86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332925120F230036B19E /* NTESGlobalMacro.m */; };
+		86C6333125120F230036B19E /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332C25120F230036B19E /* UIView+NTES.m */; };
+		86C633342512FB830036B19E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633332512FB830036B19E /* OpenGLES.framework */; };
+		86C633362512FB900036B19E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633352512FB900036B19E /* Accelerate.framework */; };
+		86C633382512FB9B0036B19E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633372512FB9B0036B19E /* CoreMedia.framework */; };
+		86C6333A2512FBA80036B19E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C633392512FBA80036B19E /* AVFoundation.framework */; };
+		86C6333D2512FBCE0036B19E /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C6333C2512FBCE0036B19E /* CoreML.framework */; };
+		C3039503B643B4CBB76565F7 /* Pods_Beauty_iOS_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266652F16163CD60054E79AF /* Pods_Beauty_iOS_ObjC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		266652F16163CD60054E79AF /* Pods_Beauty_iOS_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beauty_iOS_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		419DA0A424D7EDF90001A561 /* NTESDemoUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoUserModel.h; sourceTree = "<group>"; };
+		419DA0A724D7EDF90001A561 /* NETSDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSDemoViewController.m; sourceTree = "<group>"; };
+		419DA0A824D7EDF90001A561 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		419DA0A924D7EDF90001A561 /* NETSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAppDelegate.m; sourceTree = "<group>"; };
+		419DA0AB24D7EDF90001A561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		419DA0AD24D7EDF90001A561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		419DA0AE24D7EDF90001A561 /* AppKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKey.h; sourceTree = "<group>"; };
+		419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoUserModel.m; sourceTree = "<group>"; };
+		419DA0B124D7EDF90001A561 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		419DA0B224D7EDF90001A561 /* NETSDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSDemoViewController.h; sourceTree = "<group>"; };
+		419DA0B324D7EDF90001A561 /* NETSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAppDelegate.h; sourceTree = "<group>"; };
+		419DA0B424D7EDF90001A561 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48B7FB62128890C428F4C63C /* Pods-NERtcP2pSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSampleTests/Pods-NERtcP2pSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		48CFCBFC24C5766E002DE0CA /* 美颜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "美颜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2B976227153078007495C5 /* filters.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = filters.bundle; sourceTree = "<group>"; };
+		6A2B978327153082007495C5 /* beauty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = beauty; sourceTree = "<group>"; };
+		6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSDemoP2PViewController.m; sourceTree = "<group>"; };
+		6A2B978727153536007495C5 /* NETSDemoP2PViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSDemoP2PViewController.h; sourceTree = "<group>"; };
+		6A2B978F27155C7C007495C5 /* NEBeautyConfigView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyConfigView.h; sourceTree = "<group>"; };
+		6A2B979027155C7C007495C5 /* NEBeautyConfigView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautyConfigView.m; sourceTree = "<group>"; };
+		6A2B979327155CB2007495C5 /* NEScrollTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEScrollTitleView.m; sourceTree = "<group>"; };
+		6A2B979427155CB2007495C5 /* NEScrollTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEScrollTitleView.h; sourceTree = "<group>"; };
+		6A2B979B27155F64007495C5 /* NEBeautyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyManager.h; sourceTree = "<group>"; };
+		6A2B979C27155F64007495C5 /* NEBeautyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautyManager.m; sourceTree = "<group>"; };
+		6A2B979E271562AE007495C5 /* NEBeautyMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyMacro.h; sourceTree = "<group>"; };
+		6A2B97A427157A6E007495C5 /* NECollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NECollectionView.m; sourceTree = "<group>"; };
+		6A2B97A527157A6E007495C5 /* NECollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NECollectionViewCell.m; sourceTree = "<group>"; };
+		6A2B97A627157A6E007495C5 /* NECollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NECollectionViewCell.h; sourceTree = "<group>"; };
+		6A2B97A727157A6E007495C5 /* NECollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NECollectionView.h; sourceTree = "<group>"; };
+		6A2B97B02715B7D9007495C5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6A4AB4B427199869000322D9 /* NEBeautySliderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautySliderTableViewCell.h; sourceTree = "<group>"; };
+		6A4AB4B527199869000322D9 /* NEBeautySliderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautySliderTableViewCell.m; sourceTree = "<group>"; };
+		6A4AB4B727199875000322D9 /* NEBeautySliderTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautySliderTableView.h; sourceTree = "<group>"; };
+		6A4AB4B827199875000322D9 /* NEBeautySliderTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautySliderTableView.m; sourceTree = "<group>"; };
+		6A4AB4BC271D1BC9000322D9 /* NEBeautySliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautySliderView.h; sourceTree = "<group>"; };
+		6A4AB4BD271D1BC9000322D9 /* NEBeautySliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautySliderView.m; sourceTree = "<group>"; };
+		6A4AB4C0271D1FE8000322D9 /* NETitleDisplayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETitleDisplayModel.m; sourceTree = "<group>"; };
+		6A4AB4C1271D1FE8000322D9 /* NEBeautySliderDisplayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEBeautySliderDisplayModel.m; sourceTree = "<group>"; };
+		6A4AB4C2271D1FE8000322D9 /* NETitleDisplayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETitleDisplayModel.h; sourceTree = "<group>"; };
+		6A4AB4C3271D1FE8000322D9 /* NEBeautySliderDisplayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEBeautySliderDisplayModel.h; sourceTree = "<group>"; };
+		6AA8E837271D45E9009BA3AC /* NECollectionViewDisplayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NECollectionViewDisplayModel.h; sourceTree = "<group>"; };
+		6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NECollectionViewDisplayModel.m; sourceTree = "<group>"; };
+		6B6365D8AC3C9BD2B6E0637C /* Pods-NERtcP2pSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSample.release.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSample/Pods-NERtcP2pSample.release.xcconfig"; sourceTree = "<group>"; };
+		86C6332925120F230036B19E /* NTESGlobalMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESGlobalMacro.m; sourceTree = "<group>"; };
+		86C6332A25120F230036B19E /* NTESGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESGlobalMacro.h; sourceTree = "<group>"; };
+		86C6332C25120F230036B19E /* UIView+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NTES.m"; sourceTree = "<group>"; };
+		86C6332E25120F230036B19E /* UIView+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NTES.h"; sourceTree = "<group>"; };
+		86C633332512FB830036B19E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		86C633352512FB900036B19E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		86C633372512FB9B0036B19E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		86C633392512FBA80036B19E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		86C6333B2512FBB60036B19E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		86C6333C2512FBCE0036B19E /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		9691D4D316DAB71FF86F6EA5 /* Pods-Beauty-iOS-ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beauty-iOS-ObjC.release.xcconfig"; path = "Target Support Files/Pods-Beauty-iOS-ObjC/Pods-Beauty-iOS-ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		986A29A6594B60AE1E2E527C /* Pods-NERtcP2pSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSampleTests.release.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSampleTests/Pods-NERtcP2pSampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		D0E2629D65BDF2279CC68FF4 /* Pods_NERtcP2pSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NERtcP2pSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC5C3C8634B0AFCD6093380C /* Pods-Beauty-iOS-ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beauty-iOS-ObjC.debug.xcconfig"; path = "Target Support Files/Pods-Beauty-iOS-ObjC/Pods-Beauty-iOS-ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		FFBD9EE79ABE211352D9D30D /* Pods-NERtcP2pSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSample.debug.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSample/Pods-NERtcP2pSample.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48CFCBF924C5766E002DE0CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86C633382512FB9B0036B19E /* CoreMedia.framework in Frameworks */,
+				86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */,
+				86C633362512FB900036B19E /* Accelerate.framework in Frameworks */,
+				86C6333D2512FBCE0036B19E /* CoreML.framework in Frameworks */,
+				86C6333A2512FBA80036B19E /* AVFoundation.framework in Frameworks */,
+				C3039503B643B4CBB76565F7 /* Pods_Beauty_iOS_ObjC.framework in Frameworks */,
+				86C633342512FB830036B19E /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0417D8F3599AB5E8B5633296 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86C6333C2512FBCE0036B19E /* CoreML.framework */,
+				86C6333B2512FBB60036B19E /* libc++.tbd */,
+				86C633392512FBA80036B19E /* AVFoundation.framework */,
+				86C633372512FB9B0036B19E /* CoreMedia.framework */,
+				86C633352512FB900036B19E /* Accelerate.framework */,
+				86C633332512FB830036B19E /* OpenGLES.framework */,
+				D0E2629D65BDF2279CC68FF4 /* Pods_NERtcP2pSampleTests.framework */,
+				266652F16163CD60054E79AF /* Pods_Beauty_iOS_ObjC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		419DA0A324D7EDF90001A561 /* Beauty-iOS-ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B973B27153001007495C5 /* NEBeauty */,
+				86C6332B25120F230036B19E /* Category */,
+				86C6332825120F230036B19E /* Macro */,
+				419DA0AE24D7EDF90001A561 /* AppKey.h */,
+				419DA0B324D7EDF90001A561 /* NETSAppDelegate.h */,
+				419DA0A924D7EDF90001A561 /* NETSAppDelegate.m */,
+				419DA0B224D7EDF90001A561 /* NETSDemoViewController.h */,
+				419DA0A724D7EDF90001A561 /* NETSDemoViewController.m */,
+				6A2B978727153536007495C5 /* NETSDemoP2PViewController.h */,
+				6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */,
+				419DA0A424D7EDF90001A561 /* NTESDemoUserModel.h */,
+				419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */,
+				419DA0A824D7EDF90001A561 /* Assets.xcassets */,
+				419DA0AA24D7EDF90001A561 /* LaunchScreen.storyboard */,
+				419DA0AC24D7EDF90001A561 /* Main.storyboard */,
+				419DA0B124D7EDF90001A561 /* main.m */,
+				419DA0B424D7EDF90001A561 /* Info.plist */,
+			);
+			path = "Beauty-iOS-ObjC";
+			sourceTree = "<group>";
+		};
+		48CFCBF324C5766E002DE0CA = {
+			isa = PBXGroup;
+			children = (
+				419DA0A324D7EDF90001A561 /* Beauty-iOS-ObjC */,
+				48CFCBFD24C5766E002DE0CA /* Products */,
+				8CA7108BC9A09D2DBB718569 /* Pods */,
+				0417D8F3599AB5E8B5633296 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		48CFCBFD24C5766E002DE0CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48CFCBFC24C5766E002DE0CA /* 美颜.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A2B973B27153001007495C5 /* NEBeauty */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B979B27155F64007495C5 /* NEBeautyManager.h */,
+				6A2B979C27155F64007495C5 /* NEBeautyManager.m */,
+				6A4AB4BF271D1FE8000322D9 /* Model */,
+				6A2B97852715308A007495C5 /* UI */,
+				6A2B976027153078007495C5 /* Resource */,
+			);
+			path = NEBeauty;
+			sourceTree = "<group>";
+		};
+		6A2B976027153078007495C5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B978327153082007495C5 /* beauty */,
+				6A2B976127153078007495C5 /* Filters */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6A2B976127153078007495C5 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B976227153078007495C5 /* filters.bundle */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		6A2B97852715308A007495C5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6A2B979E271562AE007495C5 /* NEBeautyMacro.h */,
+				6A2B978F27155C7C007495C5 /* NEBeautyConfigView.h */,
+				6A2B979027155C7C007495C5 /* NEBeautyConfigView.m */,
+				6A2B979427155CB2007495C5 /* NEScrollTitleView.h */,
+				6A2B979327155CB2007495C5 /* NEScrollTitleView.m */,
+				6A4AB4B727199875000322D9 /* NEBeautySliderTableView.h */,
+				6A4AB4B827199875000322D9 /* NEBeautySliderTableView.m */,
+				6A4AB4B427199869000322D9 /* NEBeautySliderTableViewCell.h */,
+				6A4AB4B527199869000322D9 /* NEBeautySliderTableViewCell.m */,
+				6A4AB4BC271D1BC9000322D9 /* NEBeautySliderView.h */,
+				6A4AB4BD271D1BC9000322D9 /* NEBeautySliderView.m */,
+				6A2B97A727157A6E007495C5 /* NECollectionView.h */,
+				6A2B97A427157A6E007495C5 /* NECollectionView.m */,
+				6A2B97A627157A6E007495C5 /* NECollectionViewCell.h */,
+				6A2B97A527157A6E007495C5 /* NECollectionViewCell.m */,
+				6A2B97B02715B7D9007495C5 /* Images.xcassets */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6A4AB4BF271D1FE8000322D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6A4AB4C2271D1FE8000322D9 /* NETitleDisplayModel.h */,
+				6A4AB4C0271D1FE8000322D9 /* NETitleDisplayModel.m */,
+				6A4AB4C3271D1FE8000322D9 /* NEBeautySliderDisplayModel.h */,
+				6A4AB4C1271D1FE8000322D9 /* NEBeautySliderDisplayModel.m */,
+				6AA8E837271D45E9009BA3AC /* NECollectionViewDisplayModel.h */,
+				6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		86C6332825120F230036B19E /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				86C6332A25120F230036B19E /* NTESGlobalMacro.h */,
+				86C6332925120F230036B19E /* NTESGlobalMacro.m */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		86C6332B25120F230036B19E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				86C6332E25120F230036B19E /* UIView+NTES.h */,
+				86C6332C25120F230036B19E /* UIView+NTES.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8CA7108BC9A09D2DBB718569 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFBD9EE79ABE211352D9D30D /* Pods-NERtcP2pSample.debug.xcconfig */,
+				6B6365D8AC3C9BD2B6E0637C /* Pods-NERtcP2pSample.release.xcconfig */,
+				48B7FB62128890C428F4C63C /* Pods-NERtcP2pSampleTests.debug.xcconfig */,
+				986A29A6594B60AE1E2E527C /* Pods-NERtcP2pSampleTests.release.xcconfig */,
+				FC5C3C8634B0AFCD6093380C /* Pods-Beauty-iOS-ObjC.debug.xcconfig */,
+				9691D4D316DAB71FF86F6EA5 /* Pods-Beauty-iOS-ObjC.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48CFCBFB24C5766E002DE0CA /* Beauty-iOS-ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48CFCC2024C57670002DE0CA /* Build configuration list for PBXNativeTarget "Beauty-iOS-ObjC" */;
+			buildPhases = (
+				112561FC6395F37886CAF35C /* [CP] Check Pods Manifest.lock */,
+				48CFCBF824C5766E002DE0CA /* Sources */,
+				48CFCBF924C5766E002DE0CA /* Frameworks */,
+				48CFCBFA24C5766E002DE0CA /* Resources */,
+				224416CB89A37BC927D7977B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Beauty-iOS-ObjC";
+			productName = NERtcP2pSample;
+			productReference = 48CFCBFC24C5766E002DE0CA /* 美颜.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48CFCBF424C5766E002DE0CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = NetEase;
+				TargetAttributes = {
+					48CFCBFB24C5766E002DE0CA = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 48CFCBF724C5766E002DE0CA /* Build configuration list for PBXProject "Beauty-iOS-ObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48CFCBF324C5766E002DE0CA;
+			productRefGroup = 48CFCBFD24C5766E002DE0CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48CFCBFB24C5766E002DE0CA /* Beauty-iOS-ObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48CFCBFA24C5766E002DE0CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2B978427153082007495C5 /* beauty in Resources */,
+				419DA0BA24D7EDF90001A561 /* LaunchScreen.storyboard in Resources */,
+				419DA0B824D7EDF90001A561 /* Assets.xcassets in Resources */,
+				419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */,
+				6A2B977527153078007495C5 /* filters.bundle in Resources */,
+				6A2B97B12715B7D9007495C5 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		112561FC6395F37886CAF35C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Beauty-iOS-ObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		224416CB89A37BC927D7977B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beauty-iOS-ObjC/Pods-Beauty-iOS-ObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beauty-iOS-ObjC/Pods-Beauty-iOS-ObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Beauty-iOS-ObjC/Pods-Beauty-iOS-ObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48CFCBF824C5766E002DE0CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4AB4BE271D1BC9000322D9 /* NEBeautySliderView.m in Sources */,
+				419DA0BD24D7EDF90001A561 /* main.m in Sources */,
+				6A2B979127155C7C007495C5 /* NEBeautyConfigView.m in Sources */,
+				86C6333125120F230036B19E /* UIView+NTES.m in Sources */,
+				6A4AB4C4271D1FE8000322D9 /* NETitleDisplayModel.m in Sources */,
+				6A4AB4B927199875000322D9 /* NEBeautySliderTableView.m in Sources */,
+				419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */,
+				419DA0B924D7EDF90001A561 /* NETSAppDelegate.m in Sources */,
+				6AA8E839271D45E9009BA3AC /* NECollectionViewDisplayModel.m in Sources */,
+				419DA0B724D7EDF90001A561 /* NETSDemoViewController.m in Sources */,
+				6A2B979727155CB3007495C5 /* NEScrollTitleView.m in Sources */,
+				6A2B97A927157A6F007495C5 /* NECollectionViewCell.m in Sources */,
+				6A2B97A827157A6F007495C5 /* NECollectionView.m in Sources */,
+				6A4AB4C5271D1FE8000322D9 /* NEBeautySliderDisplayModel.m in Sources */,
+				6A2B978827153536007495C5 /* NETSDemoP2PViewController.m in Sources */,
+				6A2B979D27155F64007495C5 /* NEBeautyManager.m in Sources */,
+				86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */,
+				6A4AB4B627199869000322D9 /* NEBeautySliderTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		419DA0AA24D7EDF90001A561 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				419DA0AB24D7EDF90001A561 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		419DA0AC24D7EDF90001A561 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				419DA0AD24D7EDF90001A561 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48CFCC1E24C57670002DE0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		48CFCC1F24C57670002DE0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48CFCC2124C57670002DE0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC5C3C8634B0AFCD6093380C /* Pods-Beauty-iOS-ObjC.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7C9A6NRV5L;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "Beauty-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_NAME = "美颜";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48CFCC2224C57670002DE0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9691D4D316DAB71FF86F6EA5 /* Pods-Beauty-iOS-ObjC.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "Beauty-iOS-ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_NAME = "美颜";
+				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48CFCBF724C5766E002DE0CA /* Build configuration list for PBXProject "Beauty-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48CFCC1E24C57670002DE0CA /* Debug */,
+				48CFCC1F24C57670002DE0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48CFCC2024C57670002DE0CA /* Build configuration list for PBXNativeTarget "Beauty-iOS-ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48CFCC2124C57670002DE0CA /* Debug */,
+				48CFCC2224C57670002DE0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48CFCBF424C5766E002DE0CA /* Project object */;
+}
