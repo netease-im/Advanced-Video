@@ -252,4 +252,9 @@
 
 -(void)getMeshList;
 
+// for NERtcSDK
+- (void)convertRGBATextureToNV12BufferWithTexture:(GLuint)texture
+                                     outputBuffer:(void *)outputBuffer
+                                             size:(CGSize)size;
+
 @end

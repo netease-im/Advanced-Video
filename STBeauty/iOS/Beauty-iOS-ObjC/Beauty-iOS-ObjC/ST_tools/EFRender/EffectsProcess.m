@@ -829,6 +829,16 @@
     if (*pixelBuffer) CVPixelBufferRelease(*pixelBuffer);
     if (*cvTexture) CFRelease(*cvTexture);
 }
+
+// for NERtcSDK
+- (void)convertRGBATextureToNV12BufferWithTexture:(GLuint)texture
+                                     outputBuffer:(void *)outputBuffer
+                                             size:(CGSize)size {
+    [self.effect convertRGBATextureToNV12BufferWithTexture:texture
+                                              outputBuffer:outputBuffer
+                                                      size:size];
+}
+
 #pragma mark - 3D mesh
 -(void)getMeshList {
     st_mobile_mesh_info_t mesh_info;

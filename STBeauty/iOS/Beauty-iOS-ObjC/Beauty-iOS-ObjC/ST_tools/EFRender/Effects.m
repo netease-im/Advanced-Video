@@ -602,6 +602,21 @@
     return iRet;
 }
 
+// for NERtcSDK
+- (void)convertRGBATextureToNV12BufferWithTexture:(GLuint)texture
+                                     outputBuffer:(void *)outputBuffer
+                                             size:(CGSize)size {
+    if (!outputBuffer || !glIsTexture(texture) || CGSizeEqualToSize(CGSizeZero, size)) {
+        NSLog(@"%s input param error", __func__);
+        return;
+    }
+    st_result_t ret = st_mobile_rgba_tex_to_nv12_buffer(_hConvertHandle, texture, size.width, size.height, outputBuffer);
+//    st_result_t ret = st_mobile_nv12_buffer_to_rgba_tex(_hConvertHandle, size.width, size.height, ST_CLOCKWISE_ROTATE_0, false, buffer, texture);
+    if (ret != ST_OK) {
+        NSLog(@"st_mobile_rgba_tex_to_nv12_buffer error %d", ret);
+    }
+}
+
 #pragma mark - EffectsAudioPlayerManagerDelegate
 - (void)audioPlayerDidFinishPlayingWithAudioName:(NSString *)audioName{
     if (self.handle) {

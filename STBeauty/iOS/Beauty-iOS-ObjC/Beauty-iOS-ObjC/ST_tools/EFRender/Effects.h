@@ -160,6 +160,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(st_result_t)setFaceMeshList:(st_mobile_face_mesh_list_t)mesh_list;
 
+// for NERtcSDK
+- (void)convertRGBATextureToNV12BufferWithTexture:(GLuint)texture
+                                     outputBuffer:(void *)outputBuffer
+                                             size:(CGSize)size;
+
 @end
 
 NS_ASSUME_NONNULL_END
