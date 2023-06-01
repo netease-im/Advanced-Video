@@ -8,18 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "NEBeautyMacro.h"
+#import <NERtcSDK/NERtcSDK.h>
 
 @interface NEBeautyManager : NSObject
 
 + (instancetype)sharedManager;
 
-- (void)prepareResource;
+//- (void)prepareResource;
 
-- (void)initNEBeauty;
+//- (void)initNEBeauty;
 
-- (void)destroyNEBeauty;
+//- (void)destroyNEBeauty;
 
-- (void)enableNEBeauty:(BOOL)enable;
+- (void)enableBeauty:(BOOL)enable;
 
 /// 展示菜单
 /// @param type 菜单类型（可以组合）
@@ -28,5 +29,11 @@
 
 /// 关闭菜单
 - (void)dismissMenuWithType:(NEBeautyConfigViewType)type;
+
+// ST_SDK
+- (void)initSTSDK;
+- (void)destroySTSDK;
+- (void)processCapturedVideoFrameWithPixelBuffer:(CVPixelBufferRef)pixelBuffer
+                                        rotation:(NERtcVideoRotationType)rotation;
 
 @end

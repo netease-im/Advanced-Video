@@ -12,6 +12,9 @@
 #import <NERtcSDK/NERtcSDK.h>
 #import <SSZipArchive/SSZipArchive.h>
 
+// ST_SDK
+#import "EffectsProcess.h"
+
 //static NSString * const kNEBeautyLocalFilterFolderName = @"Filter";
 //static NSString * const kNEBeautyLocalStickerFolderName = @"Sticker";
 //static NSString * const kNEBeautyLocalMakeupFolderName = @"Makeup";
@@ -48,10 +51,25 @@
 //// 美妆UI数据源
 //@property (nonatomic, strong) NSArray<NECollectionViewDisplayModel *> *makeupItemModelArray;
 
+@property (nonatomic, assign) BOOL beautyEnabled;
+
+// ST_SDK
+@property (nonatomic, strong) EAGLContext* glContext;
+@property (nonatomic, strong) EffectsProcess* stEffectProcess;
+@property (nonatomic, assign) BOOL stModelLoaded;
+
 @end
 
 @implementation NEBeautyManager {
-    float _filterStrength;
+//    float _filterStrength;
+    
+    // ST_SDK
+    GLuint _currentFrameWidth;
+    GLuint _currentFrameHeight;
+    GLuint _outTexture;
+    CVPixelBufferRef _outputPixelBuffer;
+    CVOpenGLESTextureRef _outputCVTexture;
+    unsigned char* _outputBuffer;
 }
 
 #pragma mark - Life Cycle
@@ -60,7 +78,14 @@
     self = [super init];
     if (self) {
 //        _localResourcePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"NEBeauty"];
-        _filterStrength = 0;
+//        _filterStrength = 0;
+        // ST_SDK
+        _currentFrameWidth = 0;
+        _currentFrameHeight = 0;
+        _outTexture = 0;
+        _outputPixelBuffer = NULL;
+        _outputCVTexture = NULL;
+        _outputBuffer = NULL;
     }
     
     return self;
@@ -106,9 +131,10 @@
 //    [[NERtcBeauty shareInstance] stopBeauty];
 //}
 
-- (void)enableNEBeauty:(BOOL)enable {
+- (void)enableBeauty:(BOOL)enable {
     // 开启/关闭美颜效果
-    [NERtcBeauty shareInstance].isOpenBeauty = enable;
+//    [NERtcBeauty shareInstance].isOpenBeauty = enable;
+    _beautyEnabled = enable;
 }
 
 - (void)displayMenuWithType:(NEBeautyConfigViewType)type container:(UIView *)container {
@@ -126,6 +152,190 @@
         return;
     }
     [view dismiss];
+}
+
+// ST_SDK
+- (void)initSTSDK {
+    // 鉴权
+    NSString* licensePath = [[NSBundle mainBundle] pathForResource:@"license" ofType:@"lic"];
+    BOOL result = [EffectsProcess authorizeWithLicensePath:licensePath];
+    if (!result) {
+        NSLog(@"***** error: license is invalid *****");
+    }
+    
+    // 初始化 EAGLContext
+    self.glContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    
+    // 初始化 EffectProcess
+    self.stEffectProcess = [[EffectsProcess alloc] initWithType:EffectsTypePreview glContext:self.glContext];
+    
+    // 添加 model
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        self.stModelLoaded = NO;
+        NSString* modelPath = [[NSBundle mainBundle] pathForResource:@"model" ofType:@"bundle"];
+        [self.stEffectProcess setModelPath:modelPath];
+        self.stModelLoaded = YES;
+    });
+}
+
+- (void)destroySTSDK {
+    self.stModelLoaded = NO;
+    self.stEffectProcess = nil;
+    self.glContext = nil;
+    
+    _currentFrameWidth = 0;
+    _currentFrameHeight = 0;
+    
+    if (_outTexture) {
+        _outTexture = 0;
+        
+        CVPixelBufferRelease(_outputPixelBuffer);
+        _outputPixelBuffer = NULL;
+        
+        CFRelease(_outputCVTexture);
+        _outputCVTexture = NULL;
+    }
+    
+    if (_outputBuffer) {
+        free(_outputBuffer);
+        _outputBuffer = NULL;
+    }
+}
+
+- (void)processCapturedVideoFrameWithPixelBuffer:(CVPixelBufferRef)pixelBuffer
+                                        rotation:(NERtcVideoRotationType)rotation {
+    if (!self.beautyEnabled) {
+        return;
+    }
+    
+    if (!self.stModelLoaded) {
+        return;
+    }
+    
+    CVPixelBufferRetain(pixelBuffer);
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    
+    st_rotate_type rotationType = ST_CLOCKWISE_ROTATE_0;
+    switch (rotation) {
+        case kNERtcVideoRotation_0:
+            rotationType = ST_CLOCKWISE_ROTATE_0;
+            break;
+        case kNERtcVideoRotation_90:
+            rotationType = ST_CLOCKWISE_ROTATE_90;
+            break;
+        case kNERtcVideoRotation_180:
+            rotationType = ST_CLOCKWISE_ROTATE_180;
+            break;
+        case kNERtcVideoRotation_270:
+            rotationType = ST_CLOCKWISE_ROTATE_270;
+            break;
+            
+        default:
+            break;
+    }
+    
+    size_t width = CVPixelBufferGetWidth(pixelBuffer);
+    size_t height = CVPixelBufferGetHeight(pixelBuffer);
+    
+    // craete texture if needed
+    if (!_outTexture || _currentFrameWidth != width || _currentFrameHeight != height) {
+        _currentFrameWidth = (uint32_t)width;
+        _currentFrameHeight = (uint32_t)height;
+        
+        if (_outTexture) {
+            CVPixelBufferRelease(_outputPixelBuffer);
+            _outputPixelBuffer = NULL;
+            CFRelease(_outputCVTexture);
+            _outputCVTexture = NULL;
+        }
+        
+        if (_outputBuffer) {
+            free(_outputBuffer);
+            _outputBuffer = NULL;
+        }
+        
+        _outputBuffer = (unsigned char*)malloc(width * height * 3 / 2);
+        
+        [self.stEffectProcess createGLObjectWith:(int)width height:(int)height texture:&_outTexture pixelBuffer:&_outputPixelBuffer cvTexture:&_outputCVTexture];
+    }
+    
+    // face detect
+    st_mobile_human_action_t detectResult;
+    memset(&detectResult, 0, sizeof(st_mobile_human_action_t));
+    st_mobile_animal_result_t animalResult;
+    memset(&animalResult, 0, sizeof(st_mobile_animal_result_t));
+    st_result_t result = [self.stEffectProcess detectWithPixelBuffer:pixelBuffer
+                                                              rotate:rotationType
+                                                      cameraPosition:AVCaptureDevicePositionFront
+                                                         humanAction:&detectResult
+                                                        animalResult:&animalResult];
+    
+    // render
+    result = [self.stEffectProcess renderPixelBuffer:pixelBuffer
+                                              rotate:rotationType
+                                         humanAction:detectResult
+                                        animalResult:&animalResult
+                                          outTexture:_outTexture
+                                      outPixelFormat:ST_PIX_FMT_BGRA8888
+                                             outData:nil];
+    
+    // convert rgb texture to nv12 buffer
+    [self.stEffectProcess convertRGBATextureToNV12BufferWithTexture:_outTexture outputBuffer:_outputBuffer size:CGSizeMake(width, height)];
+    
+    // copy nv12 buffer to pixel buffer
+    [self copyNV12BufferToPixelBufferWithBuffer:_outputBuffer width:(uint32_t)width height:(uint32_t)height pixelBuffer:pixelBuffer];
+    
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+    CVPixelBufferRelease(pixelBuffer);
+}
+
+// st_sdk
+- (void)copyNV12BufferToPixelBufferWithBuffer:(unsigned char*)buffer
+                                        width:(uint32_t)width
+                                       height:(uint32_t)height
+                                  pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    if (!buffer) {
+        NSLog(@"%s, buffer is invalid", __func__);
+        return;
+    }
+    
+    OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
+    if (type != kCVPixelFormatType_420YpCbCr8BiPlanarFullRange &&
+        type != kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
+        NSLog(@"%s, pixel buffer format %u is not supported", __func__, type);
+        return;
+    }
+    
+    size_t pixelWidth = CVPixelBufferGetWidth(pixelBuffer);
+    size_t pixelHeight = CVPixelBufferGetHeight(pixelBuffer);
+    if (width != pixelWidth || height != pixelHeight) {
+        NSLog(@"%s, pixel buffer width %zu or height %zu is invalid", __func__, pixelWidth, pixelHeight);
+        return;
+    }
+    
+    // y 分量
+    unsigned char* yData = (unsigned char*)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
+    size_t yBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0);
+    
+    // uv 分量
+    unsigned char* uvData = (unsigned char*)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1);
+    size_t uvBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 1);
+    
+    if (width == yBytesPerRow) {
+        size_t yLength = yBytesPerRow * height;
+        size_t uvLength = uvBytesPerRow * height / 2;
+        memcpy(yData, buffer, yLength);
+        memcpy(uvData, buffer + yLength, uvLength);
+    } else {
+        // 逐行拷贝
+        size_t yBufferLength = width * height;
+        for (uint32_t i = 0; i < height; i++) {
+            memcpy(yData + yBytesPerRow * i, buffer + width * i, width);
+        }
+        for (uint32_t i = 0; i < (height / 2); i++) {
+            memcpy(uvData + uvBytesPerRow * i, buffer + yBufferLength + width * i, width);
+        }
+    }
 }
 
 #pragma mark - Private
@@ -550,8 +760,8 @@
             break;
         }
         case NEBeautySliderTypeFilterStrength: {
-            _filterStrength = value;
-            [NERtcBeauty shareInstance].filterStrength = value;
+//            _filterStrength = value;
+//            [NERtcBeauty shareInstance].filterStrength = value;
             
             break;
         }

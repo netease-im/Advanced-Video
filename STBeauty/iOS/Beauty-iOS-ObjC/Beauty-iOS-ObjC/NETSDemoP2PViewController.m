@@ -58,6 +58,8 @@
 
 - (void)dealloc {
     NSLog(@"%s", __FUNCTION__);
+    
+    [[NEBeautyManager sharedManager] destroySTSDK];
 }
 
 - (void)viewDidLoad {
@@ -66,9 +68,10 @@
     [self setupLayout];
     
     //初始化美颜模块
-    [[NEBeautyManager sharedManager] initNEBeauty];
+//    [[NEBeautyManager sharedManager] initNEBeauty];
+    [[NEBeautyManager sharedManager] initSTSDK];
     //开启美颜功能
-    [[NEBeautyManager sharedManager] enableNEBeauty:YES];
+    [[NEBeautyManager sharedManager] enableBeauty:YES];
     
     //直接加入channel
     [self joinChannelWithRoomId:_roomId userId:_userId];
@@ -95,7 +98,7 @@
 
 //释放SDK资源
 - (void)destroyRTCEngineWithCompletion:(void(^)(void))completion {
-    [[NEBeautyManager sharedManager] destroyNEBeauty];
+//    [[NEBeautyManager sharedManager] destroyNEBeauty];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NERtcEngine destroyEngine];
@@ -145,6 +148,8 @@
     [coreEngine enableLocalAudio:YES];
     [coreEngine enableLocalVideo:YES];
     
+    [coreEngine setParameters:@{kNERtcKeyVideoCaptureObserverEnabled : @YES}];
+    
     __weak typeof(self) weakSelf = self;
     [coreEngine joinChannelWithToken:@""
                          channelName:roomId
@@ -176,9 +181,8 @@
     }];
     
     NSMutableArray<UIButton *> *buttonArray = [NSMutableArray array];
-    NSArray<NSString *> *titleArray = @[@"滤镜", @"美颜"];
-    NSArray<NSString *> *selectorNameArray = @[@"onOpenFilterMenuAction:",
-                                               @"onOpenBeautyMenuAction:"];
+    NSArray<NSString *> *titleArray = @[@"美颜"];
+    NSArray<NSString *> *selectorNameArray = @[@"onOpenBeautyMenuAction:"];
     for (unsigned int i = 0; i < titleArray.count; i++) {
         NSString *title = titleArray[i];
         NSString *selectorName = selectorNameArray[i];
@@ -194,10 +198,18 @@
         [buttonArray addObject:button];
         [self.functionMenu addSubview:button];
     }
-    [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.functionMenu).offset(10);
-    }];
-    [buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+    if (titleArray.count == 1) {
+        UIButton* button = buttonArray[0];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self.functionMenu);
+            make.height.mas_equalTo(@60);
+        }];
+    } else {
+        [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.functionMenu).offset(10);
+        }];
+        [buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+    }
     
     [self.functionMenu addSubview:self.muteAudioButton];
     [self.functionMenu addSubview:self.muteVideoButton];
@@ -251,11 +263,11 @@
 }
 
 - (IBAction)onCompareButtonTouchDown:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] enableNEBeauty:NO];
+    [[NEBeautyManager sharedManager] enableBeauty:NO];
 }
 
 - (IBAction)onCompareButtonTouchUpInside:(UIButton *)sender {
-    [[NEBeautyManager sharedManager] enableNEBeauty:YES];
+    [[NEBeautyManager sharedManager] enableBeauty:YES];
 }
 
 #pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
@@ -323,6 +335,10 @@
             [self.navigationController popViewControllerAnimated:YES];
         });
     }];
+}
+
+- (void)onNERtcEngineVideoFrameCaptured:(CVPixelBufferRef)bufferRef rotation:(NERtcVideoRotationType)rotation {
+    [[NEBeautyManager sharedManager] processCapturedVideoFrameWithPixelBuffer:bufferRef rotation:rotation];
 }
 
 #pragma mark - Helper

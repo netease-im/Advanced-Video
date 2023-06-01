@@ -751,7 +751,7 @@
 					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_os-universal",
 					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_sim-universal",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.slbeautify;
 				PRODUCT_NAME = "美颜";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -780,7 +780,7 @@
 					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_os-universal",
 					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_sim-universal",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.slbeautify;
 				PRODUCT_NAME = "美颜";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
