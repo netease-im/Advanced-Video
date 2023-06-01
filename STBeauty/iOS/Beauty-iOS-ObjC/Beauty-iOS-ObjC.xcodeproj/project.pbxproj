@@ -14,12 +14,9 @@
 		419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 419DA0AC24D7EDF90001A561 /* Main.storyboard */; };
 		419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B024D7EDF90001A561 /* NTESDemoUserModel.m */; };
 		419DA0BD24D7EDF90001A561 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 419DA0B124D7EDF90001A561 /* main.m */; };
-		6A2B977527153078007495C5 /* filters.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B976227153078007495C5 /* filters.bundle */; };
-		6A2B978427153082007495C5 /* beauty in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B978327153082007495C5 /* beauty */; };
 		6A2B978827153536007495C5 /* NETSDemoP2PViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */; };
 		6A2B979127155C7C007495C5 /* NEBeautyConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979027155C7C007495C5 /* NEBeautyConfigView.m */; };
 		6A2B979727155CB3007495C5 /* NEScrollTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979327155CB2007495C5 /* NEScrollTitleView.m */; };
-		6A2B979D27155F64007495C5 /* NEBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B979C27155F64007495C5 /* NEBeautyManager.m */; };
 		6A2B97A827157A6F007495C5 /* NECollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B97A427157A6E007495C5 /* NECollectionView.m */; };
 		6A2B97A927157A6F007495C5 /* NECollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2B97A527157A6E007495C5 /* NECollectionViewCell.m */; };
 		6A2B97B12715B7D9007495C5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A2B97B02715B7D9007495C5 /* Images.xcassets */; };
@@ -28,6 +25,27 @@
 		6A4AB4BE271D1BC9000322D9 /* NEBeautySliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4BD271D1BC9000322D9 /* NEBeautySliderView.m */; };
 		6A4AB4C4271D1FE8000322D9 /* NETitleDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4C0271D1FE8000322D9 /* NETitleDisplayModel.m */; };
 		6A4AB4C5271D1FE8000322D9 /* NEBeautySliderDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4AB4C1271D1FE8000322D9 /* NEBeautySliderDisplayModel.m */; };
+		6AA07A652A2899CF0078B151 /* NEBeautyManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07A642A2899CF0078B151 /* NEBeautyManager.mm */; };
+		6AA07AC42A28BFE40078B151 /* EffectsAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AAC2A28BFE40078B151 /* EffectsAudioPlayer.m */; };
+		6AA07AC52A28BFE40078B151 /* EffectsAudioPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AAD2A28BFE40078B151 /* EffectsAudioPlayerManager.m */; };
+		6AA07AC62A28BFE50078B151 /* EffectsAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AAE2A28BFE40078B151 /* EffectsAttribute.m */; };
+		6AA07AC72A28BFE50078B151 /* Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AAF2A28BFE40078B151 /* Effects.m */; };
+		6AA07AC82A28BFE50078B151 /* EffectsDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AB02A28BFE40078B151 /* EffectsDetector.m */; };
+		6AA07AC92A28BFE50078B151 /* EffectsAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AB22A28BFE40078B151 /* EffectsAnimal.m */; };
+		6AA07ACA2A28BFE50078B151 /* EffectsProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AB32A28BFE40078B151 /* EffectsProcess.m */; };
+		6AA07ACB2A28BFE50078B151 /* EffectsLicense.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AB52A28BFE40078B151 /* EffectsLicense.m */; };
+		6AA07ACC2A28BFE50078B151 /* Mask.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AB72A28BFE40078B151 /* Mask.fsh */; };
+		6AA07ACD2A28BFE50078B151 /* MHMGLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AB82A28BFE40078B151 /* MHMGLHelper.m */; };
+		6AA07ACE2A28BFE50078B151 /* Mask.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AB92A28BFE40078B151 /* Mask.vsh */; };
+		6AA07ACF2A28BFE50078B151 /* EffectsCommonObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07ABF2A28BFE40078B151 /* EffectsCommonObject.m */; };
+		6AA07AD02A28BFE50078B151 /* EFGlobalSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA07AC22A28BFE40078B151 /* EFGlobalSingleton.m */; };
+		6AA07AE92A28C0310078B151 /* license.lic in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AD32A28C0310078B151 /* license.lic */; };
+		6AA07AEA2A28C0310078B151 /* M_SenseME_Verify_p_3.118.0.1.model in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07ADF2A28C0310078B151 /* M_SenseME_Verify_p_3.118.0.1.model */; };
+		6AA07AEB2A28C0310078B151 /* M_SenseME_DogFace_p_2.0.0.1.model in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AE02A28C0310078B151 /* M_SenseME_DogFace_p_2.0.0.1.model */; };
+		6AA07AEC2A28C0310078B151 /* model.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AE12A28C0310078B151 /* model.bundle */; };
+		6AA07AED2A28C0310078B151 /* M_SenseME_Attribute_p_1.2.8.1.model in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AE22A28C0310078B151 /* M_SenseME_Attribute_p_1.2.8.1.model */; };
+		6AA07AEE2A28C0310078B151 /* M_SenseME_CatFace_p_3.2.0.1.model in Resources */ = {isa = PBXBuildFile; fileRef = 6AA07AE32A28C0310078B151 /* M_SenseME_CatFace_p_3.2.0.1.model */; };
+		6AA07AEF2A28C0310078B151 /* libst_mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA07AE62A28C0310078B151 /* libst_mobile.a */; };
 		6AA8E839271D45E9009BA3AC /* NECollectionViewDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */; };
 		86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C6333C2512FBCE0036B19E /* CoreML.framework */; };
 		86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C6332925120F230036B19E /* NTESGlobalMacro.m */; };
@@ -56,8 +74,6 @@
 		419DA0B424D7EDF90001A561 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48B7FB62128890C428F4C63C /* Pods-NERtcP2pSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSampleTests.debug.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSampleTests/Pods-NERtcP2pSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		48CFCBFC24C5766E002DE0CA /* 美颜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "美颜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A2B976227153078007495C5 /* filters.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = filters.bundle; sourceTree = "<group>"; };
-		6A2B978327153082007495C5 /* beauty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = beauty; sourceTree = "<group>"; };
 		6A2B978627153536007495C5 /* NETSDemoP2PViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSDemoP2PViewController.m; sourceTree = "<group>"; };
 		6A2B978727153536007495C5 /* NETSDemoP2PViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSDemoP2PViewController.h; sourceTree = "<group>"; };
 		6A2B978F27155C7C007495C5 /* NEBeautyConfigView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyConfigView.h; sourceTree = "<group>"; };
@@ -65,7 +81,6 @@
 		6A2B979327155CB2007495C5 /* NEScrollTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEScrollTitleView.m; sourceTree = "<group>"; };
 		6A2B979427155CB2007495C5 /* NEScrollTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEScrollTitleView.h; sourceTree = "<group>"; };
 		6A2B979B27155F64007495C5 /* NEBeautyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyManager.h; sourceTree = "<group>"; };
-		6A2B979C27155F64007495C5 /* NEBeautyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBeautyManager.m; sourceTree = "<group>"; };
 		6A2B979E271562AE007495C5 /* NEBeautyMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBeautyMacro.h; sourceTree = "<group>"; };
 		6A2B97A427157A6E007495C5 /* NECollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NECollectionView.m; sourceTree = "<group>"; };
 		6A2B97A527157A6E007495C5 /* NECollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NECollectionViewCell.m; sourceTree = "<group>"; };
@@ -82,6 +97,48 @@
 		6A4AB4C1271D1FE8000322D9 /* NEBeautySliderDisplayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEBeautySliderDisplayModel.m; sourceTree = "<group>"; };
 		6A4AB4C2271D1FE8000322D9 /* NETitleDisplayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETitleDisplayModel.h; sourceTree = "<group>"; };
 		6A4AB4C3271D1FE8000322D9 /* NEBeautySliderDisplayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEBeautySliderDisplayModel.h; sourceTree = "<group>"; };
+		6AA07A642A2899CF0078B151 /* NEBeautyManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NEBeautyManager.mm; sourceTree = "<group>"; };
+		6AA07AA82A28BFE40078B151 /* EffectsLicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsLicense.h; sourceTree = "<group>"; };
+		6AA07AAA2A28BFE40078B151 /* EffectsAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsAudioPlayer.h; sourceTree = "<group>"; };
+		6AA07AAB2A28BFE40078B151 /* EffectsAudioPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsAudioPlayerManager.h; sourceTree = "<group>"; };
+		6AA07AAC2A28BFE40078B151 /* EffectsAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsAudioPlayer.m; sourceTree = "<group>"; };
+		6AA07AAD2A28BFE40078B151 /* EffectsAudioPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsAudioPlayerManager.m; sourceTree = "<group>"; };
+		6AA07AAE2A28BFE40078B151 /* EffectsAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsAttribute.m; sourceTree = "<group>"; };
+		6AA07AAF2A28BFE40078B151 /* Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Effects.m; sourceTree = "<group>"; };
+		6AA07AB02A28BFE40078B151 /* EffectsDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsDetector.m; sourceTree = "<group>"; };
+		6AA07AB12A28BFE40078B151 /* EffectsCommonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsCommonObject.h; sourceTree = "<group>"; };
+		6AA07AB22A28BFE40078B151 /* EffectsAnimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsAnimal.m; sourceTree = "<group>"; };
+		6AA07AB32A28BFE40078B151 /* EffectsProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsProcess.m; sourceTree = "<group>"; };
+		6AA07AB42A28BFE40078B151 /* EffectsAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsAttribute.h; sourceTree = "<group>"; };
+		6AA07AB52A28BFE40078B151 /* EffectsLicense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsLicense.m; sourceTree = "<group>"; };
+		6AA07AB72A28BFE40078B151 /* Mask.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Mask.fsh; sourceTree = "<group>"; };
+		6AA07AB82A28BFE40078B151 /* MHMGLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMGLHelper.m; sourceTree = "<group>"; };
+		6AA07AB92A28BFE40078B151 /* Mask.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Mask.vsh; sourceTree = "<group>"; };
+		6AA07ABA2A28BFE40078B151 /* MHMGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMGLHelper.h; sourceTree = "<group>"; };
+		6AA07ABB2A28BFE40078B151 /* EffectsDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsDetector.h; sourceTree = "<group>"; };
+		6AA07ABC2A28BFE40078B151 /* Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effects.h; sourceTree = "<group>"; };
+		6AA07ABD2A28BFE40078B151 /* EffectMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectMacro.h; sourceTree = "<group>"; };
+		6AA07ABE2A28BFE40078B151 /* EffectsAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsAnimal.h; sourceTree = "<group>"; };
+		6AA07ABF2A28BFE40078B151 /* EffectsCommonObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectsCommonObject.m; sourceTree = "<group>"; };
+		6AA07AC02A28BFE40078B151 /* EffectsProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectsProcess.h; sourceTree = "<group>"; };
+		6AA07AC22A28BFE40078B151 /* EFGlobalSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFGlobalSingleton.m; sourceTree = "<group>"; };
+		6AA07AC32A28BFE40078B151 /* EFGlobalSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFGlobalSingleton.h; sourceTree = "<group>"; };
+		6AA07AD32A28C0310078B151 /* license.lic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.lic; sourceTree = "<group>"; };
+		6AA07AD52A28C0310078B151 /* st_mobile_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_common.h; sourceTree = "<group>"; };
+		6AA07AD62A28C0310078B151 /* st_mobile_animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_animal.h; sourceTree = "<group>"; };
+		6AA07AD72A28C0310078B151 /* st_mobile_human_action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_human_action.h; sourceTree = "<group>"; };
+		6AA07AD82A28C0310078B151 /* st_mobile_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_object.h; sourceTree = "<group>"; };
+		6AA07AD92A28C0310078B151 /* st_mobile_face_attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_face_attribute.h; sourceTree = "<group>"; };
+		6AA07ADA2A28C0310078B151 /* st_mobile_license.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_license.h; sourceTree = "<group>"; };
+		6AA07ADB2A28C0310078B151 /* st_mobile_effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_effect.h; sourceTree = "<group>"; };
+		6AA07ADC2A28C0310078B151 /* st_mobile_verify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_verify.h; sourceTree = "<group>"; };
+		6AA07ADD2A28C0310078B151 /* st_mobile_color_convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st_mobile_color_convert.h; sourceTree = "<group>"; };
+		6AA07ADF2A28C0310078B151 /* M_SenseME_Verify_p_3.118.0.1.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = M_SenseME_Verify_p_3.118.0.1.model; sourceTree = "<group>"; };
+		6AA07AE02A28C0310078B151 /* M_SenseME_DogFace_p_2.0.0.1.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = M_SenseME_DogFace_p_2.0.0.1.model; sourceTree = "<group>"; };
+		6AA07AE12A28C0310078B151 /* model.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = model.bundle; sourceTree = "<group>"; };
+		6AA07AE22A28C0310078B151 /* M_SenseME_Attribute_p_1.2.8.1.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = M_SenseME_Attribute_p_1.2.8.1.model; sourceTree = "<group>"; };
+		6AA07AE32A28C0310078B151 /* M_SenseME_CatFace_p_3.2.0.1.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = M_SenseME_CatFace_p_3.2.0.1.model; sourceTree = "<group>"; };
+		6AA07AE62A28C0310078B151 /* libst_mobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libst_mobile.a; sourceTree = "<group>"; };
 		6AA8E837271D45E9009BA3AC /* NECollectionViewDisplayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NECollectionViewDisplayModel.h; sourceTree = "<group>"; };
 		6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NECollectionViewDisplayModel.m; sourceTree = "<group>"; };
 		6B6365D8AC3C9BD2B6E0637C /* Pods-NERtcP2pSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcP2pSample.release.xcconfig"; path = "Target Support Files/Pods-NERtcP2pSample/Pods-NERtcP2pSample.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +166,7 @@
 			files = (
 				86C633382512FB9B0036B19E /* CoreMedia.framework in Frameworks */,
 				86AA175B2531838800C732F6 /* CoreML.framework in Frameworks */,
+				6AA07AEF2A28C0310078B151 /* libst_mobile.a in Frameworks */,
 				86C633362512FB900036B19E /* Accelerate.framework in Frameworks */,
 				86C6333D2512FBCE0036B19E /* CoreML.framework in Frameworks */,
 				86C6333A2512FBA80036B19E /* AVFoundation.framework in Frameworks */,
@@ -138,7 +196,9 @@
 		419DA0A324D7EDF90001A561 /* Beauty-iOS-ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				6A2B973B27153001007495C5 /* NEBeauty */,
+				6AA07AD12A28C0310078B151 /* ST_SDK */,
+				6AA07AA62A28BFE40078B151 /* ST_tools */,
+				6A2B973B27153001007495C5 /* Beauty */,
 				86C6332B25120F230036B19E /* Category */,
 				86C6332825120F230036B19E /* Macro */,
 				419DA0AE24D7EDF90001A561 /* AppKey.h */,
@@ -177,33 +237,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A2B973B27153001007495C5 /* NEBeauty */ = {
+		6A2B973B27153001007495C5 /* Beauty */ = {
 			isa = PBXGroup;
 			children = (
 				6A2B979B27155F64007495C5 /* NEBeautyManager.h */,
-				6A2B979C27155F64007495C5 /* NEBeautyManager.m */,
+				6AA07A642A2899CF0078B151 /* NEBeautyManager.mm */,
 				6A4AB4BF271D1FE8000322D9 /* Model */,
 				6A2B97852715308A007495C5 /* UI */,
-				6A2B976027153078007495C5 /* Resource */,
 			);
-			path = NEBeauty;
-			sourceTree = "<group>";
-		};
-		6A2B976027153078007495C5 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				6A2B978327153082007495C5 /* beauty */,
-				6A2B976127153078007495C5 /* Filters */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		6A2B976127153078007495C5 /* Filters */ = {
-			isa = PBXGroup;
-			children = (
-				6A2B976227153078007495C5 /* filters.bundle */,
-			);
-			path = Filters;
+			path = Beauty;
 			sourceTree = "<group>";
 		};
 		6A2B97852715308A007495C5 /* UI */ = {
@@ -240,6 +282,133 @@
 				6AA8E838271D45E9009BA3AC /* NECollectionViewDisplayModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6AA07AA62A28BFE40078B151 /* ST_tools */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AA72A28BFE40078B151 /* EFRender */,
+				6AA07AC12A28BFE40078B151 /* global_singleton */,
+			);
+			path = ST_tools;
+			sourceTree = "<group>";
+		};
+		6AA07AA72A28BFE40078B151 /* EFRender */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AA82A28BFE40078B151 /* EffectsLicense.h */,
+				6AA07AA92A28BFE40078B151 /* EffectsAudioPlayer */,
+				6AA07AAE2A28BFE40078B151 /* EffectsAttribute.m */,
+				6AA07AAF2A28BFE40078B151 /* Effects.m */,
+				6AA07AB02A28BFE40078B151 /* EffectsDetector.m */,
+				6AA07AB12A28BFE40078B151 /* EffectsCommonObject.h */,
+				6AA07AB22A28BFE40078B151 /* EffectsAnimal.m */,
+				6AA07AB32A28BFE40078B151 /* EffectsProcess.m */,
+				6AA07AB42A28BFE40078B151 /* EffectsAttribute.h */,
+				6AA07AB52A28BFE40078B151 /* EffectsLicense.m */,
+				6AA07AB62A28BFE40078B151 /* Mask */,
+				6AA07ABB2A28BFE40078B151 /* EffectsDetector.h */,
+				6AA07ABC2A28BFE40078B151 /* Effects.h */,
+				6AA07ABD2A28BFE40078B151 /* EffectMacro.h */,
+				6AA07ABE2A28BFE40078B151 /* EffectsAnimal.h */,
+				6AA07ABF2A28BFE40078B151 /* EffectsCommonObject.m */,
+				6AA07AC02A28BFE40078B151 /* EffectsProcess.h */,
+			);
+			path = EFRender;
+			sourceTree = "<group>";
+		};
+		6AA07AA92A28BFE40078B151 /* EffectsAudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AAA2A28BFE40078B151 /* EffectsAudioPlayer.h */,
+				6AA07AAB2A28BFE40078B151 /* EffectsAudioPlayerManager.h */,
+				6AA07AAC2A28BFE40078B151 /* EffectsAudioPlayer.m */,
+				6AA07AAD2A28BFE40078B151 /* EffectsAudioPlayerManager.m */,
+			);
+			path = EffectsAudioPlayer;
+			sourceTree = "<group>";
+		};
+		6AA07AB62A28BFE40078B151 /* Mask */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AB72A28BFE40078B151 /* Mask.fsh */,
+				6AA07AB82A28BFE40078B151 /* MHMGLHelper.m */,
+				6AA07AB92A28BFE40078B151 /* Mask.vsh */,
+				6AA07ABA2A28BFE40078B151 /* MHMGLHelper.h */,
+			);
+			path = Mask;
+			sourceTree = "<group>";
+		};
+		6AA07AC12A28BFE40078B151 /* global_singleton */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AC22A28BFE40078B151 /* EFGlobalSingleton.m */,
+				6AA07AC32A28BFE40078B151 /* EFGlobalSingleton.h */,
+			);
+			path = global_singleton;
+			sourceTree = "<group>";
+		};
+		6AA07AD12A28C0310078B151 /* ST_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AD22A28C0310078B151 /* license */,
+				6AA07AD42A28C0310078B151 /* include */,
+				6AA07ADE2A28C0310078B151 /* models */,
+				6AA07AE42A28C0310078B151 /* libs */,
+			);
+			path = ST_SDK;
+			sourceTree = "<group>";
+		};
+		6AA07AD22A28C0310078B151 /* license */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AD32A28C0310078B151 /* license.lic */,
+			);
+			path = license;
+			sourceTree = "<group>";
+		};
+		6AA07AD42A28C0310078B151 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AD52A28C0310078B151 /* st_mobile_common.h */,
+				6AA07AD62A28C0310078B151 /* st_mobile_animal.h */,
+				6AA07AD72A28C0310078B151 /* st_mobile_human_action.h */,
+				6AA07AD82A28C0310078B151 /* st_mobile_object.h */,
+				6AA07AD92A28C0310078B151 /* st_mobile_face_attribute.h */,
+				6AA07ADA2A28C0310078B151 /* st_mobile_license.h */,
+				6AA07ADB2A28C0310078B151 /* st_mobile_effect.h */,
+				6AA07ADC2A28C0310078B151 /* st_mobile_verify.h */,
+				6AA07ADD2A28C0310078B151 /* st_mobile_color_convert.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6AA07ADE2A28C0310078B151 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07ADF2A28C0310078B151 /* M_SenseME_Verify_p_3.118.0.1.model */,
+				6AA07AE02A28C0310078B151 /* M_SenseME_DogFace_p_2.0.0.1.model */,
+				6AA07AE12A28C0310078B151 /* model.bundle */,
+				6AA07AE22A28C0310078B151 /* M_SenseME_Attribute_p_1.2.8.1.model */,
+				6AA07AE32A28C0310078B151 /* M_SenseME_CatFace_p_3.2.0.1.model */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6AA07AE42A28C0310078B151 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AE52A28C0310078B151 /* ios_os-universal */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		6AA07AE52A28C0310078B151 /* ios_os-universal */ = {
+			isa = PBXGroup;
+			children = (
+				6AA07AE62A28C0310078B151 /* libst_mobile.a */,
+			);
+			path = "ios_os-universal";
 			sourceTree = "<group>";
 		};
 		86C6332825120F230036B19E /* Macro */ = {
@@ -332,12 +501,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A2B978427153082007495C5 /* beauty in Resources */,
+				6AA07ACC2A28BFE50078B151 /* Mask.fsh in Resources */,
 				419DA0BA24D7EDF90001A561 /* LaunchScreen.storyboard in Resources */,
 				419DA0B824D7EDF90001A561 /* Assets.xcassets in Resources */,
+				6AA07AED2A28C0310078B151 /* M_SenseME_Attribute_p_1.2.8.1.model in Resources */,
+				6AA07AEA2A28C0310078B151 /* M_SenseME_Verify_p_3.118.0.1.model in Resources */,
 				419DA0BB24D7EDF90001A561 /* Main.storyboard in Resources */,
-				6A2B977527153078007495C5 /* filters.bundle in Resources */,
+				6AA07AEC2A28C0310078B151 /* model.bundle in Resources */,
+				6AA07ACE2A28BFE50078B151 /* Mask.vsh in Resources */,
+				6AA07AEE2A28C0310078B151 /* M_SenseME_CatFace_p_3.2.0.1.model in Resources */,
 				6A2B97B12715B7D9007495C5 /* Images.xcassets in Resources */,
+				6AA07AEB2A28C0310078B151 /* M_SenseME_DogFace_p_2.0.0.1.model in Resources */,
+				6AA07AE92A28C0310078B151 /* license.lic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,22 +565,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AA07A652A2899CF0078B151 /* NEBeautyManager.mm in Sources */,
 				6A4AB4BE271D1BC9000322D9 /* NEBeautySliderView.m in Sources */,
+				6AA07ACA2A28BFE50078B151 /* EffectsProcess.m in Sources */,
+				6AA07AC42A28BFE40078B151 /* EffectsAudioPlayer.m in Sources */,
 				419DA0BD24D7EDF90001A561 /* main.m in Sources */,
+				6AA07AC52A28BFE40078B151 /* EffectsAudioPlayerManager.m in Sources */,
 				6A2B979127155C7C007495C5 /* NEBeautyConfigView.m in Sources */,
 				86C6333125120F230036B19E /* UIView+NTES.m in Sources */,
 				6A4AB4C4271D1FE8000322D9 /* NETitleDisplayModel.m in Sources */,
+				6AA07AC72A28BFE50078B151 /* Effects.m in Sources */,
 				6A4AB4B927199875000322D9 /* NEBeautySliderTableView.m in Sources */,
 				419DA0BC24D7EDF90001A561 /* NTESDemoUserModel.m in Sources */,
+				6AA07ACF2A28BFE50078B151 /* EffectsCommonObject.m in Sources */,
 				419DA0B924D7EDF90001A561 /* NETSAppDelegate.m in Sources */,
+				6AA07AC62A28BFE50078B151 /* EffectsAttribute.m in Sources */,
+				6AA07ACB2A28BFE50078B151 /* EffectsLicense.m in Sources */,
 				6AA8E839271D45E9009BA3AC /* NECollectionViewDisplayModel.m in Sources */,
 				419DA0B724D7EDF90001A561 /* NETSDemoViewController.m in Sources */,
+				6AA07ACD2A28BFE50078B151 /* MHMGLHelper.m in Sources */,
+				6AA07AC82A28BFE50078B151 /* EffectsDetector.m in Sources */,
 				6A2B979727155CB3007495C5 /* NEScrollTitleView.m in Sources */,
 				6A2B97A927157A6F007495C5 /* NECollectionViewCell.m in Sources */,
 				6A2B97A827157A6F007495C5 /* NECollectionView.m in Sources */,
 				6A4AB4C5271D1FE8000322D9 /* NEBeautySliderDisplayModel.m in Sources */,
+				6AA07AC92A28BFE50078B151 /* EffectsAnimal.m in Sources */,
+				6AA07AD02A28BFE50078B151 /* EFGlobalSingleton.m in Sources */,
 				6A2B978827153536007495C5 /* NETSDemoP2PViewController.m in Sources */,
-				6A2B979D27155F64007495C5 /* NEBeautyManager.m in Sources */,
 				86C6333025120F230036B19E /* NTESGlobalMacro.m in Sources */,
 				6A4AB4B627199869000322D9 /* NEBeautySliderTableViewCell.m in Sources */,
 			);
@@ -558,6 +744,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/STSDK/libs/ios_os-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/STSDK/libs/ios_sim-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_os-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_sim-universal",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
 				PRODUCT_NAME = "美颜";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -579,6 +772,13 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/STSDK/libs/ios_os-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/STSDK/libs/ios_sim-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_os-universal",
+					"$(PROJECT_DIR)/Beauty-iOS-ObjC/ST_SDK/libs/ios_sim-universal",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.nmc.beauty;
 				PRODUCT_NAME = "美颜";
