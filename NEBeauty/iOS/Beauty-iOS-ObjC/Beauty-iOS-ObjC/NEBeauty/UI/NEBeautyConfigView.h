@@ -14,6 +14,8 @@
 
 @protocol NEBeautyConfigViewDelegate <NSObject>
 
+@optional
+
 // 重置操作触发的回调
 - (void)didTriggerResetActionWithConfigViewType:(NEBeautyConfigViewType)type;
 
