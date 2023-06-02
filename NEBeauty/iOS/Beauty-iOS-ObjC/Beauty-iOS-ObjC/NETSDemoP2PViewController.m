@@ -194,10 +194,18 @@
         [buttonArray addObject:button];
         [self.functionMenu addSubview:button];
     }
-    [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.functionMenu).offset(10);
-    }];
-    [buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+    if (buttonArray.count == 1) {
+        UIButton* button = buttonArray[0];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self.functionMenu);
+            make.height.mas_equalTo(@60);
+        }];
+    } else if (buttonArray.count > 1) {
+        [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.functionMenu).offset(10);
+        }];
+        [buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:30 leadSpacing:0 tailSpacing:0];
+    }
     
     [self.functionMenu addSubview:self.muteAudioButton];
     [self.functionMenu addSubview:self.muteVideoButton];

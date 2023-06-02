@@ -20,12 +20,14 @@
 // 滤镜、贴纸和美妆切换的回调
 - (void)didSelectItemWithConfigViewType:(NEBeautyConfigViewType)type model:(NECollectionViewDisplayModel *)model;
 
-// 美颜slider滑动时的回调
+// 美颜slider滑动时的回调（value的取值范围为0 ~ 1）
 - (void)didChangeSliderValueWithType:(NEBeautySliderType)type value:(float)value;
 
 @end
 
 @protocol NEBeautyConfigViewDataSource <NSObject>
+
+@optional
 
 // 标题tab数据源
 - (NSArray<NETitleDisplayModel *> *)titleModelArrayForConfigViewWithType:(NEBeautyConfigViewType)type;

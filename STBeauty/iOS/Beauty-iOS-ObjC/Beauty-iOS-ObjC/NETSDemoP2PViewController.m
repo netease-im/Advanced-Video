@@ -198,13 +198,13 @@
         [buttonArray addObject:button];
         [self.functionMenu addSubview:button];
     }
-    if (titleArray.count == 1) {
+    if (buttonArray.count == 1) {
         UIButton* button = buttonArray[0];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.functionMenu);
             make.height.mas_equalTo(@60);
         }];
-    } else {
+    } else if (buttonArray.count > 1) {
         [buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.functionMenu).offset(10);
         }];
