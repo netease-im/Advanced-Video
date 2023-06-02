@@ -134,7 +134,7 @@
 - (void)enableBeauty:(BOOL)enable {
     // 开启/关闭美颜效果
 //    [NERtcBeauty shareInstance].isOpenBeauty = enable;
-    _beautyEnabled = enable;
+    self.beautyEnabled = enable;
 }
 
 - (void)displayMenuWithType:(NEBeautyConfigViewType)type container:(UIView *)container {
@@ -339,6 +339,10 @@
 }
 
 #pragma mark - Private
+
+- (float)convertValue:(float)value withRangeStride:(float)stride {
+    return value - (stride / 2);
+}
 
 //- (void)prepareFilterData {
 //    NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -645,117 +649,152 @@
 - (void)didChangeSliderValueWithType:(NEBeautySliderType)type value:(float)value {
     switch (type) {
         case NEBeautySliderTypeWhiteTeeth: {
-            [NERtcBeauty shareInstance].teeth = value;
+//            [NERtcBeauty shareInstance].teeth = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_WHITE_TEETH value:value];
             
             break;
         }
         case NEBeautySliderTypeLightEye: {
-            [NERtcBeauty shareInstance].brightEye = value;
+//            [NERtcBeauty shareInstance].brightEye = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_BRIGHT_EYE value:value];
             
             break;
         }
         case NEBeautySliderTypeWhiten: {
-            [NERtcBeauty shareInstance].whiteSkin = value;
+//            [NERtcBeauty shareInstance].whiteSkin = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_BASE_WHITTEN value:value];
             
             break;
         }
         case NEBeautySliderTypeSmooth: {
-            [NERtcBeauty shareInstance].smoothSkin = value;
+//            [NERtcBeauty shareInstance].smoothSkin = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_BASE_FACE_SMOOTH value:value];
             
             break;
         }
         case NEBeautySliderTypeSmallNose: {
-            [NERtcBeauty shareInstance].smallNose = value;
+//            [NERtcBeauty shareInstance].smallNose = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_NARROW_NOSE value:value];
             
             break;
         }
         case NEBeautySliderTypeEyeDis: {
-            [NERtcBeauty shareInstance].eyesDistance = value;
+//            [NERtcBeauty shareInstance].eyesDistance = value;
+            // EFFECT_BEAUTY_PLASTIC_EYE_DISTANCE [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_EYE_DISTANCE value:value];
             
             break;
         }
         case NEBeautySliderTypeEyeAngle: {
-            [NERtcBeauty shareInstance].eyesAngle = value;
+//            [NERtcBeauty shareInstance].eyesAngle = value;
+            // EFFECT_BEAUTY_PLASTIC_EYE_ANGLE [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_EYE_ANGLE value:value];
             
             break;
         }
         case NEBeautySliderTypeMouth: {
-            [NERtcBeauty shareInstance].mouth = value;
+//            [NERtcBeauty shareInstance].mouth = value;
+            // EFFECT_BEAUTY_PLASTIC_MOUTH_SIZE [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_MOUTH_SIZE value:value];
             
             break;
         }
         case NEBeautySliderTypeBigEye: {
-            [NERtcBeauty shareInstance].bigEye = value;
+//            [NERtcBeauty shareInstance].bigEye = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_RESHAPE_ENLARGE_EYE value:value];
             
             break;
         }
         case NEBeautySliderTypeSmallFace: {
-            [NERtcBeauty shareInstance].smallFace = value;
+//            [NERtcBeauty shareInstance].smallFace = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_RESHAPE_SHRINK_JAW value:value];
             
             break;
         }
         case NEBeautySliderTypeJaw: {
-            [NERtcBeauty shareInstance].jaw = value;
+//            [NERtcBeauty shareInstance].jaw = value;
+            // EFFECT_BEAUTY_PLASTIC_CHIN_LENGTH [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_CHIN_LENGTH value:value];
             
             break;
         }
         case NEBeautySliderTypeThinFace: {
-            [NERtcBeauty shareInstance].thinFace = value;
+//            [NERtcBeauty shareInstance].thinFace = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_RESHAPE_SHRINK_FACE value:value];
             
             break;
         }
         case NEBeautySliderTypeFaceRuddy: {
-            [NERtcBeauty shareInstance].faceRuddyStrength = value;
+//            [NERtcBeauty shareInstance].faceRuddyStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_BASE_REDDEN value:value];
             
             break;
         }
         case NEBeautySliderTypeLongNose: {
-            [NERtcBeauty shareInstance].longNoseStrength = value;
+//            [NERtcBeauty shareInstance].longNoseStrength = value;
+            // EFFECT_BEAUTY_PLASTIC_NOSE_LENGTH [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_NOSE_LENGTH value:value];
             
             break;
         }
         case NEBeautySliderTypeRenZhong: {
-            [NERtcBeauty shareInstance].renZhongStrength = value;
+//            [NERtcBeauty shareInstance].renZhongStrength = value;
+            // EFFECT_BEAUTY_PLASTIC_PHILTRUM_LENGTH [-1, 1]
+            value = [self convertValue:value withRangeStride:2];
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_PHILTRUM_LENGTH value:value];
             
             break;
         }
         case NEBeautySliderTypeMouthAngle: {
-            [NERtcBeauty shareInstance].mouthAngle = value;
+            // not supported
+//            [NERtcBeauty shareInstance].mouthAngle = value;
             
             break;
         }
         case NEBeautySliderTypeRoundEye: {
-            [NERtcBeauty shareInstance].roundEyeStrength = value;
+//            [NERtcBeauty shareInstance].roundEyeStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_RESHAPE_ROUND_EYE value:value];
             
             break;
         }
         case NEBeautySliderTypeOpenEyeAngle: {
-            [NERtcBeauty shareInstance].openEyeAngleStrength = value;
+//            [NERtcBeauty shareInstance].openEyeAngleStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_OPEN_CANTHUS value:value];
             
             break;
         }
         case NEBeautySliderTypeVFace: {
-            [NERtcBeauty shareInstance].vFaceStrength = value;
+            // not supported
+//            [NERtcBeauty shareInstance].vFaceStrength = value;
             
             break;
         }
         case NEBeautySliderTypeThinUnderjaw: {
-            [NERtcBeauty shareInstance].thinUnderjawStrength = value;
+//            [NERtcBeauty shareInstance].thinUnderjawStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_SHRINK_JAWBONE value:value];
             
             break;
         }
         case NEBeautySliderTypeNarrowFace: {
-            [NERtcBeauty shareInstance].narrowFaceStrength = value;
+//            [NERtcBeauty shareInstance].narrowFaceStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_RESHAPE_NARROW_FACE value:value];
             
             break;
         }
         case NEBeautySliderTypeCheekBone: {
-            [NERtcBeauty shareInstance].cheekBoneStrength = value;
+//            [NERtcBeauty shareInstance].cheekBoneStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_PLASTIC_SHRINK_CHEEKBONE value:value];
             
             break;
         }
         case NEBeautySliderTypeFaceSharpen: {
-            [NERtcBeauty shareInstance].faceSharpenStrength = value;
+//            [NERtcBeauty shareInstance].faceSharpenStrength = value;
+            [self.stEffectProcess setEffectType:EFFECT_BEAUTY_TONE_SHARPEN value:value];
             
             break;
         }
@@ -971,7 +1010,7 @@
                                @(NEBeautySliderTypeBigEye),
                                @(NEBeautySliderTypeJaw)];
         NSArray *imageNameArray = @[@"thin_face", @"enlarge_eyes", @"small_face"];
-        NSArray *initialValueArray = @[@(0), @(0), @(0)];
+        NSArray *initialValueArray = @[@(0), @(0), @(0.5)];
         for (int i = 0; i < titleArray.count; i++) {
             NEBeautySliderDisplayModel *model = [[NEBeautySliderDisplayModel alloc] init];
             model.title = titleArray[i];
