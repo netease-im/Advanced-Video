@@ -1,16 +1,41 @@
 PODS:
-  - NERtcSDK (3.6.2)
+  - NERtcSDK (5.6.40):
+    - NERtcSDK/AiDenoise (= 5.6.40)
+    - NERtcSDK/AiHowling (= 5.6.40)
+    - NERtcSDK/Beauty (= 5.6.40)
+    - NERtcSDK/FaceDetect (= 5.6.40)
+    - NERtcSDK/FaceEnhance (= 5.6.40)
+    - NERtcSDK/Nenn (= 5.6.40)
+    - NERtcSDK/RtcBasic (= 5.6.40)
+    - NERtcSDK/ScreenShare (= 5.6.40)
+    - NERtcSDK/Segment (= 5.6.40)
+    - NERtcSDK/SpatialSound (= 5.6.40)
+    - NERtcSDK/SuperResolution (= 5.6.40)
+    - NERtcSDK/VideoDenoise (= 5.6.40)
+  - NERtcSDK/AiDenoise (5.6.40)
+  - NERtcSDK/AiHowling (5.6.40)
+  - NERtcSDK/Beauty (5.6.40)
+  - NERtcSDK/FaceDetect (5.6.40)
+  - NERtcSDK/FaceEnhance (5.6.40)
+  - NERtcSDK/Nenn (5.6.40)
+  - NERtcSDK/RtcBasic (5.6.40)
+  - NERtcSDK/ScreenShare (5.6.40)
+  - NERtcSDK/Segment (5.6.40)
+  - NERtcSDK/SpatialSound (5.6.40)
+  - NERtcSDK/SuperResolution (5.6.40)
+  - NERtcSDK/VideoDenoise (5.6.40)
 
 DEPENDENCIES:
-  - NERtcSDK (= 3.6.2)
+  - NERtcSDK (= 5.6.40)
+  - NERtcSDK/ScreenShare (= 5.6.40)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - NERtcSDK
 
 SPEC CHECKSUMS:
-  NERtcSDK: 01855b97554cf0c856d009db7b296de4f71300c2
+  NERtcSDK: 31cae0be74a20a2c244da3669dd6b5f59658af0d
 
-PODFILE CHECKSUM: f5960f28fbb90a9564de8f1dbc31be40d071bf94
+PODFILE CHECKSUM: 70081cd6405eb11bf064843f0dfa854af4ecb6a6
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.15.2

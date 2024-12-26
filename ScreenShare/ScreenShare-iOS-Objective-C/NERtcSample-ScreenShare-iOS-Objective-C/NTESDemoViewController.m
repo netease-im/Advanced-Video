@@ -7,16 +7,15 @@
 //
 
 #import "NTESDemoViewController.h"
-#import <ReplayKit/ReplayKit.h>
 #import <NERtcSDK/NERtcSDK.h>
+#import <NERtcReplayKit/NERtcReplayKit.h>
 #import "AppKey.h"
 
 static NSString *kAppGroup = @"group.com.netease.nmc.NERtcSample-ScreenShare-iOS-Objective-C"; //!<需要替换自己的App Group
-static void *KVOContext = &KVOContext;
 
-@interface NTESDemoViewController () <NERtcEngineDelegateEx>
+@interface NTESDemoViewController () <NERtcEngineDelegateEx, NEScreenShareHostDelegate>
 
-@property (nonatomic, strong) NSUserDefaults *userDefaults;
+@property (nonatomic, strong) NEScreenShareHost *shareHost;
 @property (nonatomic, strong) NSNumber *currentUserID; //!< 当前用户ID
 
 @property (nonatomic, assign) BOOL cameraOn;
@@ -48,46 +47,64 @@ static void *KVOContext = &KVOContext;
     [super viewDidLoad];
     
     self.userIDTextField.text = [self randomUserID];
-    [self setupUserDefaults];
     [self setupRTCEngine];
+    [self setupShareKit];
     [self addSystemBroadcastPickerIfPossible];
 }
 
 - (void)dealloc
 {
-    [self.userDefaults removeObserver:self forKeyPath:@"frame"];
     [NERtcEngine.sharedEngine leaveChannel];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [NERtcEngine destroyEngine];
     });
 }
 
-#pragma mark - Override
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"frame"]) {
-        if (self.currentUserID) {
-            NSDictionary *i420Frame = change[NSKeyValueChangeNewKey];
-            NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
-            frame.format = kNERtcVideoFormatI420;
-            frame.width = [i420Frame[@"width"] unsignedIntValue];
-            frame.height = [i420Frame[@"height"] unsignedIntValue];
-            frame.buffer = (void *)[i420Frame[@"data"] bytes];
-            frame.timestamp = [i420Frame[@"timestamp"] unsignedLongLongValue];
-            int ret = [NERtcEngine.sharedEngine pushExternalVideoFrame:frame];
-            if (ret != 0) {
-                NSLog(@"发送视频流失败:%d", ret);
-                return;
-            }
-        }
-    }
-}
-
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
     [self.view endEditing:YES];
+}
+
+#pragma mark- ScreenShare
+
+- (void)setupShareKit {
+    NEScreenShareHostOptions *options = [[NEScreenShareHostOptions alloc] init];
+#if DEBUG
+    options.enableDebug = YES;;
+#endif
+    options.appGroup = kAppGroup;
+    options.delegate = self;
+    //定制参数，具体见API文档
+    options.extraInfoDict = @{};
+    self.shareHost = [NEScreenShareHost sharedInstance];
+    [self.shareHost setupScreenshareOptions:options];
+}
+
+/// 自定义消息通知，可以用于Extension与Host App的信息广播通知
+- (void)onNERtcReplayKitNotifyCustomInfo:(NSDictionary *)info {
+  NSLog(@"replaykit custom info:%@", info.description);
+}
+
+/// 音频帧回调
+- (void)onReceiveAudioFrame:(NEScreenShareAudioFrame *)audioFrame {
+  //为音频共享逻辑
+  //此处省略
+}
+
+/// 视频帧回调
+- (void)onReceiveVideoFrame:(NEScreenShareVideoFrame *)videoFrame {
+    NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
+    frame.format = kNERtcVideoFormatI420;
+    frame.width = videoFrame.width;
+    frame.height = videoFrame.height;
+    frame.buffer = (void *)[videoFrame.videoData bytes];
+    frame.timestamp = videoFrame.timeStamp;
+    frame.rotation = (NERtcVideoRotationType)videoFrame.rotation;
+    int ret = [NERtcEngine.sharedEngine pushExternalVideoFrame:frame];
+    if (ret != 0) {
+        NSLog(@"发送视频流失败:%d", ret);
+    }
 }
 
 #pragma mark - SDK回调（含义请参考NERtcEngineDelegateEx定义）
@@ -145,6 +162,7 @@ static void *KVOContext = &KVOContext;
         [NERtcEngine.sharedEngine startScreenCapture:config];
     }
     _screenShareOn = !_screenShareOn;
+    NSLog(@"rtc sdk 是否开启屏幕共享：%d", _screenShareOn);
 }
 
 - (IBAction)onJoinClick:(id)sender
@@ -158,7 +176,7 @@ static void *KVOContext = &KVOContext;
     uint64_t userID = self.userIDTextField.text.longLongValue;
     NSString *roomID = self.roomIDTextField.text;
     __weak typeof(self) wself = self;
-    [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:roomID myUid:userID  completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd) {
+    [NERtcEngine.sharedEngine joinChannelWithToken:@"" channelName:roomID myUid:userID  completion:^(NSError * _Nullable error, uint64_t channelId, uint64_t elapesd, uint64_t uid) {
         __strong typeof(wself) sself = wself;
         if (!sself) return;
         if (error) {
@@ -192,13 +210,6 @@ static void *KVOContext = &KVOContext;
 {
     uint64_t uid = 10000 + arc4random() % (99999 - 10000);
     return @(uid).stringValue;
-}
-
-- (void)setupUserDefaults
-{
-    // 通过UserDefaults建立数据通道，接收Extension传递来的视频帧
-    self.userDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
-    [self.userDefaults addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:KVOContext];
 }
 
 - (void)setupRTCEngine

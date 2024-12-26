@@ -4,6 +4,7 @@
 
 这个开源示例项目演示了如何快速集成 网易云信 新一代（G2）音视频 SDK，实现屏幕共享。
 - 将屏幕录制作为采集源
+- 使用云信提供的封装NERtcReplayKit.framework，实现与RTC SDK的交互进而实现实时屏幕共享
 
 ## 环境准备，运行示例项目，一对一视频通话功能实现
 
@@ -11,11 +12,12 @@
 
 ## <span id="实现方法">实现方法</span>
 
-iOS实现屏幕分享的基本原理是利用iOS的 ReplayKit 特性。ReplayKit 仅支持iOS 11.0 以上共享系统屏幕。基本流程是添加ReplayKit扩展、云信SDK创建加入房间并使用自定义采集、使用 AppGroup 在宿主App(主工程，这里是屏幕共享Sample)和扩展ReplayKit程序之间进行视频数据（音频使用宿主APP中云信SDK采集）和控制指令传输；
+       iOS实现屏幕分享的基本原理是利用iOS系统的 ReplayKit 特性。ReplayKit 仅支持iOS 11.0 以上共享系统屏幕。
+    云信SDK提供了对ReplayKit的封装NERtcReplayKit.framework，可以方便的进行使用。
 
-具体实现分为两部分(扩展 ReplayKit 程序, 主工程)。
+具体实现分为两部分(扩展Extension程序, 主工程)。
 
-### 添加ReplayKit
+### 添加ReplayKit Extension
 
 1. Broadcast Upload Extension
 
@@ -25,118 +27,63 @@ iOS实现屏幕分享的基本原理是利用iOS的 ReplayKit 特性。ReplayKit
 
 ![image](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fdefault%2Fchose_ext.jpg)
 
-2. 建立同名 AppGroup 数据池，用于扩展 ReplayKit 程序和主工程之间通信
-3. ReplayKit 采集到的屏幕视频数据通过 processSampleBuffer:withType:给用户，忽略音频数据回调（我们使用云信SDK音频采集），将视频数据压缩后存入共用资料夹，主程序监测到视频数据变更后，通过SDK自定义视频数据进行发送。
+2. 建立同名 AppGroup 数据池，使 NERtcReplayKit 可在Extension程序和主工程之间通信。Debug调试状态下可以不建立AppGroup，直接使用NERtcReplayKit进行屏幕共享调试。具体使用见示例代码
+
+3. 在扩展程序中集成NERtcReplayKit.framework，可使用手动导入，也可使用pod导入，pod导入时，可使用`pod 'NERtcSDK/ScreenShare'`， 版本需要高于`5.0.0`
 
 ### 屏幕分享主程序
 
-1. 初始化SDK，配置允许使用外部视频源，确保视频通话功能正常;
-2. 在 RPSystemBroadcastPickerView 中添加扩展程序;
-3. 初始化同AppGroup名资料夹, 并添加监听事件;
-4. 监听到数据帧变化, 校验后推送外部视频帧到SDK;
+1. 初始化云信NERTCSDK，配置允许使用外部视频源，确保视频通话功能正常
+2. 在 RPSystemBroadcastPickerView 中添加扩展程序
+3. 初始化同AppGroup名资料夹, 并初始化设置NERtcReplayKit
 
 具体代码及流程请参照示例代码和[Sample工程](https://github.com/netease-im/Advanced-Video/tree/master/ScreenShare/ScreenShare-iOS-Objective-C)。
 
 ## <span id="示例代码">示例代码</span>
 
-### ReplayKit部分
+### ReplayKit Extension部分
 
 1. 建立同名 AppGroup 数据池，用于扩展 ReplayKit 程序和主工程之间通信
+2. 在扩展程序中集成NERtcReplayKit.framework，可使用手动导入，也可使用pod导入，pod导入时，可使用`pod 'NERtcSDK/ScreenShare'`， 版本需要高于`5.0.0`
+3. 在扩展程序中实现NERtcReplayKit的代理方法，实现与主工程的交互
 
 ```objc
 - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
-    self.userDefautls = [[NSUserDefaults alloc] initWithSuiteName:<#kAppGroupName#>];
+  NEScreenShareBroadcasterOptions *options = [[NEScreenShareBroadcasterOptions alloc]init];
+  options.appGroup = <#请输入您的AppKey#>;
+#if DEBUG
+  options.enableDebug = YES;
+#endif
+  //开启音频共享，默认不开启
+  options.needAudioSampleBuffer = YES;
+  options.needMicAudioSampleBuffer = YES;
+  [NEScreenShareSampleHandler sharedInstance].delegate = self;
+  [[NEScreenShareSampleHandler sharedInstance] broadcastStartedWithSetupInfo:options];
 }
-```
 
-2. 压缩裁剪采集图片，发送到宿主App
+- (void)broadcastPaused {
+  // User has requested to pause the broadcast. Samples will stop being delivered.
+  [[NEScreenShareSampleHandler sharedInstance] broadcastPaused];
+}
 
-ReplayKit 采集到的屏幕视频数据通过 processSampleBuffer:withType:给用户，忽略音频数据回调（我们使用云信SDK音频采集），将视频数据存入共用资料夹，主程序监测倒数据变更后，再通过SDK自定义视频数据进行发送。
+- (void)broadcastResumed {
+  // User has requested to resume the broadcast. Samples delivery will resume.
+  [[NEScreenShareSampleHandler sharedInstance] broadcastResumed];
+}
 
-```objc
+- (void)broadcastFinished {
+  // User has requested to finish the broadcast.
+  [[NEScreenShareSampleHandler sharedInstance] broadcastFinished];
+}
+
 - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
-    
-    switch (sampleBufferType) {
-        case RPSampleBufferTypeVideo: {
-            @autoreleasepool {
-                CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-                NSDictionary *frame = [self createI420VideoFrameFromPixelBuffer:pixelBuffer];
-                [self.userDefautls setObject:frame forKey:<#KeyPath#>];
-                [self.userDefautls synchronize];
-            }
-            break;
-        }
-        case RPSampleBufferTypeAudioApp:
-            // Handle audio sample buffer for app audio
-            break;
-        case RPSampleBufferTypeAudioMic:
-            // Handle audio sample buffer for mic audio
-            break;
-            
-        default:
-            break;
-    }
-}
-```
-
-数据压缩采用的是 [libyuv](https://chromium.googlesource.com/libyuv/libyuv/) 第三方工具。
-
-```objc
-- (NSDictionary *)createI420VideoFrameFromPixelBuffer:(CVPixelBufferRef)pixelBuffer
-{
-    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-    
-    // 转I420
-    int psrc_w = (int)CVPixelBufferGetWidth(pixelBuffer);
-    int psrc_h = (int)CVPixelBufferGetHeight(pixelBuffer);
-    uint8 *src_y = (uint8 *)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
-    uint8 *src_uv = (uint8 *)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1);
-    int y_stride = (int)CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0);
-    int uv_stride = (int)CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 1);
-    uint8 *i420_buf = (uint8 *)malloc((psrc_w * psrc_h * 3) >> 1);
-    
-    libyuv::NV12ToI420(&src_y[0],                              y_stride,
-                       &src_uv[0],                             uv_stride,
-                       &i420_buf[0],                           psrc_w,
-                       &i420_buf[psrc_w * psrc_h],             psrc_w >> 1,
-                       &i420_buf[(psrc_w * psrc_h * 5) >> 2],  psrc_w >> 1,
-                       psrc_w, psrc_h);
-
-    // 缩放至720
-    int pdst_w = 720;
-    int pdst_h = psrc_h * (pdst_w/(double)psrc_w);
-    libyuv::FilterMode filter = libyuv::kFilterNone;
-    uint8 *pdst_buf = (uint8 *)malloc((pdst_w * pdst_h * 3) >> 1);
-    libyuv::I420Scale(&i420_buf[0],                          psrc_w,
-                      &i420_buf[psrc_w * psrc_h],            psrc_w >> 1,
-                      &i420_buf[(psrc_w * psrc_h * 5) >> 2], psrc_w >> 1,
-                      psrc_w, psrc_h,
-                      &pdst_buf[0],                          pdst_w,
-                      &pdst_buf[pdst_w * pdst_h],            pdst_w >> 1,
-                      &pdst_buf[(pdst_w * pdst_h * 5) >> 2], pdst_w >> 1,
-                      pdst_w, pdst_h,
-                      filter);
-
-    free(i420_buf);
-    
-    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-    
-    NSUInteger dataLength = pdst_w * pdst_h * 3 >> 1;
-    NSData *data = [NSData dataWithBytesNoCopy:pdst_buf length:dataLength];
-    
-    NSDictionary *frame = @{
-        @"width": @(pdst_w),
-        @"height": @(pdst_h),
-        @"data": data,
-        @"timestamp": @(CACurrentMediaTime() * 1000)
-    };
-    return frame;
+  [[NEScreenShareSampleHandler sharedInstance] processSampleBuffer:sampleBuffer withType:sampleBufferType];
 }
 ```
 
 ### 屏幕分享主程序
 
-1. 初始化SDK，配置允许使用外部视频源，确保视频通话功能正常；
+1. 初始化SDK，配置允许使用外部视频源，确保视频通话功能正常
 
 ```objc
 NERtcEngine *coreEngine = [NERtcEngine sharedEngine];
@@ -175,48 +122,36 @@ context.appKey = <#请输入您的AppKey#>;
 }
 ```
 
-3. 初始化同AppGroup名资料夹, 并添加监听事件。
+3. 初始化同AppGroup名资料夹, 并初始化设置NERtcReplayKit。
 
 ```objc
-- (void)setupUserDefaults
-{
-    // 通过UserDefaults建立数据通道，接收Extension传递来的视频帧
-    self.userDefaults = [[NSUserDefaults alloc] initWithSuiteName:<#AppGroupName#>];
-    [self.userDefaults addObserver:self forKeyPath:<#KeyPath#> options:NSKeyValueObservingOptionNew context:KVOContext];
-}
+    NEScreenShareHostOptions *options = [[NEScreenShareHostOptions alloc] init];
+#if DEBUG
+    options.enableDebug = YES;;
+#endif
+    options.appGroup = <#请输入您的AppKey#>;
+    options.delegate = self;
+    //定制参数，具体见API文档
+    options.extraInfoDict = @{};
+    [[NEScreenShareHost sharedInstance] setupScreenshareOptions:options];
 ```
 
-4. 监听到数据帧变化, 校验后推送外部视频帧到SDK
+4. 实现NERtcReplayKit的代理方法，推送外部视频帧到RTCSDK
 
 ```objc
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:<#KeyPath#>]) {
-        if (self.currentUserID) {
-            NSDictionary *i420Frame = change[NSKeyValueChangeNewKey];
-            NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
-            frame.format = kNERtcVideoFormatI420;
-            frame.width = [i420Frame[@"width"] unsignedIntValue];
-            frame.height = [i420Frame[@"height"] unsignedIntValue];
-            frame.buffer = (void *)[i420Frame[@"data"] bytes];
-            frame.timestamp = [i420Frame[@"timestamp"] unsignedLongLongValue];
-            int ret = [NERtcEngine.sharedEngine pushExternalVideoFrame:frame]; // 推送外部视频帧到SDK
-            if (ret != 0) {
-                NSLog(@"发送视频流失败:%d", ret);
-                return;
-            }
-        }
+/// 视频帧回调
+- (void)onReceiveVideoFrame:(NEScreenShareVideoFrame *)videoFrame {
+    NERtcVideoFrame *frame = [[NERtcVideoFrame alloc] init];
+    frame.format = kNERtcVideoFormatI420;
+    frame.width = videoFrame.width;
+    frame.height = videoFrame.height;
+    frame.buffer = (void *)[videoFrame.videoData bytes];
+    frame.timestamp = videoFrame.timeStamp;
+    frame.rotation = (NERtcVideoRotationType)videoFrame.rotation;
+    int ret = [NERtcEngine.sharedEngine pushExternalVideoFrame:frame];
+    if (ret != 0) {
+        NSLog(@"发送视频流失败:%d", ret);
     }
-}
-```
-
-5. 不使用该功能时，记得移除观察者;
-
-```objc
-- (void)dealloc
-{
-    [self.userDefaults removeObserver:self forKeyPath:<#KeyPath#>];
-    [NERtcEngine.sharedEngine leaveChannel];
 }
 ```
 

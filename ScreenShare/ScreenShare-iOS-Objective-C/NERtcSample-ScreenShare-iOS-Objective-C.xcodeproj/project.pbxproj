@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48AB391224FE32E200919699 /* libyuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391124FE32E200919699 /* libyuv.a */; };
 		48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391624FE352400919699 /* CoreVideo.framework */; };
 		48AB391924FE354500919699 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391824FE354500919699 /* CoreMedia.framework */; };
 		48AB391C24FE391100919699 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48AB391B24FE391100919699 /* QuartzCore.framework */; };
@@ -20,9 +19,6 @@
 		48C3559924BEAC1D00C55964 /* NTESSampleHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */; };
 		48C355AD24BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 48C3559224BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		48C355B724BEAC8800C55964 /* NTESDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C355B624BEAC8800C55964 /* NTESDemoViewController.m */; };
-		6A3912C227576A3900387F0F /* NTESYUVConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A3912BC27576A3900387F0F /* NTESYUVConverter.mm */; };
-		6A3912C327576A3900387F0F /* NTESVideoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3912C027576A3900387F0F /* NTESVideoUtil.m */; };
-		6A3912C427576A3900387F0F /* NTESI420Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3912C127576A3900387F0F /* NTESI420Frame.m */; };
 		86A902A224F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A902A124F5008400AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */; };
 		DA31F0D0465E9781CF7D684D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6574A041F1363DB9299A95 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C_Broadcast.framework */; };
 /* End PBXBuildFile section */
@@ -55,28 +51,6 @@
 		04DCE968E76EB896828F0559 /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F8C2419812FB46C418907 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C/Pods-NERtcSample-ScreenShare-iOS-Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
 		300A88AEE18A3EAD6B634634 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Pods-NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.release.xcconfig"; sourceTree = "<group>"; };
-		48AB38FA24FE32E200919699 /* libyuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libyuv.h; sourceTree = "<group>"; };
-		48AB38FC24FE32E200919699 /* scale_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_row.h; sourceTree = "<group>"; };
-		48AB38FD24FE32E200919699 /* scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale.h; sourceTree = "<group>"; };
-		48AB38FE24FE32E200919699 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		48AB38FF24FE32E200919699 /* cpu_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_id.h; sourceTree = "<group>"; };
-		48AB390024FE32E200919699 /* video_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_common.h; sourceTree = "<group>"; };
-		48AB390124FE32E200919699 /* compare_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare_row.h; sourceTree = "<group>"; };
-		48AB390224FE32E200919699 /* mjpeg_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mjpeg_decoder.h; sourceTree = "<group>"; };
-		48AB390324FE32E200919699 /* rotate_row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_row.h; sourceTree = "<group>"; };
-		48AB390424FE32E200919699 /* planar_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = planar_functions.h; sourceTree = "<group>"; };
-		48AB390524FE32E200919699 /* scale_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scale_argb.h; sourceTree = "<group>"; };
-		48AB390624FE32E200919699 /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
-		48AB390724FE32E200919699 /* convert_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_argb.h; sourceTree = "<group>"; };
-		48AB390824FE32E200919699 /* rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate.h; sourceTree = "<group>"; };
-		48AB390924FE32E200919699 /* convert_from_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from_argb.h; sourceTree = "<group>"; };
-		48AB390A24FE32E200919699 /* basic_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basic_types.h; sourceTree = "<group>"; };
-		48AB390B24FE32E200919699 /* convert_from.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert_from.h; sourceTree = "<group>"; };
-		48AB390C24FE32E200919699 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
-		48AB390D24FE32E200919699 /* rotate_argb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate_argb.h; sourceTree = "<group>"; };
-		48AB390E24FE32E200919699 /* macros_msa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros_msa.h; sourceTree = "<group>"; };
-		48AB390F24FE32E200919699 /* row.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = row.h; sourceTree = "<group>"; };
-		48AB391124FE32E200919699 /* libyuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libyuv.a; sourceTree = "<group>"; };
 		48AB391624FE352400919699 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		48AB391824FE354500919699 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		48AB391B24FE391100919699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -97,12 +71,6 @@
 		48C355A124BEAC1D00C55964 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		48C355B524BEAC8800C55964 /* NTESDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESDemoViewController.h; sourceTree = "<group>"; };
 		48C355B624BEAC8800C55964 /* NTESDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESDemoViewController.m; sourceTree = "<group>"; };
-		6A3912BC27576A3900387F0F /* NTESYUVConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NTESYUVConverter.mm; sourceTree = "<group>"; };
-		6A3912BD27576A3900387F0F /* NTESYUVConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESYUVConverter.h; sourceTree = "<group>"; };
-		6A3912BE27576A3900387F0F /* NTESI420Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESI420Frame.h; sourceTree = "<group>"; };
-		6A3912BF27576A3900387F0F /* NTESVideoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESVideoUtil.h; sourceTree = "<group>"; };
-		6A3912C027576A3900387F0F /* NTESVideoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESVideoUtil.m; sourceTree = "<group>"; };
-		6A3912C127576A3900387F0F /* NTESI420Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESI420Frame.m; sourceTree = "<group>"; };
 		83D6622EDF13078534134126 /* Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; path = "Target Support Files/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI/Pods-NERtcSample-ScreenShare-iOS-Objective-C-BroadcastSetupUI.release.xcconfig"; sourceTree = "<group>"; };
 		86205F1824F509C600BE40DA /* NERtcSample-ScreenShare-iOS-Objective-C.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NERtcSample-ScreenShare-iOS-Objective-C.entitlements"; sourceTree = "<group>"; };
 		86A9029224F5001600AC0B8D /* Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NERtcSample_ScreenShare_iOS_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48AB391224FE32E200919699 /* libyuv.a in Frameworks */,
 				48AB391C24FE391100919699 /* QuartzCore.framework in Frameworks */,
 				48AB391924FE354500919699 /* CoreMedia.framework in Frameworks */,
 				48AB391724FE352400919699 /* CoreVideo.framework in Frameworks */,
@@ -144,67 +111,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		48AB38F724FE32E200919699 /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-				48AB38F824FE32E200919699 /* libyuv */,
-			);
-			path = Vendors;
-			sourceTree = "<group>";
-		};
-		48AB38F824FE32E200919699 /* libyuv */ = {
-			isa = PBXGroup;
-			children = (
-				48AB38F924FE32E200919699 /* include */,
-				48AB391024FE32E200919699 /* lib */,
-			);
-			path = libyuv;
-			sourceTree = "<group>";
-		};
-		48AB38F924FE32E200919699 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				48AB38FA24FE32E200919699 /* libyuv.h */,
-				48AB38FB24FE32E200919699 /* libyuv */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		48AB38FB24FE32E200919699 /* libyuv */ = {
-			isa = PBXGroup;
-			children = (
-				48AB38FC24FE32E200919699 /* scale_row.h */,
-				48AB38FD24FE32E200919699 /* scale.h */,
-				48AB38FE24FE32E200919699 /* version.h */,
-				48AB38FF24FE32E200919699 /* cpu_id.h */,
-				48AB390024FE32E200919699 /* video_common.h */,
-				48AB390124FE32E200919699 /* compare_row.h */,
-				48AB390224FE32E200919699 /* mjpeg_decoder.h */,
-				48AB390324FE32E200919699 /* rotate_row.h */,
-				48AB390424FE32E200919699 /* planar_functions.h */,
-				48AB390524FE32E200919699 /* scale_argb.h */,
-				48AB390624FE32E200919699 /* compare.h */,
-				48AB390724FE32E200919699 /* convert_argb.h */,
-				48AB390824FE32E200919699 /* rotate.h */,
-				48AB390924FE32E200919699 /* convert_from_argb.h */,
-				48AB390A24FE32E200919699 /* basic_types.h */,
-				48AB390B24FE32E200919699 /* convert_from.h */,
-				48AB390C24FE32E200919699 /* convert.h */,
-				48AB390D24FE32E200919699 /* rotate_argb.h */,
-				48AB390E24FE32E200919699 /* macros_msa.h */,
-				48AB390F24FE32E200919699 /* row.h */,
-			);
-			path = libyuv;
-			sourceTree = "<group>";
-		};
-		48AB391024FE32E200919699 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				48AB391124FE32E200919699 /* libyuv.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		48C3556924BEABF800C55964 = {
 			isa = PBXGroup;
 			children = (
@@ -267,27 +173,12 @@
 		48C3559624BEAC1D00C55964 /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast */ = {
 			isa = PBXGroup;
 			children = (
-				48AB38F724FE32E200919699 /* Vendors */,
-				6A3912BB27576A3900387F0F /* Video */,
 				86C9512624F5142D009ECC0A /* NERtcSample-ScreenShare-iOS-Objective-C-Broadcast.entitlements */,
 				48C3559724BEAC1D00C55964 /* NTESSampleHandler.h */,
 				48C3559824BEAC1D00C55964 /* NTESSampleHandler.mm */,
 				48C3559A24BEAC1D00C55964 /* Info.plist */,
 			);
 			path = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast";
-			sourceTree = "<group>";
-		};
-		6A3912BB27576A3900387F0F /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				6A3912BD27576A3900387F0F /* NTESYUVConverter.h */,
-				6A3912BC27576A3900387F0F /* NTESYUVConverter.mm */,
-				6A3912BE27576A3900387F0F /* NTESI420Frame.h */,
-				6A3912C127576A3900387F0F /* NTESI420Frame.m */,
-				6A3912BF27576A3900387F0F /* NTESVideoUtil.h */,
-				6A3912C027576A3900387F0F /* NTESVideoUtil.m */,
-			);
-			path = Video;
 			sourceTree = "<group>";
 		};
 		DC135B43BB44EB86F9B3C86F /* Pods */ = {
@@ -481,9 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48C3559924BEAC1D00C55964 /* NTESSampleHandler.mm in Sources */,
-				6A3912C327576A3900387F0F /* NTESVideoUtil.m in Sources */,
-				6A3912C427576A3900387F0F /* NTESI420Frame.m in Sources */,
-				6A3912C227576A3900387F0F /* NTESYUVConverter.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,10 +569,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 569GNZ5392;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/include\"";
 				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -712,10 +600,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 569GNZ5392;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Vendors/libyuv/include\"";
 				INFOPLIST_FILE = "NERtcSample-ScreenShare-iOS-Objective-C-Broadcast/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
