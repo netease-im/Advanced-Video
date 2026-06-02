@@ -1,0 +1,12 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "entry",
+  "description": "NERTC HarmonyOS screen share demo entry module.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "@nertc/nertc_sdk": "5.10.1"
+  }
+}

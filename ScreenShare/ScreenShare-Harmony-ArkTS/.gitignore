@@ -1,0 +1,7 @@
+.hvigor/
+build/
+entry/build/
+oh_modules/
+entry/oh_modules/
+*.log
+local.properties

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "screen_share_module_desc",
+      "value": "NERTC HarmonyOS screen share demo"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "NERTC HarmonyOS screen share demo"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "屏幕共享"
+    },
+    {
+      "name": "camera_auth_reason",
+      "value": "用于打开本地摄像头视频"
+    },
+    {
+      "name": "microphone_auth_reason",
+      "value": "用于房间内音频通话"
+    }
+  ]
+}
